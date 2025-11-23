@@ -737,8 +737,8 @@ p {
 .team-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--spacing-lg);
-  margin-top: var(--spacing-md);
+  gap: 1.5rem;
+  margin-top: 2rem;
 }
 
 .team-card {
