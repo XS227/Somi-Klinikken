@@ -682,6 +682,45 @@ p {
   box-shadow: var(--shadow-soft);
 }
 
+.mirror-photo-placeholder,
+.team-photo {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Team-bilder */
+.team-photo-katarina {
+  background-image: url("https://somi.setaei.com/img/katarina.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.team-photo-elina {
+  background-image: url("https://somi.setaei.com/img/elina.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.team-photo-arianna {
+  background-image: url("https://somi.setaei.com/img/arianna.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.team-photo-emma {
+  background-image: url("https://somi.setaei.com/img/emma.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .about-visual {
   display: flex;
   justify-content: center;
@@ -1003,74 +1042,4 @@ p {
     height: 1.5px;
     background: var(--color-text);
   }
-}
-
-/* --- TEAM-BILDER --- */
-
-.mirror-photo-placeholder,
-.team-photo {
-  width: 100%;
-  height: 100%;
-  border-radius: inherit;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.team-photo-katarina {
-  background-image: url("https://somi.setaei.com/img/katarina.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.team-photo-elina {
-  background-image: url("https://somi.setaei.com/img/elina.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.team-photo-arianna {
-  background-image: url("https://somi.setaei.com/img/arianna.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.team-photo-emma {
-  background-image: url("https://somi.setaei.com/img/emma.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-/* --- TEAM-BILDER --- */
-
-.team-photo-katarina {
-  background-image: url("https://somi.setaei.com/img/katarina.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.team-photo-elina {
-  background-image: url("https://somi.setaei.com/img/elina.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.team-photo-arianna {
-  background-image: url("https://somi.setaei.com/img/arianna.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.team-photo-emma {
-  background-image: url("https://somi.setaei.com/img/emma.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
 }
