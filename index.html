@@ -697,20 +697,58 @@
           <input type="text" name="_honey" style="display:none" />
           <input type="hidden" name="_captcha" value="false" />
 
-          <div class="form-row">
-            <label for="name">Navn</label>
-            <input id="name" name="Navn" type="text" required />
+          <div class="form-row form-row--inline">
+            <div>
+              <label for="name">Navn</label>
+              <input id="name" name="Navn" type="text" required />
+            </div>
+
+            <div>
+              <label for="email">E-post</label>
+              <input id="email" name="E-post" type="email" required />
+            </div>
+
+            <div>
+              <label for="phone">Telefon (valgfritt)</label>
+              <input id="phone" name="Telefon" type="tel" inputmode="tel" />
+            </div>
           </div>
 
           <div class="form-row">
-            <label for="email">E-post</label>
-            <input id="email" name="E-post" type="email" required />
+            <label for="topic">Hva gjelder henvendelsen?</label>
+            <select id="topic" name="Tema">
+              <option value="Generelt spørsmål">Generelt spørsmål</option>
+              <option value="Konsultasjon">Konsultasjon</option>
+              <option value="Hudbehandling">Hudbehandling</option>
+              <option value="Injeksjoner">Injeksjoner</option>
+              <option value="Permanent makeup">Permanent makeup</option>
+            </select>
           </div>
 
           <div class="form-row">
             <label for="message">Melding</label>
             <textarea id="message" name="Melding" rows="4" required></textarea>
           </div>
+
+          <div class="form-row form-row--inline form-row--small">
+            <div>
+              <label for="preferred-time">Ønsket tidspunkt</label>
+              <select id="preferred-time" name="Ønsket tidspunkt">
+                <option value="Ingen preferanse">Ingen preferanse</option>
+                <option value="Morgen">Morgen</option>
+                <option value="Dag">Dag</option>
+                <option value="Kveld">Kveld</option>
+                <option value="Helg">Helg</option>
+              </select>
+            </div>
+
+            <div class="form-checkbox">
+              <input type="checkbox" id="newsletter" name="Nyhetsbrev" value="Ja" />
+              <label for="newsletter">Ja takk, send meg oppdateringer om kampanjer og tips.</label>
+            </div>
+          </div>
+
+          <p class="form-help">Vi svarer så raskt vi kan – som regel innen én virkedag.</p>
 
           <button type="submit" class="btn btn-cta-primary">
             Send melding
@@ -774,6 +812,28 @@
           <p>
             Du får alltid skriftlig informasjon, men typisk anbefaler vi å unngå alkohol, blodfortynnende
             medisiner og hard trening samme dag, samt å følge rådene du får etter behandling.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>
+            <span class="faq-question">Trenger jeg konsultasjon først?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <p>
+            Før nye injeksjonsbehandlinger eller større hudprogrammer setter vi alltid opp en konsultasjon.
+            Her kartlegger vi mål, medisinsk historikk og anbefaler en trygg plan videre.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>
+            <span class="faq-question">Hva om jeg må endre eller avlyse time?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <p>
+            Du kan endre eller avbestille via onlinebookingen inntil 24 timer før. Gi oss beskjed så snart som
+            mulig dersom du blir syk, så finner vi en ny tid.
           </p>
         </details>
       </div>
