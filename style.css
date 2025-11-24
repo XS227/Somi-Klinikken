@@ -380,14 +380,46 @@ p {
   min-height: 260px;
 }
 
+/* Felles stil for alle ovale bildeframer (hero, om, team) */
+
+.hero-arch,
+.mirror-frame {
+  border-radius: 999px 999px 560px 560px;
+  background: radial-gradient(
+    circle at 18% 0%,
+    #ffffff 0%,
+    #f8f1ed 35%,
+    #f0ded4 65%,
+    #e3dad2 100%
+  );
+  padding: 6px;
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.12);
+}
+
+.mirror-frame {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  margin-inline: auto;
+  aspect-ratio: 3 / 4;
+  animation: slow-float 14s ease-in-out infinite;
+}
+
 .hero-arch {
   position: relative;
   width: 100%;
-  aspect-ratio: 3/4;
-  border-radius: 999px 999px 620px 620px;
-  background: linear-gradient(135deg, var(--color-bg-strong), #ffffff);
+  aspect-ratio: 3 / 4;
   overflow: hidden;
-  box-shadow: var(--shadow-soft);
+}
+
+.mirror-photo-placeholder,
+.team-photo {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .hero-photo {
@@ -411,7 +443,7 @@ p {
   content: "";
   position: absolute;
   border: 1px solid rgba(255, 255, 255, 0.7);
-  border-radius: 999px 999px 620px 620px;
+  border-radius: 999px 999px 560px 560px;
   inset: 0;
   transform: rotate(3deg);
   animation: orbit 18s linear infinite;
@@ -683,31 +715,6 @@ p {
   gap: 0.8rem;
 }
 
-/* Speil/mirror-element */
-
-.mirror-frame {
-  position: relative;
-  width: 100%;
-  max-width: 320px;
-  margin-inline: auto;
-  aspect-ratio: 3/4;
-  border-radius: 999px 999px 550px 550px;
-  background: linear-gradient(160deg, var(--color-bg-strong), #ffffff);
-  padding: 6px;
-  box-shadow: var(--shadow-soft);
-  animation: slow-float 14s ease-in-out infinite;
-}
-
-.team-photo {
-  width: 100%;
-  height: 100%;
-  border-radius: inherit;
-  background-size: contain;
-  background-position: center top;
-  background-repeat: no-repeat;
-  background-color: var(--color-bg-soft);
-}
-
 .about-photo {
   width: 100%;
   height: 100%;
@@ -799,10 +806,6 @@ p {
   display: flex;
   gap: 0.75rem;
   flex-wrap: wrap;
-}
-
-.blog-hero-visual .hero-arch {
-  background: #fff;
 }
 
 .blog-details {
