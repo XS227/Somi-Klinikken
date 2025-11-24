@@ -414,8 +414,7 @@ p {
   overflow: hidden;
 }
 
-.mirror-photo-placeholder,
-.team-photo {
+.mirror-photo-placeholder {
   width: 100%;
   height: 100%;
   border-radius: inherit;
@@ -734,23 +733,6 @@ p {
   object-fit: cover;
 }
 
-/* Team-bilder */
-.team-photo-katarina {
-  background-image: url("https://somi.setaei.com/img/katarina.png");
-}
-
-.team-photo-elina {
-  background-image: url("https://somi.setaei.com/img/elina.png");
-}
-
-.team-photo-arianna {
-  background-image: url("https://somi.setaei.com/img/arianna.png");
-}
-
-.team-photo-emma {
-  background-image: url("https://somi.setaei.com/img/emma.png");
-}
-
 /* ============================
    Blogg
    ============================ */
@@ -967,69 +949,118 @@ p {
 }
 
 .team-card {
-  border-radius: 22px;
-  padding: 1.4rem 1.5rem 1.6rem;
-  background: #fff;
-  border: 1px solid var(--color-border-subtle);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+  background: #ffffff;
+  border-radius: 32px;
+  padding: 28px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
 }
 
-.team-photo-wrapper {
-  margin-bottom: 0.7rem;
+.team-header {
   display: flex;
-  justify-content: center;
-}
-
-.team-role {
-  font-size: 0.78rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(56, 56, 56, 0.6);
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
 }
 
 .team-name {
-  font-size: 1.08rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  font-family: "Corbel", sans-serif;
+  margin: 0;
+}
+
+.team-role {
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  opacity: 0.6;
+  margin-bottom: 12px;
+  display: block;
+  text-transform: uppercase;
+}
+
+.team-ig img,
+.team-ig svg {
+  width: 16px;
+  opacity: 0.6;
+  transition: 0.2s;
+}
+
+.team-ig img:hover,
+.team-ig svg:hover {
+  opacity: 1;
+}
+
+.team-image-wrapper {
+  width: 100%;
+  margin: 0 auto 18px;
+  aspect-ratio: 3 / 4;
+  border-radius: 60% 60% 45% 45% / 78% 78% 40% 40%;
+  overflow: hidden;
+  position: relative;
+}
+
+.team-image-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-top-color: transparent;
+  border-right-color: transparent;
+  animation: orbit 12s linear infinite;
+}
+
+.team-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transform: translateY(4%);
 }
 
 .team-text {
+  font-size: 0.95rem;
+}
+
+.btn-team {
+  margin-top: 16px;
+  display: block;
+  padding: 12px;
+  border-radius: 50px;
+  border: 1px solid #383838;
+  text-align: center;
+  color: #383838;
   font-size: 0.9rem;
-  color: rgba(56, 56, 56, 0.85);
-  margin-bottom: 0.5rem;
+  text-decoration: none;
+  transition: 0.2s;
 }
 
-.team-socials {
-  display: flex;
-  gap: 0.5rem;
-  margin: 0.1rem 0 0.6rem;
+.btn-team:hover {
+  background: #383838;
+  color: white;
 }
 
-.team-social-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 999px;
-  border: 1px solid var(--color-border-subtle);
-  color: var(--color-primary);
-  background: #fff;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+@keyframes orbit {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
-.team-social-link svg {
-  width: 20px;
-  height: 20px;
-  fill: currentColor;
-}
+@media (max-width: 600px) {
+  .team-image-wrapper {
+    aspect-ratio: 0.8;
+  }
 
-.team-social-link:focus-visible,
-.team-social-link:hover {
-  color: var(--color-primary-dark);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
-  transform: translateY(-2px);
+  .team-image-wrapper img {
+    object-position: center top;
+    transform: translateY(2%);
+  }
 }
 
 /* ============================
