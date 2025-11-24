@@ -94,6 +94,10 @@ textarea {
   margin-bottom: 0;
 }
 
+.section + .feedbacks.section {
+  padding-top: 3rem;
+}
+
 /* Typografi */
 
 h1, h2, h3, h4 {
@@ -870,6 +874,70 @@ p {
 }
 
 /* ============================
+   Feedbacks
+   ============================ */
+
+.feedbacks {
+  background: #fff;
+}
+
+.feedbacks--secondary {
+  background: var(--color-bg-soft);
+}
+
+.feedback-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.1rem;
+  margin-top: 1.8rem;
+}
+
+.feedback-card {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border-subtle);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.04);
+  padding: 1.3rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.feedback-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.feedback-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at 30% 20%, #f9ebe6, #e8d3d0);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.feedback-name {
+  font-weight: 600;
+  margin: 0;
+}
+
+.feedback-stars {
+  margin: 0.1rem 0 0;
+  color: #c99d9d;
+  font-size: 0.9rem;
+}
+
+.feedback-text {
+  margin: 0;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* ============================
    Kontakt
    ============================ */
 
@@ -1164,8 +1232,9 @@ p {
   .hero-grid,
   .about-grid,
   .faq-grid,
-  .contact-grid {
-    grid-template-columns: minmax(0, 1fr);
+  .contact-grid,
+  .feedback-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .hero-grid {
@@ -1188,7 +1257,8 @@ p {
 
   .treatment-grid,
   .benefit-grid,
-  .team-grid {
+  .team-grid,
+  .feedback-grid {
     grid-template-columns: minmax(0, 1fr);
   }
 
