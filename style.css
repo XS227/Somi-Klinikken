@@ -1063,6 +1063,47 @@ p {
   }
 }
 
+.team-image-wrapper {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #fdf4ed, #f9e5da);
+  padding: 0.6rem;
+  border: 1px solid rgba(56, 56, 56, 0.05);
+}
+
+.team-image {
+  width: 100%;
+  display: block;
+  border-radius: 14px;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.06);
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  background: #fff;
+}
+
+.btn-team {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.75rem 1.05rem;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  border: 1px solid rgba(56, 56, 56, 0.12);
+  background: linear-gradient(90deg, #f7e9e4, #fbeee9);
+  color: #4b3b3b;
+  text-decoration: none;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.btn-team:hover,
+.btn-team:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.08);
+  border-color: rgba(56, 56, 56, 0.18);
+}
+
 /* ============================
    FAQ
    ============================ */
