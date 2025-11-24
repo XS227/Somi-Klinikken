@@ -242,6 +242,17 @@ p {
   transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
 }
 
+.btn-with-icon {
+  gap: 0.5rem;
+}
+
+.btn-icon svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+  fill: currentColor;
+}
+
 .btn-primary {
   background: linear-gradient(135deg, var(--color-accent) 0%, #e8c3c3 50%, var(--color-accent-soft) 100%);
   color: var(--color-text);
@@ -415,6 +426,12 @@ p {
 @keyframes orbit {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+@keyframes slow-float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
 }
 
 /* ============================
@@ -678,15 +695,17 @@ p {
   background: linear-gradient(160deg, var(--color-bg-strong), #ffffff);
   padding: 6px;
   box-shadow: var(--shadow-soft);
+  animation: slow-float 14s ease-in-out infinite;
 }
 
 .team-photo {
   width: 100%;
   height: 100%;
   border-radius: inherit;
-  background-size: cover;
-  background-position: center;
+  background-size: contain;
+  background-position: center top;
   background-repeat: no-repeat;
+  background-color: var(--color-bg-soft);
 }
 
 .about-photo {
@@ -699,30 +718,18 @@ p {
 /* Team-bilder */
 .team-photo-katarina {
   background-image: url("https://somi.setaei.com/img/katarina.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
 }
 
 .team-photo-elina {
   background-image: url("https://somi.setaei.com/img/elina.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
 }
 
 .team-photo-arianna {
   background-image: url("https://somi.setaei.com/img/arianna.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
 }
 
 .team-photo-emma {
   background-image: url("https://somi.setaei.com/img/emma.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
 }
 
 /* ============================
@@ -1258,9 +1265,17 @@ p {
 
   .treatment-grid,
   .benefit-grid,
+  .about-grid,
+  .faq-grid,
+  .contact-grid,
+  .hero-grid,
   .team-grid,
   .feedback-grid {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero-grid {
+    gap: 1.8rem;
   }
 
   .hero {
