@@ -1279,11 +1279,6 @@ p {
    ============================ */
 
 .chat-widget {
-  /* Temporarily hidden AI chat */
-  display: none !important;
-  visibility: hidden;
-  pointer-events: none;
-
   position: fixed;
   bottom: 1.6rem;
   right: 1.6rem;
