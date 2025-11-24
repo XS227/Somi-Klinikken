@@ -59,7 +59,7 @@
         </div>
         <div class="service-hero-card" aria-hidden="true">
           <div class="service-hero-arch">
-            <img src="https://somi.setaei.com/img/Somi-Interi%C3%B8r.jpg" alt="Stemning fra SOMI Klinikk" loading="lazy" />
+            <img src="https://somi.setaei.com/img/BeforeAfter.jpg" alt="Stemning fra SOMI Klinikk" loading="lazy" />
           </div>
           <div class="hero-lines"></div>
         </div>
@@ -390,12 +390,94 @@
         </div>
         <div class="service-cta-card" aria-hidden="true">
           <div class="service-cta-arch">
-            <img src="https://somi.setaei.com/img/SOMI-lobby.jpg" alt="Venterom hos SOMI" loading="lazy" />
+            <img src="https://somi.setaei.com/img/Klinikken1.jpg" alt="Venterom hos SOMI" loading="lazy" />
           </div>
           <div class="hero-lines"></div>
         </div>
       </div>
     </section>
   </main>
+
+  <div class="chat-widget" aria-live="polite">
+    <button class="chat-toggle" aria-expanded="false" aria-controls="somi-chat-panel">
+      <span class="chat-toggle-dot"></span>
+      <span>Chat med SOMI AI</span>
+    </button>
+
+    <div class="chat-panel" id="somi-chat-panel" hidden>
+      <div class="chat-panel-header">
+        <div>
+          <p class="eyebrow">SOMI AI</p>
+          <strong>Spør oss om behandlinger</strong>
+        </div>
+        <button class="chat-close" aria-label="Lukk chat">×</button>
+      </div>
+
+      <div class="chat-messages">
+        <div class="chat-bubble chat-bubble--ai">
+          Hei! Jeg er SOMI AI. Spør meg om behandlinger, etterbehandling eller timebestilling.
+        </div>
+        <div class="chat-bubble chat-bubble--user">Kan jeg ta sol etter filler?</div>
+        <div class="chat-bubble chat-bubble--ai">
+          Vi anbefaler å vente minst 48 timer før soling eller varme behandlinger. Bruk solfaktor og følg
+          etterbehandlingen du får av behandleren din.
+        </div>
+      </div>
+
+      <form class="chat-input" aria-label="Send melding til SOMI AI">
+        <label for="chat-message" class="visually-hidden">Melding</label>
+        <input id="chat-message" type="text" name="message" placeholder="Skriv meldingen din..." />
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 SOMI Klinikk – Alle rettigheter reservert.</p>
+    </div>
+  </footer>
+
+  <script>
+    const navToggle = document.querySelector('.nav-toggle');
+    const navList = document.querySelector('.nav-list');
+    const chatToggle = document.querySelector('.chat-toggle');
+    const chatPanel = document.querySelector('#somi-chat-panel');
+    const chatClose = document.querySelector('.chat-close');
+    const chatForm = document.querySelector('.chat-input');
+
+    if (navToggle && navList) {
+      navToggle.addEventListener('click', () => {
+        const isOpen = document.body.classList.toggle('nav-open');
+        navToggle.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      navList.addEventListener('click', (event) => {
+        if (event.target instanceof HTMLElement && event.target.tagName === 'A') {
+          document.body.classList.remove('nav-open');
+          navToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
+    const setChatOpen = (open) => {
+      if (!chatPanel || !chatToggle) return;
+      chatPanel.hidden = !open;
+      chatToggle.setAttribute('aria-expanded', String(open));
+      if (open) {
+        chatPanel.classList.add('chat-panel--open');
+      } else {
+        chatPanel.classList.remove('chat-panel--open');
+      }
+    };
+
+    chatToggle?.addEventListener('click', () => setChatOpen(chatPanel?.hidden));
+    chatClose?.addEventListener('click', () => setChatOpen(false));
+
+    chatForm?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      setChatOpen(true);
+    });
+  </script>
 </body>
 </html>
