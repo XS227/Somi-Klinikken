@@ -870,7 +870,7 @@ p {
 
 .somi-instagram-section {
   padding: 80px 20px;
-  background: linear-gradient(45deg, #efefee, #dcdcdb);
+  background: #f4e3dc33; /* lett SOMI-rosa bakgrunn */
 }
 
 .somi-container {
@@ -885,67 +885,79 @@ p {
 
 .somi-instagram-header h2 {
   font-size: 2rem;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #383838;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .somi-instagram-header p {
   color: #555;
-  font-size: 1rem;
+  font-size: 0.95rem;
 }
 
-.somi-instagram-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  align-self: center;
-  padding: 0.85rem 1.4rem;
-  border-radius: var(--radius-pill);
-  background: linear-gradient(120deg, #e6c9c9, #f3dad4);
-  border: 1px solid rgba(56, 56, 56, 0.06);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.05);
-  font-weight: 600;
-  color: #4b3b3b;
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-.somi-instagram-btn:hover,
-.somi-instagram-btn:focus-visible {
-  transform: translateY(-1px);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.07);
-}
-
+/* 2 + 1 layout */
 .somi-instagram-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 24px;
 }
 
 .somi-instagram-card {
-  background: #ffffff;
-  padding: 14px;
-  border-radius: 32px;
-  border: 1px solid #e8e6e4;
-  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.05);
   display: flex;
-  align-items: stretch;
 }
 
-.somi-instagram-card .instagram-media {
+.somi-instagram-card--wide {
+  grid-column: 1 / span 2;       /* tredje kort tar hele raden */
+  max-width: 540px;
+  justify-self: center;          /* midt i grid */
+}
+
+/* SOMI-ramma rundt innholdet */
+.somi-ig-frame {
+  position: relative;
+  width: 100%;
+  padding: 16px 16px 22px;
+  border-radius: 40px;
+  background: #ffffff;
+  border: 1px solid #e8e6e4;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+/* ekstra “speil-linje” inni ramma */
+.somi-ig-frame::before {
+  content: "";
+  position: absolute;
+  inset: 10px 18px 26px;
+  border-radius: 999px 999px 40px 40px;
+  border: 1px dashed rgba(221, 179, 179, 0.7);
+  pointer-events: none;
+}
+
+/* Instagram-widgeten skal fylle ramma og ikke stikke ut */
+.somi-ig-frame .instagram-media {
   width: 100% !important;
+  max-width: 100% !important;
+  border-radius: 28px;
+  overflow: hidden;
 }
 
+/* Mindre “rot”: begrens høyden og skjul mest mulig footer */
+.somi-ig-frame .instagram-media > div {
+  max-height: 430px;
+  overflow: hidden;
+}
+
+/* Mobil-tilpasning */
 @media (max-width: 900px) {
   .somi-instagram-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 600px) {
-  .somi-instagram-grid {
     grid-template-columns: 1fr;
+  }
+
+  .somi-instagram-card--wide {
+    grid-column: auto;
+    max-width: 100%;
   }
 }
 
