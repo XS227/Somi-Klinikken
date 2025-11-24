@@ -869,20 +869,31 @@ p {
 }
 
 .somi-instagram-section {
-  background: linear-gradient(140deg, #f9f2ed, #ffffff);
+  padding: 80px 20px;
+  background: linear-gradient(45deg, #efefee, #dcdcdb);
+}
+
+.somi-container {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .somi-instagram-header {
   text-align: center;
-  max-width: 720px;
-  margin: 0 auto 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
+  margin-bottom: 40px;
+}
+
+.somi-instagram-header h2 {
+  font-size: 2rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #383838;
+  margin-bottom: 10px;
 }
 
 .somi-instagram-header p {
-  color: rgba(56, 56, 56, 0.85);
+  color: #555;
+  font-size: 1rem;
 }
 
 .somi-instagram-btn {
@@ -908,29 +919,34 @@ p {
 
 .somi-instagram-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.2rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
 }
 
 .somi-instagram-card {
-  background: #fff;
-  border-radius: 24px;
-  border: 1px solid var(--color-border-subtle);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.05);
-  padding: 0.6rem;
-  overflow: hidden;
+  background: #ffffff;
+  padding: 14px;
+  border-radius: 32px;
+  border: 1px solid #e8e6e4;
+  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: stretch;
 }
 
-.somi-instagram-card blockquote.instagram-media {
-  margin: 0 auto;
-  max-width: 100%;
-  border-radius: 18px;
-  overflow: hidden;
-  width: 100%;
+.somi-instagram-card .instagram-media {
+  width: 100% !important;
 }
 
-.somi-instagram-card .instagram-media-rendered {
-  border-radius: 18px !important;
+@media (max-width: 900px) {
+  .somi-instagram-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .somi-instagram-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .about-visual {
@@ -1339,85 +1355,6 @@ p {
 
 .contact-form .contact-form-wrapper form {
   margin-top: 1rem;
-}
-
-/* ============================
-   Instagram
-   ============================ */
-
-.somi-instagram-section {
-  padding: 5rem 0;
-  background: linear-gradient(45deg, #efefee, #dcdcdb);
-}
-
-.somi-instagram-header {
-  text-align: center;
-  max-width: 640px;
-  margin: 0 auto 2.5rem;
-}
-
-.somi-instagram-header h2 {
-  font-size: 2rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--color-text);
-  margin-bottom: 0.7rem;
-}
-
-.somi-instagram-header p {
-  color: rgba(56, 56, 56, 0.8);
-  font-size: 0.95rem;
-  line-height: 1.6;
-  margin-bottom: 1.2rem;
-}
-
-.somi-instagram-btn {
-  display: inline-block;
-  padding: 0.65rem 1.4rem;
-  border-radius: var(--radius-pill);
-  background: var(--color-accent);
-  color: var(--color-text);
-  font-size: 0.9rem;
-  border: 1px solid var(--color-border-subtle);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-}
-
-.somi-instagram-btn:hover {
-  background: var(--color-accent-soft);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
-  transform: translateY(-1px);
-}
-
-.somi-instagram-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.5rem;
-}
-
-.somi-instagram-card {
-  background: var(--color-white);
-  border-radius: var(--radius-xl);
-  padding: 1rem;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.04);
-  border: 1px solid var(--color-border-subtle);
-  display: flex;
-  align-items: stretch;
-}
-
-.somi-instagram-card .instagram-media {
-  width: 100% !important;
-}
-
-@media (max-width: 900px) {
-  .somi-instagram-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 640px) {
-  .somi-instagram-grid {
-    grid-template-columns: 1fr;
-  }
 }
 
 .form-row {
