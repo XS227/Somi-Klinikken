@@ -398,34 +398,44 @@ p {
   object-fit: cover;
 }
 
-/* Animerte linjer rundt speilform */
+/* HERO – rullende linjeeffekt bak bildet */
 
 .hero-lines {
   position: absolute;
-  inset: -10%;
+  inset: -25%;
   pointer-events: none;
+  z-index: 1;      /* LIGGER BAK ARCH + BILDE */
+  filter: blur(6px);
 }
 
 .hero-lines::before,
 .hero-lines::after {
   content: "";
   position: absolute;
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  border-radius: 999px 999px 620px 620px;
-  inset: 0;
-  transform: rotate(3deg);
-  animation: orbit 18s linear infinite;
+  inset: 10%;
+  border-radius: 999px 999px 600px 600px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow:
+    0 0 35px rgba(255, 255, 255, 0.8),
+    0 0 80px rgba(221, 179, 179, 0.55);
+  opacity: 0.65;
+  animation: hero-orbit 22s linear infinite;
 }
 
 .hero-lines::after {
-  inset: 8%;
-  opacity: 0.7;
-  animation-duration: 26s;
+  inset: 22%;
+  opacity: 0.35;
+  animation-duration: 32s;
 }
 
-@keyframes orbit {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+/* Ny, litt roligere animasjon */
+@keyframes hero-orbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes slow-float {
