@@ -162,21 +162,14 @@ p {
 }
 
 .somi-logo {
-  display: flex;
-  flex-direction: column;
-  line-height: 1;
+  display: inline-flex;
+  align-items: center;
 }
 
-.somi-logo-line-1 {
-  font-family: var(--font-serif);
-  font-size: 1.3rem;
-  letter-spacing: 0.22em;
-}
-
-.somi-logo-line-2 {
-  font-size: 0.7rem;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
+.somi-logo-image {
+  height: 48px;
+  width: auto;
+  display: block;
 }
 
 /* Nav */
@@ -1255,6 +1248,14 @@ p {
     padding-block: 0.7rem;
   }
 
+  body.nav-open {
+    overflow: hidden;
+  }
+
+  .somi-nav {
+    position: relative;
+  }
+
   .treatment-grid,
   .benefit-grid,
   .team-grid,
@@ -1271,7 +1272,22 @@ p {
   }
 
   .nav-list {
-    display: none; /* her kan du senere legge til JS for burger-meny */
+    position: absolute;
+    inset: calc(100% + 0.6rem) 0 auto auto;
+    display: none;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: 1rem;
+    width: min(320px, 86vw);
+    background: rgba(255, 255, 255, 0.94);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(56, 56, 56, 0.08);
+    z-index: 10;
+  }
+
+  body.nav-open .nav-list {
+    display: flex;
   }
 
   .nav-toggle {
@@ -1287,5 +1303,9 @@ p {
     width: 20px;
     height: 1.5px;
     background: var(--color-text);
+  }
+
+  .somi-logo-image {
+    height: 42px;
   }
 }
