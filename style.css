@@ -74,6 +74,11 @@ textarea {
   margin-inline: auto;
 }
 
+.somi-container {
+  width: min(1120px, 100% - 3rem);
+  margin-inline: auto;
+}
+
 .section {
   padding: 4.5rem 0;
 }
