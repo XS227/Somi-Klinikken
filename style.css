@@ -1456,6 +1456,35 @@ p {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
 }
 
+.service-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.service-card__top {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.6rem;
+  align-items: flex-start;
+}
+
+.service-card__name {
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.service-card__price {
+  font-weight: 700;
+  color: var(--color-accent);
+  white-space: nowrap;
+}
+
+.service-card__time {
+  color: var(--color-text-subtle);
+  font-weight: 600;
+}
+
 .service-list--columns {
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
