@@ -292,6 +292,56 @@
       color: rgba(0,0,0,0.6);
     }
 
+    /* ---------- INFO-BOKSER PÅ BEHANDLINGER ---------- */
+
+    .info-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.08);
+      background: rgba(255,255,255,0.95);
+      color: var(--somi-dark);
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .info-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.14);
+    }
+
+    .info-btn.open {
+      background: #fef2ec;
+      color: var(--somi-pink);
+    }
+
+    .treatment-info {
+      background: #fffaf7;
+      border: 1px solid rgba(0,0,0,0.05);
+      border-radius: 14px;
+      margin: -6px 0 12px;
+      padding: 0 14px;
+      font-size: 0.9rem;
+      color: rgba(0,0,0,0.72);
+      line-height: 1.6;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.25s ease, margin 0.25s ease;
+    }
+
+    .treatment-info.open {
+      padding-top: 10px;
+      padding-bottom: 12px;
+      margin-top: -2px;
+      max-height: 500px;
+    }
+
     /* ---------- FOOTER ---------- */
 
     footer {
@@ -569,6 +619,185 @@
     </div>
   </section>
 
+  <!-- BRYN OG VIPPER SECTION ------------------------------------->
+  <section id="bryn-og-vipper" class="section">
+    <div class="section-inner">
+
+      <div class="category">
+        <button class="category-header" type="button" data-target="bryn-info">
+          <div>
+            <div class="category-label">02 · Kategori</div>
+            <h2 class="category-title">Bryn og vipper</h2>
+            <p class="category-subtitle">
+              Forming, farging og løft for et naturlig, våkent blikk.
+            </p>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span class="category-number">02</span>
+            <span class="category-chevron">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M6 9l6 6 6-6" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </button>
+
+        <div class="category-info" id="bryn-info">
+          <div class="category-info-inner">
+            <h4>Info om bryn og vipper</h4>
+            <p>Se detaljer via (i)-ikonet der det er tilgjengelig. Studentrabatt gjelder kun der det er eksplisitt oppgitt.</p>
+          </div>
+        </div>
+
+        <div class="treatment-list">
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Brynstyling (form, farg, voks)</h3>
+              <small>Forming, farging og voksing av bryn.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">690 kr</div>
+              <div class="treatment-duration">30 min</div>
+            </div>
+            <button class="info-btn" type="button" data-target="bryn-info-1" aria-label="Vis info om brynstyling">i</button>
+          </div>
+          <div class="treatment-info" id="bryn-info-1">
+            Forming, farging og voksing av bryn. -15% STUDENTRABATT trekkes fra i kassen ved betaling, og studentbevis må kunne fremlegges.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Browlamination</h3>
+              <small>Permanent form med farging/forming inkludert.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">1 070 kr</div>
+              <div class="treatment-duration">45 min</div>
+            </div>
+            <button class="info-btn" type="button" data-target="bryn-info-2" aria-label="Vis info om browlamination">i</button>
+          </div>
+          <div class="treatment-info" id="bryn-info-2">
+            Det brukes en permanent som gjør at vi kan endre retningen på brynhårene, slik at de blir lettere å gre i en ryddigere eller mer fluffy look, og gir ofte en fyldigere fasong. Farging/forming er inkludert om ønskelig. Varighet 4–8 uker, avhengig av syklus på brynhårene. -15% STUDENTRABATT trekkes fra i kassen ved betaling, og studentbevis må kunne fremlegges.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Vippeløft inkl. farge og lashfiller</h3>
+              <small>Naturlig løft med farge og lashfiller inkludert.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">1 140 kr</div>
+              <div class="treatment-duration">1 t</div>
+            </div>
+            <button class="info-btn" type="button" data-target="bryn-info-3" aria-label="Vis info om vippeløft med farge">i</button>
+          </div>
+          <div class="treatment-info" id="bryn-info-3">
+            Det brukes en permanent som gjør at vi kan bøye vippene fra roten. Resultatet er mer synlige vipper som virker lengre og fyldigere. Varighet 4–8 uker, avhengig av vippesyklus. Farging og lashfiller er inkludert. -15% STUDENTRABATT trekkes fra i kassen ved betaling, og studentbevis må kunne fremlegges.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Browlamination + Vippeløft, inkl. farge</h3>
+              <small>Kombinasjonspakke for bryn og vipper.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">1 690 kr</div>
+              <div class="treatment-duration">1 t 30 min</div>
+            </div>
+            <button class="info-btn" type="button" data-target="bryn-info-4" aria-label="Vis info om browlamination og vippeløft">i</button>
+          </div>
+          <div class="treatment-info" id="bryn-info-4">
+            Studentrabatt gjelder ikke pakkepriser.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Brynstyling (form, farg, voks) + Vippeløft inkl. farge</h3>
+              <small>Kombinasjon med brynstyling og vippeløft.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">1 480 kr</div>
+              <div class="treatment-duration">1 t 15 min</div>
+            </div>
+            <button class="info-btn" type="button" data-target="bryn-info-5" aria-label="Vis info om brynstyling og vippeløft">i</button>
+          </div>
+          <div class="treatment-info" id="bryn-info-5">
+            Studentrabatt gjelder ikke pakkepriser.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Farging av vipper</h3>
+              <small>Rask behandling som fremhever vippene.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">290 kr</div>
+              <div class="treatment-duration">15 min</div>
+            </div>
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Farging av bryn</h3>
+              <small>Definerer og fyller ut brynene.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">320 kr</div>
+              <div class="treatment-duration">15 min</div>
+            </div>
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Brynstyling for menn</h3>
+              <small>Skånsom forming og rydding av bryn.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">490 kr</div>
+              <div class="treatment-duration">30 min</div>
+            </div>
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Brynstyling + voks overleppe</h3>
+              <small>Ryddige bryn og jevn overleppe.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">850 kr</div>
+              <div class="treatment-duration">45 min</div>
+            </div>
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Forming av bryn</h3>
+              <small>Presis forming av brynene.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">490 kr</div>
+              <div class="treatment-duration">30 min</div>
+            </div>
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Brynstyling + farging av vipper</h3>
+              <small>Full pakke for bryn og vipper.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">850 kr</div>
+              <div class="treatment-duration">45 min</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <!-- FOOTER ------------------------------------------------------>
   <footer>
     <div class="footer-inner">
@@ -611,6 +840,31 @@
           header.classList.add('open');
           info.style.maxHeight = info.scrollHeight + 'px';
         }
+      });
+    });
+
+    // Åpne/lukke info på enkeltbehandlinger
+    document.querySelectorAll('.treatment-list').forEach(function(list) {
+      const infoPanels = list.querySelectorAll('.treatment-info');
+
+      list.querySelectorAll('.info-btn').forEach(function(btn) {
+        btn.addEventListener('click', function () {
+          const info = document.getElementById(btn.getAttribute('data-target'));
+          const isOpen = info.classList.contains('open');
+
+          infoPanels.forEach(function(panel) {
+            panel.style.maxHeight = null;
+            panel.classList.remove('open');
+            const relatedBtn = list.querySelector(`.info-btn[data-target="${panel.id}"]`);
+            if (relatedBtn) relatedBtn.classList.remove('open');
+          });
+
+          if (!isOpen) {
+            info.classList.add('open');
+            btn.classList.add('open');
+            info.style.maxHeight = info.scrollHeight + 'px';
+          }
+        });
       });
     });
 
