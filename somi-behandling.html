@@ -1,1305 +1,1675 @@
 <!DOCTYPE html>
-<html lang="no">
+<html lang="nb">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Behandlinger | SOMI Klinikk</title>
+  <meta charset="UTF-8">
+  <title>SOMI Klinikken – Behandlinger</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- Fonts – bruk gjerne de som ligger på serveren din -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Nunito:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    :root {
+      --somi-dark: #383838;
+      --somi-pink: #ddb3b3;
+      --somi-rose: #f4e3dc;
+      --somi-warm-grey: #e8e6e4;
+      --somi-white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Nunito", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #faf7f6;
+      color: var(--somi-dark);
+      scroll-behavior: smooth;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* ---------- HERO ---------- */
+
+    .hero {
+      background: linear-gradient(135deg, var(--somi-rose), var(--somi-warm-grey));
+      padding: 80px 20px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      align-items: center;
+      gap: 40px;
+    }
+
+    .hero-copy small {
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      color: rgba(56,56,56,0.8);
+    }
+
+    .hero-copy h1 {
+      margin: 10px 0 12px;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.1rem, 3vw, 2.6rem);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero-copy p {
+      margin: 0 0 18px;
+      max-width: 460px;
+      font-size: 0.98rem;
+      line-height: 1.7;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.8);
+      font-size: 0.8rem;
+    }
+
+    .hero-badge span.dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--somi-pink);
+    }
+
+    .hero-image-wrap {
+      position: relative;
+      justify-self: center;
+    }
+
+    .hero-arch {
+      width: 260px;
+      height: 260px;
+      border-radius: 130px 130px 120px 120px;
+      background: rgba(255,255,255,0.7);
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      z-index: 0;
+    }
+
+    .hero-photo {
+      position: relative;
+      z-index: 1;
+      border-radius: 150px 150px 135px 135px;
+      overflow: hidden;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.1);
+    }
+
+    .hero-photo img {
+      width: 260px;
+      height: 260px;
+      object-fit: cover;
+    }
+
+    /* ---------- SECTION WRAPPER ---------- */
+
+    .section {
+      padding: 70px 20px 80px;
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ---------- CATEGORY: MICROBLADING ---------- */
+
+    .category {
+      background: var(--somi-white);
+      border-radius: 32px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.06);
+      padding: 32px 22px 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .category-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 22px;
+      border: none;
+      padding: 0;
+      margin: 0 0 26px;
+      width: 100%;
+      text-align: left;
+      background: none;
+      cursor: pointer;
+    }
+
+    .category-label {
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.4);
+      margin-bottom: 4px;
+    }
+
+    .category-title {
+      font-family: "Playfair Display", serif;
+      font-size: 2rem;
+      margin: 0 0 4px;
+    }
+
+    .category-subtitle {
+      margin: 0;
+      font-size: 0.95rem;
+      color: rgba(0,0,0,0.7);
+    }
+
+    .category-number {
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.4);
+    }
+
+    .category-chevron {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 12px;
+      transition: transform 0.25s ease;
+    }
+
+    .category-header.open .category-chevron {
+      transform: rotate(180deg);
+    }
+
+    .category-chevron svg {
+      width: 14px;
+      height: 14px;
+      stroke: var(--somi-dark);
+    }
+
+    /* Info-panel som slider ut når man trykker på kategorien */
+
+    .category-info {
+      max-height: 0;
+      overflow: hidden;
+      border-radius: 20px;
+      background: #fdf6f3;
+      margin: 0 0 22px;
+      padding: 0 18px;
+      transition: max-height 0.4s ease;
+    }
+
+    .category-info.open {
+      padding-top: 16px;
+      padding-bottom: 16px;
+    }
+
+    .category-info-inner {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: #555;
+    }
+
+    .category-info-inner h4 {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin: 0 0 6px;
+    }
+
+    .category-info-inner p {
+      margin: 0 0 12px;
+    }
+
+    .category-info-inner p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* LISTE MED BEHANDLINGER */
+
+    .treatment-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .treatment-item {
+      background: #fff7f4;
+      border-radius: 18px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .treatment-text h3 {
+      margin: 0 0 4px;
+      font-size: 0.98rem;
+      font-weight: 600;
+    }
+
+    .treatment-text small {
+      font-size: 0.8rem;
+      color: rgba(0,0,0,0.55);
+    }
+
+    .treatment-meta {
+      text-align: right;
+      min-width: 90px;
+    }
+
+    .treatment-price {
+      font-weight: 600;
+      color: var(--somi-pink);
+      font-size: 0.95rem;
+    }
+
+    .treatment-duration {
+      margin-top: 2px;
+      font-size: 0.8rem;
+      color: rgba(0,0,0,0.6);
+    }
+
+    /* ---------- INFO-BOKSER PÅ BEHANDLINGER ---------- */
+
+    .info-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.08);
+      background: rgba(255,255,255,0.95);
+      color: var(--somi-dark);
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .info-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.14);
+    }
+
+    .info-btn.open {
+      background: #fef2ec;
+      color: var(--somi-pink);
+    }
+
+    .treatment-info {
+      background: #fffaf7;
+      border: 1px solid rgba(0,0,0,0.05);
+      border-radius: 14px;
+      margin: -6px 0 12px;
+      padding: 0 14px;
+      font-size: 0.9rem;
+      color: rgba(0,0,0,0.72);
+      line-height: 1.6;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.25s ease, margin 0.25s ease;
+    }
+
+    .treatment-info.open {
+      padding-top: 10px;
+      padding-bottom: 12px;
+      margin-top: -2px;
+      max-height: 500px;
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    footer {
+      background: var(--somi-warm-grey);
+      padding: 32px 20px 26px;
+      margin-top: 40px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 16px;
+      font-size: 0.85rem;
+      color: rgba(0,0,0,0.7);
+    }
+
+    .footer-brand {
+      font-family: "Playfair Display", serif;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+
+    /* ---------- TOP/BOTTOM PILER ---------- */
+
+    .scroll-buttons {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 50;
+    }
+
+    .scroll-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.08);
+      background: rgba(255,255,255,0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .scroll-btn.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .scroll-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.16);
+    }
+
+    .scroll-btn svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--somi-dark);
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-copy p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-badge {
+        justify-content: center;
+      }
+
+      .hero-photo img,
+      .hero-arch {
+        width: 220px;
+        height: 220px;
+      }
+
+      .category {
+        padding: 26px 18px 26px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .treatment-item {
+        align-items: flex-start;
+      }
+
+      .treatment-meta {
+        min-width: auto;
+      }
+    }
+  </style>
 </head>
-<body class="service-page">
-  <header class="somi-header">
-    <div class="container somi-header-inner">
-      <a href="/" class="somi-logo" aria-label="SOMI Klinikk">
-        <img
-          src="https://somi.setaei.com/SomiKlinikkenLogo.png"
-          alt="SOMI Klinikk"
-          class="somi-logo-image"
-          loading="lazy"
-        />
-      </a>
 
-      <nav class="somi-nav" aria-label="Hovedmeny">
-        <button class="nav-toggle" aria-expanded="false" aria-label="Åpne meny">
-          <span class="nav-toggle-line"></span>
-          <span class="nav-toggle-line"></span>
-        </button>
+<body>
 
-        <ul class="nav-list">
-          <li><a href="index.html#behandlinger">Behandlinger</a></li>
-          <li><a href="index.html#fordeler">Hvorfor SOMI</a></li>
-          <li><a href="index.html#about">Om klinikken</a></li>
-          <li><a href="index.html#blogg">Blogg</a></li>
-          <li><a href="index.html#team">Team</a></li>
-          <li><a href="index.html#faq">Spørsmål &amp; svar</a></li>
-          <li><a href="https://somi.bestille.no" target="_blank" rel="noopener noreferrer" class="nav-cta">Bestill time</a></li>
-        </ul>
-      </nav>
+  <!-- HERO -------------------------------------------------------->
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <small>Behandlinger</small>
+        <h1>Finn din SOMI-behandling</h1>
+        <p>
+          Nedenfor finner du hele vår behandlingsmeny samlet på ett sted – i rolig,
+          oversiktlig SOMI-stil. Velg kategorien som passer deg, og se pris og varighet med en gang.
+        </p>
+        <div class="hero-badge">
+          <span class="dot"></span>
+          <span>Naturlige resultater, skreddersydd til deg</span>
+        </div>
+      </div>
+
+      <div class="hero-image-wrap">
+        <div class="hero-arch"></div>
+        <div class="hero-photo">
+          <!-- Bytt ut src med eget bilde -->
+          <img src="assets/images/hero-somi-behandling.jpg" alt="SOMI klinikk – rolig hudpleie">
+        </div>
+      </div>
     </div>
   </header>
 
-  <main>
-    <section class="section service-hero">
-      <div class="container service-hero-grid">
-        <div>
-          <p class="eyebrow">Behandlingsmeny</p>
-          <h1>Alt du finner hos SOMI</h1>
-          <p class="service-hero-text">
-            Utforsk alle behandlingene vi tilbyr – med samme varme, naturinspirerte uttrykk og
-            medisinske trygghet som i klinikken. Velg en kategori for å se detaljerte behandlinger.
-          </p>
-          <div class="hero-actions">
-            <a href="#kategorier" class="btn btn-primary">Hopp til kategorier</a>
-            <a href="https://somi.bestille.no" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">Bestill time</a>
+  <!-- MICROBLADING SECTION ---------------------------------------->
+  <section id="microblading" class="section">
+    <div class="section-inner">
+
+      <div class="category">
+        <!-- Klikk på denne => info-tekstene under slider ut -->
+        <button class="category-header" type="button" data-target="microblading-info">
+          <div>
+            <div class="category-label">01 · Kategori</div>
+            <h2 class="category-title">Microblading</h2>
+            <p class="category-subtitle">
+              Naturlige, presise bryn med individuell fargetilpasning.
+            </p>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span class="category-number">01</span>
+            <span class="category-chevron">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M6 9l6 6 6-6" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </button>
+
+        <!-- Info-tekster (tidligere på (i)-ikonet) -->
+        <div class="category-info" id="microblading-info">
+          <div class="category-info-inner">
+            <h4>Info om behandlingene</h4>
+
+            <p><strong>Touch up microblading (inkludert)</strong><br>
+              Denne typen touch up er alltid inkludert i en ny full behandling med microblading.
+              Må tas innen 4–8 uker.
+            </p>
+
+            <p><strong>Ny microblading</strong><br>
+              Har du vært hos noen andre og har gammel pigmentering fra før av, må du
+              alltid sende bilde først, evt. komme innom. Vi har gratis og helt
+              uforpliktende konsultasjon som du kan bestille i onlinebookingen.
+            </p>
+
+            <p><strong>Ekstra touch up microblading/powderbrows/lip blush</strong><br>
+              Trenger du ekstra touch up, kan du bestille denne, innen 8 uker fra sist touch up.
+            </p>
+
+            <p><strong>Oppfriskning microblading</strong><br>
+              De fleste bør holde brynene sine vedlike ved å friske opp fargen ca. én gang i året.
+              <strong>OBS!</strong> Denne prisen gjelder kun for kunder som har vært hos oss tidligere.
+              Er det over 1 år siden du var hos oss sist, må du ta kontakt først for å bli enig med
+              behandler om det holder med kun oppfriskning, eller om det er behov for full ny behandling.
+            </p>
+
+            <p><strong>Ny microblading + shading</strong><br>
+              Microblading av bryn med skyggelegging i bakgrunn av stråene gir en effekt av større
+              dybde i brynene, eller kan jevne ut usymmetri i bryn. Man kan også få en mer sminket
+              effekt – alt etter ønske. Inkluderer 1 touch up i prisen.
+            </p>
+
+            <p><strong>Oppfriskning microblading + shading</strong><br>
+              Oppfriskning med shading kan gi en tettere farge og/eller mer dybde i brynet.
+              Shading legges etter ønsket oppnådd effekt.
+            </p>
           </div>
         </div>
-        <div class="service-hero-card" aria-hidden="true">
-          <div class="service-hero-arch">
-            <img src="https://somi.setaei.com/img/BeforeAfter.jpg" alt="Stemning fra SOMI Klinikk" loading="lazy" />
+
+        <!-- Selve listen med behandlinger -->
+        <div class="treatment-list">
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Touch up microblading (inkludert)</h3>
+              <small>Touch up som er inkludert i ny behandling.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">0 kr</div>
+              <div class="treatment-duration">1 t 45 min</div>
+            </div>
           </div>
-          <div class="hero-lines"></div>
-        </div>
-      </div>
-    </section>
 
-    <section id="kategorier" class="section service-nav">
-      <div class="container">
-        <div class="section-header center">
-          <p class="eyebrow">Oversikt</p>
-          <h2>Velg en kategori</h2>
-          <p>10+ kategorier med tydelige overskrifter slik at du raskt finner riktig behandling.</p>
-        </div>
-
-          <div class="service-nav-grid">
-            <a class="service-nav-card" href="#microblading"><span>01</span><strong>Microblading</strong></a>
-            <a class="service-nav-card" href="#bryn-vipper"><span>02</span><strong>Bryn og vipper</strong></a>
-            <a class="service-nav-card" href="#dermalogica"><span>03</span><strong>Dermalogica</strong></a>
-            <a class="service-nav-card" href="#hudpleie"><span>04</span><strong>Hudpleie</strong></a>
-            <a class="service-nav-card" href="#laser-tatovering"><span>05</span><strong>Laser – tatoveringsfjerning</strong></a>
-            <a class="service-nav-card" href="#pmu"><span>06</span><strong>Permanent makeup</strong></a>
-            <a class="service-nav-card" href="#harfjerning"><span>07</span><strong>Hårfjerning / voksing</strong></a>
-            <a class="service-nav-card" href="#konsultasjon"><span>08</span><strong>Konsultasjon</strong></a>
-            <a class="service-nav-card" href="#laser-harfjerning-pakke"><span>09</span><strong>Laser – hårfjerning (pakker)</strong></a>
-            <a class="service-nav-card" href="#laser-harfjerning-enkel"><span>10</span><strong>Laser – hårfjerning (enkelt)</strong></a>
-            <a class="service-nav-card" href="#microneedling"><span>11</span><strong>Microneedling</strong></a>
-            <a class="service-nav-card" href="#elektrolyse"><span>12</span><strong>Elektrolyse</strong></a>
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Ny microblading</h3>
+              <small>Førstegangsbehandling med individuell form og farge.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">645 kr</div>
+              <div class="treatment-duration">3 t</div>
+            </div>
           </div>
-      </div>
-    </section>
 
-    <section class="section service-section" id="microblading">
-      <div class="container service-section-inner">
-        <div class="service-section-header">
-          <p class="eyebrow">01</p>
-          <h2>Microblading</h2>
-          <p>Naturlige, presise bryn med individuell fargetilpasning.</p>
-        </div>
-        <ul class="service-list">
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Touch up microblading (inkludert)</span>
-              <span class="service-card__price">0 kr</span>
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Ekstra touch up microblading/powderbrows/lip blush</h3>
+              <small>Ekstra vedlikehold innen 8 uker etter touch up.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">800 kr</div>
+              <div class="treatment-duration">1 t 30 min</div>
             </div>
-            <span class="service-card__time">1 t 45 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Ny microblading</span>
-              <span class="service-card__price">645 kr</span>
-            </div>
-            <span class="service-card__time">3 t</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Ekstra touch up microblading/powderbrows/lip blush</span>
-              <span class="service-card__price">800 kr</span>
-            </div>
-            <span class="service-card__time">1 t 30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Oppfriskning microblading</span>
-              <span class="service-card__price">285 kr</span>
-            </div>
-            <span class="service-card__time">1 t 45 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Ny microblading + shading</span>
-              <span class="service-card__price">685 kr</span>
-            </div>
-            <span class="service-card__time">3 t</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Oppfriskning microblading + shading</span>
-              <span class="service-card__price">375 kr</span>
-            </div>
-            <span class="service-card__time">1 t 45 min</span>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section service-section service-section--alt" id="bryn-vipper">
-      <div class="container service-section-inner">
-        <div class="service-section-header">
-          <p class="eyebrow">02</p>
-          <h2>Bryn og vipper</h2>
-          <p>Form, farge og løft som rammer inn blikket.</p>
-        </div>
-        <ul class="service-list service-list--columns">
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Brynstyling (form, farge, voks)</span>
-              <span class="service-card__price">690 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Browlamination</span>
-              <span class="service-card__price">107 kr</span>
-            </div>
-            <span class="service-card__time">45 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Vippeløft inkl. farge og lashfiller</span>
-              <span class="service-card__price">114 kr</span>
-            </div>
-            <span class="service-card__time">1 t</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Browlamination + vippeløft inkl. farge</span>
-              <span class="service-card__price">169 kr</span>
-            </div>
-            <span class="service-card__time">1 t 30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Farging av vipper</span>
-              <span class="service-card__price">290 kr</span>
-            </div>
-            <span class="service-card__time">15 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Farging av bryn</span>
-              <span class="service-card__price">320 kr</span>
-            </div>
-            <span class="service-card__time">15 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Brynstyling for menn</span>
-              <span class="service-card__price">490 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Brynstyling + voks overleppe</span>
-              <span class="service-card__price">850 kr</span>
-            </div>
-            <span class="service-card__time">45 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Forming av bryn</span>
-              <span class="service-card__price">490 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Brynstyling + farging av vipper</span>
-              <span class="service-card__price">850 kr</span>
-            </div>
-            <span class="service-card__time">45 min</span>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section service-section" id="dermalogica">
-      <div class="container service-section-inner">
-        <div class="service-section-header">
-          <p class="eyebrow">03</p>
-          <h2>Dermalogica (målrettet hudpleie)</h2>
-          <p>Signatur- og målrettede Dermalogica-behandlinger tilpasset hudens behov.</p>
-        </div>
-        <ul class="service-list service-list--columns">
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Dermalogica Signaturbehandling</span>
-              <span class="service-card__price">100 kr</span>
-            </div>
-            <span class="service-card__time">45 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Dermalogica Kjemisk Peeling</span>
-              <span class="service-card__price">120 kr</span>
-            </div>
-            <span class="service-card__time">45 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Målrettet Pigment 30 min</span>
-              <span class="service-card__price">790 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Målrettet Pigment 60 min</span>
-              <span class="service-card__price">130 kr</span>
-            </div>
-            <span class="service-card__time">1 t</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Målrettet Akne 30 min</span>
-              <span class="service-card__price">790 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Målrettet Akne 60 min</span>
-              <span class="service-card__price">130 kr</span>
-            </div>
-            <span class="service-card__time">1 t</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Målrettet Aldring 30 min</span>
-              <span class="service-card__price">790 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Målrettet Aldring 60 min</span>
-              <span class="service-card__price">130 kr</span>
-            </div>
-            <span class="service-card__time">1 t</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Målrettet Sensitivitet 30 min</span>
-              <span class="service-card__price">790 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Målrettet Sensitivitet 60 min</span>
-              <span class="service-card__price">130 kr</span>
-            </div>
-            <span class="service-card__time">1 t</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Facemapping hudenalyse</span>
-              <span class="service-card__price">0 kr</span>
-            </div>
-            <span class="service-card__time">15 min</span>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section service-section service-section--alt" id="hudpleie">
-      <div class="container service-section-inner">
-        <div class="service-section-header">
-          <p class="eyebrow">04</p>
-          <h2>Hudpleie (Somi egne + spesialbehandlinger)</h2>
-          <p>Dyptvirkende behandlinger med medisinske produkter.</p>
-        </div>
-        <ul class="service-list service-list--columns">
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">PRX-T33</span>
-              <span class="service-card__price">199 kr</span>
-            </div>
-            <span class="service-card__time">45 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Somi Klassisk anti-age hudpleie</span>
-              <span class="service-card__price">129 kr</span>
-            </div>
-            <span class="service-card__time">45 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Somi Peel for acne og urenhet</span>
-              <span class="service-card__price">850 kr</span>
-            </div>
-            <span class="service-card__time">45 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">LED-lysterapi</span>
-              <span class="service-card__price">695 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Somi Dyprens</span>
-              <span class="service-card__price">129 kr</span>
-            </div>
-            <span class="service-card__time">1 t</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Fjerning av skintags/vorter</span>
-              <span class="service-card__price">150 kr</span>
-            </div>
-            <span class="service-card__time">15 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Laser skin rejuvenation + PRX-T33</span>
-              <span class="service-card__price">299 kr</span>
-            </div>
-            <span class="service-card__time">1 t</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">TCA-Peel</span>
-              <span class="service-card__price">199 kr</span>
-            </div>
-            <span class="service-card__time">45 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Dermaplaning</span>
-              <span class="service-card__price">990 kr</span>
-            </div>
-            <span class="service-card__time">45 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Carbon peel laser</span>
-              <span class="service-card__price">149 kr</span>
-            </div>
-            <span class="service-card__time">1 t</span>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section service-section" id="laser-tatovering">
-      <div class="container service-section-inner">
-        <div class="service-section-header">
-          <p class="eyebrow">05</p>
-          <h2>Laser – tatoveringsfjerning</h2>
-          <p>Skånsom fjerning av pigment og tatoveringer med laser og saline.</p>
-        </div>
-        <ul class="service-list">
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Saline removal (gule pigmenter i bryn)</span>
-              <span class="service-card__price">140 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Laserfjerning bryn</span>
-              <span class="service-card__price">139 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Laserfjerning tatovering 10×10 cm</span>
-              <span class="service-card__price">139 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Laserfjerning tatovering 5×5 cm</span>
-              <span class="service-card__price">990 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Konsultasjon</span>
-              <span class="service-card__price">0 kr</span>
-            </div>
-            <span class="service-card__time">15 min</span>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section service-section service-section--alt" id="pmu">
-      <div class="container service-section-inner">
-        <div class="service-section-header">
-          <p class="eyebrow">06</p>
-          <h2>Permanent makeup</h2>
-          <p>Presise linjer, skygger og lepper som fremhever naturlige trekk.</p>
-        </div>
-        <ul class="service-list service-list--columns">
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Ny eyeliner oppe m/ vippeshading</span>
-              <span class="service-card__price">560 kr</span>
-            </div>
-            <span class="service-card__time">2 t</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Touch up eyeliner oppe og nede</span>
-              <span class="service-card__price">0 kr</span>
-            </div>
-            <span class="service-card__time">2 t 15 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Touch up eyeliner oppe eller nede</span>
-              <span class="service-card__price">0 kr</span>
-            </div>
-            <span class="service-card__time">1 t 30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Eyeliner kun nede</span>
-              <span class="service-card__price">300 kr</span>
-            </div>
-            <span class="service-card__time">1 t</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">eyeliner nede</span>
-              <span class="service-card__price">140 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Oppfriskning lipblush</span>
-              <span class="service-card__price">350 kr</span>
-            </div>
-            <span class="service-card__time">2 t 30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Skjønnhetsflekk</span>
-              <span class="service-card__price">850 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Oppfriskning eyeliner oppe og nede</span>
-              <span class="service-card__price">350 kr</span>
-            </div>
-            <span class="service-card__time">1 t 30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Lipblush</span>
-              <span class="service-card__price">685 kr</span>
-            </div>
-            <span class="service-card__time">2 t 30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Touch up lipblush (inkl.)</span>
-              <span class="service-card__price">0 kr</span>
-            </div>
-            <span class="service-card__time">2 t</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Oppfriskning eyeliner oppe eller nede</span>
-              <span class="service-card__price">315 kr</span>
-            </div>
-            <span class="service-card__time">1 t 15 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Powderbrows</span>
-              <span class="service-card__price">675 kr</span>
-            </div>
-            <span class="service-card__time">2 t 30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Fregner</span>
-              <span class="service-card__price">200 kr</span>
-            </div>
-            <span class="service-card__time">1 t</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Oppfriskning powderbrows/shading</span>
-              <span class="service-card__price">325 kr</span>
-            </div>
-            <span class="service-card__time">1 t 45 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Touch up powderbrows</span>
-              <span class="service-card__price">0 kr</span>
-            </div>
-            <span class="service-card__time">1 t 30 min</span>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section service-section" id="harfjerning">
-      <div class="container service-section-inner">
-        <div class="service-section-header">
-          <p class="eyebrow">07</p>
-          <h2>Hårfjerning / voksing</h2>
-          <p>Effektiv voksing for ansikt og kropp, inkludert alkaline-alternativer.</p>
-        </div>
-        <ul class="service-list service-list--columns">
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Overleppe</span>
-              <span class="service-card__price">200 kr</span>
-            </div>
-            <span class="service-card__time">15 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Brasiliansk</span>
-              <span class="service-card__price">690 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Armhuler</span>
-              <span class="service-card__price">300 kr</span>
-            </div>
-            <span class="service-card__time">15 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Legger</span>
-              <span class="service-card__price">350 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Hele ben</span>
-              <span class="service-card__price">600 kr</span>
-            </div>
-            <span class="service-card__time">45 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Hele armer</span>
-              <span class="service-card__price">350 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Halve armer</span>
-              <span class="service-card__price">290 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Hake</span>
-              <span class="service-card__price">200 kr</span>
-            </div>
-            <span class="service-card__time">15 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Overleppe + hake</span>
-              <span class="service-card__price">400 kr</span>
-            </div>
-            <span class="service-card__time">15 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Hele ansiktet</span>
-              <span class="service-card__price">500 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Nesebor</span>
-              <span class="service-card__price">200 kr</span>
-            </div>
-            <span class="service-card__time">15 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Brasiliansk + armhuler</span>
-              <span class="service-card__price">900 kr</span>
-            </div>
-            <span class="service-card__time">45 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Brasiliansk + armhuler + legger</span>
-              <span class="service-card__price">1250 kr</span>
-            </div>
-            <span class="service-card__time">45 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Brasiliansk + armhuler + armer + hele ben</span>
-              <span class="service-card__price">1650 kr</span>
-            </div>
-            <span class="service-card__time">1 t</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Bikinilinje</span>
-              <span class="service-card__price">450 kr</span>
-            </div>
-            <span class="service-card__time">15 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Bikini klassisk</span>
-              <span class="service-card__price">450 kr</span>
-            </div>
-            <span class="service-card__time">15 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Legger + bakside lår</span>
-              <span class="service-card__price">450 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Brasiliansk + hele ben</span>
-              <span class="service-card__price">1100 kr</span>
-            </div>
-            <span class="service-card__time">1 t</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Brasiliansk + legger</span>
-              <span class="service-card__price">900 kr</span>
-            </div>
-            <span class="service-card__time">45 min</span>
-          </li>
-        </ul>
-        <div class="service-subcategory">
-          <h3>Alkaline</h3>
-          <ul class="service-list">
-            <li class="service-card">
-              <div class="service-card__top">
-                <span class="service-card__name">Alkaline – hele ansiktet</span>
-                <span class="service-card__price">1690 kr</span>
-              </div>
-              <span class="service-card__time">45 min</span>
-            </li>
-            <li class="service-card">
-              <div class="service-card__top">
-                <span class="service-card__name">Alkaline – halve ansikt</span>
-                <span class="service-card__price">1320 kr</span>
-              </div>
-              <span class="service-card__time">30 min</span>
-            </li>
-            <li class="service-card">
-              <div class="service-card__top">
-                <span class="service-card__name">Alkaline – overleppe</span>
-                <span class="service-card__price">950 kr</span>
-              </div>
-              <span class="service-card__time">30 min</span>
-            </li>
-            <li class="service-card">
-              <div class="service-card__top">
-                <span class="service-card__name">Alkaline – hake</span>
-                <span class="service-card__price">950 kr</span>
-              </div>
-              <span class="service-card__time">15 min</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="section service-section service-section--alt" id="konsultasjon">
-      <div class="container service-section-inner">
-        <div class="service-section-header">
-          <p class="eyebrow">08</p>
-          <h2>Konsultasjon</h2>
-          <p>Uforpliktende veiledning før du bestemmer deg.</p>
-        </div>
-        <ul class="service-list">
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Microblading/powderbrows konsultasjon</span>
-              <span class="service-card__price">0 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Lipblush konsultasjon</span>
-              <span class="service-card__price">0 kr</span>
-            </div>
-            <span class="service-card__time">15 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Konsultasjon</span>
-              <span class="service-card__price">0 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Hudkonsultasjon</span>
-              <span class="service-card__price">0 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Laser konsultasjon</span>
-              <span class="service-card__price">0 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section service-section" id="laser-harfjerning-pakke">
-      <div class="container service-section-inner">
-        <div class="service-section-header">
-          <p class="eyebrow">09</p>
-          <h2>Laser – permanent hårfjerning (pakkepriser ×4)</h2>
-          <p>Pakker på fire behandlinger for varig reduksjon.</p>
-        </div>
-        <ul class="service-list service-list--columns">
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Overleppe ×4</span>
-              <span class="service-card__price">2370 kr</span>
-            </div>
-            <span class="service-card__time">15 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Hake ×4</span>
-              <span class="service-card__price">2370 kr</span>
-            </div>
-            <span class="service-card__time">15 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Overleppe + hake ×4</span>
-              <span class="service-card__price">4470 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Ansikt ×4</span>
-              <span class="service-card__price">5070 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Nakke ×4</span>
-              <span class="service-card__price">3570 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Skjeggline ×4</span>
-              <span class="service-card__price">2970 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Armhuler ×4</span>
-              <span class="service-card__price">3570 kr</span>
-            </div>
-            <span class="service-card__time">15 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Hele armer ×4</span>
-              <span class="service-card__price">5400 kr</span>
-            </div>
-            <span class="service-card__time">45 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Halve armer ×4</span>
-              <span class="service-card__price">4470 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Mage ×4</span>
-              <span class="service-card__price">3600 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Bryst ×4</span>
-              <span class="service-card__price">4200 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Rygg ×4</span>
-              <span class="service-card__price">8970 kr</span>
-            </div>
-            <span class="service-card__time">45 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Rygg + skuldre ×4</span>
-              <span class="service-card__price">10500 kr</span>
-            </div>
-            <span class="service-card__time">1 t</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Brasiliansk ×4</span>
-              <span class="service-card__price">5970 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Bikini klassisk ×4</span>
-              <span class="service-card__price">4490 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Bikinilinje ×4</span>
-              <span class="service-card__price">3570 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Legger ×4</span>
-              <span class="service-card__price">5990 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Lår ×4</span>
-              <span class="service-card__price">7500 kr</span>
-            </div>
-            <span class="service-card__time">45 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Legger + lår ×4</span>
-              <span class="service-card__price">11700 kr</span>
-            </div>
-            <span class="service-card__time">1 t</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Brasiliansk + overleppe ×4</span>
-              <span class="service-card__price">5970 kr</span>
-            </div>
-            <span class="service-card__time">45 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Brasiliansk + armhuler ×4</span>
-              <span class="service-card__price">8240 kr</span>
-            </div>
-            <span class="service-card__time">45 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Brasiliansk + hele ansiktet ×4</span>
-              <span class="service-card__price">9570 kr</span>
-            </div>
-            <span class="service-card__time">45 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Brasiliansk + armhuler + hele ben ×4</span>
-              <span class="service-card__price">19500 kr</span>
-            </div>
-            <span class="service-card__time">1 t</span>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section service-section service-section--alt" id="laser-harfjerning-enkel">
-      <div class="container service-section-inner">
-        <div class="service-section-header">
-          <p class="eyebrow">10</p>
-          <h2>Laser – permanent hårfjerning (enkeltbehandlinger)</h2>
-          <p>Enkeltbehandlinger for fleksibilitet og tilpasning.</p>
-        </div>
-        <ul class="service-list service-list--columns">
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Overleppe</span>
-              <span class="service-card__price">790 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Hake</span>
-              <span class="service-card__price">790 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Overleppe + hake</span>
-              <span class="service-card__price">1490 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Ansikt</span>
-              <span class="service-card__price">1690 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Nakke</span>
-              <span class="service-card__price">1190 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Skjeggline</span>
-              <span class="service-card__price">990 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Armhuler</span>
-              <span class="service-card__price">1190 kr</span>
-            </div>
-            <span class="service-card__time">15 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Hele armer</span>
-              <span class="service-card__price">1800 kr</span>
-            </div>
-            <span class="service-card__time">45 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">1/2 arm</span>
-              <span class="service-card__price">1490 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Mage</span>
-              <span class="service-card__price">1200 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Bryst</span>
-              <span class="service-card__price">1400 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Rygg</span>
-              <span class="service-card__price">2990 kr</span>
-            </div>
-            <span class="service-card__time">45 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Rygg og skuldre</span>
-              <span class="service-card__price">3500 kr</span>
-            </div>
-            <span class="service-card__time">45 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Bikini brasiliansk</span>
-              <span class="service-card__price">1690 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Bikini klassisk</span>
-              <span class="service-card__price">1490 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Bikini linje</span>
-              <span class="service-card__price">1190 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Legger</span>
-              <span class="service-card__price">1990 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Lår</span>
-              <span class="service-card__price">2500 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Legger + lår</span>
-              <span class="service-card__price">3900 kr</span>
-            </div>
-            <span class="service-card__time">1 t</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Brasiliansk + armhuler</span>
-              <span class="service-card__price">2740 kr</span>
-            </div>
-            <span class="service-card__time">45 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Brasiliansk + overleppe</span>
-              <span class="service-card__price">1990 kr</span>
-            </div>
-            <span class="service-card__time">45 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Brasiliansk + hele ansiktet</span>
-              <span class="service-card__price">3190 kr</span>
-            </div>
-            <span class="service-card__time">1 t</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Brasiliansk + armhuler + hele ben</span>
-              <span class="service-card__price">6500 kr</span>
-            </div>
-            <span class="service-card__time">1 t 15 min</span>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section service-section" id="microneedling">
-      <div class="container service-section-inner">
-        <div class="service-section-header">
-          <p class="eyebrow">11</p>
-          <h2>Microneedling</h2>
-          <p>Kollagenstimulerende behandling for jevnere hudtone og tekstur.</p>
-        </div>
-        <ul class="service-list">
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Microneedling</span>
-              <span class="service-card__price">2490 kr</span>
-            </div>
-            <span class="service-card__time">1 t 15 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Microneedling inkl. i pakke</span>
-              <span class="service-card__price">0 kr</span>
-            </div>
-            <span class="service-card__time">1 t 15 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Somi Signature Face</span>
-              <span class="service-card__price">3490 kr</span>
-            </div>
-            <span class="service-card__time">1 t 15 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Microneedling + exosomer</span>
-              <span class="service-card__price">4600 kr</span>
-            </div>
-            <span class="service-card__time">1 t</span>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section service-section service-section--alt" id="elektrolyse">
-      <div class="container service-section-inner">
-        <div class="service-section-header">
-          <p class="eyebrow">12</p>
-          <h2>Elektrolyse</h2>
-          <p>Permanent hårfjerning med presis elektrobehandling.</p>
-        </div>
-        <ul class="service-list">
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Elektrolyse 15 min</span>
-              <span class="service-card__price">550 kr</span>
-            </div>
-            <span class="service-card__time">15 min</span>
-          </li>
-          <li class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__name">Elektrolyse 30 min</span>
-              <span class="service-card__price">990 kr</span>
-            </div>
-            <span class="service-card__time">30 min</span>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section service-cta">
-      <div class="container service-cta-inner">
-        <div>
-          <p class="eyebrow">Bestill eller spør</p>
-          <h2>Klar for å finne riktig behandling?</h2>
-          <p>Send oss en melding eller book direkte, så hjelper vi deg med en trygg og personlig plan.</p>
-          <div class="hero-actions">
-            <a href="https://somi.bestille.no" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Bestill time</a>
-            <a href="index.html#contact-form-section" class="btn btn-ghost">Kontakt oss</a>
           </div>
-        </div>
-        <div class="service-cta-card" aria-hidden="true">
-          <div class="service-cta-arch">
-            <img src="https://somi.setaei.com/img/Klinikken1.jpg" alt="Venterom hos SOMI" loading="lazy" />
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Oppfriskning microblading</h3>
+              <small>Årlig oppfriskning for tidligere SOMI-kunder.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">285 kr</div>
+              <div class="treatment-duration">1 t 45 min</div>
+            </div>
           </div>
-          <div class="hero-lines"></div>
-        </div>
-      </div>
-    </section>
-  </main>
 
-  <div class="chat-widget" aria-live="polite">
-    <button class="chat-toggle" aria-expanded="false" aria-controls="somi-chat-panel">
-      <span class="chat-toggle-dot"></span>
-      <span>SOMI AI</span>
-    </button>
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Ny microblading + shading</h3>
+              <small>Strå + skygge for mer dybde eller “sminket” uttrykk.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">685 kr</div>
+              <div class="treatment-duration">3 t</div>
+            </div>
+          </div>
 
-    <div class="chat-panel" id="somi-chat-panel" hidden>
-      <div class="chat-panel-header">
-        <div>
-          <p class="eyebrow">SOMI AI</p>
-          <strong>Spør oss om behandlinger</strong>
-        </div>
-        <button class="chat-close" aria-label="Lukk chat">×</button>
-      </div>
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Oppfriskning microblading + shading</h3>
+              <small>Oppfriskning med ekstra dybde og tettere farge.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">375 kr</div>
+              <div class="treatment-duration">1 t 45 min</div>
+            </div>
+          </div>
 
-      <div class="chat-messages">
-        <div class="chat-bubble chat-bubble--ai">
-          Hei! Jeg er SOMI AI. Spør meg om behandlinger, etterbehandling eller timebestilling.
-        </div>
-        <div class="chat-bubble chat-bubble--user">Kan jeg ta sol etter filler?</div>
-        <div class="chat-bubble chat-bubble--ai">
-          Vi anbefaler å vente minst 48 timer før soling eller varme behandlinger. Bruk solfaktor og følg
-          etterbehandlingen du får av behandleren din.
         </div>
       </div>
 
-      <form class="chat-input" aria-label="Send melding til SOMI AI">
-        <label for="chat-message" class="visually-hidden">Melding</label>
-        <input id="chat-message" type="text" name="message" placeholder="Skriv meldingen din..." />
-        <button type="submit">Send</button>
-      </form>
     </div>
-  </div>
+  </section>
 
-  <footer class="footer">
-    <div class="container">
-      <p>© 2025 SOMI Klinikk – Alle rettigheter reservert.</p>
+  <!-- BRYN OG VIPPER SECTION ------------------------------------->
+  <section id="bryn-og-vipper" class="section">
+    <div class="section-inner">
+
+      <div class="category">
+        <button class="category-header" type="button" data-target="bryn-info">
+          <div>
+            <div class="category-label">02 · Kategori</div>
+            <h2 class="category-title">Bryn og vipper</h2>
+            <p class="category-subtitle">
+              Forming, farging og løft for et naturlig, våkent blikk.
+            </p>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span class="category-number">02</span>
+            <span class="category-chevron">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M6 9l6 6 6-6" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </button>
+
+        <div class="category-info" id="bryn-info">
+          <div class="category-info-inner">
+            <h4>Info om bryn og vipper</h4>
+            <p>Se detaljer via (i)-ikonet der det er tilgjengelig. Studentrabatt gjelder kun der det er eksplisitt oppgitt.</p>
+          </div>
+        </div>
+
+        <div class="treatment-list">
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Brynstyling (form, farg, voks)</h3>
+              <small>Forming, farging og voksing av bryn.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">690 kr</div>
+              <div class="treatment-duration">30 min</div>
+            </div>
+            <button class="info-btn" type="button" data-target="bryn-info-1" aria-label="Vis info om brynstyling">i</button>
+          </div>
+          <div class="treatment-info" id="bryn-info-1">
+            Forming, farging og voksing av bryn. -15% STUDENTRABATT trekkes fra i kassen ved betaling, og studentbevis må kunne fremlegges.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Browlamination</h3>
+              <small>Permanent form med farging/forming inkludert.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">1 070 kr</div>
+              <div class="treatment-duration">45 min</div>
+            </div>
+            <button class="info-btn" type="button" data-target="bryn-info-2" aria-label="Vis info om browlamination">i</button>
+          </div>
+          <div class="treatment-info" id="bryn-info-2">
+            Det brukes en permanent som gjør at vi kan endre retningen på brynhårene, slik at de blir lettere å gre i en ryddigere eller mer fluffy look, og gir ofte en fyldigere fasong. Farging/forming er inkludert om ønskelig. Varighet 4–8 uker, avhengig av syklus på brynhårene. -15% STUDENTRABATT trekkes fra i kassen ved betaling, og studentbevis må kunne fremlegges.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Vippeløft inkl. farge og lashfiller</h3>
+              <small>Naturlig løft med farge og lashfiller inkludert.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">1 140 kr</div>
+              <div class="treatment-duration">1 t</div>
+            </div>
+            <button class="info-btn" type="button" data-target="bryn-info-3" aria-label="Vis info om vippeløft med farge">i</button>
+          </div>
+          <div class="treatment-info" id="bryn-info-3">
+            Det brukes en permanent som gjør at vi kan bøye vippene fra roten. Resultatet er mer synlige vipper som virker lengre og fyldigere. Varighet 4–8 uker, avhengig av vippesyklus. Farging og lashfiller er inkludert. -15% STUDENTRABATT trekkes fra i kassen ved betaling, og studentbevis må kunne fremlegges.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Browlamination + Vippeløft, inkl. farge</h3>
+              <small>Kombinasjonspakke for bryn og vipper.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">1 690 kr</div>
+              <div class="treatment-duration">1 t 30 min</div>
+            </div>
+            <button class="info-btn" type="button" data-target="bryn-info-4" aria-label="Vis info om browlamination og vippeløft">i</button>
+          </div>
+          <div class="treatment-info" id="bryn-info-4">
+            Studentrabatt gjelder ikke pakkepriser.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Brynstyling (form, farg, voks) + Vippeløft inkl. farge</h3>
+              <small>Kombinasjon med brynstyling og vippeløft.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">1 480 kr</div>
+              <div class="treatment-duration">1 t 15 min</div>
+            </div>
+            <button class="info-btn" type="button" data-target="bryn-info-5" aria-label="Vis info om brynstyling og vippeløft">i</button>
+          </div>
+          <div class="treatment-info" id="bryn-info-5">
+            Studentrabatt gjelder ikke pakkepriser.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Farging av vipper</h3>
+              <small>Rask behandling som fremhever vippene.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">290 kr</div>
+              <div class="treatment-duration">15 min</div>
+            </div>
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Farging av bryn</h3>
+              <small>Definerer og fyller ut brynene.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">320 kr</div>
+              <div class="treatment-duration">15 min</div>
+            </div>
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Brynstyling for menn</h3>
+              <small>Skånsom forming og rydding av bryn.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">490 kr</div>
+              <div class="treatment-duration">30 min</div>
+            </div>
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Brynstyling + voks overleppe</h3>
+              <small>Ryddige bryn og jevn overleppe.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">850 kr</div>
+              <div class="treatment-duration">45 min</div>
+            </div>
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Forming av bryn</h3>
+              <small>Presis forming av brynene.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">490 kr</div>
+              <div class="treatment-duration">30 min</div>
+            </div>
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Brynstyling + farging av vipper</h3>
+              <small>Full pakke for bryn og vipper.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">850 kr</div>
+              <div class="treatment-duration">45 min</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DERMALOGICA SECTION ---------------------------------------->
+  <section id="dermalogica" class="section">
+    <div class="section-inner">
+
+      <div class="category">
+        <button class="category-header" type="button" data-target="dermalogica-info">
+          <div>
+            <div class="category-label">03 · Kategori</div>
+            <h2 class="category-title">Dermalogica</h2>
+            <p class="category-subtitle">
+              Skreddersydde hudpleiebehandlinger for dine behov.
+            </p>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span class="category-number">03</span>
+            <span class="category-chevron">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M6 9l6 6 6-6" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </button>
+
+        <div class="category-info" id="dermalogica-info">
+          <div class="category-info-inner">
+            <h4>⭐ Dermalogica — full kategoriliste</h4>
+            <p>Alle behandlinger er oppgitt med pris, tid og tilhørende (i)-tekst.</p>
+          </div>
+        </div>
+
+        <div class="treatment-list">
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Dermalogica Signaturbehandling</h3>
+              <small>Skreddersydd opplevelse med aktive ingredienser og teknikker.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">1 000 kr</div>
+              <div class="treatment-duration">45 min</div>
+            </div>
+            <button class="info-btn" type="button" data-target="derm-info-1" aria-label="Vis info om Dermalogica signaturbehandling">i</button>
+          </div>
+          <div class="treatment-info" id="derm-info-1">
+            En skreddersydd behandlingsopplevelse som tar i bruk det nyeste innen aktive ingredienser, behandlingsteknikker og teknologi. Vi jobber med dine unike hudpleiebehov slik at du får optimale resultater.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Dermalogica Kjemisk Peeling</h3>
+              <small>Høyaktiv, skreddersydd peeling med avanserte teknikker.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">1 200 kr</div>
+              <div class="treatment-duration">45 min</div>
+            </div>
+            <button class="info-btn" type="button" data-target="derm-info-2" aria-label="Vis info om Dermalogica kjemisk peeling">i</button>
+          </div>
+          <div class="treatment-info" id="derm-info-2">
+            En høyaktiv og skreddersydd kjemisk peeling. Avanserte teknikker jobber målrettet med hudens stadig skiftende behov og utfordringer som aldringstegn, hyperpigmentering, akne og aknearr.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Dermalogica Målrettet Pigmentering – 30 min</h3>
+              <small>Hudtoneutjevnende behandling med stabilt C-vitamin.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">790 kr</div>
+              <div class="treatment-duration">30 min</div>
+            </div>
+            <button class="info-btn" type="button" data-target="derm-info-3" aria-label="Vis info om målrettet pigmentering 30 minutter">i</button>
+          </div>
+          <div class="treatment-info" id="derm-info-3">
+            Jevnere hudtone og umiddelbar glød med våre mest avanserte verktøy og aktive ingredienser som stabilt C-vitamin.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Dermalogica Målrettet Pigmentering – 60 min</h3>
+              <small>Mer omfattende pigmentbehandling for dypere effekt.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">1 300 kr</div>
+              <div class="treatment-duration">1 t</div>
+            </div>
+            <button class="info-btn" type="button" data-target="derm-info-4" aria-label="Vis info om målrettet pigmentering 60 minutter">i</button>
+          </div>
+          <div class="treatment-info" id="derm-info-4">
+            Jevnere hudtone og umiddelbar glød med våre mest avanserte verktøy og aktive ingredienser som stabilt C-vitamin. 60-minutters varianten jobber dypere og er mer resultatorientert.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Dermalogica Målrettet Akne – 30 min</h3>
+              <small>Aknebehandling som roer ned betente områder.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">790 kr</div>
+              <div class="treatment-duration">30 min</div>
+            </div>
+            <button class="info-btn" type="button" data-target="derm-info-5" aria-label="Vis info om målrettet akne 30 minutter">i</button>
+          </div>
+          <div class="treatment-info" id="derm-info-5">
+            Klarner tilstopninger, roer ned betente kviser og reduserer merker etter utbrudd ved hjelp av aktive ingredienser og profesjonelle teknikker.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Dermalogica Målrettet Akne – 60 min</h3>
+              <small>For dypere rens og mer grundig behandling av akne.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">1 300 kr</div>
+              <div class="treatment-duration">1 t</div>
+            </div>
+            <button class="info-btn" type="button" data-target="derm-info-6" aria-label="Vis info om målrettet akne 60 minutter">i</button>
+          </div>
+          <div class="treatment-info" id="derm-info-6">
+            Fokus på dypere rens, demping av inflammasjon, forebygging og behandling av akne og akne-arr.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Dermalogica Målrettet Aldring – 30 min</h3>
+              <small>Fukter, jevner og strammer opp.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">790 kr</div>
+              <div class="treatment-duration">30 min</div>
+            </div>
+            <button class="info-btn" type="button" data-target="derm-info-7" aria-label="Vis info om målrettet aldring 30 minutter">i</button>
+          </div>
+          <div class="treatment-info" id="derm-info-7">
+            Dypvirkende behandling med fokus på ansikt, hals og bryst. Fukter, jevner og virker oppstrammende.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Dermalogica Målrettet Aldring – 60 min</h3>
+              <small>Mer omfattende anti-age med avansert teknikk.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">1 300 kr</div>
+              <div class="treatment-duration">1 t</div>
+            </div>
+            <button class="info-btn" type="button" data-target="derm-info-8" aria-label="Vis info om målrettet aldring 60 minutter">i</button>
+          </div>
+          <div class="treatment-info" id="derm-info-8">
+            Dypvirkende og skreddersydd anti-age behandling for umiddelbar glød, forbedret hudtekstur og oppstramning.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Dermalogica Målrettet Sensitivitet – 30 min</h3>
+              <small>Lindrende behandling for sensitiv hud.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">790 kr</div>
+              <div class="treatment-duration">30 min</div>
+            </div>
+            <button class="info-btn" type="button" data-target="derm-info-9" aria-label="Vis info om målrettet sensitivitet 30 minutter">i</button>
+          </div>
+          <div class="treatment-info" id="derm-info-9">
+            Lindrende behandling for sensitiv hud som fukter, balanserer, gjenoppbygger og beskytter. Få alle fordelene ved en avansert behandling uten å irritere huden.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Dermalogica Målrettet Sensitivitet – 60 min</h3>
+              <small>Mer tid for dypere ro og styrking av huden.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">1 300 kr</div>
+              <div class="treatment-duration">1 t</div>
+            </div>
+            <button class="info-btn" type="button" data-target="derm-info-10" aria-label="Vis info om målrettet sensitivitet 60 minutter">i</button>
+          </div>
+          <div class="treatment-info" id="derm-info-10">
+            Beroligende og styrkende behandling for sensitiv og reaktiv hud.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Facemapping Hudanalyse</h3>
+              <small>Grundig hudanalyse som viser hva huden din trenger.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">0 kr</div>
+              <div class="treatment-duration">15 min</div>
+            </div>
+            <button class="info-btn" type="button" data-target="derm-info-11" aria-label="Vis info om Facemapping hudanalyse">i</button>
+          </div>
+          <div class="treatment-info" id="derm-info-11">
+            Få en grundig hudanalyse og finn ut hvilke behandlinger og produkter huden din trenger.
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HUDPLEIE SECTION ------------------------------------------->
+  <section id="hudpleie" class="section">
+    <div class="section-inner">
+
+      <div class="category">
+        <button class="category-header" type="button" data-target="hudpleie-info">
+          <div>
+            <div class="category-label">04 · Kategori</div>
+            <h2 class="category-title">Hudpleie</h2>
+            <p class="category-subtitle">
+              Dyptvirkende hudpleie med peelinger, lys og spesialbehandlinger.
+            </p>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span class="category-number">04</span>
+            <span class="category-chevron">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M6 9l6 6 6-6" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </button>
+
+        <div class="category-info" id="hudpleie-info">
+          <div class="category-info-inner">
+            <h4>Hudpleie – info per behandling</h4>
+            <p>Alle (i)-tekstene under er oppdatert med detaljer for hver hudpleiebehandling.</p>
+          </div>
+        </div>
+
+        <div class="treatment-list">
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>PRX – T33</h3>
+              <small>Medisinsk peeling uten down-time.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">199 kr</div>
+              <div class="treatment-duration">45 min</div>
+            </div>
+            <button class="info-btn" type="button" data-target="hud-info-1" aria-label="Vis info om PRX – T33">i</button>
+          </div>
+          <div class="treatment-info" id="hud-info-1">
+            En medisinsk peeling som strammer opp huden innenfra uten «frosting» eller down-time. Gir jevnere hudtone, glød og redusert synlighet av linjer, arr og pigmentering. Kan tas året rundt.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Somi Klassisk anti-age hudpleie</h3>
+              <small>Dyprens, massasje og maske for spenst og glød.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">129 kr</div>
+              <div class="treatment-duration">45 min</div>
+            </div>
+            <button class="info-btn" type="button" data-target="hud-info-2" aria-label="Vis info om klassisk anti-age hudpleie">i</button>
+          </div>
+          <div class="treatment-info" id="hud-info-2">
+            Skreddersydd anti-age behandling med dyprens, peeling, massasje og nærende maske. Jobber med hudens spenst, fukt og glød for å redusere fine linjer og gi et freshere uttrykk.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Somi Peel for acne og urenhet</h3>
+              <small>Dyptrensende behandling for akne og tilstopninger.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">850 kr</div>
+              <div class="treatment-duration">45 min</div>
+            </div>
+            <button class="info-btn" type="button" data-target="hud-info-3" aria-label="Vis info om peel for acne og urenhet">i</button>
+          </div>
+          <div class="treatment-info" id="hud-info-3">
+            Dyptrensende behandling for fet, akneutsatt eller tilstoppet hud. Løser opp talg og døde hudceller, roer ned betennelser og reduserer urenheter og akne-arr. Gir renere og klarere hudtone.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>LED-lysterapi</h3>
+              <small>Skånsom lysbehandling for ro og reparasjon.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">695 kr</div>
+              <div class="treatment-duration">30 min</div>
+            </div>
+            <button class="info-btn" type="button" data-target="hud-info-4" aria-label="Vis info om LED-lysterapi">i</button>
+          </div>
+          <div class="treatment-info" id="hud-info-4">
+            Skånsom lysterapi som stimulerer hudens egen reparasjon. Kan virke beroligende på rødhet, styrke kollagenproduksjonen og forbedre helingen ved akne og sensitiv hud. Perfekt som kur eller tillegg.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Somi Dyprens</h3>
+              <small>Grundig dyprens med damp og kjemisk peel.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">129 kr</div>
+              <div class="treatment-duration">1 t</div>
+            </div>
+            <button class="info-btn" type="button" data-target="hud-info-5" aria-label="Vis info om Somi Dyprens">i</button>
+          </div>
+          <div class="treatment-info" id="hud-info-5">
+            Grundig dyprens med damp, utklemming og tilpasset kjemisk peel. Fjerner tilstopninger, jevner hudtekstur og tilfører fukt. Passer deg som ønsker en virkelig «opprydning» i huden.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Fjerning av skintags/vorter</h3>
+              <small>Rask og skånsom fjerning av små hudutvekster.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">150 kr</div>
+              <div class="treatment-duration">15 min</div>
+            </div>
+            <button class="info-btn" type="button" data-target="hud-info-6" aria-label="Vis info om fjerning av skintags og vorter">i</button>
+          </div>
+          <div class="treatment-info" id="hud-info-6">
+            Skånsom, effektiv fjerning av små hudutvekster som skintags og vorter. Behandlingen gjøres raskt, og du får råd om videre pleie og eventuelt behov for ny kontroll.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Laser skin rejuvenation + PRX-T33</h3>
+              <small>Kombinasjon av laser og PRX for hudfornyelse.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">299 kr</div>
+              <div class="treatment-duration">1 t</div>
+            </div>
+            <button class="info-btn" type="button" data-target="hud-info-7" aria-label="Vis info om laser skin rejuvenation og PRX-T33">i</button>
+          </div>
+          <div class="treatment-info" id="hud-info-7">
+            Kombinasjon av laser og PRX-T33 for maksimal hudfornyelse. Jobber i dybden med glød, porer, pigment, arr og fine linjer. Gir strammere, jevnere og mer ungdommelig hud uten lang nedetid.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>TCA-Peel</h3>
+              <small>Middels dyp kjemisk peel for struktur og pigment.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">199 kr</div>
+              <div class="treatment-duration">45 min</div>
+            </div>
+            <button class="info-btn" type="button" data-target="hud-info-8" aria-label="Vis info om TCA-Peel">i</button>
+          </div>
+          <div class="treatment-info" id="hud-info-8">
+            Middels dyp kjemisk peel som forbedrer struktur, pigmentering, solskader og arr. Stimulerer nydannelse av hudceller og kollagen for jevnere hudtone og mer glød. Krever litt tilhelingstid.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Dermaplaning</h3>
+              <small>Manuell peeling som gjør huden glatt og myk.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">990 kr</div>
+              <div class="treatment-duration">45 min</div>
+            </div>
+            <button class="info-btn" type="button" data-target="hud-info-9" aria-label="Vis info om dermaplaning">i</button>
+          </div>
+          <div class="treatment-info" id="hud-info-9">
+            Manuell peeling som skånsomt fjerner døde hudceller og små dunhår med spesialblad. Etterlater huden superglatt, myk og klar for serum og makeup som legger seg penere.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Carbon peel laser</h3>
+              <small>Laser med kullmaske for renere, mattere hud.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">149 kr</div>
+              <div class="treatment-duration">1 t</div>
+            </div>
+            <button class="info-btn" type="button" data-target="hud-info-10" aria-label="Vis info om carbon peel laser">i</button>
+          </div>
+          <div class="treatment-info" id="hud-info-10">
+            «Hollywood-peel» med kullmaske og laser. Renser porer, demper talg og urenheter og gir jevnere hud med matt, fin finish. Anbefales som kur ved fet hud, sorte prikker og store porer.
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PERMANENT MAKEUP SECTION ----------------------------------->
+  <section id="permanent-makeup" class="section">
+    <div class="section-inner">
+
+      <div class="category">
+        <button class="category-header" type="button" data-target="pmu-info">
+          <div>
+            <div class="category-label">05 · Kategori</div>
+            <h2 class="category-title">Permanent makeup</h2>
+            <p class="category-subtitle">
+              Langvarige, presise linjer og farger som fremhever dine trekk.
+            </p>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span class="category-number">05</span>
+            <span class="category-chevron">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M6 9l6 6 6-6" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </button>
+
+        <div class="category-info" id="pmu-info">
+          <div class="category-info-inner">
+            <h4>⭐ Permanent makeup</h4>
+            <p>Alle behandlinger under er oppgitt med pris, tid og (i)-tekst.</p>
+          </div>
+        </div>
+
+        <div class="treatment-list">
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Ny eyeliner oppe med vipp/shading</h3>
+              <small>Designerliner med makeup-effekt.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">5 600 kr</div>
+              <div class="treatment-duration">2 t 30 min</div>
+            </div>
+            <button class="info-btn" type="button" data-target="pmu-info-1" aria-label="Vis info om ny eyeliner oppe med vipp/shading">i</button>
+          </div>
+          <div class="treatment-info" id="pmu-info-1">
+            Designerliner – Med permanent makeup kan vi lage en tykkere eyeliner med makeup-effekt, men som fortsatt flyter elegant inn i det naturlige uttrykket. Lineren kan tilpasses ønsket effekt (vipp, shading osv.). Ta kontakt dersom du ønsker vurdering av hvilken stil som passer deg.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Touch up eyeliner oppe og nede</h3>
+              <small>Inkludert i ny eyelinerbehandling.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">0 kr</div>
+              <div class="treatment-duration">2 t 15 min</div>
+            </div>
+            <button class="info-btn" type="button" data-target="pmu-info-2" aria-label="Vis info om touch up eyeliner oppe og nede">i</button>
+          </div>
+          <div class="treatment-info" id="pmu-info-2">
+            Denne behandlingen er inkludert i prisen for ny eyelinerbehandling. Touch up sikrer et jevnt og holdbart resultat. Må tas innen 4–8 uker etter første behandling.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Touch up eyeliner oppe eller nede</h3>
+              <small>Vedlikehold av én eyelinerlinje.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">0 kr</div>
+              <div class="treatment-duration">1 t 30 min</div>
+            </div>
+            <button class="info-btn" type="button" data-target="pmu-info-3" aria-label="Vis info om touch up eyeliner oppe eller nede">i</button>
+          </div>
+          <div class="treatment-info" id="pmu-info-3">
+            Touch up for kun én av linjene (oppe eller nede). Brukes for å forsterke farge og sikre jevn pigmentering etter første behandling.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Eyeliner kun nede</h3>
+              <small>Naturlig definert nedre liner.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">3 000 kr</div>
+              <div class="treatment-duration">1 t</div>
+            </div>
+            <button class="info-btn" type="button" data-target="pmu-info-4" aria-label="Vis info om eyeliner kun nede">i</button>
+          </div>
+          <div class="treatment-info" id="pmu-info-4">
+            En definert, naturlig eyeliner på nedre våtkant. Gir et mykere uttrykk enn øvre liner, og passer for kunder som ønsker et diskret, men tydelig resultat.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>+ eyeliner nede (tillegg)</h3>
+              <small>Tillegg når du ønsker liner både oppe og nede.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">1 400 kr</div>
+              <div class="treatment-duration">30 min</div>
+            </div>
+            <button class="info-btn" type="button" data-target="pmu-info-5" aria-label="Vis info om tillegg eyeliner nede">i</button>
+          </div>
+          <div class="treatment-info" id="pmu-info-5">
+            Ønsker du eyeliner både oppe og nede, kan du legge til denne etter at du har valgt behandling for øvre eyeliner. OBS! Dersom du kun ønsker nedre eyeliner, må du velge den egne behandlingen for «Eyeliner kun nede» i menyen.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Oppfriskning lipblush</h3>
+              <small>Vedlikehold av tidligere lipblush.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">3 500 kr</div>
+              <div class="treatment-duration">30 min</div>
+            </div>
+            <button class="info-btn" type="button" data-target="pmu-info-6" aria-label="Vis info om oppfriskning lipblush">i</button>
+          </div>
+          <div class="treatment-info" id="pmu-info-6">
+            Oppfriskning av tidligere lipblush for å gjenopprette farge, jevnhet og definisjon. Passer for deg som har gjort lipblush tidligere og ønsker å vedlikeholde resultatet.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Skjønnhetsflekk</h3>
+              <small>Liten, elegant detalj plassert etter ønske.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">850 kr</div>
+              <div class="treatment-duration">30 min</div>
+            </div>
+            <button class="info-btn" type="button" data-target="pmu-info-7" aria-label="Vis info om skjønnhetsflekk">i</button>
+          </div>
+          <div class="treatment-info" id="pmu-info-7">
+            En liten og elegant skjønnhetsflekk plasseres etter ønske. Gir et estetisk løft og et klassisk uttrykk.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Oppfriskning eyeliner oppe og nede</h3>
+              <small>Fornyer tidligere eyeliner.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">3 500 kr</div>
+              <div class="treatment-duration">1 t 30 min</div>
+            </div>
+            <button class="info-btn" type="button" data-target="pmu-info-8" aria-label="Vis info om oppfriskning eyeliner oppe og nede">i</button>
+          </div>
+          <div class="treatment-info" id="pmu-info-8">
+            Oppfriskning av tidligere eyeliner. Gjør linjen skarpere, dypere og jevnere igjen. Passer kunder som har gjort eyeliner tidligere og ønsker å fornye resultatet.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Lipblush (ny behandling)</h3>
+              <small>Naturlig farge og definisjon på leppene.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">6 850 kr</div>
+              <div class="treatment-duration">2 t 30 min</div>
+            </div>
+            <button class="info-btn" type="button" data-target="pmu-info-9" aria-label="Vis info om lipblush ny behandling">i</button>
+          </div>
+          <div class="treatment-info" id="pmu-info-9">
+            Med lipblush kan vi korrigere asymmetri, dekke arr, fremheve leppeform og gi lepper mer definisjon og farge. Resultatet blir svært naturlig og smelter sømløst inn i huden. Fargen tilpasses etter ønske. Perfekt for deg som vil ha mer glød uten å måtte bruke sminke. Kan utføres selv om du tidligere har tatt fillers i leppene.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Touch up lipblush (inkludert i prisen)</h3>
+              <small>Inkludert touch up etter ny lipblush.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">0 kr</div>
+              <div class="treatment-duration">2 t</div>
+            </div>
+            <button class="info-btn" type="button" data-target="pmu-info-10" aria-label="Vis info om touch up lipblush">i</button>
+          </div>
+          <div class="treatment-info" id="pmu-info-10">
+            Touch up er inkludert i prisen for ny lipblush og må tas innen 4–8 uker. Sikrer at fargen setter seg jevnt og gir et langvarig resultat.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Oppfriskning eyeliner oppe eller nede</h3>
+              <small>Vedlikehold av én eyelinerlinje.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">3 150 kr</div>
+              <div class="treatment-duration">1 t 15 min</div>
+            </div>
+            <button class="info-btn" type="button" data-target="pmu-info-11" aria-label="Vis info om oppfriskning eyeliner oppe eller nede">i</button>
+          </div>
+          <div class="treatment-info" id="pmu-info-11">
+            Oppfriskning av én eyelinerlinje. Forbedrer farge, presisjon og intensitet på tidligere PMU-liner.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Powderbrows</h3>
+              <small>Myke, pudderaktige bryn.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">6 750 kr</div>
+              <div class="treatment-duration">2 t 30 min</div>
+            </div>
+            <button class="info-btn" type="button" data-target="pmu-info-12" aria-label="Vis info om powderbrows">i</button>
+          </div>
+          <div class="treatment-info" id="pmu-info-12">
+            Myke, pudderaktige bryn som gir et fyldigere, definert og svært naturlig resultat. Perfekt for deg som ønsker et sminket, men mykt uttrykk. Fargen tilpasses din hudtone.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Fregner</h3>
+              <small>Naturlige, tatoverte fregner.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">2 000 kr</div>
+              <div class="treatment-duration">1 t</div>
+            </div>
+            <button class="info-btn" type="button" data-target="pmu-info-13" aria-label="Vis info om fregner">i</button>
+          </div>
+          <div class="treatment-info" id="pmu-info-13">
+            Med permanent makeup kan vi tatovere naturlige, delikate fregner i ansiktet. Ta gjerne med referansebilde. Pris pr. gang. Flere behandlinger kan være nødvendig for å oppnå ønsket effekt.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Oppfriskning powderbrows/shading</h3>
+              <small>Fornyer tidligere powderbrows.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">3 250 kr</div>
+              <div class="treatment-duration">1 t 45 min</div>
+            </div>
+            <button class="info-btn" type="button" data-target="pmu-info-14" aria-label="Vis info om oppfriskning powderbrows">i</button>
+          </div>
+          <div class="treatment-info" id="pmu-info-14">
+            Oppfriskning av tidligere powderbrows eller shading-teknikk. Gjør brynene skarpere, fyldigere og jevne igjen.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Touch up powderbrows (inkludert)</h3>
+              <small>Inkludert touch up etter nye powderbrows.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">0 kr</div>
+              <div class="treatment-duration">1 t 30 min</div>
+            </div>
+            <button class="info-btn" type="button" data-target="pmu-info-15" aria-label="Vis info om touch up powderbrows">i</button>
+          </div>
+          <div class="treatment-info" id="pmu-info-15">
+            Touch up etter nye powderbrows. Må tas innen 4–8 uker. Gjelder kun kunder som har tatt ny powderbrows hos Somi.
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- LASER TATOVERINGSFJERNING SECTION ------------------------->
+  <section id="laser-tattoo" class="section">
+    <div class="section-inner">
+
+      <div class="category">
+        <button class="category-header" type="button" data-target="laser-info">
+          <div>
+            <div class="category-label">06 · Kategori</div>
+            <h2 class="category-title">Laser tatoveringsfjerning</h2>
+            <p class="category-subtitle">
+              Skånsom fjerning av tatoveringer og restpigmenter.
+            </p>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span class="category-number">06</span>
+            <span class="category-chevron">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M6 9l6 6 6-6" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </button>
+
+        <div class="category-info" id="laser-info">
+          <div class="category-info-inner">
+            <h4>⭐ Laser tatoveringsfjerning – komplett liste</h4>
+            <p>Alle behandlinger under er oppgitt med pris, tid og (i)-tekst.</p>
+          </div>
+        </div>
+
+        <div class="treatment-list">
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Saline removal (gule pigmenter i bryn)</h3>
+              <small>Fjerning av gule restpigmenter etter PMU/microblading.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">1 400 kr</div>
+              <div class="treatment-duration">30 min</div>
+            </div>
+            <button class="info-btn" type="button" data-target="laser-info-1" aria-label="Vis info om saline removal">i</button>
+          </div>
+          <div class="treatment-info" id="laser-info-1">
+            Vanligvis bruker vi denne metoden for å fjerne gule restpigmenter etter PMU/microblading. Den kan også brukes ved tatoveringsfjerning for å bryte ned pigmenter raskere. Effektiv for feilpigmenterte bryn, gammel leppetatovering eller hvite pigmenter i huden.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Laserfjerning bryn</h3>
+              <small>Skånsom og presis laserbehandling for tatoverte bryn.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">1 390 kr</div>
+              <div class="treatment-duration">30 min</div>
+            </div>
+            <button class="info-btn" type="button" data-target="laser-info-2" aria-label="Vis info om laserfjerning av bryn">i</button>
+          </div>
+          <div class="treatment-info" id="laser-info-2">
+            Skånsom og presis laserbehandling for å fjerne tatoverte bryn. Metoden jobber dypt i huden, bryter ned pigmentet og lar kroppen gradvis transportere det bort. Behandlingen er trygg og effektiv, med minimal risiko for arrdannelse.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Laserfjerning tatovering – 10×10 cm</h3>
+              <small>Laserbehandling for tatoveringer opptil 10×10 cm.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">1 390 kr</div>
+              <div class="treatment-duration">30 min</div>
+            </div>
+            <button class="info-btn" type="button" data-target="laser-info-3" aria-label="Vis info om laserfjerning 10x10">i</button>
+          </div>
+          <div class="treatment-info" id="laser-info-3">
+            Fjerning av tatoveringer opptil 10×10 cm. Utraumatisk behandling med minimal skade i hudoverflaten – og uten arr. Ta gjerne kontakt for vurdering dersom tatoveringen inneholder vanskelige pigmenter.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Konsultasjon</h3>
+              <small>Rask vurderingstime før tatoveringsfjerning.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">0 kr</div>
+              <div class="treatment-duration">15 min</div>
+            </div>
+            <button class="info-btn" type="button" data-target="laser-info-4" aria-label="Vis info om konsultasjon for laser">i</button>
+          </div>
+          <div class="treatment-info" id="laser-info-4">
+            Kort vurderingstime for å se på tatoveringen, pigmenter, dybde og hudtype. Gir deg realistiske forventninger og en personlig behandlingsplan.
+          </div>
+
+          <div class="treatment-item">
+            <div class="treatment-text">
+              <h3>Laserfjerning tatovering – 5×5 cm</h3>
+              <small>Laserfjerning av mindre tatoveringer opptil 5×5 cm.</small>
+            </div>
+            <div class="treatment-meta">
+              <div class="treatment-price">990 kr</div>
+              <div class="treatment-duration">30 min</div>
+            </div>
+            <button class="info-btn" type="button" data-target="laser-info-5" aria-label="Vis info om laserfjerning 5x5">i</button>
+          </div>
+          <div class="treatment-info" id="laser-info-5">
+            Laserfjerning av mindre tatoveringer opptil 5×5 cm. Effektiv og skånsom metode som bryter ned pigmenter uten å skade huden. Passer godt for små symboler, navn og tynn strek-tatovering.
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER ------------------------------------------------------>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">SOMI KLINIKKEN</div>
+      <div>© <span id="footer-year"></span> SOMI Klinikken · Alle rettigheter reservert</div>
+      <div>Oslo · somiklinikken.no</div>
     </div>
   </footer>
 
+  <!-- SCROLL BUTTONS --------------------------------------------->
+  <div class="scroll-buttons">
+    <button class="scroll-btn" id="scroll-top" aria-label="Til toppen">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M12 5l-7 7h14L12 5z" stroke-width="1.6" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <button class="scroll-btn" id="scroll-bottom" aria-label="Til bunnen">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M12 19l7-7H5l7 7z" stroke-width="1.6" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+
   <script>
-    const navToggle = document.querySelector('.nav-toggle');
-    const navList = document.querySelector('.nav-list');
-    const chatToggle = document.querySelector('.chat-toggle');
-    const chatPanel = document.querySelector('#somi-chat-panel');
-    const chatClose = document.querySelector('.chat-close');
-    const chatForm = document.querySelector('.chat-input');
+    // Åpne/lukke info-tekst når man klikker på kategorinavnet
+    document.querySelectorAll('.category-header').forEach(function(header) {
+      header.addEventListener('click', function () {
+        const targetId = header.getAttribute('data-target');
+        const info = document.getElementById(targetId);
 
-    if (navToggle && navList) {
-      navToggle.addEventListener('click', () => {
-        const isOpen = document.body.classList.toggle('nav-open');
-        navToggle.setAttribute('aria-expanded', String(isOpen));
-      });
+        const isOpen = info.classList.contains('open');
+        document.querySelectorAll('.category-info').forEach(el => {
+          el.style.maxHeight = null;
+          el.classList.remove('open');
+        });
+        document.querySelectorAll('.category-header').forEach(h => h.classList.remove('open'));
 
-      navList.addEventListener('click', (event) => {
-        if (event.target instanceof HTMLElement && event.target.tagName === 'A') {
-          document.body.classList.remove('nav-open');
-          navToggle.setAttribute('aria-expanded', 'false');
+        if (!isOpen) {
+          info.classList.add('open');
+          header.classList.add('open');
+          info.style.maxHeight = info.scrollHeight + 'px';
         }
       });
+    });
+
+    // Åpne/lukke info på enkeltbehandlinger
+    document.querySelectorAll('.treatment-list').forEach(function(list) {
+      const infoPanels = list.querySelectorAll('.treatment-info');
+
+      list.querySelectorAll('.info-btn').forEach(function(btn) {
+        btn.addEventListener('click', function () {
+          const info = document.getElementById(btn.getAttribute('data-target'));
+          const isOpen = info.classList.contains('open');
+
+          infoPanels.forEach(function(panel) {
+            panel.style.maxHeight = null;
+            panel.classList.remove('open');
+            const relatedBtn = list.querySelector(`.info-btn[data-target="${panel.id}"]`);
+            if (relatedBtn) relatedBtn.classList.remove('open');
+          });
+
+          if (!isOpen) {
+            info.classList.add('open');
+            btn.classList.add('open');
+            info.style.maxHeight = info.scrollHeight + 'px';
+          }
+        });
+      });
+    });
+
+    // Footer-år
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+    // Scroll-knapper
+    const btnTop = document.getElementById('scroll-top');
+    const btnBottom = document.getElementById('scroll-bottom');
+
+    function updateScrollButtons() {
+      const scrolled = window.scrollY || window.pageYOffset;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+      if (scrolled > 150) {
+        btnTop.classList.add('visible');
+      } else {
+        btnTop.classList.remove('visible');
+      }
+
+      if (scrolled < docHeight - 150) {
+        btnBottom.classList.add('visible');
+      } else {
+        btnBottom.classList.remove('visible');
+      }
     }
 
-    const setChatOpen = (open) => {
-      if (!chatPanel || !chatToggle) return;
-      chatPanel.hidden = !open;
-      chatToggle.setAttribute('aria-expanded', String(open));
-      if (open) {
-        chatPanel.classList.add('chat-panel--open');
-      } else {
-        chatPanel.classList.remove('chat-panel--open');
-      }
-    };
+    window.addEventListener('scroll', updateScrollButtons);
+    window.addEventListener('load', updateScrollButtons);
 
-    chatToggle?.addEventListener('click', () => setChatOpen(chatPanel?.hidden));
-    chatClose?.addEventListener('click', () => setChatOpen(false));
+    btnTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 
-    chatForm?.addEventListener('submit', (event) => {
-      event.preventDefault();
-      setChatOpen(true);
+    btnBottom.addEventListener('click', function () {
+      window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
     });
   </script>
+
 </body>
 </html>
