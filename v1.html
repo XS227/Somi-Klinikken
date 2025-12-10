@@ -213,6 +213,21 @@
             opacity: 0.6;
         }
 
+        .nav-sublist {
+            list-style: none;
+            padding: 0.35rem 0 0.35rem 1rem;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-sublist a {
+            text-transform: none;
+        }
+
         .nav-divider {
             height: 1px;
             background: var(--color-muted);
@@ -482,14 +497,11 @@
 <body>
 <header class="site-header" id="site-header">
     <div class="header-inner">
-        <a href="index.html" class="logo">
+        <a href="https://www.somiklinikken.no" class="logo">
             <div class="logo-mark">so</div>
             <span>somi klinikken</span>
         </a>
         <div class="header-right">
-            <button class="icon-button" aria-label="Søk">
-                <span>🔍</span>
-            </button>
             <button class="btn-primary">
                 BOOK TIME
             </button>
@@ -512,7 +524,17 @@
             <ul class="nav-list">
                 <li><a href="index.html">Hjem</a></li>
                 <li><a href="mot-oss.html">Møt oss</a></li>
-                <li><a href="behandlinger.html">Behandlinger</a></li>
+                <li>
+                    <a href="behandlinger.html">Behandlinger</a>
+                    <ul class="nav-sublist">
+                        <li><a href="behandlinger.html#microblading">Microblading</a></li>
+                        <li><a href="behandlinger.html#bryn-og-vipper">Bryn og vipper</a></li>
+                        <li><a href="behandlinger.html#dermalogica">Dermalogica</a></li>
+                        <li><a href="behandlinger.html#hudpleie">Hudpleie</a></li>
+                        <li><a href="behandlinger.html#permanent-makeup">Permanent makeup</a></li>
+                        <li><a href="behandlinger.html#laser-tattoo">Laser &amp; tattoo</a></li>
+                    </ul>
+                </li>
                 <li><a href="blogg.html">Blogg</a></li>
                 <li><a href="faq.html">FAQ</a></li>
                 <li><a href="kontakt-oss.html">Kontakt oss</a></li>
