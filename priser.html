@@ -2,505 +2,261 @@
 <html lang="no">
 <head>
     <meta charset="UTF-8" />
-    <title>SOMI Klinikken – Behandlinger</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style>
-        :root {
-            --color-bg: #efefee;
-            --color-surface: #ffffff;
-            --color-muted: #e8e6e4;
-            --color-text: #383838;
-            --color-accent: #ddb3b3;
-            --color-accent-soft: #f4e3dc;
-            --color-footer-bg: #111111;
-            --radius-large: 32px;
-            --transition-fast: 0.25s ease;
-        }
-
-        * { box-sizing: border-box; }
-
-        body {
-            margin: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: linear-gradient(135deg, #efefee, #dcdcdc);
-            color: var(--color-text);
-            -webkit-font-smoothing: antialiased;
-        }
-
-        a { color: inherit; text-decoration: none; }
-        img { max-width: 100%; display: block; }
-
-        .site-header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-            background: rgba(239, 239, 238, 0.9);
-            border-bottom: 1px solid rgba(0,0,0,0.04);
-        }
-
-        .header-inner {
-            max-width: 1120px;
-            margin: 0 auto;
-            padding: 0.75rem 1.25rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 600;
-            letter-spacing: 0.12em;
-            text-transform: lowercase;
-            font-size: 1.1rem;
-        }
-
-        .logo-mark {
-            width: 32px;
-            height: 32px;
-            border-radius: 999px;
-            border: 2px solid var(--color-text);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
-        }
-
-        .header-right { display: flex; align-items: center; gap: 0.75rem; }
-
-        .icon-button {
-            width: 36px;
-            height: 36px;
-            border-radius: 999px;
-            border: 1px solid rgba(0,0,0,0.1);
-            background: rgba(255,255,255,0.9);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
-        }
-
-        .icon-button:hover {
-            background: #ffffff;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-            transform: translateY(-1px);
-        }
-
-        .btn-primary {
-            padding: 0.55rem 1.3rem;
-            border-radius: 999px;
-            border: none;
-            background: var(--color-accent);
-            color: #ffffff;
-            font-size: 0.9rem;
-            font-weight: 500;
-            cursor: pointer;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-            transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
-            white-space: nowrap;
-        }
-
-        .btn-primary:hover {
-            background: #c89a9a;
-            transform: translateY(-1px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.16);
-        }
-
-        .burger { position: relative; width: 20px; height: 14px; }
-        .burger-line { position: absolute; left: 0; right: 0; height: 2px; border-radius: 999px; background: #333; transition: transform var(--transition-fast), opacity var(--transition-fast), top var(--transition-fast), bottom var(--transition-fast); }
-        .burger-line:nth-child(1) { top: 0; }
-        .burger-line:nth-child(2) { top: 6px; }
-        .burger-line:nth-child(3) { bottom: 0; }
-        .site-header.menu-open .burger-line:nth-child(1) { top: 6px; transform: rotate(45deg); }
-        .site-header.menu-open .burger-line:nth-child(2) { opacity: 0; }
-        .site-header.menu-open .burger-line:nth-child(3) { bottom: 6px; transform: rotate(-45deg); }
-
-        .nav-overlay { position: fixed; inset: 0; background: #f4f4f3; transform: translateX(100%); transition: transform 0.3s ease; z-index: 900; }
-        .nav-overlay.open { transform: translateX(0%); }
-        .nav-inner { max-width: 480px; height: 100%; margin-left: auto; padding: 5rem 2rem 2rem; display: flex; flex-direction: column; gap: 2rem; }
-        .nav-section-title { font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.6; }
-        .nav-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1.1rem; }
-        .nav-list a { font-size: 1.05rem; text-transform: uppercase; letter-spacing: 0.14em; }
-        .nav-list a:hover { opacity: 0.6; }
-        .nav-sublist { list-style: none; padding: 0.35rem 0 0.35rem 1rem; margin: 0; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.95rem; letter-spacing: 0.05em; }
-        .nav-sublist a { text-transform: none; }
-        .nav-divider { height: 1px; background: var(--color-muted); margin: 0.75rem 0; }
-        .nav-cta-group { margin-top: auto; display: flex; flex-direction: column; gap: 0.75rem; }
-        .btn-outline { padding: 0.55rem 1.3rem; border-radius: 999px; border: 1px solid var(--color-text); background: transparent; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background var(--transition-fast), color var(--transition-fast); }
-        .btn-outline:hover { background: var(--color-text); color: #ffffff; }
-        .nav-social { display: flex; gap: 1.5rem; font-size: 0.9rem; }
-
-        main { max-width: 1120px; margin: 0 auto; padding: 1.5rem 1.25rem 4rem; }
-        .hero { display: grid; grid-template-columns: 1fr; gap: 2rem; margin-top: 1rem; }
-        .hero-text { max-width: 620px; }
-        .eyebrow { font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.7; margin-bottom: 0.75rem; }
-        .hero-title { font-size: 2.1rem; line-height: 1.15; margin: 0 0 1rem; }
-        .hero-subtitle { font-size: 1rem; line-height: 1.6; color: rgba(0,0,0,0.7); margin-bottom: 1.5rem; }
-        .hero-meta { margin-top: 1.75rem; display: flex; flex-wrap: wrap; gap: 1rem; font-size: 0.8rem; opacity: 0.8; }
-        .hero-badge { padding: 0.3rem 0.75rem; border-radius: 999px; background: var(--color-accent-soft); }
-        .hero-image { position: relative; }
-        .image-frame { border-radius: var(--radius-large); overflow: hidden; box-shadow: 0 18px 50px rgba(0,0,0,0.16); background: #dcdcdc; }
-        .hero-image img { width: 100%; height: 100%; object-fit: cover; }
-        .hero-tag { position: absolute; left: 1.5rem; bottom: 1.5rem; padding: 0.45rem 0.8rem; border-radius: 999px; background: rgba(255,255,255,0.9); font-size: 0.8rem; box-shadow: 0 10px 30px rgba(0,0,0,0.18); }
-
-        .section { margin-top: 3rem; }
-        .section-header { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
-        .section-title { font-size: 1.25rem; }
-        .section-link { font-size: 0.9rem; text-decoration: underline; text-underline-offset: 4px; }
-        .card-row { display: grid; grid-template-columns: 1fr; gap: 1rem; }
-        .card { border-radius: 24px; background: var(--color-surface); padding: 1.25rem 1.4rem; box-shadow: 0 10px 30px rgba(0,0,0,0.06); }
-        .card-title { font-size: 1.02rem; margin-bottom: 0.35rem; display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
-        .pill { padding: 0.2rem 0.75rem; border-radius: 999px; background: var(--color-accent-soft); font-size: 0.8rem; }
-        .card-body { font-size: 0.92rem; line-height: 1.55; color: rgba(0,0,0,0.7); }
-        .treatment-list { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; gap: 0.75rem; }
-        .treatment-item { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
-        .treatment-name { font-weight: 600; }
-        .treatment-meta { font-size: 0.9rem; color: rgba(0,0,0,0.65); white-space: nowrap; }
-
-        .category-nav { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.25rem; }
-        .category-nav a { padding: 0.5rem 0.95rem; border-radius: 999px; background: rgba(255,255,255,0.8); border: 1px solid rgba(0,0,0,0.04); box-shadow: 0 8px 20px rgba(0,0,0,0.06); font-size: 0.9rem; }
-
-        footer { background: var(--color-footer-bg); color: #ffffff; padding: 2.5rem 1.25rem 1.5rem; margin-top: 3rem; }
-        .footer-inner { max-width: 1120px; margin: 0 auto; }
-        .footer-top { display: grid; grid-template-columns: 1fr; gap: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.12); }
-        .footer-column-title { font-size: 0.9rem; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 0.75rem; opacity: 0.8; }
-        .footer-links { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.9rem; }
-        .footer-links a { opacity: 0.8; }
-        .footer-links a:hover { opacity: 1; }
-        .footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; padding-top: 1.25rem; font-size: 0.8rem; opacity: 0.85; }
-        .footer-logo { font-size: 1rem; letter-spacing: 0.16em; text-transform: lowercase; }
-
-        @media (min-width: 768px) {
-            .hero { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); align-items: center; }
-            .hero-title { font-size: 2.5rem; }
-            .card-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-            .footer-top { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-        }
-    </style>
+    <title>Priser – SOMI Klinikken</title>
+    <link rel="stylesheet" href="/somi.css">
 </head>
 <body>
-<header class="site-header" id="site-header">
+<header class="header sticky">
     <div class="header-inner">
-        <a href="https://www.somiklinikken.no" class="logo">
-            <div class="logo-mark">so</div>
-            <span>somi klinikken</span>
-        </a>
-        <div class="header-right">
-            <a class="btn-primary" href="https://somi.bestille.no" target="_blank" rel="noopener">BOOK TIME</a>
-            <button class="icon-button" id="menu-toggle" aria-label="Meny">
-                <div class="burger">
-                    <div class="burger-line"></div>
-                    <div class="burger-line"></div>
-                    <div class="burger-line"></div>
-                </div>
+        <div class="logo-area">
+            <a href="/index.html">
+                <img src="https://somi.setaei.com/SomiKlinikkenLogo.png" alt="SOMI Klinikken" class="logo">
+            </a>
+        </div>
+
+        <nav class="main-nav">
+            <ul>
+                <li><a href="/index.html">Hjem</a></li>
+                <li><a href="/mot-oss.html">Møt oss</a></li>
+                <li><a href="/behandlinger.html">Behandlinger</a></li>
+                <li><a href="/priser.html" class="active">Priser</a></li>
+                <li><a href="/blogg.html">Blogg</a></li>
+                <li><a href="/faq.html">FAQ</a></li>
+                <li><a href="/kontakt.html">Kontakt oss</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-actions">
+            <a href="/booking" class="btn-cta">BOOK TIME</a>
+            <button class="burger" aria-label="Åpne meny">
+                <span></span><span></span><span></span>
             </button>
         </div>
     </div>
 </header>
 
-<nav class="nav-overlay" id="nav-overlay" aria-hidden="true">
-    <div class="nav-inner">
-        <div>
-            <div class="nav-section-title">Navigasjon</div>
-            <ul class="nav-list">
-                <li><a href="index.html">Hjem</a></li>
-                <li><a href="mot-oss.html">Møt oss</a></li>
-                <li>
-                    <a href="behandlinger.html">Behandlinger</a>
-                    <ul class="nav-sublist">
-                        <li><a href="#microblading">Microblading</a></li>
-                        <li><a href="#bryn-og-vipper">Bryn og vipper</a></li>
-                        <li><a href="#dermalogica">Dermalogica</a></li>
-                        <li><a href="#hudpleie">Hudpleie</a></li>
-                        <li><a href="#permanent-makeup">Permanent makeup</a></li>
-                        <li><a href="#laser-tattoo">Laser &amp; tattoo</a></li>
-                    </ul>
-                </li>
-                <li><a href="blogg.html">Blogg</a></li>
-                <li><a href="mot-oss.html">Om oss</a></li>
-                <li><a href="personvern.html">Personvern</a></li>
-                <li><a href="vilkar.html">Vilkår</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-                <li><a href="kontakt-oss.html">Kontakt oss</a></li>
-            </ul>
-        </div>
-
-        <div class="nav-divider"></div>
-
-        <div>
-            <div class="nav-section-title">Kontakt</div>
-            <div class="nav-social">
-                <a href="tel:+4798894888">+47 988 94 888</a>
-                <a href="mailto:kontakt@somiklinikken.no">kontakt@somiklinikken.no</a>
+<main>
+    <section class="hero hero-small">
+        <div class="hero-inner">
+            <div class="hero-text">
+                <h1>Priser</h1>
+                <p>Her finner du oppdatert oversikt over behandling, tid og pris.</p>
+            </div>
+            <div class="hero-image-frame">
+                <img src="https://static.vecteezy.com/system/resources/previews/023/024/287/non_2x/ai-generated-woman-having-beauty-treatment-free-photo.jpg" alt="Behandling hos SOMI Klinikken">
             </div>
         </div>
+    </section>
 
-        <div class="nav-cta-group">
-            <a class="btn-primary" href="https://somi.bestille.no" target="_blank" rel="noopener">BOOK TIME</a>
-            <a class="btn-outline" href="tel:+4798894888">Ring oss</a>
-        </div>
-    </div>
-</nav>
-
-<main id="top">
-    <section class="hero">
-        <div class="hero-text">
-            <div class="eyebrow">Behandlinger</div>
-            <h1 class="hero-title">Naturlige resultater i hver kategori</h1>
-            <p class="hero-subtitle">
-                Finn riktig behandling med en gang. Velg kategorien som passer deg, og gå rett til
-                detaljene – pris, varighet og kort beskrivelse i samme roligere SOMI-oppsett.
-            </p>
-            <div class="category-nav">
-                <a href="#microblading">Microblading</a>
-                <a href="#bryn-og-vipper">Bryn og vipper</a>
-                <a href="#dermalogica">Dermalogica</a>
-                <a href="#hudpleie">Hudpleie</a>
-                <a href="#permanent-makeup">Permanent makeup</a>
-                <a href="#laser-tattoo">Laser &amp; tattoo</a>
+    <section class="section section-light">
+        <div class="section-inner">
+            <h2>Microblading</h2>
+            <div class="pricing-grid">
+                <div class="pricing-row">
+                    <span class="pricing-name">Ny microblading</span>
+                    <span class="pricing-time">2 t</span>
+                    <span class="pricing-price">kr 4 990</span>
+                </div>
+                <div class="pricing-row">
+                    <span class="pricing-name">Touch up (4–8 uker)</span>
+                    <span class="pricing-time">45 min</span>
+                    <span class="pricing-price">Inkludert</span>
+                </div>
+                <div class="pricing-row">
+                    <span class="pricing-name">Refill innen 12 mnd</span>
+                    <span class="pricing-time">90 min</span>
+                    <span class="pricing-price">kr 2 990</span>
+                </div>
+                <div class="pricing-row">
+                    <span class="pricing-name">Refill 12–18 mnd</span>
+                    <span class="pricing-time">90 min</span>
+                    <span class="pricing-price">kr 3 490</span>
+                </div>
+                <div class="pricing-row">
+                    <span class="pricing-name">Konsultasjon</span>
+                    <span class="pricing-time">20 min</span>
+                    <span class="pricing-price">Gratis</span>
+                </div>
             </div>
-            <div class="hero-meta">
-                <span class="hero-badge">Gratis konsultasjon ved nye kunder</span>
-                <span>Studentrabatt på utvalgte behandlinger</span>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-inner">
+            <h2>Bryn og vipper</h2>
+            <div class="pricing-grid">
+                <div class="pricing-row">
+                    <span class="pricing-name">Brynstyling + farge</span>
+                    <span class="pricing-time">40 min</span>
+                    <span class="pricing-price">kr 720</span>
+                </div>
+                <div class="pricing-row">
+                    <span class="pricing-name">Browlamination</span>
+                    <span class="pricing-time">50 min</span>
+                    <span class="pricing-price">kr 890</span>
+                </div>
+                <div class="pricing-row">
+                    <span class="pricing-name">Bryn &amp; vipper (pakke)</span>
+                    <span class="pricing-time">1 t 30</span>
+                    <span class="pricing-price">kr 1 690</span>
+                </div>
+                <div class="pricing-row">
+                    <span class="pricing-name">Vippeløft inkl. farge</span>
+                    <span class="pricing-time">1 t</span>
+                    <span class="pricing-price">kr 1 140</span>
+                </div>
+                <div class="pricing-row">
+                    <span class="pricing-name">Farging av vipper</span>
+                    <span class="pricing-time">15 min</span>
+                    <span class="pricing-price">kr 290</span>
+                </div>
+                <div class="pricing-row">
+                    <span class="pricing-name">Farging av bryn</span>
+                    <span class="pricing-time">15 min</span>
+                    <span class="pricing-price">kr 320</span>
+                </div>
             </div>
         </div>
-        <div class="hero-image">
-            <div class="image-frame">
-                <img src="assets/images/hero-somi-behandling.jpg" alt="Behandling hos SOMI klinikken" />
+    </section>
+
+    <section class="section section-light">
+        <div class="section-inner">
+            <h2>Dermalogica</h2>
+            <div class="pricing-grid">
+                <div class="pricing-row">
+                    <span class="pricing-name">ProSkin 30</span>
+                    <span class="pricing-time">30 min</span>
+                    <span class="pricing-price">kr 790</span>
+                </div>
+                <div class="pricing-row">
+                    <span class="pricing-name">ProSkin 60</span>
+                    <span class="pricing-time">60 min</span>
+                    <span class="pricing-price">kr 1 190</span>
+                </div>
+                <div class="pricing-row">
+                    <span class="pricing-name">Pro Power Peel</span>
+                    <span class="pricing-time">45 min</span>
+                    <span class="pricing-price">kr 1 490</span>
+                </div>
+                <div class="pricing-row">
+                    <span class="pricing-name">Face Mapping konsultasjon</span>
+                    <span class="pricing-time">15 min</span>
+                    <span class="pricing-price">Gratis</span>
+                </div>
+                <div class="pricing-row">
+                    <span class="pricing-name">Nakke/skuldermassasje</span>
+                    <span class="pricing-time">15 min</span>
+                    <span class="pricing-price">kr 290</span>
+                </div>
             </div>
-            <div class="hero-tag">Rolig atmosfære · Sertifiserte behandlere</div>
         </div>
     </section>
 
-    <section class="section" id="microblading">
-        <div class="section-header">
-            <h2 class="section-title">Microblading</h2>
-            <a class="section-link" href="#top">Til toppen</a>
-        </div>
-        <div class="card-row">
-            <article class="card">
-                <h3 class="card-title">Naturlige bryn <span class="pill">Favoritt</span></h3>
-                <p class="card-body">Presise hårstrå, skreddersydd farge og form som passer ansiktet ditt.</p>
-                <ul class="treatment-list">
-                    <li class="treatment-item"><span class="treatment-name">Ny microblading</span><span class="treatment-meta">kr 4 990 · 2 t</span></li>
-                    <li class="treatment-item"><span class="treatment-name">Touch up (4–8 uker)</span><span class="treatment-meta">Inkludert</span></li>
-                    <li class="treatment-item"><span class="treatment-name">Konsultasjon</span><span class="treatment-meta">Gratis · 20 min</span></li>
-                </ul>
-            </article>
-            <article class="card">
-                <h3 class="card-title">Langvarige resultater</h3>
-                <p class="card-body">Anbefalt etterfyll for å bevare farge og form med minimal nedetid.</p>
-                <ul class="treatment-list">
-                    <li class="treatment-item"><span class="treatment-name">Refill innen 12 mnd</span><span class="treatment-meta">kr 2 990 · 90 min</span></li>
-                    <li class="treatment-item"><span class="treatment-name">Refill 12–18 mnd</span><span class="treatment-meta">kr 3 490 · 90 min</span></li>
-                </ul>
-            </article>
-        </div>
-    </section>
-
-    <section class="section" id="bryn-og-vipper">
-        <div class="section-header">
-            <h2 class="section-title">Bryn og vipper</h2>
-            <a class="section-link" href="#top">Til toppen</a>
-        </div>
-        <div class="card-row">
-            <article class="card">
-                <h3 class="card-title">Form &amp; pleie</h3>
-                <p class="card-body">Forsterk blikket med skånsom forming, farging og styling.</p>
-                <ul class="treatment-list">
-                    <li class="treatment-item"><span class="treatment-name">Brynstyling + farge</span><span class="treatment-meta">kr 720 · 40 min</span></li>
-                    <li class="treatment-item"><span class="treatment-name">Browlamination</span><span class="treatment-meta">kr 890 · 50 min</span></li>
-                    <li class="treatment-item"><span class="treatment-name">Bryn &amp; vipper (pakke)</span><span class="treatment-meta">kr 1 690 · 1 t 30</span></li>
-                </ul>
-            </article>
-            <article class="card">
-                <h3 class="card-title">Løft &amp; volum</h3>
-                <p class="card-body">Synlige, buede vipper med myk finish – perfekt sammen med farging.</p>
-                <ul class="treatment-list">
-                    <li class="treatment-item"><span class="treatment-name">Vippeløft inkl. farge</span><span class="treatment-meta">kr 1 140 · 1 t</span></li>
-                    <li class="treatment-item"><span class="treatment-name">Farging av vipper</span><span class="treatment-meta">kr 290 · 15 min</span></li>
-                    <li class="treatment-item"><span class="treatment-name">Farging av bryn</span><span class="treatment-meta">kr 320 · 15 min</span></li>
-                </ul>
-            </article>
+    <section class="section">
+        <div class="section-inner">
+            <h2>Hudpleie</h2>
+            <div class="pricing-grid">
+                <div class="pricing-row">
+                    <span class="pricing-name">Dyprens &amp; fukt</span>
+                    <span class="pricing-time">50 min</span>
+                    <span class="pricing-price">kr 890</span>
+                </div>
+                <div class="pricing-row">
+                    <span class="pricing-name">Ekspress glow</span>
+                    <span class="pricing-time">25 min</span>
+                    <span class="pricing-price">kr 590</span>
+                </div>
+                <div class="pricing-row">
+                    <span class="pricing-name">Kjemisk peel</span>
+                    <span class="pricing-time">40 min</span>
+                    <span class="pricing-price">kr 1 200</span>
+                </div>
+                <div class="pricing-row">
+                    <span class="pricing-name">Microneedling</span>
+                    <span class="pricing-time">60 min</span>
+                    <span class="pricing-price">kr 2 300</span>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section class="section" id="dermalogica">
-        <div class="section-header">
-            <h2 class="section-title">Dermalogica</h2>
-            <a class="section-link" href="#top">Til toppen</a>
-        </div>
-        <div class="card-row">
-            <article class="card">
-                <h3 class="card-title">Ansiktsbehandlinger</h3>
-                <p class="card-body">Hudprogram som tilpasses etter Face Mapping og hudtype.</p>
-                <ul class="treatment-list">
-                    <li class="treatment-item"><span class="treatment-name">ProSkin 30</span><span class="treatment-meta">kr 790 · 30 min</span></li>
-                    <li class="treatment-item"><span class="treatment-name">ProSkin 60</span><span class="treatment-meta">kr 1 190 · 60 min</span></li>
-                    <li class="treatment-item"><span class="treatment-name">Pro Power Peel</span><span class="treatment-meta">kr 1 490 · 45 min</span></li>
-                </ul>
-            </article>
-            <article class="card">
-                <h3 class="card-title">Tillegg &amp; spesial</h3>
-                <p class="card-body">Forsterk behandlingen med targeted boosters eller massasje.</p>
-                <ul class="treatment-list">
-                    <li class="treatment-item"><span class="treatment-name">Face Mapping konsultasjon</span><span class="treatment-meta">Gratis · 15 min</span></li>
-                    <li class="treatment-item"><span class="treatment-name">Nakke/skuldermassasje</span><span class="treatment-meta">kr 290 · 15 min</span></li>
-                    <li class="treatment-item"><span class="treatment-name">Beroligende maske</span><span class="treatment-meta">kr 180</span></li>
-                </ul>
-            </article>
-        </div>
-    </section>
-
-    <section class="section" id="hudpleie">
-        <div class="section-header">
-            <h2 class="section-title">Hudpleie</h2>
-            <a class="section-link" href="#top">Til toppen</a>
-        </div>
-        <div class="card-row">
-            <article class="card">
-                <h3 class="card-title">Glød &amp; fukt</h3>
-                <p class="card-body">Skånsomme behandlinger som gir roligere hud og frisk glød.</p>
-                <ul class="treatment-list">
-                    <li class="treatment-item"><span class="treatment-name">Dyprens &amp; fukt</span><span class="treatment-meta">kr 890 · 50 min</span></li>
-                    <li class="treatment-item"><span class="treatment-name">Ekspress glow</span><span class="treatment-meta">kr 590 · 25 min</span></li>
-                    <li class="treatment-item"><span class="treatment-name">Beroligende maske</span><span class="treatment-meta">kr 180 · tillegg</span></li>
-                </ul>
-            </article>
-            <article class="card">
-                <h3 class="card-title">Resultatfokus</h3>
-                <p class="card-body">Retter seg mot tekstur, pigmentering og fine linjer.</p>
-                <ul class="treatment-list">
-                    <li class="treatment-item"><span class="treatment-name">Kjemisk peel</span><span class="treatment-meta">kr 1 200 · 40 min</span></li>
-                    <li class="treatment-item"><span class="treatment-name">Microneedling</span><span class="treatment-meta">kr 2 300 · 60 min</span></li>
-                    <li class="treatment-item"><span class="treatment-name">Kurpakke (3x)</span><span class="treatment-meta">Be om pris</span></li>
-                </ul>
-            </article>
+    <section class="section section-light">
+        <div class="section-inner">
+            <h2>Permanent makeup</h2>
+            <div class="pricing-grid">
+                <div class="pricing-row">
+                    <span class="pricing-name">Eyeliner – klassisk</span>
+                    <span class="pricing-time">90 min</span>
+                    <span class="pricing-price">kr 3 900</span>
+                </div>
+                <div class="pricing-row">
+                    <span class="pricing-name">Soft lashliner</span>
+                    <span class="pricing-time">75 min</span>
+                    <span class="pricing-price">kr 3 500</span>
+                </div>
+                <div class="pricing-row">
+                    <span class="pricing-name">Leppefarge (aquarelle)</span>
+                    <span class="pricing-time">2 t</span>
+                    <span class="pricing-price">kr 4 500</span>
+                </div>
+                <div class="pricing-row">
+                    <span class="pricing-name">Touch up innen 6 mnd</span>
+                    <span class="pricing-time">30 min</span>
+                    <span class="pricing-price">kr 1 200</span>
+                </div>
+                <div class="pricing-row">
+                    <span class="pricing-name">Touch up 6–12 mnd</span>
+                    <span class="pricing-time">30 min</span>
+                    <span class="pricing-price">kr 1 800</span>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section class="section" id="permanent-makeup">
-        <div class="section-header">
-            <h2 class="section-title">Permanent makeup</h2>
-            <a class="section-link" href="#top">Til toppen</a>
-        </div>
-        <div class="card-row">
-            <article class="card">
-                <h3 class="card-title">Definerte linjer</h3>
-                <p class="card-body">Eyeliner og lepper som fremhever naturlige trekk uten harde kanter.</p>
-                <ul class="treatment-list">
-                    <li class="treatment-item"><span class="treatment-name">Eyeliner – klassisk</span><span class="treatment-meta">kr 3 900 · 90 min</span></li>
-                    <li class="treatment-item"><span class="treatment-name">Soft lashliner</span><span class="treatment-meta">kr 3 500 · 75 min</span></li>
-                    <li class="treatment-item"><span class="treatment-name">Leppefarge (aquarelle)</span><span class="treatment-meta">kr 4 500 · 2 t</span></li>
-                </ul>
-            </article>
-            <article class="card">
-                <h3 class="card-title">Oppfølging</h3>
-                <p class="card-body">Etterfyll for å bevare intensitet og jevne overganger.</p>
-                <ul class="treatment-list">
-                    <li class="treatment-item"><span class="treatment-name">Touch up innen 6 mnd</span><span class="treatment-meta">kr 1 200</span></li>
-                    <li class="treatment-item"><span class="treatment-name">Touch up 6–12 mnd</span><span class="treatment-meta">kr 1 800</span></li>
-                </ul>
-            </article>
-        </div>
-    </section>
-
-    <section class="section" id="laser-tattoo">
-        <div class="section-header">
-            <h2 class="section-title">Laser &amp; tattoo</h2>
-            <a class="section-link" href="#top">Til toppen</a>
-        </div>
-        <div class="card-row">
-            <article class="card">
-                <h3 class="card-title">Hud og pigment</h3>
-                <p class="card-body">Laserbehandlinger for jevnere hudtone og oppstramming.</p>
-                <ul class="treatment-list">
-                    <li class="treatment-item"><span class="treatment-name">Laser hudfornyelse</span><span class="treatment-meta">kr 2 200 · 45 min</span></li>
-                    <li class="treatment-item"><span class="treatment-name">Sprengte blodkar</span><span class="treatment-meta">kr 1 200 · 30 min</span></li>
-                </ul>
-            </article>
-            <article class="card">
-                <h3 class="card-title">Fjerning av tatovering</h3>
-                <p class="card-body">Skånsom tilnærming med flere små økter for best mulig resultat.</p>
-                <ul class="treatment-list">
-                    <li class="treatment-item"><span class="treatment-name">Fjerning – liten tatovering</span><span class="treatment-meta">kr 1 000 · 20 min</span></li>
-                    <li class="treatment-item"><span class="treatment-name">Fjerning – medium tatovering</span><span class="treatment-meta">kr 1 600 · 30 min</span></li>
-                    <li class="treatment-item"><span class="treatment-name">Konsultasjon</span><span class="treatment-meta">Gratis · 15 min</span></li>
-                </ul>
-            </article>
+    <section class="section">
+        <div class="section-inner">
+            <h2>Laser &amp; tattoo</h2>
+            <div class="pricing-grid">
+                <div class="pricing-row">
+                    <span class="pricing-name">Laser hudfornyelse</span>
+                    <span class="pricing-time">45 min</span>
+                    <span class="pricing-price">kr 2 200</span>
+                </div>
+                <div class="pricing-row">
+                    <span class="pricing-name">Sprengte blodkar</span>
+                    <span class="pricing-time">30 min</span>
+                    <span class="pricing-price">kr 1 200</span>
+                </div>
+                <div class="pricing-row">
+                    <span class="pricing-name">Fjerning – liten tatovering</span>
+                    <span class="pricing-time">20 min</span>
+                    <span class="pricing-price">kr 1 000</span>
+                </div>
+                <div class="pricing-row">
+                    <span class="pricing-name">Fjerning – medium tatovering</span>
+                    <span class="pricing-time">30 min</span>
+                    <span class="pricing-price">kr 1 600</span>
+                </div>
+                <div class="pricing-row">
+                    <span class="pricing-name">Konsultasjon</span>
+                    <span class="pricing-time">15 min</span>
+                    <span class="pricing-price">Gratis</span>
+                </div>
+            </div>
         </div>
     </section>
 </main>
 
-<footer>
+<footer class="footer">
     <div class="footer-inner">
-        <div class="footer-top">
-            <div>
-                <div class="footer-column-title">Kontakt</div>
-                <ul class="footer-links">
-                    <li><a href="kontakt-oss.html">Kontakt oss</a></li>
-                    <li>Langgata 41, 4306 Sandnes</li>
-                    <li><a href="tel:+4798894888">+47 988 94 888</a></li>
-                    <li><a href="mailto:kontakt@somiklinikken.no">kontakt@somiklinikken.no</a></li>
-                </ul>
-            </div>
-            <div>
-                <div class="footer-column-title">Klinikken</div>
-                <ul class="footer-links">
-                    <li><a href="mot-oss.html">Møt oss</a></li>
-                    <li><a href="behandlinger.html">Behandlinger</a></li>
-                    <li><a href="blogg.html">Blogg</a></li>
-                </ul>
-            </div>
-            <div>
-                <div class="footer-column-title">Juridisk</div>
-                <ul class="footer-links">
-                    <li><a href="personvern.html">Personvern</a></li>
-                    <li><a href="vilkar.html">Vilkår</a></li>
-                </ul>
-            </div>
-            <div>
-                <div class="footer-column-title">Følg oss</div>
-                <ul class="footer-links">
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">Facebook</a></li>
-                </ul>
-            </div>
+        <div class="footer-menu">
+            <a href="/personvern.html">Personvern</a>
+            <a href="/vilkar.html">Vilkår</a>
+            <a href="/kontakt.html">Kontakt oss</a>
         </div>
-        <div class="footer-bottom">
-            <div class="footer-logo">somi klinikken</div>
-            <div>© <span id="year"></span> SOMI Klinikken. Alle rettigheter reservert.</div>
-        </div>
+        <p>© SOMI Klinikken</p>
     </div>
 </footer>
-
-<script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    const menuToggle = document.getElementById('menu-toggle');
-    const navOverlay = document.getElementById('nav-overlay');
-    const header = document.getElementById('site-header');
-
-    function toggleMenu() {
-        const isOpen = navOverlay.classList.toggle('open');
-        header.classList.toggle('menu-open', isOpen);
-        navOverlay.setAttribute('aria-hidden', !isOpen);
-    }
-
-    menuToggle.addEventListener('click', toggleMenu);
-
-    navOverlay.addEventListener('click', (e) => {
-        if (e.target.tagName === 'A') {
-            navOverlay.classList.remove('open');
-            header.classList.remove('menu-open');
-            navOverlay.setAttribute('aria-hidden', 'true');
-        }
-    });
-</script>
 </body>
 </html>
