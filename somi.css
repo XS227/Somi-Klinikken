@@ -358,6 +358,72 @@ h1, h2, h3 {
     align-items: flex-start;
 }
 
+/* ========== PRICING ========== */
+
+.pricing-grid {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.pricing-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.6fr) minmax(0, 0.6fr);
+    align-items: center;
+    padding: 0.85rem 1.1rem;
+    border-radius: 18px;
+    background: #ffffff;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    gap: 0.5rem;
+}
+
+.pricing-name {
+    font-weight: 600;
+}
+
+.pricing-time {
+    color: #666;
+}
+
+.pricing-price {
+    font-weight: 700;
+    text-align: right;
+}
+
+/* ========== FAQ ========== */
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+}
+
+.faq-item {
+    padding: 1.1rem 1.25rem;
+    border-radius: 18px;
+    background: #ffffff;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.06);
+}
+
+.faq-question {
+    margin-bottom: 0.35rem;
+}
+
+.faq-answer {
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+}
+
+@media (min-width: 900px) {
+    .pricing-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .faq-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
 .contact-info .contact-block + .contact-block {
     margin-top: 1.2rem;
 }
@@ -508,6 +574,15 @@ h1, h2, h3 {
     .treatment-grid,
     .team-grid {
         grid-template-columns: minmax(0, 1fr);
+    }
+
+    .pricing-row {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .pricing-price,
+    .pricing-time {
+        text-align: left;
     }
 
     .section,
