@@ -164,6 +164,7 @@ p {
   justify-content: space-between;
   padding-block: 0.9rem;
   gap: 1.5rem;
+  position: relative;
 }
 
 .somi-logo {
@@ -215,6 +216,10 @@ p {
   width: 100%;
 }
 
+.nav-list a.active {
+  font-weight: 700;
+}
+
 .nav-cta {
   padding: 0.45rem 1.2rem;
   border-radius: var(--radius-pill);
@@ -228,6 +233,138 @@ p {
 
 .nav-toggle {
   display: none;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 7px;
+  border: 1px solid rgba(56, 56, 56, 0.14);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+}
+
+.nav-toggle-bar {
+  width: 22px;
+  height: 2px;
+  background: var(--color-text);
+  display: block;
+  border-radius: 10px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+@media (max-width: 960px) {
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  .somi-nav {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem 1.25rem 1.5rem;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 18px 38px rgba(0, 0, 0, 0.06);
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height var(--transition-med), opacity var(--transition-med);
+  }
+
+  .somi-nav.is-open {
+    max-height: 480px;
+    opacity: 1;
+  }
+
+  .nav-list {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .somi-nav .btn-cta {
+    align-self: stretch;
+    text-align: center;
+  }
+}
+
+/* ============================
+   Footer
+   ============================ */
+
+.site-footer {
+  background: #111111;
+  color: #f5f1ed;
+  margin-top: 4rem;
+  padding: 3rem 0 2rem;
+}
+
+.site-footer a {
+  color: inherit;
+}
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.footer-column-title {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.footer-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  color: rgba(245, 241, 237, 0.85);
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  color: rgba(245, 241, 237, 0.75);
+  font-size: 0.9rem;
+}
+
+.footer-logo {
+  text-transform: lowercase;
+  letter-spacing: 0.12em;
+  font-family: var(--font-serif);
+  font-size: 1rem;
 }
 
 /* ============================
