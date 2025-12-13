@@ -177,9 +177,8 @@
 }
 
 .phone-btn{
-  margin-left:auto;
-  width: 44px;
-  height: 44px;
+  width: 46px;
+  height: 46px;
   border-radius: 999px;
   display:inline-flex;
   align-items:center;
@@ -192,6 +191,7 @@
 
 .team-cta{
   flex: 1;
+  min-height: 46px;
   display:inline-flex;
   align-items:center;
   justify-content:center;
@@ -202,5 +202,152 @@
   color: var(--somi-text);
   font-weight: 600;
   text-decoration:none;
+  white-space: nowrap;
 }
 .team-cta:hover{ filter: brightness(.98); }
+
+/* ===== INFO BOXES ===== */
+.info-box{
+  margin: 18px 0 22px;
+  border: 1px solid rgba(232,230,228,.9);
+  background: #ffffff;
+  border-radius: 26px;
+  box-shadow: 0 14px 40px rgba(0,0,0,.06);
+  padding: 16px;
+}
+.info-box h3{
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+}
+.info-box p{
+  margin: 0 0 12px;
+  color: rgba(56,56,56,.82);
+}
+.social-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap: 10px;
+}
+.social-pill{
+  display:inline-flex;
+  align-items:center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(56,56,56,.14);
+  background: rgba(221,179,179,.22);
+  color: #383838;
+  text-decoration:none;
+  font-weight: 600;
+}
+.social-pill svg{ width: 18px; height: 18px; fill: #383838; }
+
+/* ===== REVIEWS ===== */
+.reviews{
+  margin-top: 36px;
+  padding-top: 26px;
+  border-top: 1px solid rgba(232,230,228,.9);
+}
+.reviews-head{
+  text-align:center;
+  margin-bottom: 18px;
+}
+.reviews-kicker{
+  font-size:.72rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color: rgba(56,56,56,.62);
+}
+.reviews-title{
+  margin: 8px 0 6px;
+  font-size: clamp(1.7rem, 2.6vw, 2.6rem);
+}
+.reviews-sub{
+  margin: 0 auto;
+  max-width: 720px;
+  color: rgba(56,56,56,.78);
+}
+
+.reviews-grid{
+  margin-top: 18px;
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+@media (max-width: 980px){
+  .reviews-grid{ grid-template-columns: 1fr; }
+}
+.review-card{
+  background:#fff;
+  border: 1px solid rgba(232,230,228,.9);
+  border-radius: 26px;
+  box-shadow: 0 14px 40px rgba(0,0,0,.06);
+  padding: 16px;
+}
+.review-top{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.avatar{
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: rgba(221,179,179,.25);
+  border: 1px solid rgba(232,230,228,.9);
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  color:#383838;
+}
+.avatar img{ width:100%; height:100%; object-fit:cover; }
+.review-name{
+  font-weight: 700;
+  margin: 0;
+}
+.stars{
+  margin-top: 2px;
+  letter-spacing: 2px;
+  color: #DDB3B3;
+  font-size: .95rem;
+}
+.review-text{
+  margin: 0;
+  color: rgba(56,56,56,.82);
+  line-height: 1.7;
+}
+
+/* ===== INVITE BOX to treatments ===== */
+.invite-box{
+  margin-top: 18px;
+  background: linear-gradient(135deg, rgba(221,179,179,.20), rgba(244,227,220,.55));
+  border: 1px solid rgba(221,179,179,.35);
+  border-radius: 26px;
+  padding: 16px;
+  display:flex;
+  gap: 12px;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+}
+.invite-box p{
+  margin: 0;
+  color: rgba(56,56,56,.82);
+}
+.invite-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding: 11px 16px;
+  border-radius: 999px;
+  background: var(--somi-pink);
+  color:#fff;
+  text-decoration:none;
+  font-weight:700;
+  border: 1px solid rgba(56,56,56,.10);
+  box-shadow: 0 10px 26px rgba(0,0,0,.08);
+  white-space:nowrap;
+}
