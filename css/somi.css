@@ -2505,3 +2505,70 @@ footer{
   }
   .pricing-time, .pricing-price { text-align: left; }
 }
+
+/* ============================
+   Kontakt – støtte for contact-layout + form-group
+   ============================ */
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+.contact-info,
+.contact-form {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(56,56,56,0.08);
+  box-shadow: var(--shadow-soft);
+  padding: 1.5rem;
+}
+
+.contact-block {
+  padding: 0.9rem 0;
+  border-bottom: 1px solid rgba(56,56,56,0.08);
+}
+
+.contact-block:last-of-type { border-bottom: 0; }
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.85rem;
+}
+
+.form-group label {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(56,56,56,0.7);
+}
+
+.form-group input,
+.form-group textarea {
+  border-radius: 12px;
+  border: 1px solid rgba(56,56,56,0.2);
+  padding: 0.65rem 0.75rem;
+  font-size: 0.95rem;
+  background: #fff;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 1px rgba(221,179,179,0.4);
+}
+
+.form-helper {
+  font-size: 0.92rem;
+  color: rgba(56,56,56,0.75);
+  margin: 0.4rem 0 1rem;
+}
+
+@media (max-width: 900px) {
+  .contact-layout { grid-template-columns: 1fr; }
+}
