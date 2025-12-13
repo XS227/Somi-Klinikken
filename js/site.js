@@ -1,70 +1,43 @@
-async function loadPartial(selector, url) {
-  const target = document.querySelector(selector);
-  if (!target) return null;
-
-  try {
-    const response = await fetch(url);
-    if (!response.ok) throw new Error(`Kunne ikke laste ${url}`);
-    const html = await response.text();
-    target.innerHTML = html;
-    return target;
-  } catch (error) {
-    console.error(error);
-    return null;
+(async function () {
+  // 1) Inject header/footer
+  const headerHost = document.querySelector("#site-header");
+  if (headerHost) {
+    const headerHtml = await fetch("/header.html").then(r => r.text());
+    headerHost.innerHTML = headerHtml;
   }
-}
 
-function highlightActiveNav(header) {
-  const links = header.querySelectorAll('.nav-list a');
-  const currentPath = window.location.pathname.replace(/\/*index\.html$/, '/').replace(/\/$/, '/').toLowerCase();
+  const footerHost = document.querySelector("#site-footer");
+  if (footerHost) {
+    const footerHtml = await fetch("/footer.html").then(r => r.text());
+    footerHost.innerHTML = footerHtml;
+  }
 
-  links.forEach((link) => {
-    const linkPath = new URL(link.href, window.location.origin).pathname.replace(/\/*index\.html$/, '/').replace(/\/$/, '/').toLowerCase();
-    if (currentPath === linkPath || (currentPath.startsWith('/behandling') && linkPath === '/behandling.html')) {
-      link.classList.add('active');
+  // 2) Aktiv lenke
+  const path = location.pathname.replace(/\/$/, "");
+  document.querySelectorAll(".nav-list a").forEach(a => {
+    const href = (a.getAttribute("href") || "").replace(/\/$/, "");
+    if (href && (href === path || (path === "" && href.endsWith("/index.html")))) {
+      a.classList.add("active");
     }
   });
-}
 
-function setupMobileNav(header) {
-  const toggle = header.querySelector('.nav-toggle');
-  const nav = header.querySelector('.somi-nav');
-  if (!toggle || !nav) return;
-
-  toggle.addEventListener('click', () => {
-    const isOpen = nav.classList.toggle('is-open');
-    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-  });
-
-  nav.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
-      nav.classList.remove('is-open');
-      toggle.setAttribute('aria-expanded', 'false');
+  // 3) Mobilmeny toggle
+  const toggle = document.querySelector(".nav-toggle");
+  const nav = document.querySelector(".somi-nav");
+  if (toggle && nav) {
+    toggle.addEventListener("click", () => {
+      const open = nav.classList.toggle("is-open");
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      document.body.classList.toggle("nav-open", open);
     });
-  });
-}
 
-function setCurrentYear(footer) {
-  const yearTarget = footer?.querySelector('[data-year]');
-  if (yearTarget) {
-    yearTarget.textContent = new Date().getFullYear();
+    // Lukk ved klikk på lenke
+    nav.querySelectorAll("a").forEach(a => {
+      a.addEventListener("click", () => {
+        nav.classList.remove("is-open");
+        document.body.classList.remove("nav-open");
+        toggle.setAttribute("aria-expanded", "false");
+      });
+    });
   }
-}
-
-async function initSiteChrome() {
-  const [header, footer] = await Promise.all([
-    loadPartial('#site-header', '/partials/header.html'),
-    loadPartial('#site-footer', '/partials/footer.html'),
-  ]);
-
-  if (header) {
-    highlightActiveNav(header);
-    setupMobileNav(header);
-  }
-
-  if (footer) {
-    setCurrentYear(footer);
-  }
-}
-
-document.addEventListener('DOMContentLoaded', initSiteChrome);
+})();
