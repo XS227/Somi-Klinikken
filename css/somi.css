@@ -2464,3 +2464,44 @@ footer{
   box-shadow: 0 10px 26px rgba(0,0,0,.08);
   white-space:nowrap;
 }
+
+/* ============================
+   Priser – tabell/oversikt (pricing-*)
+   ============================ */
+
+.section-inner {
+  width: min(1120px, 100% - 3rem);
+  margin-inline: auto;
+}
+
+.pricing-grid {
+  margin-top: 1rem;
+  background: #fff;
+  border: 1px solid rgba(56,56,56,0.08);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+}
+
+.pricing-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 110px 120px;
+  gap: 1rem;
+  padding: 0.95rem 1.15rem;
+  border-bottom: 1px solid rgba(56,56,56,0.08);
+  align-items: center;
+}
+
+.pricing-row:last-child { border-bottom: 0; }
+
+.pricing-name { font-weight: 600; }
+.pricing-time { color: rgba(56,56,56,0.75); text-align: right; }
+.pricing-price { font-weight: 800; text-align: right; white-space: nowrap; }
+
+@media (max-width: 720px) {
+  .pricing-row {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+  .pricing-time, .pricing-price { text-align: left; }
+}
