@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="title">
+  <title id="title">Konsultasjon placeholder</title>
+  <rect width="1200" height="800" fill="#f7efeb" rx="32" />
+  <circle cx="300" cy="380" r="140" fill="#e8e6e4" />
+  <circle cx="900" cy="380" r="140" fill="#e8e6e4" />
+  <text x="50%" y="50%" text-anchor="middle" font-family="Arial, sans-serif" font-size="36" fill="#383838">Konsultasjon</text>
+</svg>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <title>SOMI Klinikken – Vilkår</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="/somi.css">
+    <link rel="stylesheet" href="/css/somi.css">
     <style>
         :root {
             --color-bg: #efefee;
@@ -579,68 +579,7 @@
     </style>
 </head>
 <body>
-<header class="site-header" id="site-header">
-    <div class="header-inner">
-        <a href="https://www.somiklinikken.no" class="logo">
-            <img src="https://somiklinikken.no/wp-content/uploads/2020/06/logo-for-mobile.png" alt="SOMI Klinikken" class="logo-image">
-        </a>
-        <div class="header-right">
-            <a class="btn-primary" href="https://somi.bestille.no" target="_blank" rel="noopener">BOOK TIME</a>
-            <button class="icon-button" id="menu-toggle" aria-label="Meny">
-                <div class="burger">
-                    <div class="burger-line"></div>
-                    <div class="burger-line"></div>
-                    <div class="burger-line"></div>
-                </div>
-            </button>
-        </div>
-    </div>
-</header>
-
-<!-- OVERLAY MENY -->
-<nav class="nav-overlay" id="nav-overlay" aria-hidden="true">
-    <div class="nav-inner">
-        <div>
-            <div class="nav-section-title">Navigasjon</div>
-            <ul class="nav-list">
-                <li><a href="mot-oss.html">SOMI</a></li>
-                <li><a href="team.html">Team</a></li>
-                <li>
-                    <a href="Behandling.html">Behandlinger</a>
-                    <ul class="nav-sublist">
-                        <li><a href="Behandling.html#ansiktsbehandlinger">Ansiktsbehandlinger</a></li>
-                        <li><a href="Behandling.html#hudforbedring">Hudforbedring</a></li>
-                        <li><a href="Behandling.html#spesialbehandlinger">Spesialbehandlinger</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="priser.html">Priser</a>
-                    <ul class="nav-sublist">
-                        <li><a href="priser.html#microblading">Microblading</a></li>
-                        <li><a href="priser.html#bryn">Bryn og vipper</a></li>
-                        <li><a href="priser.html#dermalogica">Dermalogica</a></li>
-                        <li><a href="priser.html#hudpleie">Hudpleie</a></li>
-                        <li><a href="priser.html#permanent-makeup">Permanent makeup</a></li>
-                        <li><a href="priser.html#laser">Laser &amp; tattoo</a></li>
-                    </ul>
-                </li>
-                <li><a href="blogg.html">Blogg</a></li>
-                <li><a href="kontakt.html">Kontakt</a></li>
-            </ul>
-        </div>
-
-        <div class="nav-divider"></div>
-
-        <div class="nav-cta-group">
-            <a class="btn-primary" href="https://somi.bestille.no" target="_blank" rel="noopener">BOOK TIME</a>
-            <a class="btn-outline" href="tel:+4798894888">Ring oss</a>
-            <div class="nav-social">
-                <a href="#" aria-label="Instagram"><span aria-hidden="true">IG</span></a>
-                <a href="#" aria-label="Facebook"><span aria-hidden="true">FB</span></a>
-            </div>
-        </div>
-    </div>
-</nav>
+<div id="site-header"></div>
 <main>
 
     <section class="hero">
@@ -658,7 +597,7 @@
         </div>
         <div class="hero-image">
             <div class="image-frame">
-                <img src="https://somi.setaei.com/img/Menneskermotter.jpg" alt="Besøk hos SOMI Klinikken" />
+                <img src="/assets/img/hero/visit.svg" alt="Besøk hos SOMI Klinikken" />
             </div>
             <div class="hero-tag">Klare forventninger</div>
         </div>
@@ -711,77 +650,9 @@
     </section>
 
 </main>
-<footer>
-    <div class="footer-inner">
-        <div class="footer-top">
-            <div>
-                <div class="footer-column-title">Kontakt</div>
-                <ul class="footer-links">
-                    <li><a href="kontakt.html">Kontakt oss</a></li>
-                    <li>Langgata 41, 4306 Sandnes</li>
-                    <li><a href="tel:+4798894888">+47 988 94 888</a></li>
-                    <li><a href="mailto:kontakt@somiklinikken.no">kontakt@somiklinikken.no</a></li>
-                </ul>
-            </div>
-            <div>
-                <div class="footer-column-title">Klinikken</div>
-                <ul class="footer-links">
-                    <li><a href="mot-oss.html">SOMI</a></li>
-                    <li><a href="Behandling.html">Behandlinger</a></li>
-                    <li><a href="blogg.html">Blogg</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                </ul>
-            </div>
-            <div>
-                <div class="footer-column-title">Juridisk</div>
-                <ul class="footer-links">
-                    <li><a href="personvern.html">Personvern</a></li>
-                    <li><a href="vilkar.html">Vilkår</a></li>
-                </ul>
-            </div>
-            <div>
-                <div class="footer-column-title">Følg oss</div>
-                <ul class="footer-links">
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">Facebook</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <div class="footer-logo">somi klinikken</div>
-            <div>© <span id="year"></span> SOMI Klinikken. Alle rettigheter reservert.</div>
-        </div>
-    </div>
-</footer>
+<div id="site-footer"></div>
 
-<script>
-    // Dynamisk år i footer
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Burgermeny
-    const menuToggle = document.getElementById('menu-toggle');
-    const navOverlay = document.getElementById('nav-overlay');
-    const header = document.getElementById('site-header');
-
-    function toggleMenu() {
-        const isOpen = navOverlay.classList.toggle('open');
-        header.classList.toggle('menu-open', isOpen);
-        navOverlay.setAttribute('aria-hidden', !isOpen);
-    }
-
-    menuToggle.addEventListener('click', toggleMenu);
-
-    // Lukk meny ved klikk på link
-    navOverlay.addEventListener('click', (e) => {
-        if (e.target.tagName === 'A') {
-            navOverlay.classList.remove('open');
-            header.classList.remove('menu-open');
-            navOverlay.setAttribute('aria-hidden', 'true');
-        }
-    });
-</script>
-</body>
-</html>
+<script src="/js/site.js"></script>
 
 </body>
 </html>
