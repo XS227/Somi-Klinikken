@@ -1,17 +1,15 @@
 (async function () {
   // 1) Inject header/footer
-  async function loadPartial(targetId, url) {
-    const el = document.getElementById(targetId);
-    if (!el) return;
+  const headerHost = document.querySelector("#site-header");
+  if (headerHost) {
+    const headerHtml = await fetch("/partials/header.html").then(r => r.text());
+    headerHost.innerHTML = headerHtml;
+  }
 
-    try {
-      const res = await fetch(url, { cache: "no-store" });
-      if (!res.ok) throw new Error(`${res.status} ${res.statusText} for ${url}`);
-      el.innerHTML = await res.text();
-    } catch (e) {
-      console.error("Partial load failed:", e);
-      // Valgfritt: el.innerHTML = "";  // så UI ikke viser “Not Found”
-    }
+  const footerHost = document.querySelector("#site-footer");
+  if (footerHost) {
+    const footerHtml = await fetch("/partials/footer.html").then(r => r.text());
+    footerHost.innerHTML = footerHtml;
   }
 
   loadPartial("site-header", "/partials/header.html");
