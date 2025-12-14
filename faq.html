@@ -62,11 +62,129 @@
             </div>
         </div>
     </section>
+
+    <section class="section somi-ai-section">
+        <div class="section-inner somi-ai-card">
+            <div class="somi-ai-header">
+                <div>
+                    <p class="eyebrow">Somi AI</p>
+                    <h2>Få svar basert på innholdet på siden</h2>
+                    <p>Den digitale assistenten vår bruker bare informasjonen i FAQ-en og veiledning rundt behandlingsprosessen. Still et kort spørsmål, så får du et presist svar uten spekulasjoner.</p>
+                </div>
+            </div>
+            <form class="somi-ai-form" id="somi-ai-form">
+                <label class="sr-only" for="somi-ai-input">Skriv inn spørsmålet ditt</label>
+                <input id="somi-ai-input" name="question" type="text" placeholder="Spør om forberedelser, etterbehandling eller booking" required />
+                <button type="submit">Spør Somi AI</button>
+            </form>
+            <div class="somi-ai-suggestions" aria-label="Forslag fra innholdet">
+                <button type="button">Hvordan forbereder jeg meg til rynkebehandling?</button>
+                <button type="button">Når er det best å gjøre kjemisk peel?</button>
+                <button type="button">Kan jeg trene etter laserbehandling?</button>
+                <button type="button">Hvordan bestiller jeg time?</button>
+            </div>
+            <div class="somi-ai-response" id="somi-ai-response" role="status" aria-live="polite">
+                <p>Still et spørsmål, så gir Somi AI svar basert på informasjonen her på siden.</p>
+            </div>
+        </div>
+    </section>
 </main>
 
 <div id="site-footer"></div>
 
 <script src="/js/site.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const qaPairs = [
+            {
+                question: 'Hvordan forbereder jeg meg til rynkebehandling?',
+                answer: 'Unngå blodfortynnende medisiner og alkohol 24 timer før timen, og møt opp uten sminke på behandlingsområdet.'
+            },
+            {
+                question: 'Hvor lenge varer filler i lepper og ansikt?',
+                answer: 'Holdbarheten varierer etter område og livsstil, men de fleste opplever 6–12 måneder før naturlig nedbrytning av hyaluronsyren.'
+            },
+            {
+                question: 'Gjør microblading vondt?',
+                answer: 'Vi bruker bedøvelseskrem før pigmenteringen starter. De fleste beskriver følelsen som lett ubehag, og behandlingen tar rundt 2 timer.'
+            },
+            {
+                question: 'Hva bør jeg tenke på etter vippeløft eller brynslaminering?',
+                answer: 'Hold området tørt det første døgnet, unngå sauna og oljebaserte produkter, og børst bryn og vipper forsiktig hver dag.'
+            },
+            {
+                question: 'Kan jeg trene etter laserbehandling?',
+                answer: 'Vent minst 24 timer med hard trening for å unngå irritasjon og økt varme i huden. Følg etterbehandlingskremen som anbefales av terapeuten.'
+            },
+            {
+                question: 'Når er det best å gjøre kjemisk peel eller microneedling?',
+                answer: 'Planlegg behandlingen utenfor perioder med sterk sol og unngå retinol/eksfoliering 3–5 dager før. Etterpå bruker du solfaktor og unngår sminke samme dag.'
+            },
+            {
+                question: 'Er konsultasjon nødvendig?',
+                answer: 'Ja, særlig for nye kunder eller ved større endringer. Konsultasjon hjelper oss å kartlegge mål, medisinsk historikk og hvilken behandling som passer deg.'
+            },
+            {
+                question: 'Hvordan bestiller jeg time eller får svar på andre spørsmål?',
+                answer: 'Bestill via nett på somi.bestille.no eller kontakt oss på +47 988 94 888. Du kan også sende e-post til kontakt@somiklinikken.no.'
+            }
+        ];
+
+        const form = document.getElementById('somi-ai-form');
+        const input = document.getElementById('somi-ai-input');
+        const responseBox = document.getElementById('somi-ai-response');
+        const suggestionButtons = Array.from(document.querySelectorAll('.somi-ai-suggestions button'));
+
+        const normalize = (text) => (text || '').toLowerCase();
+
+        const findBestAnswer = (question) => {
+            const terms = normalize(question)
+                .replace(/[^a-zøæå0-9\s]/gi, ' ')
+                .split(/\s+/)
+                .filter(word => word.length > 3);
+
+            let best = { score: 0, pair: null };
+
+            qaPairs.forEach(pair => {
+                const haystack = normalize(pair.question + ' ' + pair.answer);
+                const score = terms.reduce((sum, term) => (haystack.includes(term) ? sum + 1 : sum), 0);
+                if (score > best.score) {
+                    best = { score, pair: pair };
+                }
+            });
+
+            if (best.score === 0) {
+                return null;
+            }
+            return best.pair;
+        };
+
+        const setResponse = (text) => {
+            responseBox.innerHTML = `<p>${text}</p>`;
+        };
+
+        form?.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const question = input?.value.trim();
+            if (!question) return;
+
+            const match = findBestAnswer(question);
+            if (match) {
+                setResponse(`<strong>${match.question}</strong><br>${match.answer}`);
+            } else {
+                setResponse('Jeg svarer bare på spørsmål som dekkes av innholdet her og prosessen rundt behandlingene. Prøv å spørre om forberedelser, etterbehandling eller booking.');
+            }
+        });
+
+        suggestionButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                input.value = button.textContent.trim();
+                input.focus();
+                form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+            });
+        });
+    });
+</script>
 
 </body>
 </html>

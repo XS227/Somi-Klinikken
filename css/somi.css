@@ -350,6 +350,21 @@ p {
   color: rgba(245, 241, 237, 0.85);
 }
 
+.footer-partner-logo {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 0.75rem;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: rgba(245, 241, 237, 0.9);
+  text-decoration: none;
+  font-size: 0.8rem;
+}
+
 .footer-bottom {
   display: flex;
   align-items: center;
@@ -1335,6 +1350,102 @@ p {
 }
 
 /* ============================
+   Somi AI – FAQ assistent
+   ============================ */
+
+.somi-ai-section {
+  background: var(--color-bg-soft);
+}
+
+.somi-ai-card {
+  background: #fff;
+  border-radius: var(--radius-xl);
+  padding: 2.25rem;
+  border: 1px solid rgba(56, 56, 56, 0.08);
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.somi-ai-header h2 {
+  margin-top: 0.35rem;
+}
+
+.somi-ai-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.9rem;
+  align-items: center;
+}
+
+.somi-ai-form input {
+  width: 100%;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(56, 56, 56, 0.14);
+  padding: 0.95rem 1.15rem;
+  font-size: 1rem;
+  background: #faf8f7;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.somi-ai-form input:focus-visible {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(221, 179, 179, 0.35);
+}
+
+.somi-ai-form button {
+  padding: 0.95rem 1.35rem;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(90deg, #f7e9e4, #ddb3b3);
+  border: 1px solid rgba(56, 56, 56, 0.12);
+  color: #3f3333;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.somi-ai-form button:hover,
+.somi-ai-form button:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+  border-color: rgba(56, 56, 56, 0.18);
+  outline: none;
+}
+
+.somi-ai-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.somi-ai-suggestions button {
+  border: 1px solid rgba(56, 56, 56, 0.14);
+  border-radius: var(--radius-pill);
+  padding: 0.55rem 0.95rem;
+  background: #f8f3f0;
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.somi-ai-suggestions button:hover,
+.somi-ai-suggestions button:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+  border-color: rgba(56, 56, 56, 0.2);
+  outline: none;
+}
+
+.somi-ai-response {
+  background: #fefaf8;
+  border: 1px solid rgba(56, 56, 56, 0.08);
+  border-radius: var(--radius-lg);
+  padding: 1.1rem 1.2rem;
+  font-size: 0.98rem;
+}
+
+/* ============================
    Feedbacks
    ============================ */
 
@@ -1741,6 +1852,18 @@ p {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .somi-ai-card {
+    padding: 1.85rem;
+  }
+
+  .somi-ai-form {
+    grid-template-columns: 1fr;
+  }
+
+  .somi-ai-form button {
+    width: 100%;
+  }
+
   .hero-grid {
     gap: 2.4rem;
   }
@@ -1831,6 +1954,14 @@ p {
 
   .somi-logo-image {
     height: 42px;
+  }
+
+  .somi-ai-card {
+    padding: 1.5rem;
+  }
+
+  .somi-ai-suggestions {
+    gap: 0.5rem;
   }
 }
 
