@@ -1,16 +1,21 @@
 (async function () {
   // 1) Inject header/footer
-  const headerHost = document.querySelector("#site-header");
-  if (headerHost) {
-    const headerHtml = await fetch("/header.html").then(r => r.text());
-    headerHost.innerHTML = headerHtml;
+  async function loadPartial(targetId, url) {
+    const el = document.getElementById(targetId);
+    if (!el) return;
+
+    try {
+      const res = await fetch(url, { cache: "no-store" });
+      if (!res.ok) throw new Error(`${res.status} ${res.statusText} for ${url}`);
+      el.innerHTML = await res.text();
+    } catch (e) {
+      console.error("Partial load failed:", e);
+      // Valgfritt: el.innerHTML = "";  // så UI ikke viser “Not Found”
+    }
   }
 
-  const footerHost = document.querySelector("#site-footer");
-  if (footerHost) {
-    const footerHtml = await fetch("/footer.html").then(r => r.text());
-    footerHost.innerHTML = footerHtml;
-  }
+  loadPartial("site-header", "/partials/header.html");
+  loadPartial("site-footer", "/partials/footer.html");
 
   // 2) Aktiv lenke
   const path = location.pathname.replace(/\/$/, "");
