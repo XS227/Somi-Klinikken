@@ -8,28 +8,47 @@ function initReveal() {
   els.forEach(el => io.observe(el));
 }
 
-function initHeader() {
-  const header = document.querySelector("[data-site-header]");
-  if (!header) return;
+  const headerEl = document.querySelector("[data-site-header]");
+  const menuBtn = headerEl?.querySelector("[data-menu-btn]");
+  const mobilePanel = headerEl?.querySelector("[data-mobile-panel]");
 
-  const onScroll = () => {
-    header.classList.toggle("is-scrolled", window.scrollY > 10);
-  };
-  onScroll();
-  window.addEventListener("scroll", onScroll, { passive: true });
-
-  const btn = header.querySelector("[data-menu-btn]");
-  const panel = document.querySelector("[data-mobile-panel]");
-  if (btn && panel) {
-    btn.addEventListener("click", () => {
-      const open = panel.classList.toggle("is-open");
-      btn.setAttribute("aria-expanded", String(open));
-      document.body.classList.toggle("no-scroll", open);
+  function setActiveLinks() {
+    const path = location.pathname.replace(/\/$/, "");
+    document.querySelectorAll(".nav a, .mobile-panel__inner a").forEach(a => {
+      const href = (a.getAttribute("href") || "").replace(/\/$/, "");
+      const isIndex = path === "" && href.endsWith("/index.html");
+      if (href && (href === path || isIndex)) {
+        a.classList.add("active");
+      }
     });
   }
-}
 
-document.addEventListener("DOMContentLoaded", () => {
-  initReveal();
-  initHeader();
-});
+  function setupScrollState() {
+    if (!headerEl) return;
+    const apply = () => headerEl.classList.toggle("is-scrolled", window.scrollY > 4);
+    apply();
+    window.addEventListener("scroll", apply, { passive: true });
+  }
+
+  function setupMobileMenu() {
+    if (!menuBtn || !mobilePanel) return;
+    const close = () => {
+      mobilePanel.classList.remove("is-open");
+      menuBtn.setAttribute("aria-expanded", "false");
+      document.body.classList.remove("no-scroll");
+    };
+
+    const toggle = () => {
+      const isOpen = mobilePanel.classList.toggle("is-open");
+      menuBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      document.body.classList.toggle("no-scroll", isOpen);
+    };
+
+    menuBtn.addEventListener("click", toggle);
+    mobilePanel.querySelectorAll("a").forEach(a => a.addEventListener("click", close));
+  }
+
+  setActiveLinks();
+  setupScrollState();
+  setupMobileMenu();
+})();

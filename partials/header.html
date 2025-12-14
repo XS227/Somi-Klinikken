@@ -1,12 +1,8 @@
-<header class="site-header" role="banner">
-  <div class="header-inner">
-    <!-- Logo -->
-    <a class="brand" href="/index.html" aria-label="SOMI - Hjem">
-      <img class="brand-logo" src="/assets/img/logo.svg" alt="SOMI" />
-    </a>
+<header class="site-header" data-site-header>
+  <div class="container header__row">
+    <a class="brand" href="/index.html">SOMI</a>
 
-    <!-- Desktop navigation -->
-    <nav class="nav-desktop" aria-label="Hovedmeny">
+    <nav class="nav">
       <a href="/index.html">Hjem</a>
       <a href="/team.html">Møt oss</a>
       <a href="/behandlinger.html">Behandlinger</a>
@@ -15,45 +11,28 @@
       <a href="/kontakt.html">Kontakt oss</a>
     </nav>
 
-    <!-- Actions -->
-    <div class="header-actions">
-      <a class="btn btn-primary" href="/book.html">BOOK TIME</a>
+    <div class="header__actions">
+      <button class="btn" type="button" data-lang-toggle aria-label="Bytt språk">
+        <img src="/assets/flags/sami.svg" alt="Bytt språk" width="22" height="22">
+      </button>
 
-      <!-- Mobile toggle -->
-      <button
-        class="menu-toggle"
-        type="button"
-        aria-label="Åpne meny"
-        aria-controls="mobile-menu"
-        aria-expanded="false"
-      >
-        <span class="burger" aria-hidden="true"></span>
+      <a class="btn btn--primary" href="/booking.html">BOOK TIME</a>
+
+      <button class="menu-btn" type="button" data-menu-btn aria-expanded="false" aria-label="Åpne meny">
+        ☰
       </button>
     </div>
   </div>
 
-  <!-- Mobile menu overlay -->
-  <div class="mobile-menu" id="mobile-menu" hidden>
-    <div class="mobile-menu__panel" role="dialog" aria-modal="true" aria-label="Meny">
-      <div class="mobile-menu__top">
-        <span class="mobile-menu__title">Meny</span>
-        <button class="menu-close" type="button" aria-label="Lukk meny">
-          ✕
-        </button>
-      </div>
-
-      <nav class="nav-mobile" aria-label="Hovedmeny mobil">
-        <a href="/index.html">Hjem</a>
-        <a href="/team.html">Møt oss</a>
-        <a href="/behandlinger.html">Behandlinger</a>
-        <a href="/blogg.html">Blogg</a>
-        <a href="/faq.html">FAQ</a>
-        <a href="/kontakt.html">Kontakt oss</a>
-      </nav>
-
-      <div class="mobile-menu__cta">
-        <a class="btn btn-primary btn-block" href="/book.html">BOOK TIME</a>
-      </div>
+  <div class="mobile-panel" data-mobile-panel>
+    <div class="mobile-panel__inner">
+      <a href="/index.html">Hjem</a>
+      <a href="/team.html">Møt oss</a>
+      <a href="/behandlinger.html">Behandlinger</a>
+      <a href="/blogg.html">Blogg</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/kontakt.html">Kontakt oss</a>
+      <a class="btn btn--primary" href="/booking.html" style="justify-content:center;">BOOK TIME</a>
     </div>
   </div>
 </header>
