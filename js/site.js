@@ -4,11 +4,20 @@
     if (!host) return;
 
     const res = await fetch(url, { cache: "no-store" });
+    const text = await res.text();
+
+    // Ikke injiser feil/404-sider
     if (!res.ok) {
-      console.error(`Kunne ikke hente ${url}: ${res.status} ${res.statusText}`);
-      return; // ikke injiser "Not Found" i UI
+      console.error("Partial failed:", url, res.status, res.statusText);
+      return;
     }
-    host.innerHTML = await res.text();
+    // Noen servere kan returnere "Not Found" med 200 OK
+    if (/Not Found/i.test(text) && text.length < 5000) {
+      console.error("Partial looks like Not Found:", url);
+      return;
+    }
+
+    host.innerHTML = text;
   }
 
   await inject("site-header", "/partials/header.html");
@@ -23,7 +32,7 @@
     }
   });
 
-  // Mobilmeny toggle
+  // Mobilmeny
   const toggle = document.querySelector(".nav-toggle");
   const nav = document.querySelector(".somi-nav");
   if (toggle && nav) {
