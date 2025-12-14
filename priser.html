@@ -1,301 +1,282 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="no">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Priser – SOMI Klinikken</title>
-    <link rel="stylesheet" href="/css/somi.css">
-    <link rel="stylesheet" href="/assets/css/header.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SOMI – Priser</title>
+
+  <link rel="stylesheet" href="/css/tokens.css" />
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/layout.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/motion.css" />
+  <link rel="stylesheet" href="/css/header.css" />
+  <link rel="stylesheet" href="/css/footer.css" />
+  <link rel="stylesheet" href="/css/prices.css" />
+
+  <script defer src="/js/includes.js"></script>
+  <script defer src="/js/site.js"></script>
+  <script defer src="/js/i18n.js"></script>
 </head>
+
 <body>
+  <div data-include="/partials/header.html"></div>
 
-<!-- Header placeholder -->
-<div id="site-header"></div>
-
-<main>
-    <section class="hero hero-small">
-        <div class="hero-inner hero-inner--text-only">
-            <div class="hero-text">
-                <h1>Priser</h1>
-                <p>Her finner du oppdatert oversikt over behandling, tid og pris.</p>
-            </div>
+  <main>
+    <!-- HERO -->
+    <section class="section prices-hero">
+      <div class="container">
+        <div class="reveal">
+          <div class="kicker">Priser</div>
+          <h1 class="h1">Ryddig oversikt.</h1>
+          <p class="muted">
+            Finn behandling raskt med søk eller filter. Prislisten er veiledende – endelig pris avklares ved konsultasjon.
+          </p>
         </div>
+
+        <!-- TOOLBAR -->
+        <div class="toolbar reveal" style="margin-top:22px;">
+          <label class="field" aria-label="Søk i priser">
+            <span style="opacity:.65;">Søk</span>
+            <input id="priceSearch" type="search" placeholder="Søk etter behandling…" autocomplete="off" />
+          </label>
+
+          <label class="field" aria-label="Velg kategori">
+            <span style="opacity:.65;">Kategori</span>
+            <select id="categorySelect">
+              <option value="all">Alle</option>
+              <option value="injeksjoner">Injeksjoner</option>
+              <option value="hud">Hud</option>
+              <option value="laser">Laser</option>
+              <option value="konsultasjon">Konsultasjon</option>
+            </select>
+          </label>
+
+          <a class="btn btn--primary" href="/booking.html">BOOK TIME</a>
+        </div>
+
+        <div class="note reveal">
+          Tips: skriv “botox”, “filler”, “laser” eller “konsultasjon”.
+        </div>
+
+        <div id="emptyState" class="empty-state" style="display:none;">
+          Ingen treff. Prøv et annet søk eller velg “Alle”.
+        </div>
+      </div>
     </section>
 
-    <section class="section section-light">
-        <div class="section-inner">
-            <h2 id="microblading">Microblading</h2>
-            <div class="pricing-grid">
-                <div class="pricing-row">
-                    <span class="pricing-name">Touch up microblading (inkludert)</span>
-                    <span class="pricing-time">1 t 45 min</span>
-                    <span class="pricing-price">0 kr</span>
-                </div>
-                <div class="pricing-row">
-                    <span class="pricing-name">Ny microblading</span>
-                    <span class="pricing-time">3 t</span>
-                    <span class="pricing-price">6 450 kr</span>
-                </div>
-                <div class="pricing-row">
-                    <span class="pricing-name">Ekstra touch up microblading / powderbrows / lip blush</span>
-                    <span class="pricing-time">1 t 30 min</span>
-                    <span class="pricing-price">800 kr</span>
-                </div>
-                <div class="pricing-row">
-                    <span class="pricing-name">Oppfriskning microblading</span>
-                    <span class="pricing-time">1 t 45 min</span>
-                    <span class="pricing-price">2 850 kr</span>
-                </div>
-                <div class="pricing-row">
-                    <span class="pricing-name">Ny microblading + shading</span>
-                    <span class="pricing-time">3 t</span>
-                    <span class="pricing-price">6 850 kr</span>
-                </div>
-                <div class="pricing-row">
-                    <span class="pricing-name">Oppfriskning microblading + shading</span>
-                    <span class="pricing-time">1 t 45 min</span>
-                    <span class="pricing-price">3 750 kr</span>
-                </div>
-            </div>
+    <!-- PRICES LIST -->
+    <section class="section section--tight">
+      <div class="container">
+
+        <!-- KATEGORI: KONSULTASJON -->
+        <div class="category reveal" data-category="konsultasjon">
+          <div class="category__head">
+            <h2 class="h2" style="margin:0;">Konsultasjon</h2>
+            <span class="badge">Oppdateres ved behov</span>
+          </div>
+
+          <div class="table-wrap">
+            <table class="prices-table" aria-label="Priser – Konsultasjon">
+              <thead>
+                <tr>
+                  <th>Behandling</th>
+                  <th class="col-time">Tid</th>
+                  <th class="col-price">Pris</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Bytt ut radene under med dagens innhold -->
+                <tr data-name="Konsultasjon" data-tags="konsultasjon vurdering plan">
+                  <td>
+                    <div class="name">Konsultasjon</div>
+                    <div class="sub">Gjennomgang, anbefaling og behandlingsplan.</div>
+                  </td>
+                  <td class="col-time">15–30 min</td>
+                  <td class="col-price">Fra kr 0</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-    </section>
 
-    <section class="section">
-        <div class="section-inner">
-            <h2 id="bryn">Bryn og vipper</h2>
-            <div class="pricing-grid">
-                <div class="pricing-row">
-                    <span class="pricing-name">Brynstyling + farge</span>
-                    <span class="pricing-time">40 min</span>
-                    <span class="pricing-price">kr 720</span>
-                </div>
-                <div class="pricing-row">
-                    <span class="pricing-name">Browlamination</span>
-                    <span class="pricing-time">50 min</span>
-                    <span class="pricing-price">kr 890</span>
-                </div>
-                <div class="pricing-row">
-                    <span class="pricing-name">Bryn &amp; vipper (pakke)</span>
-                    <span class="pricing-time">1 t 30</span>
-                    <span class="pricing-price">kr 1 690</span>
-                </div>
-                <div class="pricing-row">
-                    <span class="pricing-name">Vippeløft inkl. farge</span>
-                    <span class="pricing-time">1 t</span>
-                    <span class="pricing-price">kr 1 140</span>
-                </div>
-                <div class="pricing-row">
-                    <span class="pricing-name">Farging av vipper</span>
-                    <span class="pricing-time">15 min</span>
-                    <span class="pricing-price">kr 290</span>
-                </div>
-                <div class="pricing-row">
-                    <span class="pricing-name">Farging av bryn</span>
-                    <span class="pricing-time">15 min</span>
-                    <span class="pricing-price">kr 320</span>
-                </div>
-            </div>
+        <!-- KATEGORI: INJEKSJONER -->
+        <div class="category reveal" data-category="injeksjoner" style="margin-top:44px;">
+          <div class="category__head">
+            <h2 class="h2" style="margin:0;">Injeksjoner</h2>
+            <span class="badge">Populært</span>
+          </div>
+
+          <div class="table-wrap">
+            <table class="prices-table" aria-label="Priser – Injeksjoner">
+              <thead>
+                <tr>
+                  <th>Behandling</th>
+                  <th class="col-time">Tid</th>
+                  <th class="col-price">Pris</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Eksempelrader (erstattes med SOMI-liste) -->
+                <tr data-name="Rynkebehandling" data-tags="botox rynker injeksjon panne sinnekråke">
+                  <td>
+                    <div class="name">Rynkebehandling</div>
+                    <div class="sub">Områder tilpasses etter behov.</div>
+                  </td>
+                  <td class="col-time">15–20 min</td>
+                  <td class="col-price">Fra kr —</td>
+                </tr>
+
+                <tr data-name="Filler" data-tags="filler lepper kinn kjeve kontur">
+                  <td>
+                    <div class="name">Filler</div>
+                    <div class="sub">Volum / kontur etter konsultasjon.</div>
+                  </td>
+                  <td class="col-time">30–45 min</td>
+                  <td class="col-price">Fra kr —</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-    </section>
 
-    <section class="section section-light">
-        <div class="section-inner">
-            <h2 id="dermalogica">Dermalogica</h2>
-            <div class="pricing-grid">
-                <div class="pricing-row">
-                    <span class="pricing-name">ProSkin 30</span>
-                    <span class="pricing-time">30 min</span>
-                    <span class="pricing-price">kr 790</span>
-                </div>
-                <div class="pricing-row">
-                    <span class="pricing-name">ProSkin 60</span>
-                    <span class="pricing-time">60 min</span>
-                    <span class="pricing-price">kr 1 190</span>
-                </div>
-                <div class="pricing-row">
-                    <span class="pricing-name">Pro Power Peel</span>
-                    <span class="pricing-time">45 min</span>
-                    <span class="pricing-price">kr 1 490</span>
-                </div>
-                <div class="pricing-row">
-                    <span class="pricing-name">Face Mapping konsultasjon</span>
-                    <span class="pricing-time">15 min</span>
-                    <span class="pricing-price">Gratis</span>
-                </div>
-                <div class="pricing-row">
-                    <span class="pricing-name">Nakke/skuldermassasje</span>
-                    <span class="pricing-time">15 min</span>
-                    <span class="pricing-price">kr 290</span>
-                </div>
-            </div>
+        <!-- KATEGORI: HUD -->
+        <div class="category reveal" data-category="hud" style="margin-top:44px;">
+          <div class="category__head">
+            <h2 class="h2" style="margin:0;">Hud</h2>
+            <span class="badge">Skreddersys</span>
+          </div>
+
+          <div class="table-wrap">
+            <table class="prices-table" aria-label="Priser – Hud">
+              <thead>
+                <tr>
+                  <th>Behandling</th>
+                  <th class="col-time">Tid</th>
+                  <th class="col-price">Pris</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr data-name="Hudforbedring" data-tags="hud peel glød behandling">
+                  <td>
+                    <div class="name">Hudforbedring</div>
+                    <div class="sub">Velges basert på hudtype og mål.</div>
+                  </td>
+                  <td class="col-time">30–60 min</td>
+                  <td class="col-price">Fra kr —</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-    </section>
 
-    <section class="section">
-        <div class="section-inner">
-            <h2 id="hudpleie">Hudpleie</h2>
-            <div class="pricing-grid">
-                <div class="pricing-row">
-                    <span class="pricing-name">Dyprens &amp; fukt</span>
-                    <span class="pricing-time">50 min</span>
-                    <span class="pricing-price">kr 890</span>
-                </div>
-                <div class="pricing-row">
-                    <span class="pricing-name">Ekspress glow</span>
-                    <span class="pricing-time">25 min</span>
-                    <span class="pricing-price">kr 590</span>
-                </div>
-                <div class="pricing-row">
-                    <span class="pricing-name">Kjemisk peel</span>
-                    <span class="pricing-time">40 min</span>
-                    <span class="pricing-price">kr 1 200</span>
-                </div>
-                <div class="pricing-row">
-                    <span class="pricing-name">Microneedling</span>
-                    <span class="pricing-time">60 min</span>
-                    <span class="pricing-price">kr 2 300</span>
-                </div>
-            </div>
+        <!-- KATEGORI: LASER -->
+        <div class="category reveal" data-category="laser" style="margin-top:44px;">
+          <div class="category__head">
+            <h2 class="h2" style="margin:0;">Laser</h2>
+            <span class="badge">Trygg protokoll</span>
+          </div>
+
+          <div class="table-wrap">
+            <table class="prices-table" aria-label="Priser – Laser">
+              <thead>
+                <tr>
+                  <th>Behandling</th>
+                  <th class="col-time">Tid</th>
+                  <th class="col-price">Pris</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr data-name="Laserbehandling" data-tags="laser pigment hårfjerning hud">
+                  <td>
+                    <div class="name">Laserbehandling</div>
+                    <div class="sub">Pris varierer etter område.</div>
+                  </td>
+                  <td class="col-time">15–45 min</td>
+                  <td class="col-price">Fra kr —</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-    </section>
 
-    <section class="section section-light">
-        <div class="section-inner">
-            <h2 id="permanent-makeup">Permanent makeup</h2>
-
-            <h3>Eyeliner</h3>
-            <div class="pricing-grid">
-                <div class="pricing-row">
-                    <span class="pricing-name">Ny eyeliner oppe med vipp/shading</span>
-                    <span class="pricing-time">2 t 30 min</span>
-                    <span class="pricing-price">5 600 kr</span>
-                </div>
-                <div class="pricing-row">
-                    <span class="pricing-name">Touch up eyeliner oppe og nede (inkludert)</span>
-                    <span class="pricing-time">2 t 15 min</span>
-                    <span class="pricing-price">0 kr</span>
-                </div>
-                <div class="pricing-row">
-                    <span class="pricing-name">Touch up eyeliner oppe eller nede (inkludert)</span>
-                    <span class="pricing-time">1 t 30 min</span>
-                    <span class="pricing-price">0 kr</span>
-                </div>
-                <div class="pricing-row">
-                    <span class="pricing-name">Eyeliner kun nede</span>
-                    <span class="pricing-time">1 t</span>
-                    <span class="pricing-price">3 000 kr</span>
-                </div>
-                <div class="pricing-row">
-                    <span class="pricing-name">+ Eyeliner nede (tillegg)</span>
-                    <span class="pricing-time">30 min</span>
-                    <span class="pricing-price">1 400 kr</span>
-                </div>
-                <div class="pricing-row">
-                    <span class="pricing-name">Oppfriskning eyeliner oppe og nede</span>
-                    <span class="pricing-time">1 t 30 min</span>
-                    <span class="pricing-price">3 500 kr</span>
-                </div>
-                <div class="pricing-row">
-                    <span class="pricing-name">Oppfriskning eyeliner oppe eller nede</span>
-                    <span class="pricing-time">1 t 15 min</span>
-                    <span class="pricing-price">3 150 kr</span>
-                </div>
+        <!-- CTA -->
+        <div class="card reveal" style="margin-top:54px;">
+          <div class="card__inner" style="display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+            <div>
+              <div class="kicker">Klar for å bestille?</div>
+              <div class="h2" style="margin:6px 0 0;">Vi hjelper deg å velge riktig.</div>
             </div>
-
-            <h3>Lepper</h3>
-            <div class="pricing-grid">
-                <div class="pricing-row">
-                    <span class="pricing-name">Lipblush (ny behandling)</span>
-                    <span class="pricing-time">2 t 30 min</span>
-                    <span class="pricing-price">6 850 kr</span>
-                </div>
-                <div class="pricing-row">
-                    <span class="pricing-name">Touch up lipblush (inkludert)</span>
-                    <span class="pricing-time">2 t</span>
-                    <span class="pricing-price">0 kr</span>
-                </div>
-                <div class="pricing-row">
-                    <span class="pricing-name">Oppfriskning lipblush</span>
-                    <span class="pricing-time">30 min</span>
-                    <span class="pricing-price">3 500 kr</span>
-                </div>
-            </div>
-
-            <h3>Bryn</h3>
-            <div class="pricing-grid">
-                <div class="pricing-row">
-                    <span class="pricing-name">Powderbrows</span>
-                    <span class="pricing-time">2 t 30 min</span>
-                    <span class="pricing-price">6 750 kr</span>
-                </div>
-                <div class="pricing-row">
-                    <span class="pricing-name">Touch up powderbrows (inkludert)</span>
-                    <span class="pricing-time">1 t 30 min</span>
-                    <span class="pricing-price">0 kr</span>
-                </div>
-                <div class="pricing-row">
-                    <span class="pricing-name">Oppfriskning powderbrows / shading</span>
-                    <span class="pricing-time">1 t 45 min</span>
-                    <span class="pricing-price">3 250 kr</span>
-                </div>
-            </div>
-
-            <h3>Annet</h3>
-            <div class="pricing-grid">
-                <div class="pricing-row">
-                    <span class="pricing-name">Skjønnhetsflekk</span>
-                    <span class="pricing-time">30 min</span>
-                    <span class="pricing-price">850 kr</span>
-                </div>
-                <div class="pricing-row">
-                    <span class="pricing-name">Fregner</span>
-                    <span class="pricing-time">1 t</span>
-                    <span class="pricing-price">2 000 kr</span>
-                </div>
-            </div>
+            <a class="btn btn--primary" href="/booking.html">BOOK TIME</a>
+          </div>
         </div>
+
+      </div>
     </section>
+  </main>
 
-    <section class="section">
-        <div class="section-inner">
-            <h2 id="laser">Laser tattoo / pigment removal</h2>
-            <div class="pricing-grid">
-                <div class="pricing-row">
-                    <span class="pricing-name">Saline removal (gule pigmenter i bryn)</span>
-                    <span class="pricing-time">30 min</span>
-                    <span class="pricing-price">1 400 kr</span>
-                </div>
-                <div class="pricing-row">
-                    <span class="pricing-name">Laserfjerning bryn</span>
-                    <span class="pricing-time">30 min</span>
-                    <span class="pricing-price">1 390 kr</span>
-                </div>
-                <div class="pricing-row">
-                    <span class="pricing-name">Laserfjerning tatovering 10 × 10 cm</span>
-                    <span class="pricing-time">30 min</span>
-                    <span class="pricing-price">1 390 kr</span>
-                </div>
-                <div class="pricing-row">
-                    <span class="pricing-name">Laserfjerning tatovering 5 × 5 cm</span>
-                    <span class="pricing-time">30 min</span>
-                    <span class="pricing-price">990 kr</span>
-                </div>
-                <div class="pricing-row">
-                    <span class="pricing-name">Konsultasjon</span>
-                    <span class="pricing-time">15 min</span>
-                    <span class="pricing-price">0 kr</span>
-                </div>
-            </div>
-        </div>
-    </section>
-</main>
+  <div data-include="/partials/footer.html"></div>
 
-<!-- Footer placeholder -->
-<div id="site-footer"></div>
+  <!-- Page script: search + category filtering -->
+  <script>
+    (function () {
+      const search = document.getElementById("priceSearch");
+      const select = document.getElementById("categorySelect");
+      const empty = document.getElementById("emptyState");
 
-    <script src="/assets/js/header.js" defer></script>
+      const categories = Array.from(document.querySelectorAll(".category"));
+      const rows = Array.from(document.querySelectorAll("tbody tr[data-name]"));
 
-<script src="/js/site.js?v=1"></script>
+      function normalize(s) {
+        return (s || "").toLowerCase().trim();
+      }
 
+      function applyFilter() {
+        const q = normalize(search.value);
+        const c = select.value;
+
+        // category visibility
+        categories.forEach(cat => {
+          const matchCat = (c === "all") || (cat.dataset.category === c);
+          cat.style.display = matchCat ? "" : "none";
+        });
+
+        // row visibility (within visible categories)
+        let visibleRows = 0;
+
+        rows.forEach(tr => {
+          const cat = tr.closest(".category");
+          const catVisible = cat && cat.style.display !== "none";
+          if (!catVisible) {
+            tr.style.display = "none";
+            return;
+          }
+
+          const name = normalize(tr.dataset.name);
+          const tags = normalize(tr.dataset.tags);
+          const hit = !q || name.includes(q) || tags.includes(q);
+
+          tr.style.display = hit ? "" : "none";
+          if (hit) visibleRows++;
+        });
+
+        // hide categories with no visible rows (clean)
+        categories.forEach(cat => {
+          if (cat.style.display === "none") return;
+          const anyVisible = Array.from(cat.querySelectorAll("tbody tr[data-name]"))
+            .some(tr => tr.style.display !== "none");
+          cat.style.display = anyVisible ? "" : "none";
+        });
+
+        empty.style.display = (visibleRows === 0) ? "" : "none";
+      }
+
+      search && search.addEventListener("input", applyFilter);
+      select && select.addEventListener("change", applyFilter);
+
+      // initial
+      applyFilter();
+    })();
+  </script>
 </body>
 </html>
