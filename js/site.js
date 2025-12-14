@@ -2,13 +2,13 @@
   // 1) Inject header/footer
   const headerHost = document.querySelector("#site-header");
   if (headerHost) {
-    const headerHtml = await fetch("/header.html").then(r => r.text());
+    const headerHtml = await fetch("/partials/header.html").then(r => r.text());
     headerHost.innerHTML = headerHtml;
   }
 
   const footerHost = document.querySelector("#site-footer");
   if (footerHost) {
-    const footerHtml = await fetch("/footer.html").then(r => r.text());
+    const footerHtml = await fetch("/partials/footer.html").then(r => r.text());
     footerHost.innerHTML = footerHtml;
   }
 
