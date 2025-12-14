@@ -12,6 +12,9 @@
     footerHost.innerHTML = footerHtml;
   }
 
+  loadPartial("site-header", "/partials/header.html");
+  loadPartial("site-footer", "/partials/footer.html");
+
   // 2) Aktiv lenke
   const path = location.pathname.replace(/\/$/, "");
   document.querySelectorAll(".nav-list a").forEach(a => {
