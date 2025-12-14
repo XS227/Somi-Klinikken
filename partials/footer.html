@@ -1,47 +1,22 @@
 <footer class="site-footer">
-  <div class="footer-inner somi-container">
-    <div class="footer-top">
-      <div>
-        <div class="footer-column-title">Kontakt</div>
-        <ul class="footer-links">
-          <li><a href="/kontakt.html">Kontakt oss</a></li>
-          <li>Langgata 41, 4306 Sandnes</li>
-          <li><a href="tel:+4798894888">+47 988 94 888</a></li>
-          <li><a href="mailto:kontakt@somiklinikken.no">kontakt@somiklinikken.no</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="footer-column-title">Klinikken</div>
-        <ul class="footer-links">
-          <li><a href="/priser.html">Priser</a></li>
-          <li><a href="/behandling.html">Behandlinger</a></li>
-          <li><a href="/blogg.html">Blogg</a></li>
-          <li><a href="/team.html">Team</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="footer-column-title">Juridisk</div>
-        <ul class="footer-links">
-          <li><a href="/personvern.html">Personvern</a></li>
-          <li><a href="/vilkar.html">Vilkår</a></li>
-          <li><a href="/faq.html">FAQ</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="footer-column-title">Følg oss</div>
-        <ul class="footer-links">
-          <li><a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a></li>
-        </ul>
-      </div>
+  <div class="container footer__grid">
+    <div>
+      <div class="footer__brand">SOMI</div>
+      <div class="muted">Estetisk klinikk</div>
     </div>
-    <div class="footer-bottom">
-      <div class="footer-branding">
-        <a class="footer-partner-logo" href="https://www.setaei.com" target="_blank" rel="noopener">
-          <img src="https://r1430404.website.cifms3sug.service.one/setaei.jpg" alt="Setaei" class="footer-partner-image" />
-        </a>
-      </div>
-      <div>© <span data-year></span> SOMI Klinikken. Alle rettigheter reservert.</div>
-    </div>
+
+    <nav class="footer__nav">
+      <a href="/index.html">Hjem</a>
+      <a href="/behandlinger.html">Behandlinger</a>
+      <a href="/priser.html">Priser</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/kontakt.html">Kontakt</a>
+      <a href="/personvern.html">Personvern</a>
+    </nav>
+
+    <div class="muted footer__copy">© <span data-year></span> SOMI</div>
   </div>
 </footer>
+<script>
+  document.querySelectorAll("[data-year]").forEach(n => n.textContent = new Date().getFullYear());
+</script>
