@@ -1,24 +1,25 @@
-// Simple internationalization placeholder for language toggling.
+function getLang() {
+  // Bruk ?lang=no eller ?lang=se (kan byttes til localStorage senere)
+  const p = new URLSearchParams(location.search);
+  return (p.get("lang") || "no").toLowerCase();
+}
 
-const translations = {
-  no: {
-    greeting: 'Velkommen',
-  },
-  sami: {
-    greeting: 'Bures boahtin',
-  },
-};
+function setFlagToggle() {
+  const lang = getLang();
+  const btn = document.querySelector("[data-lang-toggle]");
+  const img = btn?.querySelector("img");
+  if (!btn || !img) return;
 
-function setLanguage(lang) {
-  const locale = translations[lang];
-  if (!locale) return;
+  // Krav: Når siden er på norsk -> samisk flagg. Når siden er på samisk -> norsk flagg.
+  const next = lang === "no" ? "se" : "no";
+  img.src = lang === "no" ? "/assets/flags/sami.svg" : "/assets/flags/no.svg";
+  img.alt = next === "se" ? "Bytt til samisk" : "Bytt til norsk";
 
-  document.querySelectorAll('[data-i18n]').forEach((node) => {
-    const key = node.getAttribute('data-i18n');
-    if (locale[key]) {
-      node.textContent = locale[key];
-    }
+  btn.addEventListener("click", () => {
+    const url = new URL(location.href);
+    url.searchParams.set("lang", next);
+    location.href = url.toString();
   });
 }
 
-window.siteI18n = { setLanguage };
+document.addEventListener("DOMContentLoaded", setFlagToggle);
