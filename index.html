@@ -185,6 +185,68 @@
             color: rgba(0,0,0,0.7);
         }
 
+        /* BLOGG TEASER */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .blog-card {
+            border-radius: 24px;
+            background: linear-gradient(135deg, #ffffff, #f8f3f0);
+            padding: 1.25rem 1.4rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            display: grid;
+            gap: 0.35rem;
+        }
+
+        .blog-meta {
+            font-size: 0.85rem;
+            color: rgba(0,0,0,0.7);
+            letter-spacing: 0.02em;
+        }
+
+        .blog-title {
+            font-size: 1.05rem;
+            margin: 0;
+        }
+
+        .blog-snippet {
+            margin: 0;
+            color: rgba(0,0,0,0.75);
+            line-height: 1.5;
+        }
+
+        /* CTA BANNER */
+        .cta-banner {
+            margin-top: 3rem;
+            padding: 1.5rem 1.6rem;
+            border-radius: 28px;
+            background: linear-gradient(120deg, #f4e3dc, #f8f3f0);
+            box-shadow: 0 14px 36px rgba(0,0,0,0.08);
+            display: grid;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .cta-banner__title {
+            font-size: 1.35rem;
+            margin: 0;
+        }
+
+        .cta-banner__text {
+            margin: 0;
+            color: rgba(0,0,0,0.78);
+        }
+
+        .cta-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
         /* REVIEWS */
 
         .reviews {
@@ -315,6 +377,16 @@
                 grid-template-columns: repeat(3, minmax(0, 1fr));
             }
 
+            .blog-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .cta-banner {
+                grid-template-columns: 1fr auto;
+                gap: 1rem 2.5rem;
+                align-items: center;
+            }
+
             .footer-top {
                 grid-template-columns: repeat(4, minmax(0, 1fr));
             }
@@ -339,7 +411,7 @@
                 Her finner du raskt det du trenger – fra hvem vi er, til hvilke behandlinger vi tilbyr, og hvordan du bestiller time.
             </p>
             <div class="hero-actions">
-                <a class="btn-primary" href="https://somi.bestille.no" target="_blank" rel="noopener">BOOK TIME</a>
+                <a class="btn btn-primary" href="https://somi.bestille.no" target="_blank" rel="noopener">BOOK TIME</a>
                 <a href="behandling.html" class="hero-secondary-link">Se behandlinger</a>
             </div>
             <div class="hero-meta">
@@ -422,28 +494,39 @@
     <!-- BLOGG / FAGLIG INNHOLD (TEASER) -->
     <section class="section">
         <div class="section-header">
-            <h2 class="section-title">Faglig innhold</h2>
+            <h2 class="section-title">Siste fra bloggen</h2>
             <a href="blogg.html" class="section-link">Gå til blogg</a>
         </div>
-        <div class="card-row">
-            <article class="card">
-                <h3 class="card-title">Før du vurderer en behandling</h3>
-                <p class="card-body">
-                    Korte artikler om forventninger, sikkerhet og hva som er viktig å tenke på før du bestiller time.
-                </p>
+        <div class="blog-grid">
+            <article class="blog-card">
+                <div class="blog-meta">April 2025 · Hudhelse</div>
+                <h3 class="blog-title">Vårhud: slik gjør du huden klar for mer lys</h3>
+                <p class="blog-snippet">Rolig opptrapping med milde peels, fukt og barrierebyggende ingredienser gjør at huden tåler mer sol uten å reagere.</p>
             </article>
-            <article class="card">
-                <h3 class="card-title">Naturlige resultater</h3>
-                <p class="card-body">
-                    Hvordan vi jobber for å bevare uttrykket ditt, og hva «naturlig» betyr hos SOMI.
-                </p>
+            <article class="blog-card">
+                <div class="blog-meta">Mars 2025 · Lepper</div>
+                <h3 class="blog-title">Naturlige lepper med presis injeksjon</h3>
+                <p class="blog-snippet">Kontur, hydrering og støtte fremfor volum alene. Vi kartlegger anatomi og symmetri før små mikrojusteringer.</p>
             </article>
-            <article class="card">
-                <h3 class="card-title">Etterbehandling og oppfølging</h3>
-                <p class="card-body">
-                    Informasjon om hva du kan forvente i tiden etter behandlingen, og når du bør kontakte oss.
-                </p>
+            <article class="blog-card">
+                <div class="blog-meta">Februar 2025 · Bryn</div>
+                <h3 class="blog-title">PMU-bryn som matcher ansiktsformen</h3>
+                <p class="blog-snippet">Powder brows, microblading eller kombinasjoner – alltid tilpasset hudtype og ansiktsform for et mykt, naturlig uttrykk.</p>
             </article>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="cta-banner">
+            <div>
+                <div class="eyebrow">Klar for rådgivning?</div>
+                <h2 class="cta-banner__title">Book en konsultasjon som er skreddersydd for deg</h2>
+                <p class="cta-banner__text">Vi starter med en rolig samtale om mål og forventninger, og lager en trygg plan sammen.</p>
+            </div>
+            <div class="cta-actions">
+                <a class="btn btn-primary" href="https://somi.bestille.no" target="_blank" rel="noopener">BOOK TIME</a>
+                <a class="hero-secondary-link" href="faq.html">Se hva du kan forvente</a>
+            </div>
         </div>
     </section>
 </main>
