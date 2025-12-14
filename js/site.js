@@ -1,27 +1,12 @@
-(async function () {
-  async function inject(id, url) {
-    const host = document.getElementById(id);
-    if (!host) return;
-
-    const res = await fetch(url, { cache: "no-store" });
-    const text = await res.text();
-
-    // Ikke injiser feil/404-sider
-    if (!res.ok) {
-      console.error("Partial failed:", url, res.status, res.statusText);
-      return;
-    }
-    // Noen servere kan returnere "Not Found" med 200 OK
-    if (/Not Found/i.test(text) && text.length < 5000) {
-      console.error("Partial looks like Not Found:", url);
-      return;
-    }
-
-    host.innerHTML = text;
-  }
-
-  await inject("site-header", "/partials/header.html");
-  await inject("site-footer", "/partials/footer.html");
+function initReveal() {
+  const els = document.querySelectorAll(".reveal");
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add("is-in");
+    });
+  }, { threshold: 0.12 });
+  els.forEach(el => io.observe(el));
+}
 
   const headerEl = document.querySelector("[data-site-header]");
   const menuBtn = headerEl?.querySelector("[data-menu-btn]");
