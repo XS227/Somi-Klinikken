@@ -1,21 +1,20 @@
 (async function () {
-  // 1) Inject header/footer
-  const headerHost = document.querySelector("#site-header");
-  if (headerHost) {
-    const headerHtml = await fetch("/partials/header.html").then(r => r.text());
-    headerHost.innerHTML = headerHtml;
+  async function inject(id, url) {
+    const host = document.getElementById(id);
+    if (!host) return;
+
+    const res = await fetch(url, { cache: "no-store" });
+    if (!res.ok) {
+      console.error(`Kunne ikke hente ${url}: ${res.status} ${res.statusText}`);
+      return; // ikke injiser "Not Found" i UI
+    }
+    host.innerHTML = await res.text();
   }
 
-  const footerHost = document.querySelector("#site-footer");
-  if (footerHost) {
-    const footerHtml = await fetch("/partials/footer.html").then(r => r.text());
-    footerHost.innerHTML = footerHtml;
-  }
+  await inject("site-header", "/partials/header.html");
+  await inject("site-footer", "/partials/footer.html");
 
-  loadPartial("site-header", "/partials/header.html");
-  loadPartial("site-footer", "/partials/footer.html");
-
-  // 2) Aktiv lenke
+  // Aktiv lenke
   const path = location.pathname.replace(/\/$/, "");
   document.querySelectorAll(".nav-list a").forEach(a => {
     const href = (a.getAttribute("href") || "").replace(/\/$/, "");
@@ -24,7 +23,7 @@
     }
   });
 
-  // 3) Mobilmeny toggle
+  // Mobilmeny toggle
   const toggle = document.querySelector(".nav-toggle");
   const nav = document.querySelector(".somi-nav");
   if (toggle && nav) {
@@ -34,7 +33,6 @@
       document.body.classList.toggle("nav-open", open);
     });
 
-    // Lukk ved klikk på lenke
     nav.querySelectorAll("a").forEach(a => {
       a.addEventListener("click", () => {
         nav.classList.remove("is-open");
