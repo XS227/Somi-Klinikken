@@ -33,8 +33,8 @@
   });
 
   // Mobilmeny
-  const toggle = document.querySelector(".nav-toggle");
-  const nav = document.querySelector(".somi-nav");
+  const toggle = document.querySelector(".nav-toggle, .menu-toggle, #navToggle");
+  const nav = document.querySelector(".somi-nav, .mobile-nav, #mobileNav");
   if (toggle && nav) {
     toggle.addEventListener("click", () => {
       const open = nav.classList.toggle("is-open");
