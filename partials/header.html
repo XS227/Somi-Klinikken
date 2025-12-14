@@ -1,23 +1,61 @@
-<header class="somi-header">
-  <div class="somi-header-inner somi-container">
-    <a href="/index.html" class="somi-logo">
-      <img src="https://r1430404.website.cifms3sug.service.one/logo.png" alt="SOMI Klinikken" class="somi-logo-image" />
+<header class="site-header" role="banner">
+  <div class="header-inner">
+    <!-- Logo -->
+    <a class="brand" href="/index.html" aria-label="SOMI - Hjem">
+      <img class="brand-logo" src="/assets/img/logo.svg" alt="SOMI" />
     </a>
-    <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Åpne meny" aria-controls="primary-nav">
-      <span class="sr-only">Meny</span>
-      <span class="nav-toggle-bar"></span>
-      <span class="nav-toggle-bar"></span>
-      <span class="nav-toggle-bar"></span>
-    </button>
-    <nav class="somi-nav" id="primary-nav">
-      <ul class="nav-list">
-        <li><a href="/mot-oss.html">SOMI</a></li>
-        <li><a href="/team.html">Team</a></li>
-        <li><a href="/behandling.html">Behandlinger</a></li>
-        <li><a href="/priser.html">Priser</a></li>
-        <li><a href="/blogg.html">Blogg</a></li>
-        <li><a href="/kontakt.html">Kontakt</a></li>
-      </ul>
+
+    <!-- Desktop navigation -->
+    <nav class="nav-desktop" aria-label="Hovedmeny">
+      <a href="/index.html">Hjem</a>
+      <a href="/team.html">Møt oss</a>
+      <a href="/behandlinger.html">Behandlinger</a>
+      <a href="/blogg.html">Blogg</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/kontakt.html">Kontakt oss</a>
     </nav>
+
+    <!-- Actions -->
+    <div class="header-actions">
+      <a class="btn btn-ghost" href="/sok.html" aria-label="Søk">Søk</a>
+      <a class="btn btn-primary" href="/book.html">BOOK TIME</a>
+
+      <!-- Mobile toggle -->
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="Åpne meny"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+      >
+        <span class="burger" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu overlay -->
+  <div class="mobile-menu" id="mobile-menu" hidden>
+    <div class="mobile-menu__panel" role="dialog" aria-modal="true" aria-label="Meny">
+      <div class="mobile-menu__top">
+        <span class="mobile-menu__title">Meny</span>
+        <button class="menu-close" type="button" aria-label="Lukk meny">
+          ✕
+        </button>
+      </div>
+
+      <nav class="nav-mobile" aria-label="Hovedmeny mobil">
+        <a href="/index.html">Hjem</a>
+        <a href="/team.html">Møt oss</a>
+        <a href="/behandlinger.html">Behandlinger</a>
+        <a href="/blogg.html">Blogg</a>
+        <a href="/faq.html">FAQ</a>
+        <a href="/kontakt.html">Kontakt oss</a>
+      </nav>
+
+      <div class="mobile-menu__cta">
+        <a class="btn btn-primary btn-block" href="/book.html">BOOK TIME</a>
+        <a class="btn btn-ghost btn-block" href="/sok.html">Søk</a>
+      </div>
+    </div>
   </div>
 </header>
