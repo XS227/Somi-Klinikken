@@ -417,6 +417,56 @@
             color: rgba(0,0,0,0.7);
         }
 
+        /* REVIEWS */
+
+        .reviews {
+            background: var(--color-surface);
+            border-radius: 32px;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 12px 36px rgba(0,0,0,0.08);
+            margin: 2rem 0;
+        }
+
+        .reviews-header {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+        }
+
+        .review-card {
+            background: var(--color-accent-soft);
+            border-radius: 20px;
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .review-stars {
+            color: #d49c9c;
+            letter-spacing: 0.1em;
+            font-weight: 700;
+        }
+
+        .review-text {
+            font-size: 0.94rem;
+            line-height: 1.6;
+            color: rgba(0,0,0,0.8);
+        }
+
+        .review-author {
+            font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+
         /* FOOTER */
 
         footer {
@@ -565,6 +615,38 @@
                 <p class="card-body">
                     Ofte stilte spørsmål + SOMI AI som kun er aktiv på FAQ-siden for oppfølgingsspørsmål.
                 </p>
+            </article>
+        </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section class="reviews">
+        <div class="reviews-header">
+            <div class="eyebrow">Erfaringer</div>
+            <h2 class="section-title">Tilbakemeldinger fra pasienter</h2>
+            <p class="hero-subtitle" style="margin: 0; max-width: 720px;">
+                Vi er stolte av å få tilliten til pasientene våre. Her er noen korte utdrag
+                fra hva de sier om opplevelsen hos SOMI Klinikken.
+            </p>
+        </div>
+        <div class="reviews-grid">
+            <article class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">«Jeg følte meg godt ivaretatt fra første stund. Konsultasjonen var grundig
+                    og jeg fikk tydelige råd om hva som passet for meg.»</p>
+                <div class="review-author">Kari, 34</div>
+            </article>
+            <article class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">«Naturlige resultater og et team som virkelig lytter. Jeg anbefaler SOMI til alle
+                    som vil ha en trygg klinikkopplevelse.»</p>
+                <div class="review-author">Marius, 41</div>
+            </article>
+            <article class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">«Profesjonell oppfølging både før og etter behandlingen. Følte meg trygg hele veien
+                    og er veldig fornøyd med resultatet.»</p>
+                <div class="review-author">Elise, 29</div>
             </article>
         </div>
     </section>

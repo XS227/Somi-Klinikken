@@ -387,6 +387,12 @@ p {
   font-size: 0.9rem;
 }
 
+.footer-branding {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
 .footer-logo {
   text-transform: lowercase;
   letter-spacing: 0.12em;
@@ -2710,6 +2716,23 @@ footer{
   font-size: 0.92rem;
   color: rgba(56,56,56,0.75);
   margin: 0.4rem 0 1rem;
+}
+
+.map-frame {
+  margin-top: 1.25rem;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid rgba(56,56,56,0.08);
+  box-shadow: var(--shadow-soft);
+  background: #fff;
+}
+
+.map-frame iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+  min-height: 320px;
 }
 
 @media (max-width: 900px) {
