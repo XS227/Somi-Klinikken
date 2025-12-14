@@ -1,1 +1,229 @@
-/* Stilark for nettsidens toppnavigasjon. Legg til header-spesifikke regler her. */
+:root{
+  --header-bg: #ffffff;
+  --text: #383838;
+  --muted: rgba(56,56,56,0.75);
+  --border: rgba(56,56,56,0.12);
+
+  --btn-bg: #383838;
+  --btn-text: #ffffff;
+
+  --radius: 18px;
+  --shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* Sticky header – must be above all page content */
+.site-header{
+  position: sticky;
+  top: 0;
+  z-index: 10000;
+  background: var(--header-bg);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Prevent parent overflow clipping issues */
+.site-header,
+.site-header *{
+  box-sizing: border-box;
+}
+
+.header-inner{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 18px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.brand{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.brand-logo{
+  height: 34px;
+  width: auto;
+  display: block;
+}
+
+/* Desktop nav */
+.nav-desktop{
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.nav-desktop a{
+  color: var(--text);
+  text-decoration: none;
+  font-size: 14px;
+  padding: 10px 6px;
+  border-radius: 12px;
+}
+
+.nav-desktop a:hover{
+  background: rgba(56,56,56,0.06);
+}
+
+/* Actions */
+.header-actions{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  font-size: 13px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.btn-ghost{
+  background: #fff;
+  color: var(--text);
+}
+
+.btn-primary{
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  border-color: var(--btn-bg);
+}
+
+.btn-block{
+  width: 100%;
+}
+
+/* Burger button */
+.menu-toggle{
+  display: none; /* shown on mobile */
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: #fff;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+.burger{
+  position: relative;
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+}
+
+.burger::before,
+.burger::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 18px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+}
+
+.burger::before{ top: -6px; }
+.burger::after{ top: 6px; }
+
+/* Mobile menu overlay */
+.mobile-menu{
+  position: fixed;
+  inset: 0;
+  z-index: 20000;
+  background: rgba(0,0,0,0.28);
+  backdrop-filter: blur(3px);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.mobile-menu[hidden]{
+  display: none;
+}
+
+.mobile-menu__panel{
+  width: min(92vw, 360px);
+  height: 100%;
+  background: #fff;
+  box-shadow: var(--shadow);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mobile-menu__top{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.mobile-menu__title{
+  color: var(--text);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.menu-close{
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: #fff;
+  cursor: pointer;
+}
+
+.nav-mobile{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.nav-mobile a{
+  display: block;
+  padding: 12px 10px;
+  border-radius: 14px;
+  text-decoration: none;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.nav-mobile a:hover{
+  background: rgba(56,56,56,0.06);
+}
+
+.mobile-menu__cta{
+  margin-top: auto;
+  display: grid;
+  gap: 10px;
+}
+
+/* Mobile breakpoint */
+@media (max-width: 980px){
+  .nav-desktop{
+    display: none;
+  }
+  .menu-toggle{
+    display: inline-flex;
+  }
+}
+
+/* Body lock when menu open */
+body.menu-open{
+  overflow: hidden;
+}
