@@ -1,0 +1,13 @@
+/* Base element resets and typography styles. */
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: #ffffff;
+  color: #0c0c0c;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
