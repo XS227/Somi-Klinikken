@@ -377,6 +377,12 @@ p {
   font-size: 0.8rem;
 }
 
+.footer-partner-image {
+  display: block;
+  height: 32px;
+  width: auto;
+}
+
 .footer-bottom {
   display: flex;
   align-items: center;
