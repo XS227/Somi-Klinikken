@@ -1,0 +1,29 @@
+:root {
+  /* Brand colors */
+  --c-ink: #383838;
+  --c-white: #FFFFFF;
+  --c-warm: #E8E6E4;
+  --c-nude: #F4E3DC;
+  --c-pink: #DDB3B3;
+
+  /* Gradient background */
+  --bg-grad: linear-gradient(45deg, rgb(239,239,238), rgb(220,220,219));
+
+  /* Radius (rounded forms must be observed) */
+  --r-lg: 28px;
+  --r-md: 18px;
+  --r-sm: 12px;
+
+  /* Shadows */
+  --sh-soft: 0 20px 60px rgba(0,0,0,0.08);
+
+  /* Layout */
+  --container: 1160px;
+  --gutter: 20px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(.22,1,.36,1);
+  --dur-1: 180ms;
+  --dur-2: 380ms;
+  --dur-3: 620ms;
+}
