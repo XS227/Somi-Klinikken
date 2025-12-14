@@ -1,10 +1,27 @@
-/* Motion and transition presets. */
-
-.fade-in {
-  animation: fade-in 300ms ease-in;
+/* Scroll reveal (subtle, premium) */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity var(--dur-3) var(--ease-out),
+              transform var(--dur-3) var(--ease-out);
+  will-change: opacity, transform;
+}
+.reveal.is-in {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-@keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+/* Soft floating micro-motion */
+.floaty {
+  animation: floaty 7.5s var(--ease-out) infinite;
+}
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { transition: none; transform: none; opacity: 1; }
+  .floaty { animation: none; }
 }
