@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SOMI – Behandlinger</title>
+
+  <!-- Shared -->
+  <link rel="stylesheet" href="/css/tokens.css" />
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/layout.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/motion.css" />
+  <link rel="stylesheet" href="/css/header.css" />
+  <link rel="stylesheet" href="/css/footer.css" />
+
+  <!-- Page -->
+  <link rel="stylesheet" href="/css/treatments.css" />
+
+  <script defer src="/js/includes.js"></script>
+  <script defer src="/js/site.js"></script>
+  <script defer src="/js/i18n.js"></script>
+</head>
+
+<body>
+  <div data-include="/partials/header.html"></div>
+
+  <main>
+    <!-- HERO -->
+    <section class="section treatments-hero">
+      <div class="container">
+        <div class="reveal">
+          <div class="kicker">Behandlinger</div>
+          <h1 class="h1">Velg behandling. Les mer på undersiden.</h1>
+          <p class="muted">
+            Her viser vi kun oversikt (navn + pris/tid). Detaljer, forberedelser, bivirkninger og FAQ legges på hver behandlingsside.
+          </p>
+        </div>
+
+        <!-- TOOLBAR -->
+        <div class="toolbar reveal" style="margin-top:22px;">
+          <label class="field" aria-label="Søk i behandlinger">
+            <span style="opacity:.65;">Søk</span>
+            <input id="treatSearch" type="search" placeholder="Søk etter behandling…" autocomplete="off" />
+          </label>
+
+          <label class="field" aria-label="Velg kategori">
+            <span style="opacity:.65;">Kategori</span>
+            <select id="treatCategory">
+              <option value="all">Alle</option>
+              <option value="microblading">Microblading</option>
+              <option value="bryn-og-vipper">Bryn og vipper</option>
+              <option value="dermalogica">Dermalogica</option>
+              <option value="hudpleie">Hudpleie</option>
+              <option value="permanent-makeup">Permanent makeup</option>
+              <option value="laser-tattoo">Laser &amp; tattoo</option>
+            </select>
+          </label>
+
+          <a class="btn btn--primary" href="/booking.html">BOOK TIME</a>
+        </div>
+
+        <div id="emptyState" class="empty-state" style="display:none;">
+          Ingen treff. Prøv et annet søk eller velg “Alle”.
+        </div>
+      </div>
+    </section>
+
+    <!-- LIST -->
+    <section class="section section--tight">
+      <div class="container">
+
+        <!-- Microblading -->
+        <section class="category reveal" data-category="microblading">
+          <div class="category__head">
+            <h2 class="h2" style="margin:0;">Microblading</h2>
+            <span class="badge">Oversikt</span>
+          </div>
+
+          <div class="cards">
+            <article class="t-card" data-name="Ny microblading" data-tags="microblading bryn">
+              <div class="t-card__inner">
+                <div class="t-name">Ny microblading</div>
+                <div class="t-meta"><span>kr 4 990</span><span>2 t</span></div>
+                <div class="t-actions">
+                  <a class="btn btn--ghost" href="/behandlinger/ny-microblading.html">Les mer</a>
+                  <a class="btn btn--primary" href="/booking.html">Book</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="t-card" data-name="Touch up (4–8 uker)" data-tags="touch up microblading">
+              <div class="t-card__inner">
+                <div class="t-name">Touch up (4–8 uker)</div>
+                <div class="t-meta"><span>Inkludert</span><span>—</span></div>
+                <div class="t-actions">
+                  <a class="btn btn--ghost" href="/behandlinger/touch-up-4-8-uker.html">Les mer</a>
+                  <a class="btn btn--primary" href="/booking.html">Book</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="t-card" data-name="Konsultasjon" data-tags="konsultasjon microblading">
+              <div class="t-card__inner">
+                <div class="t-name">Konsultasjon</div>
+                <div class="t-meta"><span>Gratis</span><span>20 min</span></div>
+                <div class="t-actions">
+                  <a class="btn btn--ghost" href="/behandlinger/konsultasjon-microblading.html">Les mer</a>
+                  <a class="btn btn--primary" href="/booking.html">Book</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="t-card" data-name="Refill innen 12 mnd" data-tags="refill microblading">
+              <div class="t-card__inner">
+                <div class="t-name">Refill innen 12 mnd</div>
+                <div class="t-meta"><span>kr 2 990</span><span>90 min</span></div>
+                <div class="t-actions">
+                  <a class="btn btn--ghost" href="/behandlinger/refill-innen-12-mnd.html">Les mer</a>
+                  <a class="btn btn--primary" href="/booking.html">Book</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="t-card" data-name="Refill 12–18 mnd" data-tags="refill microblading">
+              <div class="t-card__inner">
+                <div class="t-name">Refill 12–18 mnd</div>
+                <div class="t-meta"><span>kr 3 490</span><span>90 min</span></div>
+                <div class="t-actions">
+                  <a class="btn btn--ghost" href="/behandlinger/refill-12-18-mnd.html">Les mer</a>
+                  <a class="btn btn--primary" href="/booking.html">Book</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- Bryn og vipper -->
+        <section class="category reveal" data-category="bryn-og-vipper" style="margin-top:44px;">
+          <div class="category__head">
+            <h2 class="h2" style="margin:0;">Bryn og vipper</h2>
+          </div>
+
+          <div class="cards">
+            <article class="t-card" data-name="Brynstyling + farge" data-tags="bryn farge">
+              <div class="t-card__inner">
+                <div class="t-name">Brynstyling + farge</div>
+                <div class="t-meta"><span>kr 720</span><span>40 min</span></div>
+                <div class="t-actions">
+                  <a class="btn btn--ghost" href="/behandlinger/brynstyling-farge.html">Les mer</a>
+                  <a class="btn btn--primary" href="/booking.html">Book</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="t-card" data-name="Browlamination" data-tags="browlamination bryn">
+              <div class="t-card__inner">
+                <div class="t-name">Browlamination</div>
+                <div class="t-meta"><span>kr 890</span><span>50 min</span></div>
+                <div class="t-actions">
+                  <a class="btn btn--ghost" href="/behandlinger/browlamination.html">Les mer</a>
+                  <a class="btn btn--primary" href="/booking.html">Book</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="t-card" data-name="Bryn & vipper (pakke)" data-tags="pakke bryn vipper">
+              <div class="t-card__inner">
+                <div class="t-name">Bryn &amp; vipper (pakke)</div>
+                <div class="t-meta"><span>kr 1 690</span><span>1 t 30</span></div>
+                <div class="t-actions">
+                  <a class="btn btn--ghost" href="/behandlinger/bryn-vipper-pakke.html">Les mer</a>
+                  <a class="btn btn--primary" href="/booking.html">Book</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="t-card" data-name="Vippeløft inkl. farge" data-tags="vippeloft farge">
+              <div class="t-card__inner">
+                <div class="t-name">Vippeløft inkl. farge</div>
+                <div class="t-meta"><span>kr 1 140</span><span>1 t</span></div>
+                <div class="t-actions">
+                  <a class="btn btn--ghost" href="/behandlinger/vippeloft-inkl-farge.html">Les mer</a>
+                  <a class="btn btn--primary" href="/booking.html">Book</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="t-card" data-name="Farging av vipper" data-tags="vipper farge">
+              <div class="t-card__inner">
+                <div class="t-name">Farging av vipper</div>
+                <div class="t-meta"><span>kr 290</span><span>15 min</span></div>
+                <div class="t-actions">
+                  <a class="btn btn--ghost" href="/behandlinger/farging-av-vipper.html">Les mer</a>
+                  <a class="btn btn--primary" href="/booking.html">Book</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="t-card" data-name="Farging av bryn" data-tags="bryn farge">
+              <div class="t-card__inner">
+                <div class="t-name">Farging av bryn</div>
+                <div class="t-meta"><span>kr 320</span><span>15 min</span></div>
+                <div class="t-actions">
+                  <a class="btn btn--ghost" href="/behandlinger/farging-av-bryn.html">Les mer</a>
+                  <a class="btn btn--primary" href="/booking.html">Book</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- Dermalogica -->
+        <section class="category reveal" data-category="dermalogica" style="margin-top:44px;">
+          <div class="category__head">
+            <h2 class="h2" style="margin:0;">Dermalogica</h2>
+          </div>
+
+          <div class="cards">
+            <article class="t-card" data-name="ProSkin 30" data-tags="dermalogica proskin">
+              <div class="t-card__inner">
+                <div class="t-name">ProSkin 30</div>
+                <div class="t-meta"><span>kr 790</span><span>30 min</span></div>
+                <div class="t-actions">
+                  <a class="btn btn--ghost" href="/behandlinger/proskin-30.html">Les mer</a>
+                  <a class="btn btn--primary" href="/booking.html">Book</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="t-card" data-name="ProSkin 60" data-tags="dermalogica proskin">
+              <div class="t-card__inner">
+                <div class="t-name">ProSkin 60</div>
+                <div class="t-meta"><span>kr 1 190</span><span>60 min</span></div>
+                <div class="t-actions">
+                  <a class="btn btn--ghost" href="/behandlinger/proskin-60.html">Les mer</a>
+                  <a class="btn btn--primary" href="/booking.html">Book</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="t-card" data-name="Pro Power Peel" data-tags="dermalogica peel">
+              <div class="t-card__inner">
+                <div class="t-name">Pro Power Peel</div>
+                <div class="t-meta"><span>kr 1 490</span><span>45 min</span></div>
+                <div class="t-actions">
+                  <a class="btn btn--ghost" href="/behandlinger/pro-power-peel.html">Les mer</a>
+                  <a class="btn btn--primary" href="/booking.html">Book</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="t-card" data-name="Face Mapping konsultasjon" data-tags="face mapping konsultasjon">
+              <div class="t-card__inner">
+                <div class="t-name">Face Mapping konsultasjon</div>
+                <div class="t-meta"><span>Gratis</span><span>15 min</span></div>
+                <div class="t-actions">
+                  <a class="btn btn--ghost" href="/behandlinger/face-mapping-konsultasjon.html">Les mer</a>
+                  <a class="btn btn--primary" href="/booking.html">Book</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="t-card" data-name="Nakke/skuldermassasje" data-tags="tillegg massasje">
+              <div class="t-card__inner">
+                <div class="t-name">Nakke/skuldermassasje</div>
+                <div class="t-meta"><span>kr 290</span><span>15 min</span></div>
+                <div class="t-actions">
+                  <a class="btn btn--ghost" href="/behandlinger/nakke-skuldermassasje.html">Les mer</a>
+                  <a class="btn btn--primary" href="/booking.html">Book</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="t-card" data-name="Beroligende maske" data-tags="tillegg maske">
+              <div class="t-card__inner">
+                <div class="t-name">Beroligende maske</div>
+                <div class="t-meta"><span>kr 180</span><span>—</span></div>
+                <div class="t-actions">
+                  <a class="btn btn--ghost" href="/behandlinger/beroligende-maske.html">Les mer</a>
+                  <a class="btn btn--primary" href="/booking.html">Book</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- Hudpleie -->
+        <section class="category reveal" data-category="hudpleie" style="margin-top:44px;">
+          <div class="category__head">
+            <h2 class="h2" style="margin:0;">Hudpleie</h2>
+          </div>
+
+          <div class="cards">
+            <article class="t-card" data-name="Dyprens & fukt" data-tags="hudpleie dyprens fukt">
+              <div class="t-card__inner">
+                <div class="t-name">Dyprens &amp; fukt</div>
+                <div class="t-meta"><span>kr 890</span><span>50 min</span></div>
+                <div class="t-actions">
+                  <a class="btn btn--ghost" href="/behandlinger/dyprens-fukt.html">Les mer</a>
+                  <a class="btn btn--primary" href="/booking.html">Book</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="t-card" data-name="Ekspress glow" data-tags="hudpleie glow">
+              <div class="t-card__inner">
+                <div class="t-name">Ekspress glow</div>
+                <div class="t-meta"><span>kr 590</span><span>25 min</span></div>
+                <div class="t-actions">
+                  <a class="btn btn--ghost" href="/behandlinger/ekspress-glow.html">Les mer</a>
+                  <a class="btn btn--primary" href="/booking.html">Book</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="t-card" data-name="Beroligende maske" data-tags="hudpleie tillegg maske">
+              <div class="t-card__inner">
+                <div class="t-name">Beroligende maske</div>
+                <div class="t-meta"><span>kr 180</span><span>—</span></div>
+                <div class="t-actions">
+                  <a class="btn btn--ghost" href="/behandlinger/beroligende-maske.html">Les mer</a>
+                  <a class="btn btn--primary" href="/booking.html">Book</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="t-card" data-name="Kjemisk peel" data-tags="hudpleie peel">
+              <div class="t-card__inner">
+                <div class="t-name">Kjemisk peel</div>
+                <div class="t-meta"><span>kr 1 200</span><span>40 min</span></div>
+                <div class="t-actions">
+                  <a class="btn btn--ghost" href="/behandlinger/kjemisk-peel.html">Les mer</a>
+                  <a class="btn btn--primary" href="/booking.html">Book</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="t-card" data-name="Microneedling" data-tags="hudpleie microneedling">
+              <div class="t-card__inner">
+                <div class="t-name">Microneedling</div>
+                <div class="t-meta"><span>kr 2 300</span><span>60 min</span></div>
+                <div class="t-actions">
+                  <a class="btn btn--ghost" href="/behandlinger/microneedling.html">Les mer</a>
+                  <a class="btn btn--primary" href="/booking.html">Book</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="t-card" data-name="Kurpakke (3x)" data-tags="hudpleie kurpakke">
+              <div class="t-card__inner">
+                <div class="t-name">Kurpakke (3x)</div>
+                <div class="t-meta"><span>Be om pris</span><span>—</span></div>
+                <div class="t-actions">
+                  <a class="btn btn--ghost" href="/behandlinger/kurpakke-3x.html">Les mer</a>
+                  <a class="btn btn--primary" href="/booking.html">Book</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- Permanent makeup -->
+        <section class="category reveal" data-category="permanent-makeup" style="margin-top:44px;">
+          <div class="category__head">
+            <h2 class="h2" style="margin:0;">Permanent makeup</h2>
+          </div>
+
+          <div class="cards">
+            <article class="t-card" data-name="Eyeliner – klassisk" data-tags="permanent makeup eyeliner">
+              <div class="t-card__inner">
+                <div class="t-name">Eyeliner – klassisk</div>
+                <div class="t-meta"><span>kr 3 900</span><span>90 min</span></div>
+                <div class="t-actions">
+                  <a class="btn btn--ghost" href="/behandlinger/eyeliner-klassisk.html">Les mer</a>
+                  <a class="btn btn--primary" href="/booking.html">Book</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="t-card" data-name="Soft lashliner" data-tags="permanent makeup lashliner">
+              <div class="t-card__inner">
+                <div class="t-name">Soft lashliner</div>
+                <div class="t-meta"><span>kr 3 500</span><span>75 min</span></div>
+                <div class="t-actions">
+                  <a class="btn btn--ghost" href="/behandlinger/soft-lashliner.html">Les mer</a>
+                  <a class="btn btn--primary" href="/booking.html">Book</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="t-card" data-name="Leppefarge (aquarelle)" data-tags="permanent makeup lepper">
+              <div class="t-card__inner">
+                <div class="t-name">Leppefarge (aquarelle)</div>
+                <div class="t-meta"><span>kr 4 500</span><span>2 t</span></div>
+                <div class="t-actions">
+                  <a class="btn btn--ghost" href="/behandlinger/leppefarge-aquarelle.html">Les mer</a>
+                  <a class="btn btn--primary" href="/booking.html">Book</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="t-card" data-name="Touch up innen 6 mnd" data-tags="touch up permanent makeup">
+              <div class="t-card__inner">
+                <div class="t-name">Touch up innen 6 mnd</div>
+                <div class="t-meta"><span>kr 1 200</span><span>—</span></div>
+                <div class="t-actions">
+                  <a class="btn btn--ghost" href="/behandlinger/touch-up-innen-6-mnd.html">Les mer</a>
+                  <a class="btn btn--primary" href="/booking.html">Book</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="t-card" data-name="Touch up 6–12 mnd" data-tags="touch up permanent makeup">
+              <div class="t-card__inner">
+                <div class="t-name">Touch up 6–12 mnd</div>
+                <div class="t-meta"><span>kr 1 800</span><span>—</span></div>
+                <div class="t-actions">
+                  <a class="btn btn--ghost" href="/behandlinger/touch-up-6-12-mnd.html">Les mer</a>
+                  <a class="btn btn--primary" href="/booking.html">Book</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- Laser & tattoo -->
+        <section class="category reveal" data-category="laser-tattoo" style="margin-top:44px;">
+          <div class="category__head">
+            <h2 class="h2" style="margin:0;">Laser &amp; tattoo</h2>
+          </div>
+
+          <div class="cards">
+            <article class="t-card" data-name="Laser hudfornyelse" data-tags="laser hudfornyelse">
+              <div class="t-card__inner">
+                <div class="t-name">Laser hudfornyelse</div>
+                <div class="t-meta"><span>kr 2 200</span><span>45 min</span></div>
+                <div class="t-actions">
+                  <a class="btn btn--ghost" href="/behandlinger/laser-hudfornyelse.html">Les mer</a>
+                  <a class="btn btn--primary" href="/booking.html">Book</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="t-card" data-name="Sprengte blodkar" data-tags="laser blodkar">
+              <div class="t-card__inner">
+                <div class="t-name">Sprengte blodkar</div>
+                <div class="t-meta"><span>kr 1 200</span><span>30 min</span></div>
+                <div class="t-actions">
+                  <a class="btn btn--ghost" href="/behandlinger/sprengte-blodkar.html">Les mer</a>
+                  <a class="btn btn--primary" href="/booking.html">Book</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="t-card" data-name="Fjerning – liten tatovering" data-tags="tattoo fjerning liten">
+              <div class="t-card__inner">
+                <div class="t-name">Fjerning – liten tatovering</div>
+                <div class="t-meta"><span>kr 1 000</span><span>20 min</span></div>
+                <div class="t-actions">
+                  <a class="btn btn--ghost" href="/behandlinger/fjerning-liten-tatovering.html">Les mer</a>
+                  <a class="btn btn--primary" href="/booking.html">Book</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="t-card" data-name="Fjerning – medium tatovering" data-tags="tattoo fjerning medium">
+              <div class="t-card__inner">
+                <div class="t-name">Fjerning – medium tatovering</div>
+                <div class="t-meta"><span>kr 1 600</span><span>30 min</span></div>
+                <div class="t-actions">
+                  <a class="btn btn--ghost" href="/behandlinger/fjerning-medium-tatovering.html">Les mer</a>
+                  <a class="btn btn--primary" href="/booking.html">Book</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="t-card" data-name="Konsultasjon" data-tags="konsultasjon laser tattoo">
+              <div class="t-card__inner">
+                <div class="t-name">Konsultasjon</div>
+                <div class="t-meta"><span>Gratis</span><span>15 min</span></div>
+                <div class="t-actions">
+                  <a class="btn btn--ghost" href="/behandlinger/konsultasjon-laser.html">Les mer</a>
+                  <a class="btn btn--primary" href="/booking.html">Book</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- CTA -->
+        <div class="card reveal" style="margin-top:54px;">
+          <div class="card__inner" style="display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+            <div>
+              <div class="kicker">Usikker?</div>
+              <div class="h2" style="margin:6px 0 0;">Start med konsultasjon.</div>
+              <div class="muted">Så finner vi riktig behandling sammen.</div>
+            </div>
+            <a class="btn btn--primary" href="/booking.html">BOOK TIME</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <div data-include="/partials/footer.html"></div>
+
+  <!-- Filter: search + category -->
+  <script>
+    (function () {
+      const search = document.getElementById("treatSearch");
+      const select = document.getElementById("treatCategory");
+      const empty = document.getElementById("emptyState");
+
+      const cats = Array.from(document.querySelectorAll(".category[data-category]"));
+      const cards = Array.from(document.querySelectorAll(".t-card[data-name]"));
+
+      const norm = (s) => (s || "").toLowerCase().trim();
+
+      function apply() {
+        const q = norm(search.value);
+        const c = select.value;
+
+        // category filter
+        cats.forEach(sec => {
+          const ok = (c === "all") || (sec.dataset.category === c);
+          sec.style.display = ok ? "" : "none";
+        });
+
+        let visible = 0;
+
+        // card filter within visible categories
+        cards.forEach(card => {
+          const sec = card.closest(".category");
+          const secVisible = sec && sec.style.display !== "none";
+          if (!secVisible) { card.style.display = "none"; return; }
+
+          const name = norm(card.dataset.name);
+          const tags = norm(card.dataset.tags);
+          const hit = !q || name.includes(q) || tags.includes(q);
+          card.style.display = hit ? "" : "none";
+          if (hit) visible++;
+        });
+
+        // hide empty categories for cleanliness
+        cats.forEach(sec => {
+          if (sec.style.display === "none") return;
+          const any = Array.from(sec.querySelectorAll(".t-card")).some(c => c.style.display !== "none");
+          sec.style.display = any ? "" : "none";
+        });
+
+        empty.style.display = (visible === 0) ? "" : "none";
+      }
+
+      search && search.addEventListener("input", apply);
+      select && select.addEventListener("change", apply);
+      apply();
+    })();
+  </script>
+</body>
+</html>
