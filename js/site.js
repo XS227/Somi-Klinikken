@@ -1,12 +1,13 @@
-function initReveal() {
-  const els = document.querySelectorAll(".reveal");
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) e.target.classList.add("is-in");
-    });
-  }, { threshold: 0.12 });
-  els.forEach(el => io.observe(el));
-}
+(() => {
+  function initReveal() {
+    const els = document.querySelectorAll(".reveal");
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add("is-in");
+      });
+    }, { threshold: 0.12 });
+    els.forEach(el => io.observe(el));
+  }
 
   const headerEl = document.querySelector("[data-site-header]");
   const menuBtn = headerEl?.querySelector("[data-menu-btn]");
@@ -47,6 +48,8 @@ function initReveal() {
     menuBtn.addEventListener("click", toggle);
     mobilePanel.querySelectorAll("a").forEach(a => a.addEventListener("click", close));
   }
+
+  document.addEventListener("DOMContentLoaded", initReveal);
 
   setActiveLinks();
   setupScrollState();
