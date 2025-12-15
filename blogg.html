@@ -3,9 +3,19 @@
 <head>
     <meta charset="UTF-8" />
     <title>SOMI Klinikken – Blogg</title>
+  <base href="/Somi-Klinikken/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="/css/somi.css">
-    <link rel="stylesheet" href="/assets/css/header.css">
+    <link rel="stylesheet" href="css/tokens.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/motion.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/somi.css">
+    <script defer src="js/includes.js"></script>
+    <script defer src="js/site.js"></script>
+    <script defer src="js/i18n.js"></script>
     <style>
         :root {
             --color-bg: #efefee;
@@ -348,8 +358,7 @@
 </head>
 <body>
 
-<!-- Header placeholder -->
-<div id="site-header"></div>
+<div data-include="partials/header.html"></div>
 <main>
 
     <section class="hero">
@@ -368,7 +377,7 @@
         </div>
         <div class="hero-image">
             <div class="image-frame">
-                <img src="/assets/img/hero/consultation.svg" alt="Konsultasjon hos SOMI Klinikken" />
+                <img src="assets/img/hero/consultation.svg" alt="Konsultasjon hos SOMI Klinikken" />
             </div>
             <div class="hero-tag">Bli trygg på valgene dine</div>
         </div>
@@ -439,12 +448,7 @@
     </section>
 
 </main>
-<!-- Footer placeholder -->
-<div id="site-footer"></div>
-
-    <script src="/assets/js/header.js" defer></script>
-
-<script src="/js/site.js?v=1"></script>
+<div data-include="partials/footer.html"></div>
 
 </body>
 </html>
