@@ -13,8 +13,9 @@
 
   <link rel="stylesheet" href="css/somi.css" />
 
-  <script defer src="js/includes.js"></script>
-  <script defer src="js/site.js"></script>
+  <script defer src="/js/config.js"></script>
+  <script defer src="/js/includes.js"></script>
+  <script defer src="/js/site.js"></script>
 </head>
 
 <body>
@@ -34,7 +35,7 @@
 
           <div class="hero-actions">
             <a href="#behandlinger" class="btn btn-primary">Se behandlinger</a>
-            <a href="https://somi.bestille.no" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
+            <a href="#" data-booking-link class="btn btn-ghost">
               Bestill time
             </a>
           </div>
@@ -130,9 +131,7 @@
           </p>
 
           <div class="about-actions">
-            <a href="https://somi.bestille.no" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-              Bestill time
-            </a>
+            <a href="#" data-booking-link class="btn btn-primary">Bestill time</a>
             <a href="#contact" class="btn btn-ghost">Kontakt oss</a>
           </div>
         </div>
@@ -173,10 +172,9 @@
               som smelter sammen med ditt eget utgangspunkt.
             </p>
             <a
-              href="https://somi.bestille.no"
+              href="#"
               class="btn btn-outline"
-              target="_blank"
-              rel="noopener noreferrer"
+              data-booking-link
               aria-label="Bestill time hos Katarina hos SOMI Klinikken"
               itemprop="url"
             >Bestill time hos Katarina</a>
@@ -375,12 +373,7 @@
             </p>
           </div>
           <div class="cta-actions">
-            <a
-              href="https://somi.bestille.no"
-              class="btn btn-cta-primary"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="#" class="btn btn-cta-primary" data-booking-link>
               Bestill time
             </a>
             <a href="#contact-form-section" class="btn btn-cta-ghost">
@@ -415,7 +408,7 @@
 
             <p class="contact-note">
               Klinikken er åpen etter avtale. Se alle tilgjengelige tider i
-              <a href="https://somi.bestille.no/" target="_blank" rel="noopener">onlinebooking</a>
+              <a href="#" data-booking-link>onlinebooking</a>
               eller ta kontakt for timebestilling.
             </p>
 

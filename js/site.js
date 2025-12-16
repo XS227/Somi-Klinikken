@@ -8,9 +8,20 @@ function initReveal() {
   els.forEach(el => io.observe(el));
 }
 
+function wireBookingLinks() {
+  const url = window.SOMI_BOOKING_URL;
+  if (!url) return;
+
+  document.querySelectorAll("[data-booking-link]").forEach(a => {
+    a.setAttribute("href", url);
+    a.setAttribute("target", "_blank");
+    a.setAttribute("rel", "noopener");
+  });
+}
+
 function setActiveLinks() {
   const currentPath = new URL(location.href).pathname.replace(/\/$/, "");
-  document.querySelectorAll(".nav a, .nav-mobile a").forEach((a) => {
+  document.querySelectorAll(".nav a, .nav-mobile a, [data-mobile-panel] a").forEach((a) => {
     const href = a.getAttribute("href") || "";
     const targetPath = new URL(href, document.baseURI).pathname.replace(/\/$/, "");
     const basePath = new URL("./", document.baseURI).pathname.replace(/\/$/, "");
@@ -57,5 +68,6 @@ function initHeader() {
 document.addEventListener("partials:loaded", () => {
   initReveal();
   initHeader();
+  wireBookingLinks();
   setActiveLinks();
 });
