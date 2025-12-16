@@ -3,9 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SOMI – Hjem</title>
-  <base href="/Somi-Klinikken/" />
+  <title>SOMI – Estetisk klinikk</title>
 
+  <!-- Base path (juster til /Somi-Klinikken/ hvis GitHub Pages) -->
+  <base href="/" />
+
+  <!-- Shared styles -->
   <link rel="stylesheet" href="css/tokens.css" />
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/layout.css" />
@@ -14,23 +17,27 @@
   <link rel="stylesheet" href="css/header.css" />
   <link rel="stylesheet" href="css/footer.css" />
 
+  <!-- Scripts -->
   <script defer src="js/includes.js"></script>
   <script defer src="js/site.js"></script>
   <script defer src="js/i18n.js"></script>
 </head>
 
 <body>
+  <!-- HEADER -->
   <div data-include="partials/header.html"></div>
 
   <main>
+    <!-- HERO -->
     <section class="section">
       <div class="container grid-2">
         <div class="reveal">
-          <h1 class="h1">Naturlige resultater. Rolig opplevelse.</h1>
+          <h1 class="h1">Naturlige resultater.<br>Rolig opplevelse.</h1>
           <p class="muted">
-            Her legger du inn eksisterende SOMI-innhold (kort og presist) så brukeren finner info raskt.
+            SOMI er en estetisk klinikk med fokus på trygghet, presisjon og et naturlig uttrykk.
+            Hos oss finner du behandlinger som er skreddersydd deg.
           </p>
-          <div style="display:flex; gap:12px; margin-top:18px; flex-wrap:wrap;">
+          <div style="display:flex; gap:12px; margin-top:22px; flex-wrap:wrap;">
             <a class="btn btn--primary" href="booking.html">BOOK TIME</a>
             <a class="btn" href="priser.html">Se priser</a>
           </div>
@@ -38,42 +45,68 @@
 
         <div class="card reveal">
           <div class="card__inner">
-            <div class="muted" style="margin-bottom:10px;">Åpningstider / kontakt (kort)</div>
-            <div>Telefon: …</div>
-            <div>Adresse: …</div>
-            <div class="muted" style="margin-top:10px;">(erstatt med dagens innhold)</div>
+            <div class="muted" style="margin-bottom:10px;">Praktisk informasjon</div>
+            <div><strong>Telefon:</strong> 99 99 99 99</div>
+            <div><strong>Adresse:</strong> Storgata 1, 0000 Oslo</div>
+            <div class="muted" style="margin-top:10px;">Åpent etter avtale</div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- BEHANDLINGER PREVIEW -->
     <section class="section section--tight">
       <div class="container">
         <div class="reveal">
-          <h2 class="h2">Populære behandlinger</h2>
-          <p class="muted">Kort intro. Ingen lange avsnitt.</p>
+          <h2 class="h2">Våre behandlinger</h2>
+          <p class="muted">En oversikt over våre mest populære behandlinger.</p>
         </div>
 
-        <div class="grid-2" style="margin-top:18px;">
-          <div class="card reveal"><div class="card__inner">Behandling 1</div></div>
-          <div class="card reveal"><div class="card__inner">Behandling 2</div></div>
+        <div class="grid-2" style="margin-top:22px;">
+          <div class="card reveal"><div class="card__inner">Microblading</div></div>
+          <div class="card reveal"><div class="card__inner">Hudforbedring</div></div>
+          <div class="card reveal"><div class="card__inner">Bryn &amp; vipper</div></div>
+          <div class="card reveal"><div class="card__inner">Laserbehandling</div></div>
+        </div>
+
+        <div style="margin-top:22px;">
+          <a class="btn" href="behandlinger.html">Se alle behandlinger</a>
         </div>
       </div>
     </section>
 
+    <!-- OM OSS -->
     <section class="section">
       <div class="container">
         <div class="card reveal">
           <div class="card__inner">
             <h2 class="h2">Møt oss</h2>
-            <p class="muted">Kort tekst + lenke til team.</p>
-            <a class="btn" href="team.html">Se teamet</a>
+            <p class="muted">
+              SOMI består av erfarne behandlere med fokus på kvalitet, trygghet og personlig oppfølging.
+            </p>
+            <a class="btn" href="team.html">Møt teamet</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section section--tight">
+      <div class="container">
+        <div class="card reveal">
+          <div class="card__inner" style="display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+            <div>
+              <div class="kicker">Klar for å starte?</div>
+              <h2 class="h2" style="margin:6px 0 0;">Bestill konsultasjon i dag</h2>
+            </div>
+            <a class="btn btn--primary" href="booking.html">BOOK TIME</a>
           </div>
         </div>
       </div>
     </section>
   </main>
 
+  <!-- FOOTER -->
   <div data-include="partials/footer.html"></div>
 </body>
 </html>
