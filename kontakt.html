@@ -6,6 +6,17 @@
   <title>SOMI – Kontakt oss</title>
   <meta name="description" content="Kontakt SOMI Klinikken – adresse, telefon, e-post og skjema." />
 
+  <base href="/" />
+
+  <!-- Delte stilark -->
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/motion.css" />
+  <link rel="stylesheet" href="css/header.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+
   <style>
     :root{
       --charcoal:#383838;      /* Brandbook primary */
@@ -313,39 +324,6 @@
       background: var(--pink);
     }
 
-    /* Footer */
-    footer{
-      margin-top: 40px;
-      background: #1f1f1f;
-      color: rgba(255,255,255,.92);
-    }
-    .footer-inner{
-      padding: 34px 0;
-      display:grid;
-      grid-template-columns: 1fr 1fr auto;
-      gap: 18px;
-      align-items:flex-start;
-    }
-    .footer-brand{
-      display:grid;
-      gap: 8px;
-    }
-    .footer-brand .logo{
-      letter-spacing: .12em;
-      font-weight: 700;
-      font-size: 14px;
-    }
-    .footer-brand small{opacity:.72}
-
-    .footer-nav{
-      display:grid;
-      gap: 8px;
-    }
-    .footer-nav a{opacity:.78}
-    .footer-nav a:hover{opacity:1}
-
-    .copyright{opacity:.68; font-size: 13px; white-space: nowrap}
-
     /* Fullscreen menu */
     .menu-overlay{
       position: fixed;
@@ -446,8 +424,6 @@
     @media (max-width: 900px){
       .grid{grid-template-columns: 1fr}
       .content{margin-top: -64px}
-      .footer-inner{grid-template-columns: 1fr; gap: 14px}
-      .copyright{white-space: normal}
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -587,28 +563,10 @@
         </div>
       </section>
 
-      <footer role="contentinfo">
-        <div class="container footer-inner">
-          <div class="footer-brand">
-            <div class="logo">SOMI</div>
-            <small>Estetisk klinikk</small>
-          </div>
-
-          <nav class="footer-nav" aria-label="Footer meny">
-            <a href="index.html">Hjem</a>
-            <a href="team.html">Møt oss</a>
-            <a href="behandlinger.html">Behandlinger</a>
-            <a href="blogg.html">Blogg</a>
-            <a href="faq.html">FAQ</a>
-            <a href="kontakt.html" aria-current="page">Kontakt</a>
-            <a href="personvern.html">Personvern</a>
-          </nav>
-
-          <div class="copyright">© SOMI</div>
-        </div>
-      </footer>
     </div>
   </main>
+
+  <div data-include="partials/footer.html"></div>
 
   <!-- Fullscreen menu overlay -->
   <div class="menu-overlay" id="menu" aria-hidden="true">
@@ -636,6 +594,10 @@
       </div>
     </div>
   </div>
+
+  <script defer src="js/includes.js"></script>
+  <script defer src="js/site.js"></script>
+  <script defer src="js/i18n.js"></script>
 
   <script>
     (function(){
