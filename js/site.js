@@ -8,9 +8,19 @@ function initReveal() {
   els.forEach(el => io.observe(el));
 }
 
+function applyBookingLinks() {
+  const bookingUrl = window.SOMI_BOOKING_URL || "https://somi.bestille.no/";
+
+  document.querySelectorAll("[data-booking-link]").forEach((link) => {
+    link.setAttribute("href", bookingUrl);
+    link.setAttribute("target", "_blank");
+    link.setAttribute("rel", "noopener");
+  });
+}
+
 function setActiveLinks() {
   const currentPath = new URL(location.href).pathname.replace(/\/$/, "");
-  document.querySelectorAll(".nav a, .mobile-panel__inner a").forEach((a) => {
+  document.querySelectorAll(".nav a, .nav-mobile a, [data-mobile-panel] a").forEach((a) => {
     const href = a.getAttribute("href") || "";
     const targetPath = new URL(href, document.baseURI).pathname.replace(/\/$/, "");
     const basePath = new URL("./", document.baseURI).pathname.replace(/\/$/, "");
@@ -30,27 +40,33 @@ function initHeader() {
   window.addEventListener("scroll", onScroll, { passive: true });
 
   const btn = header.querySelector("[data-menu-btn]");
+  const closeBtn = header.querySelector("[data-close-menu]");
   const panel = document.querySelector("[data-mobile-panel]");
-  if (btn && panel) {
-    btn.addEventListener("click", () => {
-      const open = panel.classList.toggle("is-open");
-      btn.setAttribute("aria-expanded", String(open));
-      document.body.classList.toggle("no-scroll", open);
-    });
 
-    panel.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        panel.classList.remove("is-open");
-        btn.setAttribute("aria-expanded", "false");
-        document.body.classList.remove("no-scroll");
-      });
-    });
+  const toggleMenu = (forceOpen) => {
+    if (!panel || !btn) return;
+    const nextOpen = typeof forceOpen === "boolean" ? forceOpen : panel.hasAttribute("hidden");
+    panel.toggleAttribute("hidden", !nextOpen);
+    panel.classList.toggle("is-open", nextOpen);
+    btn.setAttribute("aria-expanded", String(nextOpen));
+    document.body.classList.toggle("no-scroll", nextOpen);
+  };
+
+  if (btn && panel) {
+    btn.addEventListener("click", () => toggleMenu());
   }
+  if (closeBtn) {
+    closeBtn.addEventListener("click", () => toggleMenu(false));
+  }
+  panel?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => toggleMenu(false));
+  });
 }
 
 // Kjør etter at header/footer er injisert
 document.addEventListener("partials:loaded", () => {
   initReveal();
   initHeader();
+  applyBookingLinks();
   setActiveLinks();
 });

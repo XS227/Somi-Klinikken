@@ -1,0 +1,50 @@
+<header class="site-header" data-site-header>
+  <div class="container header__row">
+    <!-- Logo only -->
+    <a class="brand" href="/index.html" aria-label="SOMI Klinikken">
+      <img class="brand__logo" src="/assets/img/brand/logo.png" alt="SOMI Klinikken" />
+    </a>
+
+    <nav class="nav" aria-label="Hovedmeny">
+      <a href="/index.html">Start</a>
+      <a href="/om.html">Om</a>
+      <a href="/team.html">Team</a>
+      <a href="/behandlinger.html">Behandlinger</a>
+      <a href="/priser.html">Priser</a>
+      <a href="/blogg.html">Blogg</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+
+    <div class="header__actions">
+      <a class="btn btn--primary"
+         href="#"
+         data-booking-link
+         target="_blank"
+         rel="noopener">BOOK TIME</a>
+
+      <button class="menu-btn" type="button"
+              data-menu-btn aria-expanded="false"
+              aria-controls="mobileMenu"
+              aria-label="Åpne meny">☰</button>
+    </div>
+  </div>
+
+  <div class="mobile-panel" id="mobileMenu" data-mobile-panel hidden>
+    <div class="mobile-panel__inner">
+      <a href="/index.html">Start</a>
+      <a href="/om.html">Om</a>
+      <a href="/team.html">Team</a>
+      <a href="/behandlinger.html">Behandlinger</a>
+      <a href="/priser.html">Priser</a>
+      <a href="/blogg.html">Blogg</a>
+      <a href="/kontakt.html">Kontakt</a>
+
+      <a class="btn btn--primary"
+         href="#"
+         data-booking-link
+         target="_blank"
+         rel="noopener"
+         style="justify-content:center;">BOOK TIME</a>
+    </div>
+  </div>
+</header>
