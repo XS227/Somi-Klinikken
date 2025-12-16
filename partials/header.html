@@ -1,47 +1,44 @@
 <header class="site-header" data-site-header>
-  <div class="somi-container header-inner">
-    <a class="brand" href="/">
-      <img src="assets/img/brand/logo.svg" alt="SOMI Klinikken" class="brand-logo" />
+  <div class="container header__row">
+    <!-- Logo only -->
+    <a class="brand" href="/index.html" aria-label="SOMI Klinikken">
+      <img class="brand__logo" src="/logo.png" alt="SOMI Klinikken" />
     </a>
 
-    <nav class="nav nav-desktop" aria-label="Hovedmeny">
-      <a href="#behandlinger">Behandlinger</a>
-      <a href="#fordeler">Hvorfor SOMI</a>
-      <a href="#about">Om klinikken</a>
-      <a href="#team">Team</a>
-      <a href="#faq">Spørsmål &amp; svar</a>
-      <a class="btn btn-ghost" href="#contact">Kontakt</a>
+    <nav class="nav" aria-label="Hovedmeny">
+      <a href="/index.html">Start</a>
+      <a href="/om.html">Om</a>
+      <a href="/team.html">Team</a>
+      <a href="/behandlinger.html">Behandlinger</a>
+      <a href="/priser.html">Priser</a>
+      <a href="/blogg.html">Blogg</a>
+      <a href="/kontakt.html">Kontakt</a>
     </nav>
 
-    <div class="header-actions">
-      <a class="btn btn-primary" href="https://somi.bestille.no" target="_blank" rel="noopener noreferrer">Bestill time</a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" data-menu-btn>
-        <span class="burger" aria-hidden="true"></span>
-        <span class="sr-only">Åpne meny</span>
+    <div class="header__actions">
+      <a class="btn btn--primary" href="/booking.html">BOOK TIME</a>
+
+      <button class="menu-btn" type="button"
+              data-menu-btn aria-expanded="false"
+              aria-controls="mobileMenu"
+              aria-label="Åpne meny">
+        ☰
       </button>
     </div>
   </div>
 
-  <div class="mobile-menu" data-mobile-panel id="mobile-menu" hidden>
-    <div class="mobile-menu__panel">
-      <div class="mobile-menu__top">
-        <span class="mobile-menu__title">Meny</span>
-        <button class="menu-close" type="button" aria-label="Lukk meny" data-close-menu>×</button>
-      </div>
+  <!-- Mobile menu -->
+  <div class="mobile-panel" id="mobileMenu" data-mobile-panel>
+    <div class="mobile-panel__inner">
+      <a href="/index.html">Start</a>
+      <a href="/om.html">Om</a>
+      <a href="/team.html">Team</a>
+      <a href="/behandlinger.html">Behandlinger</a>
+      <a href="/priser.html">Priser</a>
+      <a href="/blogg.html">Blogg</a>
+      <a href="/kontakt.html">Kontakt</a>
 
-      <nav class="nav-mobile" aria-label="Mobilmeny">
-        <a href="#behandlinger">Behandlinger</a>
-        <a href="#fordeler">Hvorfor SOMI</a>
-        <a href="#about">Om klinikken</a>
-        <a href="#team">Team</a>
-        <a href="#faq">Spørsmål &amp; svar</a>
-        <a href="#contact">Kontakt</a>
-      </nav>
-
-      <div class="mobile-menu__cta">
-        <a class="btn btn-primary btn-block" href="https://somi.bestille.no" target="_blank" rel="noopener noreferrer">Bestill time</a>
-        <a class="btn btn-ghost btn-block" href="#contact">Kontakt oss</a>
-      </div>
+      <a class="btn btn--primary" href="/booking.html" style="justify-content:center;">BOOK TIME</a>
     </div>
   </div>
 </header>
