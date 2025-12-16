@@ -433,135 +433,70 @@
 </head>
 
 <body>
-  <!-- Sticky header -->
-  <header class="site-header" role="banner">
-    <div class="container header-inner">
-      <a class="brand" href="index.html" aria-label="Gå til forsiden">
-        <span class="wordmark">SOMI</span>
-      </a>
+  <div data-include="partials/header.html"></div>
 
-      <div class="header-actions">
-        <a class="btn btn-primary" href="#booking" aria-label="Book time">BOOK TIME</a>
-        <button class="icon-btn" id="menuOpen" aria-label="Åpne meny" aria-controls="menu" aria-expanded="false">
-          <span class="burger" aria-hidden="true">
-            <span></span><span></span><span></span>
-          </span>
-        </button>
-      </div>
-    </div>
-  </header>
+  <main>
+    <section class="section contact-hero" aria-label="Kart og introduksjon">
+      <div class="container">
+        <div class="contact-hero__map">
+          <iframe
+            title="Kart – SOMI Klinikken"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=Langgata%2031,%204307%20Sandnes&output=embed"></iframe>
+          <div class="contact-hero__veil" aria-hidden="true"></div>
 
-  <!-- Map hero (replaces white empty space) -->
-  <section class="hero" aria-label="Kart og introduksjon">
-    <div class="container">
-      <div class="map-hero">
-        <!-- Replace src with your preferred embed. This is a safe placeholder. -->
-        <iframe
-          title="Kart – SOMI Klinikken"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps?q=Langgata%2031,%204307%20Sandnes&output=embed">
-        </iframe>
-        <div class="map-veil" aria-hidden="true"></div>
-
-        <div class="hero-title">
-          <div class="title">
-            <h1>Kontakt oss</h1>
-            <p>Har du spørsmål om behandlinger, priser eller ønsker en konsultasjon? Ta kontakt – vi hjelper deg med riktig behandling og tidspunkt.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Overlapping content that “covers” the map on scroll -->
-  <main class="content" role="main">
-    <div class="container">
-      <section class="card-surface" aria-label="Kontaktinnhold">
-        <div class="grid">
-          <!-- Left: contact info -->
-          <div>
-            <h2 class="section-title">Kontaktinformasjon</h2>
-            <div class="accent-lines" aria-hidden="true">
-              <span class="line"></span><span class="dot"></span><span class="line"></span>
+          <div class="contact-hero__title">
+            <div class="contact-chip">
+              <div class="kicker">Kontakt</div>
+              <h1 class="h1">Kontakt oss</h1>
+              <p class="muted">Har du spørsmål om behandlinger, priser eller ønsker en konsultasjon? Ta kontakt – vi hjelper deg med riktig behandling og tidspunkt.</p>
             </div>
-
-            <div class="meta">
-              <div class="info-block">
-                <h3>Adresse</h3>
-                <p><strong>SOMI Klinikken</strong><br/>Langgata 31<br/>4307 Sandnes</p>
-              </div>
-
-              <div class="info-block">
-                <h3>Telefon</h3>
-                <p><a class="pill" href="tel:+4792939171">+47 929 39 171</a></p>
-              </div>
-
-              <div class="info-block">
-                <h3>E-post</h3>
-                <p><a class="pill" href="mailto:post@somiklinikken.no">post@somiklinikken.no</a></p>
-              </div>
-
-              <div class="info-block">
-                <h3>Åpningstider</h3>
-                <p>Klinikken er åpen etter avtale. Se tilgjengelige tider i onlinebooking, eller ta kontakt for timebestilling.</p>
-              </div>
-
-              <div class="info-block" id="booking">
-                <h3>Online booking</h3>
-                <p class="fineprint">Du kan booke konsultasjon og behandling direkte via bookingsystemet.</p>
-                <p style="margin:12px 0 0">
-                  <a class="btn btn-primary" href="#" aria-label="Gå til online booking">Gå til online booking</a>
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Right: message form -->
-          <div>
-            <h2 class="section-title">Send oss en melding</h2>
-            <div class="accent-lines" aria-hidden="true">
-              <span class="line"></span><span class="dot"></span><span class="line"></span>
-            </div>
-
-            <div class="info-block">
-              <form action="#" method="post" novalidate>
-                <label>
-                  Navn*
-                  <input name="name" autocomplete="name" required />
-                </label>
-
-                <label>
-                  E-post*
-                  <input name="email" type="email" autocomplete="email" required />
-                </label>
-
-                <label>
-                  Telefon
-                  <input name="phone" type="tel" autocomplete="tel" />
-                </label>
-
-                <label>
-                  Melding*
-                  <textarea name="message" required></textarea>
-                </label>
-
-                <p class="fineprint">Vi svarer deg så snart som mulig. Ikke send sensitive personopplysninger i dette skjemaet.</p>
-
-                <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:6px">
-                  <button class="btn" type="submit">Send melding</button>
-                  <a class="btn" href="tel:+4792939171">Ring oss</a>
-                </div>
-              </form>
-            </div>
-
-            <div class="info-block" style="margin-top:14px">
-              <h3>Finn oss</h3>
-              <p>Klinikken ligger sentralt i Sandnes, med kort avstand til kollektivtransport og gode parkeringsmuligheter i området rundt Langgata.</p>
+            <div class="contact-chip contact-chip--ghost">
+              <div class="muted" style="margin-bottom:6px;">Praktisk info</div>
+              <div>Åpent etter avtale</div>
+              <div class="muted">Langgata 31, 4307 Sandnes</div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
+
+    <section class="section section--tight contact-content" aria-label="Kontaktinformasjon og skjema">
+      <div class="container contact-grid">
+        <div class="card contact-card">
+          <div class="card__inner">
+            <div class="kicker">KOM I KONTAKT</div>
+            <h2 class="h2" style="margin-bottom:6px;">Kontaktinformasjon</h2>
+            <p class="muted">Ring, send e-post eller bruk skjemaet – vi svarer så raskt vi kan.</p>
+
+            <dl class="contact-list">
+              <div>
+                <dt>Adresse</dt>
+                <dd>SOMI Klinikken<br>Langgata 31<br>4307 Sandnes</dd>
+              </div>
+              <div>
+                <dt>Telefon</dt>
+                <dd><a class="pill" href="tel:+4792939171">+47 929 39 171</a></dd>
+              </div>
+              <div>
+                <dt>E-post</dt>
+                <dd><a class="pill" href="mailto:post@somiklinikken.no">post@somiklinikken.no</a></dd>
+              </div>
+              <div>
+                <dt>Åpningstider</dt>
+                <dd>Klinikken er åpen etter avtale. Se tilgjengelige tider i onlinebooking, eller ta kontakt for timebestilling.</dd>
+              </div>
+              <div>
+                <dt>Online booking</dt>
+                <dd>
+                  <p class="muted" style="margin: 0 0 10px;">Du kan booke konsultasjon og behandling direkte via bookingsystemet.</p>
+                  <a class="btn btn--primary" href="booking.html">Gå til online booking</a>
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
 
     </div>
   </main>
@@ -629,13 +564,6 @@
         if (e.key === 'Escape' && overlay.getAttribute('aria-hidden') === 'false') closeMenu();
       });
 
-      // Close when clicking a menu link
-      overlay.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => {
-          if (overlay.getAttribute('aria-hidden') === 'false') closeMenu();
-        });
-      });
-    })();
-  </script>
+  <div data-include="partials/footer.html"></div>
 </body>
 </html>
