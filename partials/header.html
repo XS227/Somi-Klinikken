@@ -1,40 +1,38 @@
-<header class="site-header" data-site-header>
-  <div class="container header__row">
-    <a class="brand" href="/index.html" aria-label="SOMI Klinikken">
-      <img class="brand__logo" src="/logo.png" alt="SOMI Klinikken" />
-    </a>
+<header class="site-header" role="banner">
+  <div class="container">
+    <div class="header__row">
+      <a class="brand" href="/index.html" aria-label="SOMI Klinikken">
+        <img class="brand__logo" src="/logo.png" alt="SOMI Klinikken" />
+      </a>
 
-    <nav class="nav" aria-label="Hovedmeny">
-      <a href="/index.html">Start</a>
-      <a href="/om.html">Om</a>
-      <a href="/team.html">Team</a>
-      <a href="/behandlinger.html">Behandlinger</a>
-      <a href="/priser.html">Priser</a>
-      <a href="/blogg.html">Blogg</a>
-      <a href="/kontakt.html">Kontakt</a>
-    </nav>
+      <nav class="nav" aria-label="Hovedmeny">
+        <a href="/index.html">Start</a>
+        <a href="/om.html">Om</a>
+        <a href="/team.html">Team</a>
+        <a href="/behandlinger.html">Behandlinger</a>
+        <a href="/priser.html">Priser</a>
+        <a href="/blogg.html">Blogg</a>
+        <a href="/kontakt.html">Kontakt</a>
+      </nav>
 
-    <div class="header__actions">
-      <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
-
-      <button class="menu-btn" type="button"
-              data-menu-btn aria-expanded="false"
-              aria-controls="mobileMenu"
-              aria-label="Åpne meny">☰</button>
+      <div class="header__actions">
+        <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
+        <button class="menu-btn" type="button" aria-label="Åpne meny" aria-expanded="false" data-menu-toggle>☰</button>
+      </div>
     </div>
   </div>
 
-  <div class="mobile-panel" id="mobileMenu" data-mobile-panel>
+  <!-- Mobile panel (absolute via header.css) -->
+  <div class="mobile-panel" data-mobile-panel>
     <div class="mobile-panel__inner">
-      <a href="/index.html">Start</a>
-      <a href="/om.html">Om</a>
-      <a href="/team.html">Team</a>
-      <a href="/behandlinger.html">Behandlinger</a>
-      <a href="/priser.html">Priser</a>
-      <a href="/blogg.html">Blogg</a>
-      <a href="/kontakt.html">Kontakt</a>
-
-      <a class="btn btn--primary" href="#" data-booking-link style="justify-content:center;">BOOK TIME</a>
+      <a class="btn" href="/index.html">Start</a>
+      <a class="btn" href="/om.html">Om</a>
+      <a class="btn" href="/team.html">Team</a>
+      <a class="btn" href="/behandlinger.html">Behandlinger</a>
+      <a class="btn" href="/priser.html">Priser</a>
+      <a class="btn" href="/blogg.html">Blogg</a>
+      <a class="btn" href="/kontakt.html">Kontakt</a>
+      <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
     </div>
   </div>
 </header>
