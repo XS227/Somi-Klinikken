@@ -1,37 +1,41 @@
-<footer class="site-footer">
-  <div class="container footer__grid">
-    <div class="footer__col">
-      <a class="footer__brand" href="/index.html" aria-label="SOMI Klinikken">
-        <img class="footer__logo" src="/logo.png" alt="SOMI Klinikken" />
-      </a>
-
-      <div class="muted footer__text">
-        Langgata 31, 4307 Sandnes<br>
-        <a href="tel:+4792939171">+47 929 39 171</a><br>
-        <a href="mailto:[email protected]">[email protected]</a><br>
-        Klinikken er åpen etter avtale.
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand">
+          <img class="footer__logo" src="/logo.png" alt="SOMI Klinikken" />
+        </div>
+        <div class="footer__muted">
+          Langgata 31, 4307 Sandnes<br>
+          +47 929 39 171<br>
+          [email protected]<br>
+          Klinikken er åpen etter avtale.
+        </div>
+        <div style="margin-top:14px;">
+          <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
+        </div>
       </div>
 
-      <div style="margin-top:14px;">
-        <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
+      <div class="footer__links" aria-label="Meny">
+        <strong>Meny</strong>
+        <a href="/index.html">Start</a>
+        <a href="/om.html">Om</a>
+        <a href="/team.html">Team</a>
+        <a href="/behandlinger.html">Behandlinger</a>
+        <a href="/priser.html">Priser</a>
+        <a href="/blogg.html">Blogg</a>
+        <a href="/kontakt.html">Kontakt</a>
+      </div>
+
+      <div class="footer__links" aria-label="Juridisk">
+        <strong>Info</strong>
+        <a href="/personvern.html">Personvern</a>
       </div>
     </div>
 
-    <nav class="footer__nav" aria-label="Footer meny">
-      <a href="/index.html">Start</a>
-      <a href="/om.html">Om</a>
-      <a href="/team.html">Team</a>
-      <a href="/behandlinger.html">Behandlinger</a>
-      <a href="/priser.html">Priser</a>
-      <a href="/blogg.html">Blogg</a>
-      <a href="/kontakt.html">Kontakt</a>
-      <a href="/personvern.html">Personvern</a>
-    </nav>
-
-    <div class="muted footer__copy">© <span data-year></span> SOMI Klinikken</div>
+    <div class="footer__bottom">
+      <div>© SOMI Klinikken</div>
+      <div>Sandnes</div>
+    </div>
   </div>
-
-  <script>
-    document.querySelectorAll("[data-year]").forEach(n => n.textContent = new Date().getFullYear());
-  </script>
 </footer>
