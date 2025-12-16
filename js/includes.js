@@ -1,17 +1,9 @@
-/* includes.js — HTML partial loader
-   - Loads elements with [data-include="path/to/file.html"]
-   - Supports <base href="..."> automatically via document.baseURI
-   - Dispatches: document event "partials:loaded" when done
-*/
-
 (function () {
   "use strict";
 
   async function fetchText(url) {
     const res = await fetch(url, { cache: "no-store" });
-    if (!res.ok) {
-      throw new Error(`Include failed: ${res.status} ${res.statusText} (${url})`);
-    }
+    if (!res.ok) throw new Error(`Include failed: ${res.status} (${url})`);
     return await res.text();
   }
 
@@ -27,16 +19,12 @@
         const file = el.getAttribute("data-include");
         if (!file) return;
 
-        // Resolve relative/absolute paths safely (works with <base href>)
         const url = new URL(file, document.baseURI).toString();
 
         try {
-          const html = await fetchText(url);
-          el.innerHTML = html;
+          el.innerHTML = await fetchText(url);
         } catch (err) {
           console.error(err);
-
-          // Fail gracefully: leave empty but visible in DevTools
           el.innerHTML = "";
           el.setAttribute("data-include-error", "true");
           el.setAttribute("data-include-url", url);
