@@ -8,13 +8,14 @@ function initReveal() {
   els.forEach(el => io.observe(el));
 }
 
-function applyBookingLinks() {
-  const bookingUrl = window.SOMI_BOOKING_URL || "https://somi.bestille.no/";
+function wireBookingLinks() {
+  const url = window.SOMI_BOOKING_URL;
+  if (!url) return;
 
-  document.querySelectorAll("[data-booking-link]").forEach((link) => {
-    link.setAttribute("href", bookingUrl);
-    link.setAttribute("target", "_blank");
-    link.setAttribute("rel", "noopener");
+  document.querySelectorAll("[data-booking-link]").forEach(a => {
+    a.setAttribute("href", url);
+    a.setAttribute("target", "_blank");
+    a.setAttribute("rel", "noopener");
   });
 }
 
@@ -67,6 +68,6 @@ function initHeader() {
 document.addEventListener("partials:loaded", () => {
   initReveal();
   initHeader();
-  applyBookingLinks();
+  wireBookingLinks();
   setActiveLinks();
 });
