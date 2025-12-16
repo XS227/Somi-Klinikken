@@ -2,11 +2,16 @@
   position: sticky;
   top: 0;
   z-index: 50;
+
   background: rgba(255,255,255,0.55);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(56,56,56,0.08);
+
   transition: background var(--dur-2) var(--ease-out), border-color var(--dur-2) var(--ease-out);
+  /* IMPORTANT: allow absolute dropdown panel to overflow */
+  overflow: visible;
 }
+
 .site-header.is-scrolled{
   background: rgba(255,255,255,0.78);
   border-bottom-color: rgba(56,56,56,0.12);
@@ -21,8 +26,6 @@
 }
 
 .brand{ display:inline-flex; align-items:center; }
-
-/* FIX: ensure logo renders correctly and never collapses to tiny text-like marks */
 .brand__logo{
   width: 56px;
   height: 56px;
@@ -43,9 +46,17 @@
   transition: opacity var(--dur-2) var(--ease-out);
 }
 .nav a:hover{ opacity: 1; }
-.nav a.is-active{ opacity: 1; text-decoration: underline; text-underline-offset: 6px; }
+.nav a.is-active{
+  opacity: 1;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
 
-.header__actions{ display:flex; align-items:center; gap:10px; }
+.header__actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
 
 .menu-btn{
   display: none;
@@ -56,27 +67,46 @@
   line-height: 1;
 }
 
+/* ===== Mobile panel: MUST NOT affect header height ===== */
 .mobile-panel{
-  display: none;
+  /* Hidden by default */
+  display: block;
+  position: absolute;       /* key fix */
+  top: 100%;
+  left: 0;
+  right: 0;
+
   opacity: 0;
   transform: translateY(-8px);
   pointer-events: none;
+
   transition: opacity var(--dur-2) var(--ease-out), transform var(--dur-2) var(--ease-out);
   border-top: 1px solid rgba(56,56,56,0.08);
   background: rgba(255,255,255,0.90);
   backdrop-filter: blur(10px);
+
   max-height: calc(100vh - 70px);
   overflow: auto;
+
+  /* IMPORTANT: do not reserve space */
+  height: auto;
 }
+
 .mobile-panel.is-open{
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
 }
+
 .mobile-panel__inner{
   display: grid;
   gap: 12px;
   padding: 18px var(--gutter) 22px;
+}
+
+/* Desktop */
+@media (min-width: 981px){
+  .mobile-panel{ display:none; }
 }
 
 /* Mobile */
@@ -84,8 +114,8 @@
   .header__row{ grid-template-columns: 1fr auto; }
   .nav{ display:none; }
   .menu-btn{ display:inline-flex; }
-  .mobile-panel{ display:block; }
 }
+
 @media (max-width: 480px){
   .brand__logo{ width: 48px; height: 48px; }
   .btn.btn--primary{ padding: 10px 14px; }
