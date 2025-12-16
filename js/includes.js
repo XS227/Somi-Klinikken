@@ -1,27 +1,51 @@
-async function includePartials() {
-  const nodes = document.querySelectorAll("[data-include]");
+/* includes.js — HTML partial loader
+   - Loads elements with [data-include="path/to/file.html"]
+   - Supports <base href="..."> automatically via document.baseURI
+   - Dispatches: document event "partials:loaded" when done
+*/
 
-  await Promise.all([...nodes].map(async (el) => {
-    const file = el.getAttribute("data-include");
+(function () {
+  "use strict";
 
-    // Støtter både relative og absolute paths
-    const url = new URL(file, document.baseURI);
-
-    try {
-      const res = await fetch(url.toString(), { cache: "no-store" });
-      if (!res.ok) {
-        console.error("Include failed:", url.toString(), res.status);
-        el.innerHTML = "";
-        return;
-      }
-      el.innerHTML = await res.text();
-    } catch (err) {
-      console.error("Include error:", url.toString(), err);
-      el.innerHTML = "";
+  async function fetchText(url) {
+    const res = await fetch(url, { cache: "no-store" });
+    if (!res.ok) {
+      throw new Error(`Include failed: ${res.status} ${res.statusText} (${url})`);
     }
-  }));
+    return await res.text();
+  }
 
-  document.dispatchEvent(new CustomEvent("partials:loaded"));
-}
+  async function includePartials() {
+    const nodes = Array.from(document.querySelectorAll("[data-include]"));
+    if (!nodes.length) {
+      document.dispatchEvent(new CustomEvent("partials:loaded"));
+      return;
+    }
 
-document.addEventListener("DOMContentLoaded", includePartials);
+    await Promise.all(
+      nodes.map(async (el) => {
+        const file = el.getAttribute("data-include");
+        if (!file) return;
+
+        // Resolve relative/absolute paths safely (works with <base href>)
+        const url = new URL(file, document.baseURI).toString();
+
+        try {
+          const html = await fetchText(url);
+          el.innerHTML = html;
+        } catch (err) {
+          console.error(err);
+
+          // Fail gracefully: leave empty but visible in DevTools
+          el.innerHTML = "";
+          el.setAttribute("data-include-error", "true");
+          el.setAttribute("data-include-url", url);
+        }
+      })
+    );
+
+    document.dispatchEvent(new CustomEvent("partials:loaded"));
+  }
+
+  document.addEventListener("DOMContentLoaded", includePartials);
+})();
