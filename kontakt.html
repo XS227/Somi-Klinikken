@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kontakt | SOMI Klinikken Sandnes</title>
+  <meta name="description" content="Kontakt SOMI Klinikken i Sandnes. Adresse, telefon og e-post. Bestill time online på somi.bestille.no." />
+  <link rel="canonical" href="/kontakt.html" />
+  <base href="/" />
+
+  <link rel="stylesheet" href="/css/tokens.css" />
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/layout.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/motion.css" />
+  <link rel="stylesheet" href="/css/header.css" />
+  <link rel="stylesheet" href="/css/footer.css" />
+  <link rel="stylesheet" href="/css/contact.css" />
+
+  <script defer src="/js/config.js"></script>
+  <script defer src="/js/includes.js"></script>
+  <script defer src="/js/site.js"></script>
+
+  <style>
+    .page-hero{ padding-top: calc(var(--header-h,72px) + 18px); }
+    .kicker{ font-family:"Corbel",system-ui,sans-serif; letter-spacing:.08em; text-transform:uppercase; font-size:12px; opacity:.75; }
+    .grid{ display:grid; grid-template-columns: 1.05fr .95fr; gap: 18px; align-items:start; }
+    @media (max-width: 900px){ .grid{ grid-template-columns:1fr; } }
+    .btn--primary{ background: rgba(56,56,56,.95); }
+    .map{
+      border-radius: var(--r-lg);
+      background: rgba(56,56,56,.06);
+      border: 1px solid rgba(56,56,56,.10);
+      overflow:hidden;
+      min-height: 260px;
+    }
+    .map__inner{ padding: 18px; }
+  </style>
+</head>
+
+<body>
+  <div data-include="/partials/header.html"></div>
+
+  <main>
+    <section class="section page-hero">
+      <div class="container grid">
+        <div class="reveal">
+          <div class="kicker">Kontakt</div>
+          <h1 class="h1">Ta kontakt eller bestill time</h1>
+          <p class="muted">Klinikken er åpen etter avtale. For raskest mulig booking: bruk BOOK TIME.</p>
+
+          <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:18px;">
+            <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
+            <a class="btn" href="/priser.html">Se priser</a>
+          </div>
+
+          <div class="card reveal" style="margin-top:18px;">
+            <div class="card__inner">
+              <div><strong>Adresse</strong><br>Langgata 31, 4307 Sandnes</div>
+              <div style="margin-top:10px;"><strong>Telefon</strong><br><a href="tel:+4792939171">+47 929 39 171</a></div>
+              <div style="margin-top:10px;"><strong>E-post</strong><br><a href="mailto:[email protected]">[email protected]</a></div>
+              <div class="muted" style="margin-top:10px;">Klinikken er åpen etter avtale.</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="reveal">
+          <div class="map">
+            <div class="map__inner">
+              <div class="kicker">Kart</div>
+              <div class="muted" style="margin-top:8px;">
+                Åpne i Google Maps:
+                <a href="https://www.google.com/maps/search/?api=1&query=Langgata+31+4307+Sandnes" target="_blank" rel="noopener">Langgata 31, Sandnes</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="card reveal" style="margin-top:14px;">
+            <div class="card__inner">
+              <div class="kicker">Send melding</div>
+              <p class="muted">Dette skjemaet er kun UI (ingen backend). Hvis du vil, legger vi inn e-post/CRM senere.</p>
+              <form onsubmit="event.preventDefault(); alert('Takk! Dette skjemaet er foreløpig ikke koblet til.');">
+                <label class="field" style="border-radius: 14px; margin-top:10px;">
+                  <span style="opacity:.65;">Navn</span>
+                  <input type="text" required />
+                </label>
+                <label class="field" style="border-radius: 14px; margin-top:10px;">
+                  <span style="opacity:.65;">E-post</span>
+                  <input type="email" required />
+                </label>
+                <label class="field" style="border-radius: 14px; margin-top:10px;">
+                  <span style="opacity:.65;">Melding</span>
+                  <input type="text" required />
+                </label>
+                <div style="margin-top:12px;">
+                  <button class="btn btn--primary" type="submit">Send</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </section>
+  </main>
+
+  <div data-include="/partials/footer.html"></div>
+</body>
+</html>
+
