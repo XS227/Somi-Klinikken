@@ -1,29 +1,33 @@
-:root {
-  /* Brand colors */
-  --c-ink: #383838;
-  --c-white: #FFFFFF;
-  --c-warm: #E8E6E4;
-  --c-nude: #F4E3DC;
-  --c-pink: #DDB3B3;
+:root{
+  /* Brand neutrals (soft, not sterile) */
+  --c-bg: #F3F1EE;
+  --c-surface: rgba(255,255,255,0.72);
+  --c-surface-strong: rgba(255,255,255,0.86);
+  --c-border: rgba(56,56,56,0.12);
+  --c-border-strong: rgba(56,56,56,0.18);
+  --c-text: rgba(56,56,56,0.96);
+  --c-muted: rgba(56,56,56,0.72);
 
-  /* Gradient background */
-  --bg-grad: linear-gradient(45deg, rgb(239,239,238), rgb(220,220,219));
+  /* Subtle brand pink accent (gender-neutral application) */
+  --c-accent: #DDB3B3;         /* dusty rose */
+  --c-accent-2: #E7C7C7;       /* lighter */
+  --c-accent-ink: rgba(56,56,56,0.96);
 
-  /* Radius (rounded forms must be observed) */
-  --r-lg: 28px;
-  --r-md: 18px;
+  /* Radius & shadow */
   --r-sm: 12px;
+  --r-md: 16px;
+  --r-lg: 22px;
 
-  /* Shadows */
-  --sh-soft: 0 20px 60px rgba(0,0,0,0.08);
-
-  /* Layout */
-  --container: 1160px;
-  --gutter: 20px;
+  --sh-soft: 0 14px 34px rgba(0,0,0,0.08);
 
   /* Motion */
-  --ease-out: cubic-bezier(.22,1,.36,1);
-  --dur-1: 180ms;
-  --dur-2: 380ms;
-  --dur-3: 620ms;
+  --dur-1: 160ms;
+  --dur-2: 240ms;
+  --ease-out: cubic-bezier(.2,.8,.2,1);
+
+  /* Layout */
+  --gutter: 18px;
+
+  /* Header height variable set by JS (fallback) */
+  --header-h: 72px;
 }
