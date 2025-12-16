@@ -2,64 +2,98 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  transition: background var(--dur-2) var(--ease-out),
-              border-color var(--dur-2) var(--ease-out);
-  background: rgba(255,255,255,0.35);
+  background: rgba(255,255,255,0.55);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(56,56,56,0.08);
+  transition: background var(--dur-2) var(--ease-out),
+              border-color var(--dur-2) var(--ease-out);
 }
+
 .site-header.is-scrolled {
-  background: rgba(255,255,255,0.72);
+  background: rgba(255,255,255,0.78);
   border-bottom-color: rgba(56,56,56,0.12);
 }
 
 .header__row {
   display: grid;
-  grid-template-columns: 160px 1fr auto;
+  grid-template-columns: 140px 1fr auto;
   align-items: center;
   gap: 14px;
-  padding: 14px 0;
+  padding: 12px 0;
 }
 
-.brand {
-  font-family: "Eastman Alternate", "Corbel", serif;
-  letter-spacing: 0.08em;
-  font-weight: 300;
+.brand { display: inline-flex; align-items: center; }
+.brand__logo {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  display: block;
 }
 
-.nav { display: flex; gap: 18px; justify-content: center; }
-.nav a { opacity: .78; transition: opacity var(--dur-2) var(--ease-out); }
+.nav {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav a {
+  opacity: .78;
+  transition: opacity var(--dur-2) var(--ease-out);
+  white-space: nowrap;
+}
+
 .nav a:hover { opacity: 1; }
 
-.header__actions { display: flex; align-items: center; gap: 10px; }
-.menu-btn { display: none; border: 0; background: transparent; font-size: 22px; padding: 10px; }
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.menu-btn {
+  display: none;
+  border: 0;
+  background: transparent;
+  font-size: 22px;
+  padding: 10px;
+  line-height: 1;
+}
 
 .mobile-panel {
   display: none;
-  transform: translateY(-8px);
   opacity: 0;
+  transform: translateY(-8px);
   pointer-events: none;
   transition: opacity var(--dur-2) var(--ease-out),
               transform var(--dur-2) var(--ease-out);
   border-top: 1px solid rgba(56,56,56,0.08);
-  background: rgba(255,255,255,0.86);
+  background: rgba(255,255,255,0.90);
   backdrop-filter: blur(10px);
 }
+
 .mobile-panel.is-open {
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
 }
+
 .mobile-panel__inner {
   display: grid;
   gap: 12px;
   padding: 18px var(--gutter) 22px;
 }
-.no-scroll { overflow: hidden; }
 
+/* Mobile behavior */
 @media (max-width: 980px) {
   .header__row { grid-template-columns: 1fr auto; }
   .nav { display: none; }
   .menu-btn { display: inline-flex; }
   .mobile-panel { display: block; }
+}
+
+/* Make CTA not overflow on very small screens */
+@media (max-width: 420px) {
+  .btn.btn--primary { padding: 10px 14px; }
+  .brand__logo { width: 40px; height: 40px; }
 }
