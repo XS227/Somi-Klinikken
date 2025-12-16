@@ -32,13 +32,6 @@
       opacity:.75;
     }
 
-    /* FIX: fjerner stor tom plass før innhold på mobil */
-    .hero{
-      padding-top: calc(var(--header-h, 72px) + 18px);
-      padding-bottom: 28px;
-    }
-    .hero.section{ min-height:auto !important; height:auto !important; }
-
     .split{ display:grid; grid-template-columns:1.12fr .88fr; gap:22px; align-items:start; }
     @media (max-width: 920px){ .split{ grid-template-columns:1fr; } }
 
@@ -65,7 +58,6 @@
 
     .note{ opacity:.78; font-size:14px; margin-top:10px; }
 
-    /* Primary CTA nøytral */
     .btn--primary{ background:rgba(56,56,56,.95); }
     .btn--primary:hover{ border-color: rgba(221,179,179,.6); }
   </style>
@@ -152,71 +144,6 @@
 
         <div style="margin-top:18px;">
           <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="card reveal">
-          <div class="card__inner" style="display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; align-items:center;">
-            <div>
-              <div class="kicker">Priser</div>
-              <h2 class="h2" style="margin:6px 0 0;">Se full prisliste</h2>
-              <div class="muted">Ryddig oversikt med tjenester, tid og pris.</div>
-            </div>
-            <div style="display:flex; gap:12px; flex-wrap:wrap;">
-              <a class="btn" href="/priser.html">Gå til priser</a>
-              <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--tight">
-      <div class="container">
-        <div class="reveal">
-          <div class="kicker">Team</div>
-          <h2 class="h2">Trygge hender, rolig opplevelse</h2>
-          <p class="muted">Møt teamet og finn riktig behandler.</p>
-        </div>
-        <div style="margin-top:16px;">
-          <a class="btn" href="/team.html">Se teamet</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--tight">
-      <div class="container">
-        <div class="card reveal">
-          <div class="card__inner">
-            <div class="kicker">Blogg</div>
-            <h2 class="h2">Forberedelser og etterbehandling</h2>
-            <p class="muted">Korte artikler som svarer på de vanligste spørsmålene før du bestiller.</p>
-            <div style="display:flex; gap:12px; flex-wrap:wrap;">
-              <a class="btn" href="/blogg.html">Gå til blogg</a>
-              <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--tight">
-      <div class="container">
-        <div class="card reveal">
-          <div class="card__inner" style="display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; align-items:center;">
-            <div>
-              <div class="kicker">Bestill time</div>
-              <h2 class="h2" style="margin:6px 0 0;">Klar når du er klar.</h2>
-              <div class="muted">Bestill online – eller kontakt oss hvis du er usikker.</div>
-            </div>
-            <div style="display:flex; gap:12px; flex-wrap:wrap;">
-              <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
-              <a class="btn" href="/kontakt.html">Kontakt</a>
-            </div>
-          </div>
         </div>
       </div>
     </section>
