@@ -3,483 +3,255 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SOMI Klinikken – Naturlig skjønnhet og trygg oppfølging</title>
+
+  <title>SOMI Klinikken i Sandnes | Microblading, Permanent Makeup, Hud & Laser</title>
+  <meta name="description" content="SOMI Klinikken i Sandnes tilbyr microblading, permanent makeup, bryn og vipper, hudpleie og laser. Bestill time online hos somi.bestille.no." />
+  <link rel="canonical" href="/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="SOMI Klinikken i Sandnes" />
+  <meta property="og:description" content="Microblading, permanent makeup, bryn og vipper, hudpleie og laser. Bestill time online." />
+  <meta property="og:image" content="/og.jpg" />
 
   <base href="/" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <!-- Shared CSS -->
+  <link rel="stylesheet" href="/css/tokens.css" />
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/layout.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/motion.css" />
+  <link rel="stylesheet" href="/css/header.css" />
+  <link rel="stylesheet" href="/css/footer.css" />
 
-  <link rel="stylesheet" href="css/somi.css" />
+  <!-- Page CSS (lightweight, neutral) -->
+  <style>
+    .hero { padding-top: 88px; }
+    .kicker {
+      font-family: "Corbel", system-ui, sans-serif;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: 12px;
+      opacity: .75;
+    }
+    .split { display:grid; grid-template-columns: 1.12fr 0.88fr; gap: 22px; align-items:start; }
+    @media (max-width: 920px){ .split { grid-template-columns: 1fr; } }
 
+    .tiles { display:grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 22px; }
+    @media (max-width: 980px){ .tiles { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 620px){ .tiles { grid-template-columns: 1fr; } }
+
+    .tile {
+      border-radius: var(--r-lg);
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(56,56,56,0.10);
+      box-shadow: var(--sh-soft);
+      padding: 18px;
+      display:grid;
+      gap: 8px;
+      transition: transform var(--dur-2) var(--ease-out), border-color var(--dur-2) var(--ease-out);
+    }
+    .tile:hover { transform: translateY(-2px); border-color: rgba(56,56,56,0.22); }
+    .tile .t { font-weight: 600; }
+    .tile .m { opacity: .78; font-size: 14px; }
+
+    .steps { display:grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 16px; }
+    @media (max-width: 900px){ .steps { grid-template-columns: 1fr; } }
+
+    .note { opacity:.78; font-size: 14px; margin-top: 10px; }
+
+    /* Keep primary CTA neutral (not pink-heavy) */
+    .btn--primary { background: rgba(56,56,56,0.95); }
+    .btn--primary:hover { border-color: rgba(221,179,179,0.6); }
+  </style>
+
+  <!-- JS -->
   <script defer src="/js/config.js"></script>
   <script defer src="/js/includes.js"></script>
   <script defer src="/js/site.js"></script>
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "SOMI Klinikken",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Langgata 31",
+      "postalCode": "4307",
+      "addressLocality": "Sandnes",
+      "addressCountry": "NO"
+    },
+    "telephone": "+47 929 39 171",
+    "email": "[email protected]",
+    "url": "/"
+  }
+  </script>
 </head>
 
 <body>
-  <div data-include="partials/header.html"></div>
+  <!-- Header via partial -->
+  <div data-include="/partials/header.html"></div>
 
   <main>
     <!-- HERO -->
-    <section id="hero" class="section hero">
-      <div class="container hero-grid">
-        <div class="hero-content reveal">
-          <p class="eyebrow">SOMI Klinikk · Sandnes</p>
-          <h1>Naturlig skjønnhet,<br>trygg medisinsk kompetanse</h1>
-          <p class="hero-text">
-            Vi fremhever din naturlige skjønnhet med skånsomme, dokumenterte behandlinger – i rolige omgivelser inspirert
-            av klinikkens interiør.
+    <section class="section hero">
+      <div class="container split">
+        <div class="reveal">
+          <div class="kicker">Estetisk klinikk i Sandnes</div>
+          <h1 class="h1">Trygge behandlinger.<br>Naturlige resultater.</h1>
+          <p class="muted">
+            Raskt å finne informasjon, enkelt å bestille. Se priser, velg behandling – og book tid online.
           </p>
 
-          <div class="hero-actions">
-            <a href="#behandlinger" class="btn btn-primary">Se behandlinger</a>
-            <a href="#" data-booking-link class="btn btn-ghost">
-              Bestill time
+          <div style="display:flex; gap:12px; margin-top:22px; flex-wrap:wrap;">
+            <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
+            <a class="btn" href="/priser.html">Se priser</a>
+            <a class="btn" href="/behandlinger.html">Behandlinger</a>
+          </div>
+
+          <div class="tiles reveal" aria-label="Snarveier til populære tjenester">
+            <a class="tile" href="/behandlinger.html#microblading">
+              <div class="t">Microblading</div>
+              <div class="m">Bryn med naturlig form og fylde</div>
+            </a>
+            <a class="tile" href="/behandlinger.html#permanent-makeup">
+              <div class="t">Permanent makeup</div>
+              <div class="m">Lepper og øyne</div>
+            </a>
+            <a class="tile" href="/behandlinger.html#bryn-og-vipper">
+              <div class="t">Bryn &amp; vipper</div>
+              <div class="m">Brow lamination og vippeløft</div>
+            </a>
+            <a class="tile" href="/behandlinger.html#laser">
+              <div class="t">Laser</div>
+              <div class="m">Utvalgte behov (se behandlinger)</div>
             </a>
           </div>
-
-          <div class="hero-meta">
-            <span>Medisinsk ansvarlig lege</span>
-            <span>Naturlige resultater · Trygg oppfølging</span>
-          </div>
         </div>
 
-        <div class="hero-visual" aria-hidden="true">
-          <div class="hero-arch">
-            <div class="hero-photo-placeholder" style="background-image: url('assets/img/hero/hero-woman.svg');"></div>
+        <!-- Practical + trust card -->
+        <aside class="card reveal" aria-label="Kontakt og praktisk info">
+          <div class="card__inner" style="display:grid; gap:12px;">
+            <div>
+              <div class="kicker">Kontakt</div>
+              <div style="margin-top:10px;"><strong>Adresse</strong><br>Langgata 31, 4307 Sandnes</div>
+              <div style="margin-top:10px;"><strong>Telefon</strong><br><a href="tel:+4792939171">+47 929 39 171</a></div>
+              <div style="margin-top:10px;"><strong>E-post</strong><br><a href="mailto:[email protected]">[email protected]</a></div>
+              <div class="note">Klinikken er åpen etter avtale.</div>
+            </div>
+
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
+              <a class="btn" href="/kontakt.html">Kontakt</a>
+            </div>
           </div>
-          <div class="hero-lines"></div>
-        </div>
+        </aside>
       </div>
     </section>
 
-    <!-- FORDELER -->
-    <section id="fordeler" class="section">
+    <!-- How it works (conversion path) -->
+    <section class="section section--tight">
       <div class="container">
-        <div class="section-header center reveal">
-          <p class="eyebrow">Hvorfor velge SOMI</p>
-          <h2>En klinikk bygget på omtanke</h2>
-          <p>
-            Vi kombinerer medisinsk kompetanse med estetisk blikk – og møter deg med ærlighet, trygghet og tilstedeværelse.
-          </p>
+        <div class="reveal">
+          <div class="kicker">Slik bestiller du</div>
+          <h2 class="h2">Tre steg til booking</h2>
         </div>
 
-        <div class="benefit-grid">
-          <div class="benefit-item reveal">
-            <div class="benefit-icon"></div>
-            <h3>Naturlige resultater</h3>
-            <p>
-              Vi jobber i små steg og med helhetlig tilnærming for å fremheve det du allerede har, uten “overbehandlet” preg.
-            </p>
+        <div class="steps">
+          <div class="tile reveal">
+            <div class="t">1) Finn behandling</div>
+            <div class="m">Velg fra behandlinger eller bruk prislisten.</div>
           </div>
-
-          <div class="benefit-item reveal">
-            <div class="benefit-icon"></div>
-            <h3>Trygg oppfølging</h3>
-            <p>
-              Journalføring, informasjon og etterkontroll er alltid en del av behandlingsløpet.
-            </p>
+          <div class="tile reveal">
+            <div class="t">2) Sjekk pris og varighet</div>
+            <div class="m">Alt er listet tydelig for rask beslutning.</div>
           </div>
-
-          <div class="benefit-item reveal">
-            <div class="benefit-icon"></div>
-            <h3>Sentral beliggenhet</h3>
-            <p>
-              Klinikken ligger i hjertet av Sandnes, med korte avstander til både parkering og kollektivtransport.
-            </p>
+          <div class="tile reveal">
+            <div class="t">3) Book tid online</div>
+            <div class="m">Du sendes til somi.bestille.no.</div>
           </div>
         </div>
 
-        <div class="testimonial-block reveal">
-          <div class="quote-mark" aria-hidden="true"></div>
-          <p class="quote-text">
-            «Utrolig fornøyd med både behandling og oppfølging. Resultatet ble akkurat slik jeg håpet – bare en litt freshere
-            versjon av meg selv.»
-          </p>
-          <div class="quote-footer">
-            <span class="quote-author">Kunde hos SOMI Klinikk</span>
-            <span class="quote-stars">★★★★★</span>
-          </div>
+        <div style="margin-top:18px;">
+          <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
         </div>
       </div>
     </section>
 
-    <!-- ABOUT / DOCTOR -->
-    <section id="about" class="section about">
-      <div class="container about-grid">
-        <div class="about-visual reveal" aria-hidden="true">
-          <div class="mirror-frame">
-            <div class="mirror-photo-placeholder" style="background-image: url('assets/img/hero/clinic-interior.svg');"></div>
-          </div>
-        </div>
-
-        <div class="about-content reveal">
-          <p class="eyebrow">Om klinikken</p>
-          <h2>En klinikk bygget på omtanke</h2>
-          <p class="about-tagline">
-            SOMI Klinikk ble etablert i 2021 for å gi et rolig, trygt og faglig sterkt tilbud innen estetisk medisin.
-          </p>
-          <p>
-            Medisinsk ansvarlig har solid erfaring innen permanent makeup og injeksjonsbehandlinger. For oss handler alt om å
-            fremheve det naturlige på en trygg måte – med behandlingsplan som er tilpasset deg.
-          </p>
-          <p>
-            Vi følger gjeldende retningslinjer, benytter dokumenterte produkter og deltar jevnlig på kurs og faglige
-            samlinger. Slik sørger vi for at teknikker og sikkerhetsrutiner alltid er oppdatert.
-          </p>
-
-          <div class="about-actions">
-            <a href="#" data-booking-link class="btn btn-primary">Bestill time</a>
-            <a href="#contact" class="btn btn-ghost">Kontakt oss</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- TEAM / EMPLOYEES -->
-    <section id="team" class="section team" itemscope itemtype="https://schema.org/Organization">
-      <meta itemprop="name" content="SOMI Klinikken" />
+    <!-- Prices teaser -->
+    <section class="section">
       <div class="container">
-        <div class="section-header center reveal">
-          <div>
-            <div class="eyebrow">Teamet</div>
-            <h2 id="team-heading">Møt teamet – og se oss i aksjon</h2>
+        <div class="card reveal">
+          <div class="card__inner" style="display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; align-items:center;">
+            <div>
+              <div class="kicker">Priser</div>
+              <h2 class="h2" style="margin:6px 0 0;">Se full prisliste</h2>
+              <div class="muted">Ryddig oversikt med tjenester, tid og pris.</div>
+            </div>
+            <div style="display:flex; gap:12px; flex-wrap:wrap;">
+              <a class="btn" href="/priser.html">Gå til priser</a>
+              <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
+            </div>
           </div>
-          <p itemprop="description">
-            Hos Somi møter du et dedikert fagteam som kombinerer trygg veiledning, presise behandlinger og personlig oppfølging for
-            hud, injeksjoner, permanent makeup og laserbehandlinger.
-          </p>
-        </div>
-
-        <div class="team-grid" aria-labelledby="team-heading">
-          <article class="team-card reveal" itemscope itemprop="member" itemtype="https://schema.org/Person">
-            <div class="team-image-wrapper">
-              <img src="assets/img/team/katarina.svg" alt="Katarina – eier og daglig leder" itemprop="image" />
-            </div>
-            <span class="team-role" itemprop="jobTitle">Eier og daglig leder</span>
-            <div class="team-header">
-              <h3 class="team-name" itemprop="name">Katarina</h3>
-              <a href="https://www.instagram.com/somiklinikken" class="team-ig" target="_blank" rel="noopener noreferrer" aria-label="Katarina på Instagram" itemprop="sameAs">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zm0 2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H7zm5 3.5A4.5 4.5 0 1 1 7.5 13 4.5 4.5 0 0 1 12 8.5zm0 2A2.5 2.5 0 1 0 14.5 13 2.5 2.5 0 0 0 12 10.5zm5.25-3.75a1.25 1.25 0 1 1-1.25 1.25 1.25 1.25 0 0 1 1.25-1.25z" />
-                </svg>
-              </a>
-            </div>
-            <p class="team-text" itemprop="description">
-              Perfeksjonist med 11 års erfaring i permanent makeup og en sterk lidenskap for faget. Fokuserer på naturlige resultater
-              som smelter sammen med ditt eget utgangspunkt.
-            </p>
-            <a
-              href="#"
-              class="btn btn-outline"
-              data-booking-link
-              aria-label="Bestill time hos Katarina hos SOMI Klinikken"
-              itemprop="url"
-            >Bestill time hos Katarina</a>
-          </article>
-
-          <article class="team-card reveal" itemscope itemprop="member" itemtype="https://schema.org/Person">
-            <div class="team-image-wrapper">
-              <img src="assets/img/team/elina.svg" alt="Elina – autorisert sykepleier" itemprop="image" />
-            </div>
-            <span class="team-role" itemprop="jobTitle">Autorisert sykepleier</span>
-            <div class="team-header">
-              <h3 class="team-name" itemprop="name">Elina</h3>
-              <a href="https://www.instagram.com/somiklinikken" class="team-ig" target="_blank" rel="noopener noreferrer" aria-label="Elina på Instagram" itemprop="sameAs">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zm0 2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H7zm5 3.5A4.5 4.5 0 1 1 7.5 13 4.5 4.5 0 0 1 12 8.5zm0 2A2.5 2.5 0 1 0 14.5 13 2.5 2.5 0 0 0 12 10.5zm5.25-3.75a1.25 1.25 0 1 1-1.25 1.25 1.25 1.25 0 0 1 1.25-1.25z" />
-                </svg>
-              </a>
-            </div>
-            <p class="team-text" itemprop="description">
-              Sykepleier med 12 års erfaring innen kosmetisk medisin. Prioriterer trygghet, presisjon og naturlige resultater i hud- og injeksjonsbehandlinger.
-            </p>
-            <a href="mailto:post@somiklinikken.no" class="btn btn-outline" aria-label="Bestill konsultasjon hos Elina" itemprop="email">
-              Bestill hos Elina
-            </a>
-          </article>
-
-          <article class="team-card reveal" itemscope itemprop="member" itemtype="https://schema.org/Person">
-            <div class="team-image-wrapper">
-              <img src="assets/img/team/arianna.svg" alt="Arianna – laserspesialist" itemprop="image" />
-            </div>
-            <span class="team-role" itemprop="jobTitle">Laserspesialist</span>
-            <div class="team-header">
-              <h3 class="team-name" itemprop="name">Arianna</h3>
-              <a href="https://www.instagram.com/somiklinikken" class="team-ig" target="_blank" rel="noopener noreferrer" aria-label="Arianna på Instagram" itemprop="sameAs">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zm0 2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H7zm5 3.5A4.5 4.5 0 1 1 7.5 13 4.5 4.5 0 0 1 12 8.5zm0 2A2.5 2.5 0 1 0 14.5 13 2.5 2.5 0 0 0 12 10.5zm5.25-3.75a1.25 1.25 0 1 1-1.25 1.25 1.25 1.25 0 0 1 1.25-1.25z" />
-                </svg>
-              </a>
-            </div>
-            <p class="team-text" itemprop="description">
-              Utdannet helsepersonell med videreutdanning som laserspesialist. Lidenskapelig opptatt av brynstyling, voksing og ansiktsbehandlinger, og utvikler seg kontinuerlig innen flere behandlingsområder.
-            </p>
-            <a href="mailto:post@somiklinikken.no" class="btn btn-outline" aria-label="Bestill konsultasjon hos Arianna" itemprop="email">
-              Bestill hos Arianna
-            </a>
-          </article>
-
-          <article class="team-card reveal" itemscope itemprop="member" itemtype="https://schema.org/Person">
-            <div class="team-image-wrapper">
-              <img src="assets/img/team/emma.svg" alt="Emma – hudterapeut" itemprop="image" />
-            </div>
-            <span class="team-role" itemprop="jobTitle">Hudterapeut</span>
-            <div class="team-header">
-              <h3 class="team-name" itemprop="name">Emma</h3>
-              <a href="https://www.instagram.com/somiklinikken" class="team-ig" target="_blank" rel="noopener noreferrer" aria-label="Emma på Instagram" itemprop="sameAs">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zm0 2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H7zm5 3.5A4.5 4.5 0 1 1 7.5 13 4.5 4.5 0 0 1 12 8.5zm0 2A2.5 2.5 0 1 0 14.5 13 2.5 2.5 0 0 0 12 10.5zm5.25-3.75a1.25 1.25 0 1 1-1.25 1.25 1.25 1.25 0 0 1 1.25-1.25z" />
-                </svg>
-              </a>
-            </div>
-            <p class="team-text" itemprop="description">
-              Utdannet hudterapeut med fem års erfaring. Dyktig på vipper, bryn og å forbedre ulike hudtilstander, og tilbyr hudpleie, vipper, brynstyling, permanent makeup og massasje.
-            </p>
-            <a href="mailto:post@somiklinikken.no" class="btn btn-outline" aria-label="Bestill time hos Emma" itemprop="email">
-              Bestill hos Emma
-            </a>
-          </article>
         </div>
       </div>
     </section>
 
-    <!-- FAQ -->
-    <section id="faq" class="section faq">
-      <div class="container faq-grid">
-        <div class="faq-intro reveal">
-          <p class="eyebrow">Spørsmål & svar</p>
-          <h2>Ofte stilte spørsmål</h2>
-          <p>
-            Her finner du svar på de vanligste spørsmålene vi får. Under konsultasjon går vi alltid gjennom hva du kan forvente
-            før, under og etter behandling.
-          </p>
-        </div>
-
-        <div class="faq-list">
-          <details class="faq-item" open>
-            <summary>
-              <span class="faq-question">Gjør behandlingene vondt?</span>
-              <span class="faq-icon">+</span>
-            </summary>
-            <p>
-              De fleste opplever bare lett ubehag. Vi bruker bedøvende krem eller lokalbedøvelse ved behov, og tilpasser teknikk etter
-              område og smerteterskel.
-            </p>
-          </details>
-
-          <details class="faq-item" open>
-            <summary>
-              <span class="faq-question">Hvor raskt ser jeg resultat?</span>
-              <span class="faq-icon">+</span>
-            </summary>
-            <p>
-              Ved filler ser du ofte umiddelbar effekt, mens muskelavslappende behandlinger bruker 3–14 dager for full effekt.
-              Hudbehandlinger bygges gjerne opp over flere ganger.
-            </p>
-          </details>
-
-          <details class="faq-item" open>
-            <summary>
-              <span class="faq-question">Hvor lenge varer resultatet?</span>
-              <span class="faq-icon">+</span>
-            </summary>
-            <p>
-              Varighet avhenger av behandling, område, hudtype og livsstil. Muskelavslappende behandlinger varer vanligvis 3–6 måneder,
-              mens filler kan vare 6–18 måneder.
-            </p>
-          </details>
-
-          <details class="faq-item" open>
-            <summary>
-              <span class="faq-question">Hva bør jeg tenke på før og etter?</span>
-              <span class="faq-icon">+</span>
-            </summary>
-            <p>
-              Du får alltid skriftlig informasjon, men typisk anbefaler vi å unngå alkohol, blodfortynnende medisiner og hard trening
-              samme dag, samt å følge rådene du får etter behandling.
-            </p>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <!-- BEHANDLINGER -->
-    <section id="behandlinger" class="section treatments">
+    <!-- Team teaser -->
+    <section class="section section--tight">
       <div class="container">
-        <div class="section-header center reveal">
-          <p class="eyebrow">Behandlinger</p>
-          <h2>Finn behandlingen som passer deg</h2>
-          <p>
-            Vi hjelper deg å velge riktig behandling – med fokus på naturlige resultater og trygg oppfølging før, under og etter.
-          </p>
+        <div class="reveal">
+          <div class="kicker">Team</div>
+          <h2 class="h2">Trygge hender, rolig opplevelse</h2>
+          <p class="muted">Møt teamet og finn riktig behandler.</p>
         </div>
 
-        <div class="treatment-grid">
-          <a href="somi-behandling.html#bryn-vipper" class="treatment-card reveal">
-            <div class="treatment-icon treatment-icon-brows"></div>
-            <h3>Bryn &amp; vipper</h3>
-            <p>Form, farge og behandlinger som rammer inn blikket på en naturlig måte.</p>
-          </a>
-
-          <a href="somi-behandling.html#pmu" class="treatment-card reveal">
-            <div class="treatment-icon treatment-icon-pmu"></div>
-            <h3>Permanent makeup</h3>
-            <p>Microblading, powder brows, lip blush og eyeliner med skånsomme teknikker.</p>
-          </a>
-
-          <a href="somi-behandling.html#hud" class="treatment-card reveal">
-            <div class="treatment-icon treatment-icon-skin"></div>
-            <h3>Hud &amp; injeksjoner</h3>
-            <p>Medisinske behandlinger for hudforbedring, linjer og volum – alltid med naturlig fokus.</p>
-          </a>
-
-          <a href="somi-behandling.html#laser" class="treatment-card reveal">
-            <div class="treatment-icon treatment-icon-laser"></div>
-            <h3>Laser &amp; fjerning</h3>
-            <p>Laser for tatoveringer, hår og hud – utført av erfarent fagteam.</p>
-          </a>
-
-          <a href="somi-behandling.html#konsultasjon" class="treatment-card reveal">
-            <div class="treatment-icon treatment-icon-consult"></div>
-            <h3>Konsultasjon</h3>
-            <p>Uforpliktende konsultasjon der vi går gjennom mål, ønsker og behandlingsplan.</p>
-          </a>
-
-          <a href="somi-behandling.html#pakker" class="treatment-card reveal">
-            <div class="treatment-icon treatment-icon-combo"></div>
-            <h3>Pakker &amp; kombinasjoner</h3>
-            <p>Skreddersydde behandlingsløp for et helhetlig og harmonisk resultat.</p>
-          </a>
-        </div>
-
-        <div class="section-footer center reveal">
-          <a href="somi-behandling.html" class="link-arrow">Se full behandlingsmeny</a>
+        <div style="margin-top:16px;">
+          <a class="btn" href="/team.html">Se teamet</a>
         </div>
       </div>
     </section>
 
-    <!-- KONTAKTINFO & KART -->
-    <section id="contact" class="section section--soft contact">
+    <!-- Blog teaser -->
+    <section class="section section--tight">
       <div class="container">
-        <div class="cta reveal">
-          <div>
-            <h2>Klar for neste steg?</h2>
-            <p>
-              Bestill time direkte i vår online booking, eller ta kontakt hvis du ønsker hjelp til å velge riktig behandling. Ingen
-              spørsmål er for små.
-            </p>
-          </div>
-          <div class="cta-actions">
-            <a href="#" class="btn btn-cta-primary" data-booking-link>
-              Bestill time
-            </a>
-            <a href="#contact-form-section" class="btn btn-cta-ghost">
-              Send oss en melding
-            </a>
-          </div>
-        </div>
-
-        <div class="contact-grid">
-          <div class="contact-card reveal" id="contact-details">
-            <h3>Kontakt &amp; åpningstider</h3>
-
-            <div class="contact-row">
-              <strong>Adresse</strong>
-              <span>Langgata 31, 4306 Sandnes</span>
+        <div class="card reveal">
+          <div class="card__inner">
+            <div class="kicker">Blogg</div>
+            <h2 class="h2">Forberedelser og etterbehandling</h2>
+            <p class="muted">Korte artikler som svarer på de vanligste spørsmålene før du bestiller.</p>
+            <div style="display:flex; gap:12px; flex-wrap:wrap;">
+              <a class="btn" href="/blogg.html">Gå til blogg</a>
+              <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
             </div>
-
-            <div class="contact-row">
-              <strong>E-post</strong>
-              <a href="mailto:post@somiklinikken.no">post@somiklinikken.no</a>
-            </div>
-
-            <div class="contact-row">
-              <strong>Telefon</strong>
-              <a href="tel:+4792939171">+47&nbsp;929&nbsp;39&nbsp;171</a>
-            </div>
-
-            <div class="contact-row">
-              <strong>Åpent</strong>
-              <span>Klinikken er åpen etter avtale.</span>
-            </div>
-
-            <p class="contact-note">
-              Klinikken er åpen etter avtale. Se alle tilgjengelige tider i
-              <a href="#" data-booking-link>onlinebooking</a>
-              eller ta kontakt for timebestilling.
-            </p>
-
-            <div class="contact-row">
-              <strong>Følg oss</strong>
-              <div class="contact-social-links">
-                <a href="https://www.facebook.com/SomiByKatarina" target="_blank" rel="noopener">
-                  Facebook
-                </a>
-                <span aria-hidden="true">·</span>
-                <a href="https://www.instagram.com/somiklinikken" target="_blank" rel="noopener">
-                  Instagram
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="map-embed reveal">
-            <iframe
-              src="https://www.google.com/maps?q=Langgata+31,+4306+Sandnes&output=embed"
-              title="SOMI Klinikk i Langgata 31, Sandnes"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              allowfullscreen
-            ></iframe>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- KONTAKTSKJEMA -->
-    <section id="contact-form-section" class="section contact-form">
+    <!-- Final CTA -->
+    <section class="section section--tight">
       <div class="container">
-        <div class="section-header center reveal">
-          <p class="eyebrow">Send oss en melding</p>
-          <h2>Har du spørsmål?</h2>
-          <p>
-            Fyll inn skjemaet under, så svarer vi deg så snart vi kan. Legg gjerne igjen telefonnummer hvis du ønsker å bli oppringt.
-          </p>
-        </div>
-
-        <div class="contact-form-wrapper">
-          <form action="https://formsubmit.co/post@somiklinikken.no" method="POST">
-            <input type="hidden" name="_subject" value="Ny henvendelse fra somi.setaei.com" />
-            <input type="text" name="_honey" style="display:none" />
-            <input type="hidden" name="_captcha" value="false" />
-
-            <div class="form-row">
-              <label for="name">Navn</label>
-              <input id="name" name="Navn" type="text" required />
+        <div class="card reveal">
+          <div class="card__inner" style="display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; align-items:center;">
+            <div>
+              <div class="kicker">Bestill time</div>
+              <h2 class="h2" style="margin:6px 0 0;">Klar når du er klar.</h2>
+              <div class="muted">Bestill online – eller kontakt oss hvis du er usikker.</div>
             </div>
-
-            <div class="form-row">
-              <label for="email">E-post</label>
-              <input id="email" name="E-post" type="email" required />
+            <div style="display:flex; gap:12px; flex-wrap:wrap;">
+              <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
+              <a class="btn" href="/kontakt.html">Kontakt</a>
             </div>
-
-            <div class="form-row">
-              <label for="message">Melding</label>
-              <textarea id="message" name="Melding" rows="4" required></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-cta-primary">
-              Send melding
-            </button>
-          </form>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
-  <div data-include="partials/footer.html"></div>
+  <!-- Footer via partial -->
+  <div data-include="/partials/footer.html"></div>
 </body>
 </html>
