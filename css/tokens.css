@@ -26,7 +26,7 @@
   --ease-out: cubic-bezier(.2,.8,.2,1);
 
   /* Layout */
-  --gutter: 18px;
+  --gutter: 22px;
 
   /* Header height variable set by JS (fallback) */
   --header-h: 72px;
