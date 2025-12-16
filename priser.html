@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Om SOMI Klinikken | Estetisk klinikk i Sandnes</title>
+  <meta name="description" content="Les om SOMI Klinikken i Sandnes. Vår tilnærming: trygge behandlinger, naturlige resultater og personlig oppfølging." />
+  <link rel="canonical" href="/om.html" />
+  <base href="/" />
+
+  <link rel="stylesheet" href="/css/tokens.css" />
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/layout.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/motion.css" />
+  <link rel="stylesheet" href="/css/header.css" />
+  <link rel="stylesheet" href="/css/footer.css" />
+
+  <script defer src="/js/config.js"></script>
+  <script defer src="/js/includes.js"></script>
+  <script defer src="/js/site.js"></script>
+
+  <style>
+    .page-hero{ padding-top: calc(var(--header-h,72px) + 18px); }
+    .grid{ display:grid; grid-template-columns: 1.1fr .9fr; gap: 18px; align-items:start; }
+    @media (max-width: 900px){ .grid{ grid-template-columns:1fr; } }
+    .kicker{ font-family:"Corbel",system-ui,sans-serif; letter-spacing:.08em; text-transform:uppercase; font-size:12px; opacity:.75; }
+    .list{ margin:0; padding-left: 18px; opacity:.9; }
+    .btn--primary{ background: rgba(56,56,56,.95); }
+  </style>
+</head>
+
+<body>
+  <div data-include="/partials/header.html"></div>
+
+  <main>
+    <section class="section page-hero">
+      <div class="container grid">
+        <div class="reveal">
+          <div class="kicker">Om oss</div>
+          <h1 class="h1">SOMI Klinikken</h1>
+          <p class="muted">
+            Vår prioritet er trygghet, presisjon og et naturlig uttrykk. Vi legger vekt på tydelig informasjon,
+            riktig forventningsstyring og en rolig opplevelse.
+          </p>
+
+          <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:18px;">
+            <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
+            <a class="btn" href="/priser.html">Se priser</a>
+          </div>
+        </div>
+
+        <aside class="card reveal">
+          <div class="card__inner">
+            <div class="kicker">Praktisk</div>
+            <div style="margin-top:10px;"><strong>Adresse</strong><br>Langgata 31, 4307 Sandnes</div>
+            <div style="margin-top:10px;"><strong>Telefon</strong><br><a href="tel:+4792939171">+47 929 39 171</a></div>
+            <div style="margin-top:10px;"><strong>E-post</strong><br><a href="mailto:[email protected]">[email protected]</a></div>
+            <div class="muted" style="margin-top:10px;">Klinikken er åpen etter avtale.</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container">
+        <div class="card reveal">
+          <div class="card__inner">
+            <div class="kicker">Vår tilnærming</div>
+            <h2 class="h2">Klare valg – enkel booking</h2>
+            <ul class="list" style="margin-top:10px;">
+              <li>Ryddige priser og varighet på tjenester</li>
+              <li>Behandlingssider med forberedelser og etterbehandling</li>
+              <li>Booking som leder direkte til timebestilling</li>
+            </ul>
+
+            <div style="margin-top:18px; display:flex; gap:12px; flex-wrap:wrap;">
+              <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
+              <a class="btn" href="/behandlinger.html">Behandlinger</a>
+              <a class="btn" href="/kontakt.html">Kontakt</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div data-include="/partials/footer.html"></div>
+</body>
+</html>
+
