@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blogg | SOMI Klinikken Sandnes</title>
+  <meta name="description" content="Blogg fra SOMI Klinikken i Sandnes: forberedelser, etterbehandling og vanlige spørsmål før du bestiller time." />
+  <link rel="canonical" href="/blogg.html" />
+  <base href="/" />
+
+  <link rel="stylesheet" href="/css/tokens.css" />
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/layout.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/motion.css" />
+  <link rel="stylesheet" href="/css/header.css" />
+  <link rel="stylesheet" href="/css/footer.css" />
+
+  <script defer src="/js/config.js"></script>
+  <script defer src="/js/includes.js"></script>
+  <script defer src="/js/site.js"></script>
+
+  <style>
+    .page-hero{ padding-top: calc(var(--header-h,72px) + 18px); }
+    .kicker{ font-family:"Corbel",system-ui,sans-serif; letter-spacing:.08em; text-transform:uppercase; font-size:12px; opacity:.75; }
+    .posts{ display:grid; grid-template-columns: repeat(3,1fr); gap:14px; margin-top:18px; }
+    @media (max-width: 980px){ .posts{ grid-template-columns: repeat(2,1fr);} }
+    @media (max-width: 620px){ .posts{ grid-template-columns: 1fr;} }
+    .post{
+      border-radius: var(--r-lg);
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(56,56,56,.10);
+      box-shadow: var(--sh-soft);
+      padding: 18px;
+      display:grid;
+      gap:8px;
+    }
+    .post .t{ font-weight:600; }
+    .post .m{ opacity:.78; font-size:14px; }
+    .btn--primary{ background: rgba(56,56,56,.95); }
+  </style>
+</head>
+
+<body>
+  <div data-include="/partials/header.html"></div>
+
+  <main>
+    <section class="section page-hero">
+      <div class="container">
+        <div class="reveal">
+          <div class="kicker">Blogg</div>
+          <h1 class="h1">Nyttig før du bestiller</h1>
+          <p class="muted">Korte artikler om forberedelser, etterbehandling og ofte stilte spørsmål.</p>
+        </div>
+
+        <div class="posts">
+          <!-- Bytt ut med ekte artikler når dere er klare -->
+          <article class="post reveal">
+            <div class="t">Microblading: før og etter behandling</div>
+            <div class="m">Hva du bør vite før du bestiller, og hvordan du tar vare på brynene etterpå.</div>
+            <a class="btn" href="/blogg/microblading-for-og-etter.html">Les mer</a>
+          </article>
+
+          <article class="post reveal">
+            <div class="t">Permanent makeup: forventninger og resultat</div>
+            <div class="m">Hvordan prosessen foregår og hva som er normalt i helingsfasen.</div>
+            <a class="btn" href="/blogg/permanent-makeup-forventninger.html">Les mer</a>
+          </article>
+
+          <article class="post reveal">
+            <div class="t">Vippeløft: hvor lenge varer det?</div>
+            <div class="m">Varighet, vedlikehold og tips for best mulig resultat.</div>
+            <a class="btn" href="/blogg/vippeloft-varighet.html">Les mer</a>
+          </article>
+        </div>
+
+        <div class="card reveal" style="margin-top:18px;">
+          <div class="card__inner" style="display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; align-items:center;">
+            <div>
+              <div class="kicker">Klar til å bestille?</div>
+              <div class="h2" style="margin:6px 0 0;">Gå direkte til booking</div>
+              <div class="muted">Du sendes til somi.bestille.no.</div>
+            </div>
+            <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <div data-include="/partials/footer.html"></div>
+</body>
+</html>
+
