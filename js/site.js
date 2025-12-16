@@ -1,135 +1,102 @@
-(function () {
-  "use strict";
+(() => {
+  const BOOKING_URL_DEFAULT = "https://somi.bestille.no/";
 
-  const $ = (sel, root = document) => root.querySelector(sel);
-  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+  const getBookingUrl = () => {
+    try {
+      return (window.SOMI_CONFIG && window.SOMI_CONFIG.bookingUrl) || BOOKING_URL_DEFAULT;
+    } catch (_) {
+      return BOOKING_URL_DEFAULT;
+    }
+  };
 
-  function wireBookingLinks() {
-    const url = window.SOMI_CONFIG?.bookingUrl;
-    if (!url) return;
-
-    $$("[data-booking-link]").forEach((a) => {
-      a.href = url;
-      a.target = "_blank";
-      a.rel = "noopener";
-      if (!a.dataset.analytics) a.dataset.analytics = "booking-cta";
-    });
-  }
-
-  function setHeaderHeightVar(headerEl) {
-    const apply = () => {
-      const h = headerEl.offsetHeight || 72;
-      document.documentElement.style.setProperty("--header-h", `${h}px`);
-    };
-    apply();
-    window.addEventListener("resize", apply, { passive: true });
-  }
-
-  function initHeader() {
-    const header = $("[data-site-header]");
+  function setHeaderHeightVar() {
+    const header = document.querySelector("[data-site-header]");
     if (!header) return;
+    const h = Math.round(header.getBoundingClientRect().height);
+    document.documentElement.style.setProperty("--header-h", `${h}px`);
+  }
 
-    setHeaderHeightVar(header);
+  function wireBookingLinks(root = document) {
+    const bookingUrl = getBookingUrl();
+    root.querySelectorAll("[data-booking-link]").forEach(a => {
+      a.setAttribute("href", bookingUrl);
+      a.setAttribute("rel", "noopener");
+      a.setAttribute("target", "_blank");
+    });
+  }
 
-    const onScroll = () => {
-      header.classList.toggle("is-scrolled", window.scrollY > 10);
+  function wireMobileMenu() {
+    const header = document.querySelector("[data-site-header]");
+    if (!header) return false;
+
+    const btn = header.querySelector("[data-menu-toggle]");
+    const panel = header.querySelector("[data-mobile-panel]");
+    if (!btn || !panel) return false;
+
+    const close = () => {
+      btn.setAttribute("aria-expanded", "false");
+      panel.classList.remove("is-open");
+      panel.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("no-scroll");
+      setHeaderHeightVar();
     };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
 
-    const btn = header.querySelector("[data-menu-btn]");
-    const panel = $("[data-mobile-panel]");
-    if (!btn || !panel) return;
-
-    let isOpen = false;
-
-    const setOpen = (open) => {
-      isOpen = !!open;
-      panel.classList.toggle("is-open", isOpen);
-      btn.setAttribute("aria-expanded", String(isOpen));
-      document.body.classList.toggle("no-scroll", isOpen);
+    const open = () => {
+      btn.setAttribute("aria-expanded", "true");
+      panel.classList.add("is-open");
+      panel.setAttribute("aria-hidden", "false");
+      document.body.classList.add("no-scroll");
+      setHeaderHeightVar();
     };
 
-    const toggle = () => setOpen(!isOpen);
-
-    // Close on ESC
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") setOpen(false);
+    btn.addEventListener("click", () => {
+      const isOpen = panel.classList.contains("is-open");
+      isOpen ? close() : open();
     });
 
-    // Close on click outside
-    document.addEventListener("click", (e) => {
-      if (!isOpen) return;
-      const t = e.target;
-      if (!panel.contains(t) && !btn.contains(t)) setOpen(false);
-    });
-
-    // Close when clicking a link in panel
+    // Close on link click
     panel.addEventListener("click", (e) => {
       const a = e.target.closest("a");
-      if (a) setOpen(false);
+      if (!a) return;
+      close();
     });
 
-    btn.addEventListener("click", toggle);
-
-    // If viewport grows to desktop, close menu
-    const mq = window.matchMedia("(min-width: 981px)");
-    const onMQ = () => mq.matches && setOpen(false);
-    mq.addEventListener?.("change", onMQ);
-  }
-
-  function initReveal() {
-    const els = $$(".reveal");
-    if (!els.length) return;
-
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (reduced.matches) {
-      els.forEach((el) => el.classList.add("is-in"));
-      return;
-    }
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) e.target.classList.add("is-in");
-        });
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -6% 0px" }
-    );
-
-    els.forEach((el) => io.observe(el));
-  }
-
-  function setActiveNav() {
-    const header = $("[data-site-header]");
-    if (!header) return;
-
-    const path = (window.location.pathname.replace(/\/+$/, "") || "/index.html");
-    const links = $$("nav a[href]", header);
-
-    links.forEach((a) => {
-      try {
-        const u = new URL(a.getAttribute("href"), window.location.origin);
-        const p = (u.pathname.replace(/\/+$/, "") || "/index.html");
-        const active =
-          p === path || (p === "/index.html" && (path === "/" || path === "/index.html"));
-        a.classList.toggle("is-active", active);
-      } catch {}
+    // Close on resize to desktop
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 980) close();
+      setHeaderHeightVar();
     });
+
+    // Close on ESC
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") close();
+    });
+
+    // Sticky “scrolled” state
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 6) header.classList.add("is-scrolled");
+      else header.classList.remove("is-scrolled");
+    }, { passive: true });
+
+    // Initial
+    close();
+    setHeaderHeightVar();
+    return true;
   }
 
-  function initAll() {
-    initReveal();
-    initHeader();
-    wireBookingLinks();
-    setActiveNav();
+  function init() {
+    wireBookingLinks(document);
+    setHeaderHeightVar();
+    wireMobileMenu();
   }
 
-  document.addEventListener("partials:loaded", initAll);
+  // Run now + observe injected partials
+  document.addEventListener("DOMContentLoaded", init);
 
-  // Fallback in case partials event is missing
-  document.addEventListener("DOMContentLoaded", () => {
-    setTimeout(initAll, 50);
+  const obs = new MutationObserver(() => {
+    // Re-init if header/footer/partials got injected
+    init();
   });
-})();
 
+  obs.observe(document.documentElement, { childList: true, subtree: true });
+})();
