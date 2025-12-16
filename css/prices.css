@@ -150,3 +150,88 @@
   opacity: .78;
   font-size: 14px;
 }
+
+/* ---------- Mobile table -> stacked cards ---------- */
+@media (max-width: 720px) {
+  .prices-table thead { display: none; }
+
+  .prices-table,
+  .prices-table tbody,
+  .prices-table tr,
+  .prices-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .prices-table tbody tr {
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(56,56,56,0.08);
+  }
+
+  .prices-table tbody td {
+    padding: 0;
+    border: 0;
+  }
+
+  .prices-table tbody td + td { margin-top: 8px; }
+
+  /* name row */
+  .prices-table tbody td:first-child .name {
+    font-size: 15px;
+  }
+
+  /* meta row (time + price) */
+  .prices-table tbody td.col-time,
+  .prices-table tbody td.col-price {
+    text-align: left;
+    white-space: normal;
+    opacity: .85;
+    font-size: 14px;
+  }
+
+  .prices-table tbody td.col-time::before {
+    content: "Tid";
+    display: inline-block;
+    min-width: 52px;
+    opacity: .65;
+    font-weight: 600;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    font-size: 12px;
+    margin-right: 10px;
+  }
+
+  .prices-table tbody td.col-price::before {
+    content: "Pris";
+    display: inline-block;
+    min-width: 52px;
+    opacity: .65;
+    font-weight: 600;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    font-size: 12px;
+    margin-right: 10px;
+  }
+
+  /* make table wrapper feel like a list */
+  .table-wrap {
+    border-radius: var(--r-lg);
+  }
+}
+
+@media (max-width: 720px) {
+  .toolbar {
+    gap: 10px;
+  }
+  .btn.btn--primary {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 720px) {
+  .prices-table thead th {
+    position: static;
+    top: auto;
+  }
+}
