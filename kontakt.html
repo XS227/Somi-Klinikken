@@ -6,674 +6,127 @@
   <title>SOMI – Kontakt oss</title>
   <meta name="description" content="Kontakt SOMI Klinikken – adresse, telefon, e-post og skjema." />
 
-  <style>
-    :root{
-      --charcoal:#383838;      /* Brandbook primary */
-      --pink:#DDB3B3;          /* Brandbook primary */
-      --white:#FFFFFF;
-      --offwhite:#EFEFEE;      /* 239,239,238 */
-      --offwhite2:#DCDCDC;     /* 220,220,219 */
-      --sand:#F4E3DC;
-      --gray:#E8E6E4;
+  <base href="/" />
 
-      --radius-xl: 32px;
-      --radius-lg: 22px;
-      --radius-md: 16px;
+  <!-- Delte stilark -->
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/motion.css" />
+  <link rel="stylesheet" href="css/header.css" />
+  <link rel="stylesheet" href="css/footer.css" />
 
-      --shadow: 0 18px 40px rgba(0,0,0,.08);
-      --shadow-soft: 0 10px 24px rgba(0,0,0,.06);
+  <!-- Side-spesifikt -->
+  <link rel="stylesheet" href="css/contact.css" />
 
-      --container: 1120px;
-      --header-h: 72px;
-
-      --ease: cubic-bezier(.2,.9,.2,1);
-    }
-
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      color:var(--charcoal);
-      background: linear-gradient(45deg, var(--offwhite), var(--offwhite2));
-      font-family: Corbel, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    a{color:inherit; text-decoration:none}
-    button{font:inherit}
-
-    .container{max-width:var(--container); margin:0 auto; padding:0 18px}
-
-    /* Header */
-    .site-header{
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      height: var(--header-h);
-      background: rgba(255,255,255,.72);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(56,56,56,.08);
-    }
-    .header-inner{
-      height:100%;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      min-width: 92px;
-    }
-    .brand .wordmark{
-      letter-spacing:.12em;
-      font-weight: 600;
-      font-size: 14px;
-    }
-
-    .header-actions{
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-
-    .btn{
-      border: 1px solid rgba(56,56,56,.16);
-      background: rgba(255,255,255,.9);
-      color: var(--charcoal);
-      padding: 10px 14px;
-      border-radius: 999px;
-      line-height: 1;
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      cursor:pointer;
-      transition: transform .18s var(--ease), box-shadow .18s var(--ease), background .18s var(--ease);
-    }
-    .btn:hover{transform: translateY(-1px); box-shadow: var(--shadow-soft)}
-    .btn:active{transform: translateY(0)}
-
-    .btn-primary{
-      background: var(--pink);
-      border-color: transparent;
-    }
-
-    .icon-btn{
-      width: 44px;
-      height: 44px;
-      border-radius: 999px;
-      display:grid;
-      place-items:center;
-      border: 1px solid rgba(56,56,56,.16);
-      background: rgba(255,255,255,.9);
-      cursor:pointer;
-      transition: transform .18s var(--ease), box-shadow .18s var(--ease);
-    }
-    .icon-btn:hover{transform: translateY(-1px); box-shadow: var(--shadow-soft)}
-
-    .burger{
-      width: 18px;
-      height: 12px;
-      position: relative;
-    }
-    .burger span{
-      position:absolute;
-      left:0; right:0;
-      height: 2px;
-      background: var(--charcoal);
-      border-radius: 2px;
-      transition: transform .22s var(--ease), top .22s var(--ease), opacity .22s var(--ease);
-    }
-    .burger span:nth-child(1){top:0}
-    .burger span:nth-child(2){top:5px}
-    .burger span:nth-child(3){top:10px}
-
-    /* Hero Map */
-    .hero{
-      position: relative;
-      padding: 18px 0 0;
-    }
-    .map-hero{
-      position: relative;
-      border-radius: var(--radius-xl);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      background: var(--gray);
-      height: clamp(280px, 38vw, 420px);
-    }
-    .map-hero iframe{
-      width:100%;
-      height:100%;
-      border:0;
-      filter: saturate(.9) contrast(.98);
-    }
-
-    /* Subtle overlay to keep brand softness */
-    .map-veil{
-      position:absolute;
-      inset:0;
-      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.00) 45%, rgba(255,255,255,.22));
-      pointer-events:none;
-    }
-
-    /* Page title over map */
-    .hero-title{
-      position:absolute;
-      left: 22px;
-      bottom: 20px;
-      right: 22px;
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap:16px;
-      pointer-events:none;
-    }
-    .hero-title .title{
-      pointer-events:auto;
-      background: rgba(255,255,255,.84);
-      border: 1px solid rgba(56,56,56,.10);
-      border-radius: 999px;
-      padding: 14px 16px;
-      box-shadow: var(--shadow-soft);
-      max-width: 680px;
-    }
-    .hero-title h1{
-      margin:0;
-      font-size: clamp(28px, 3.6vw, 44px);
-      font-weight: 700;
-      letter-spacing: .01em;
-    }
-    .hero-title p{
-      margin:6px 0 0;
-      font-size: 14px;
-      line-height: 1.45;
-      opacity:.86;
-    }
-
-    /* Overlap section */
-    .content{
-      position: relative;
-      margin-top: -78px; /* overlap on map */
-      padding: 0 0 56px;
-    }
-
-    .card-surface{
-      background: rgba(255,255,255,.88);
-      border: 1px solid rgba(56,56,56,.10);
-      border-radius: var(--radius-xl);
-      box-shadow: var(--shadow);
-      padding: 26px;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap: 18px;
-    }
-
-    .section-title{
-      margin: 0 0 14px;
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: .01em;
-    }
-
-    .info-block{
-      border-radius: var(--radius-lg);
-      background: rgba(255,255,255,.86);
-      border: 1px solid rgba(56,56,56,.10);
-      padding: 18px;
-    }
-
-    .meta{
-      display:grid;
-      gap: 12px;
-    }
-    .meta h3{
-      margin:0 0 4px;
-      font-size: 14px;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      opacity:.72;
-    }
-    .meta p{
-      margin:0;
-      line-height: 1.55;
-      font-size: 15px;
-    }
-
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding: 10px 12px;
-      border-radius: 999px;
-      background: rgba(221,179,179,.32);
-      border: 1px solid rgba(221,179,179,.55);
-      width: fit-content;
-    }
-
-    /* Form */
-    form{
-      display:grid;
-      gap: 12px;
-    }
-    label{
-      display:grid;
-      gap:6px;
-      font-size: 12px;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      opacity:.72;
-    }
-    input, textarea{
-      width:100%;
-      border-radius: 14px;
-      border: 1px solid rgba(56,56,56,.14);
-      background: rgba(255,255,255,.92);
-      padding: 12px 12px;
-      outline: none;
-      transition: box-shadow .18s var(--ease), border-color .18s var(--ease);
-    }
-    textarea{min-height: 120px; resize: vertical}
-    input:focus, textarea:focus{
-      border-color: rgba(221,179,179,.95);
-      box-shadow: 0 0 0 6px rgba(221,179,179,.20);
-    }
-
-    .fineprint{
-      font-size: 13px;
-      line-height: 1.45;
-      opacity:.78;
-      margin: 2px 0 0;
-    }
-
-    /* Small “graphic element” accent */
-    .accent-lines{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      margin: 10px 0 18px;
-    }
-    .accent-lines .line{
-      height: 2px;
-      width: 42px;
-      border-radius: 2px;
-      background: var(--white);
-      box-shadow: 0 0 0 1px rgba(56,56,56,.08) inset;
-    }
-    .accent-lines .dot{
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      background: var(--pink);
-    }
-
-    /* Footer */
-    footer{
-      margin-top: 40px;
-      background: #1f1f1f;
-      color: rgba(255,255,255,.92);
-    }
-    .footer-inner{
-      padding: 34px 0;
-      display:grid;
-      grid-template-columns: 1fr 1fr auto;
-      gap: 18px;
-      align-items:flex-start;
-    }
-    .footer-brand{
-      display:grid;
-      gap: 8px;
-    }
-    .footer-brand .logo{
-      letter-spacing: .12em;
-      font-weight: 700;
-      font-size: 14px;
-    }
-    .footer-brand small{opacity:.72}
-
-    .footer-nav{
-      display:grid;
-      gap: 8px;
-    }
-    .footer-nav a{opacity:.78}
-    .footer-nav a:hover{opacity:1}
-
-    .copyright{opacity:.68; font-size: 13px; white-space: nowrap}
-
-    /* Fullscreen menu */
-    .menu-overlay{
-      position: fixed;
-      inset: 0;
-      z-index: 80;
-      display:none;
-    }
-    .menu-overlay[aria-hidden="false"]{display:block}
-
-    .menu-backdrop{
-      position:absolute;
-      inset:0;
-      background: linear-gradient(45deg, rgba(239,239,238,.92), rgba(220,220,219,.92));
-      backdrop-filter: blur(12px);
-    }
-
-    .menu-panel{
-      position:absolute;
-      inset: 16px;
-      border-radius: var(--radius-xl);
-      border: 1px solid rgba(56,56,56,.10);
-      background: rgba(255,255,255,.72);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-    }
-
-    .menu-top{
-      height: var(--header-h);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding: 0 16px;
-      border-bottom: 1px solid rgba(56,56,56,.08);
-    }
-
-    .menu-close{
-      width: 44px;
-      height: 44px;
-      border-radius: 999px;
-      border: 1px solid rgba(56,56,56,.16);
-      background: rgba(255,255,255,.9);
-      cursor:pointer;
-      display:grid;
-      place-items:center;
-    }
-
-    .x{
-      width:18px;
-      height:18px;
-      position:relative;
-    }
-    .x:before,.x:after{
-      content:"";
-      position:absolute;
-      left:0; right:0;
-      top: 8px;
-      height:2px;
-      background: var(--charcoal);
-      border-radius:2px;
-    }
-    .x:before{transform: rotate(45deg)}
-    .x:after{transform: rotate(-45deg)}
-
-    .menu-content{
-      height: calc(100% - var(--header-h));
-      display:grid;
-      grid-template-columns: 1fr;
-      place-items:center;
-      padding: 22px;
-    }
-
-    .menu-links{
-      width: min(520px, 100%);
-      display:grid;
-      gap: 12px;
-      text-align:center;
-    }
-
-    .menu-links a{
-      display:block;
-      padding: 14px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(56,56,56,.10);
-      background: rgba(255,255,255,.82);
-      font-size: 18px;
-      letter-spacing: .01em;
-      transition: transform .18s var(--ease), box-shadow .18s var(--ease);
-    }
-    .menu-links a:hover{transform: translateY(-1px); box-shadow: var(--shadow-soft)}
-
-    .menu-links .cta{
-      background: rgba(221,179,179,.72);
-      border-color: rgba(221,179,179,.85);
-      font-weight: 700;
-    }
-
-    /* Responsive */
-    @media (max-width: 900px){
-      .grid{grid-template-columns: 1fr}
-      .content{margin-top: -64px}
-      .footer-inner{grid-template-columns: 1fr; gap: 14px}
-      .copyright{white-space: normal}
-    }
-
-    @media (prefers-reduced-motion: reduce){
-      *{scroll-behavior:auto!important; transition:none!important}
-    }
-  </style>
+  <!-- Skript -->
+  <script defer src="js/includes.js"></script>
+  <script defer src="js/site.js"></script>
+  <script defer src="js/i18n.js"></script>
 </head>
 
 <body>
-  <!-- Sticky header -->
-  <header class="site-header" role="banner">
-    <div class="container header-inner">
-      <a class="brand" href="index.html" aria-label="Gå til forsiden">
-        <span class="wordmark">SOMI</span>
-      </a>
+  <div data-include="partials/header.html"></div>
 
-      <div class="header-actions">
-        <a class="btn btn-primary" href="#booking" aria-label="Book time">BOOK TIME</a>
-        <button class="icon-btn" id="menuOpen" aria-label="Åpne meny" aria-controls="menu" aria-expanded="false">
-          <span class="burger" aria-hidden="true">
-            <span></span><span></span><span></span>
-          </span>
-        </button>
-      </div>
-    </div>
-  </header>
+  <main>
+    <section class="section contact-hero" aria-label="Kart og introduksjon">
+      <div class="container">
+        <div class="contact-hero__map">
+          <iframe
+            title="Kart – SOMI Klinikken"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=Langgata%2031,%204307%20Sandnes&output=embed"></iframe>
+          <div class="contact-hero__veil" aria-hidden="true"></div>
 
-  <!-- Map hero (replaces white empty space) -->
-  <section class="hero" aria-label="Kart og introduksjon">
-    <div class="container">
-      <div class="map-hero">
-        <!-- Replace src with your preferred embed. This is a safe placeholder. -->
-        <iframe
-          title="Kart – SOMI Klinikken"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps?q=Langgata%2031,%204307%20Sandnes&output=embed">
-        </iframe>
-        <div class="map-veil" aria-hidden="true"></div>
-
-        <div class="hero-title">
-          <div class="title">
-            <h1>Kontakt oss</h1>
-            <p>Har du spørsmål om behandlinger, priser eller ønsker en konsultasjon? Ta kontakt – vi hjelper deg med riktig behandling og tidspunkt.</p>
+          <div class="contact-hero__title">
+            <div class="contact-chip">
+              <div class="kicker">Kontakt</div>
+              <h1 class="h1">Kontakt oss</h1>
+              <p class="muted">Har du spørsmål om behandlinger, priser eller ønsker en konsultasjon? Ta kontakt – vi hjelper deg med riktig behandling og tidspunkt.</p>
+            </div>
+            <div class="contact-chip contact-chip--ghost">
+              <div class="muted" style="margin-bottom:6px;">Praktisk info</div>
+              <div>Åpent etter avtale</div>
+              <div class="muted">Langgata 31, 4307 Sandnes</div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Overlapping content that “covers” the map on scroll -->
-  <main class="content" role="main">
-    <div class="container">
-      <section class="card-surface" aria-label="Kontaktinnhold">
-        <div class="grid">
-          <!-- Left: contact info -->
-          <div>
-            <h2 class="section-title">Kontaktinformasjon</h2>
-            <div class="accent-lines" aria-hidden="true">
-              <span class="line"></span><span class="dot"></span><span class="line"></span>
-            </div>
+    <section class="section section--tight contact-content" aria-label="Kontaktinformasjon og skjema">
+      <div class="container contact-grid">
+        <div class="card contact-card">
+          <div class="card__inner">
+            <div class="kicker">KOM I KONTAKT</div>
+            <h2 class="h2" style="margin-bottom:6px;">Kontaktinformasjon</h2>
+            <p class="muted">Ring, send e-post eller bruk skjemaet – vi svarer så raskt vi kan.</p>
 
-            <div class="meta">
-              <div class="info-block">
-                <h3>Adresse</h3>
-                <p><strong>SOMI Klinikken</strong><br/>Langgata 31<br/>4307 Sandnes</p>
+            <dl class="contact-list">
+              <div>
+                <dt>Adresse</dt>
+                <dd>SOMI Klinikken<br>Langgata 31<br>4307 Sandnes</dd>
               </div>
-
-              <div class="info-block">
-                <h3>Telefon</h3>
-                <p><a class="pill" href="tel:+4792939171">+47 929 39 171</a></p>
+              <div>
+                <dt>Telefon</dt>
+                <dd><a class="pill" href="tel:+4792939171">+47 929 39 171</a></dd>
               </div>
-
-              <div class="info-block">
-                <h3>E-post</h3>
-                <p><a class="pill" href="mailto:post@somiklinikken.no">post@somiklinikken.no</a></p>
+              <div>
+                <dt>E-post</dt>
+                <dd><a class="pill" href="mailto:post@somiklinikken.no">post@somiklinikken.no</a></dd>
               </div>
-
-              <div class="info-block">
-                <h3>Åpningstider</h3>
-                <p>Klinikken er åpen etter avtale. Se tilgjengelige tider i onlinebooking, eller ta kontakt for timebestilling.</p>
+              <div>
+                <dt>Åpningstider</dt>
+                <dd>Klinikken er åpen etter avtale. Se tilgjengelige tider i onlinebooking, eller ta kontakt for timebestilling.</dd>
               </div>
-
-              <div class="info-block" id="booking">
-                <h3>Online booking</h3>
-                <p class="fineprint">Du kan booke konsultasjon og behandling direkte via bookingsystemet.</p>
-                <p style="margin:12px 0 0">
-                  <a class="btn btn-primary" href="#" aria-label="Gå til online booking">Gå til online booking</a>
-                </p>
+              <div>
+                <dt>Online booking</dt>
+                <dd>
+                  <p class="muted" style="margin: 0 0 10px;">Du kan booke konsultasjon og behandling direkte via bookingsystemet.</p>
+                  <a class="btn btn--primary" href="booking.html">Gå til online booking</a>
+                </dd>
               </div>
-            </div>
-          </div>
-
-          <!-- Right: message form -->
-          <div>
-            <h2 class="section-title">Send oss en melding</h2>
-            <div class="accent-lines" aria-hidden="true">
-              <span class="line"></span><span class="dot"></span><span class="line"></span>
-            </div>
-
-            <div class="info-block">
-              <form action="#" method="post" novalidate>
-                <label>
-                  Navn*
-                  <input name="name" autocomplete="name" required />
-                </label>
-
-                <label>
-                  E-post*
-                  <input name="email" type="email" autocomplete="email" required />
-                </label>
-
-                <label>
-                  Telefon
-                  <input name="phone" type="tel" autocomplete="tel" />
-                </label>
-
-                <label>
-                  Melding*
-                  <textarea name="message" required></textarea>
-                </label>
-
-                <p class="fineprint">Vi svarer deg så snart som mulig. Ikke send sensitive personopplysninger i dette skjemaet.</p>
-
-                <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:6px">
-                  <button class="btn" type="submit">Send melding</button>
-                  <a class="btn" href="tel:+4792939171">Ring oss</a>
-                </div>
-              </form>
-            </div>
-
-            <div class="info-block" style="margin-top:14px">
-              <h3>Finn oss</h3>
-              <p>Klinikken ligger sentralt i Sandnes, med kort avstand til kollektivtransport og gode parkeringsmuligheter i området rundt Langgata.</p>
-            </div>
+            </dl>
           </div>
         </div>
-      </section>
 
-      <footer role="contentinfo">
-        <div class="container footer-inner">
-          <div class="footer-brand">
-            <div class="logo">SOMI</div>
-            <small>Estetisk klinikk</small>
+        <div class="card contact-card">
+          <div class="card__inner">
+            <div class="kicker">MELDING</div>
+            <h2 class="h2" style="margin-bottom:6px;">Send oss en melding</h2>
+            <p class="muted">Fyll ut skjemaet, så tar vi kontakt. Ikke send sensitive personopplysninger.</p>
+
+            <form class="contact-form" action="#" method="post" novalidate>
+              <label>
+                Navn*
+                <input name="name" autocomplete="name" required />
+              </label>
+              <label>
+                E-post*
+                <input name="email" type="email" autocomplete="email" required />
+              </label>
+              <label>
+                Telefon
+                <input name="phone" type="tel" autocomplete="tel" />
+              </label>
+              <label>
+                Melding*
+                <textarea name="message" required></textarea>
+              </label>
+
+              <div class="contact-form__actions">
+                <button class="btn btn--primary" type="submit">Send melding</button>
+                <a class="btn" href="tel:+4792939171">Ring oss</a>
+              </div>
+            </form>
           </div>
-
-          <nav class="footer-nav" aria-label="Footer meny">
-            <a href="index.html">Hjem</a>
-            <a href="team.html">Møt oss</a>
-            <a href="behandlinger.html">Behandlinger</a>
-            <a href="blogg.html">Blogg</a>
-            <a href="faq.html">FAQ</a>
-            <a href="kontakt.html" aria-current="page">Kontakt</a>
-            <a href="personvern.html">Personvern</a>
-          </nav>
-
-          <div class="copyright">© SOMI</div>
         </div>
-      </footer>
-    </div>
+      </div>
+    </section>
   </main>
 
-  <!-- Fullscreen menu overlay -->
-  <div class="menu-overlay" id="menu" aria-hidden="true">
-    <div class="menu-backdrop" data-close="true" aria-hidden="true"></div>
-    <div class="menu-panel" role="dialog" aria-modal="true" aria-label="Meny">
-      <div class="menu-top">
-        <a class="brand" href="index.html" aria-label="Gå til forsiden">
-          <span class="wordmark">SOMI</span>
-        </a>
-        <button class="menu-close" id="menuClose" aria-label="Lukk meny">
-          <span class="x" aria-hidden="true"></span>
-        </button>
-      </div>
-      <div class="menu-content">
-        <nav class="menu-links" aria-label="Hovedmeny">
-          <a href="index.html">Hjem</a>
-          <a href="team.html">Møt oss</a>
-          <a href="behandlinger.html">Behandlinger</a>
-          <a href="blogg.html">Blogg</a>
-          <a href="faq.html">FAQ</a>
-          <a href="kontakt.html" aria-current="page">Kontakt oss</a>
-          <a class="cta" href="#booking">BOOK TIME</a>
-          <a href="personvern.html">Personvern</a>
-        </nav>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    (function(){
-      const openBtn = document.getElementById('menuOpen');
-      const closeBtn = document.getElementById('menuClose');
-      const overlay = document.getElementById('menu');
-      const backdrop = overlay.querySelector('.menu-backdrop');
-
-      function openMenu(){
-        overlay.setAttribute('aria-hidden','false');
-        openBtn.setAttribute('aria-expanded','true');
-        document.documentElement.style.overflow = 'hidden';
-        // focus close for accessibility
-        closeBtn.focus();
-      }
-
-      function closeMenu(){
-        overlay.setAttribute('aria-hidden','true');
-        openBtn.setAttribute('aria-expanded','false');
-        document.documentElement.style.overflow = '';
-        openBtn.focus();
-      }
-
-      openBtn.addEventListener('click', openMenu);
-      closeBtn.addEventListener('click', closeMenu);
-      backdrop.addEventListener('click', closeMenu);
-
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && overlay.getAttribute('aria-hidden') === 'false') closeMenu();
-      });
-
-      // Close when clicking a menu link
-      overlay.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => {
-          if (overlay.getAttribute('aria-hidden') === 'false') closeMenu();
-        });
-      });
-    })();
-  </script>
+  <div data-include="partials/footer.html"></div>
 </body>
 </html>
