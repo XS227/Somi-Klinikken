@@ -1,48 +1,35 @@
 <footer class="site-footer">
-  <div class="somi-container footer-inner">
-    <div class="footer-top">
-      <div>
-        <div class="footer-column-title">SOMI Klinikken</div>
-        <p>
-          Estetisk klinikk i hjertet av Sandnes med fokus på naturlige resultater, trygg oppfølging og
-          dokumenterte behandlinger.
-        </p>
-      </div>
+  <div class="container footer__grid">
+    <div class="footer__col">
+      <a class="footer__brand" href="/index.html" aria-label="SOMI Klinikken">
+        <img class="footer__logo" src="/logo.png" alt="SOMI Klinikken" />
+      </a>
 
-      <div>
-        <div class="footer-column-title">Navigasjon</div>
-        <ul class="footer-links">
-          <li><a href="#behandlinger">Behandlinger</a></li>
-          <li><a href="#fordeler">Hvorfor SOMI</a></li>
-          <li><a href="#about">Om klinikken</a></li>
-          <li><a href="#team">Teamet</a></li>
-          <li><a href="#faq">Spørsmål &amp; svar</a></li>
-          <li><a href="#contact">Kontakt</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <div class="footer-column-title">Kontakt</div>
-        <ul class="footer-links">
-          <li>Langgata 31, 4306 Sandnes</li>
-          <li><a href="mailto:post@somiklinikken.no">post@somiklinikken.no</a></li>
-          <li><a href="tel:+4792939171">+47&nbsp;929&nbsp;39&nbsp;171</a></li>
-          <li>Åpent etter avtale</li>
-        </ul>
-        <div class="footer-links" style="flex-direction: row; gap: 0.5rem; margin-top: 0.5rem;">
-          <a href="https://www.facebook.com/SomiByKatarina" target="_blank" rel="noopener">Facebook</a>
-          <span aria-hidden="true">·</span>
-          <a href="https://www.instagram.com/somiklinikken" target="_blank" rel="noopener">Instagram</a>
-        </div>
+      <div class="muted footer__text">
+        Langgata 31, 4307 Sandnes<br>
+        <a href="tel:+4792939171">+47 929 39 171</a><br>
+        <a href="mailto:[email protected]">[email protected]</a><br>
+        Klinikken er åpen etter avtale.
       </div>
     </div>
 
-    <div class="footer-bottom">
-      <div class="footer-branding">
-        <span class="footer-logo">somi</span>
-        <span>SOMI Klinikken · Sandnes</span>
-      </div>
-      <div>© 2025 SOMI Klinikk – Alle rettigheter reservert.</div>
+    <nav class="footer__nav" aria-label="Footer meny">
+      <a href="/index.html">Start</a>
+      <a href="/om.html">Om</a>
+      <a href="/team.html">Team</a>
+      <a href="/behandlinger.html">Behandlinger</a>
+      <a href="/priser.html">Priser</a>
+      <a href="/blogg.html">Blogg</a>
+      <a href="/kontakt.html">Kontakt</a>
+      <a href="/personvern.html">Personvern</a>
+    </nav>
+
+    <div class="muted footer__copy">
+      © <span data-year></span> SOMI Klinikken
     </div>
   </div>
+
+  <script>
+    document.querySelectorAll("[data-year]").forEach(n => n.textContent = new Date().getFullYear());
+  </script>
 </footer>
