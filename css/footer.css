@@ -3,21 +3,27 @@
   border-top: 1px solid rgba(56,56,56,0.10);
   padding: 52px 0;
 }
+
 .footer__grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1.2fr 1fr 0.8fr;
   gap: 22px;
   align-items: start;
 }
-.footer__brand {
-  font-family: "Eastman Alternate", "Corbel", serif;
-  font-weight: 300;
-  letter-spacing: 0.08em;
-  margin-bottom: 6px;
+
+.footer__logo {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  display: block;
 }
+
+.footer__text { margin-top: 10px; }
+
 .footer__nav { display: grid; gap: 10px; justify-content: center; }
 .footer__nav a { opacity: .78; }
 .footer__nav a:hover { opacity: 1; }
+
 .footer__copy { text-align: right; }
 
 @media (max-width: 900px) {
