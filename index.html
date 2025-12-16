@@ -15,7 +15,6 @@
 
   <base href="/" />
 
-  <!-- Shared CSS -->
   <link rel="stylesheet" href="/css/tokens.css" />
   <link rel="stylesheet" href="/css/base.css" />
   <link rel="stylesheet" href="/css/layout.css" />
@@ -24,86 +23,86 @@
   <link rel="stylesheet" href="/css/header.css" />
   <link rel="stylesheet" href="/css/footer.css" />
 
-  <!-- Page CSS (lightweight, neutral) -->
   <style>
-    .hero { padding-top: 88px; }
-    .kicker {
-      font-family: "Corbel", system-ui, sans-serif;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      font-size: 12px;
-      opacity: .75;
+    .kicker{
+      font-family:"Corbel",system-ui,sans-serif;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      font-size:12px;
+      opacity:.75;
     }
-    .split { display:grid; grid-template-columns: 1.12fr 0.88fr; gap: 22px; align-items:start; }
-    @media (max-width: 920px){ .split { grid-template-columns: 1fr; } }
 
-    .tiles { display:grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 22px; }
-    @media (max-width: 980px){ .tiles { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 620px){ .tiles { grid-template-columns: 1fr; } }
+    /* FIX: fjerner stor tom plass før innhold på mobil */
+    .hero{
+      padding-top: calc(var(--header-h, 72px) + 18px);
+      padding-bottom: 28px;
+    }
+    .hero.section{ min-height:auto !important; height:auto !important; }
 
-    .tile {
-      border-radius: var(--r-lg);
-      background: rgba(255,255,255,0.72);
-      border: 1px solid rgba(56,56,56,0.10);
-      box-shadow: var(--sh-soft);
-      padding: 18px;
+    .split{ display:grid; grid-template-columns:1.12fr .88fr; gap:22px; align-items:start; }
+    @media (max-width: 920px){ .split{ grid-template-columns:1fr; } }
+
+    .tiles{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:22px; }
+    @media (max-width: 980px){ .tiles{ grid-template-columns:repeat(2,1fr);} }
+    @media (max-width: 620px){ .tiles{ grid-template-columns:1fr;} }
+
+    .tile{
+      border-radius:var(--r-lg);
+      background:rgba(255,255,255,.72);
+      border:1px solid rgba(56,56,56,.10);
+      box-shadow:var(--sh-soft);
+      padding:18px;
       display:grid;
-      gap: 8px;
-      transition: transform var(--dur-2) var(--ease-out), border-color var(--dur-2) var(--ease-out);
+      gap:8px;
+      transition:transform var(--dur-2) var(--ease-out), border-color var(--dur-2) var(--ease-out);
     }
-    .tile:hover { transform: translateY(-2px); border-color: rgba(56,56,56,0.22); }
-    .tile .t { font-weight: 600; }
-    .tile .m { opacity: .78; font-size: 14px; }
+    .tile:hover{ transform:translateY(-2px); border-color:rgba(56,56,56,.22); }
+    .tile .t{ font-weight:600; }
+    .tile .m{ opacity:.78; font-size:14px; }
 
-    .steps { display:grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 16px; }
-    @media (max-width: 900px){ .steps { grid-template-columns: 1fr; } }
+    .steps{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:16px; }
+    @media (max-width: 900px){ .steps{ grid-template-columns:1fr; } }
 
-    .note { opacity:.78; font-size: 14px; margin-top: 10px; }
+    .note{ opacity:.78; font-size:14px; margin-top:10px; }
 
-    /* Keep primary CTA neutral (not pink-heavy) */
-    .btn--primary { background: rgba(56,56,56,0.95); }
-    .btn--primary:hover { border-color: rgba(221,179,179,0.6); }
+    /* Primary CTA nøytral */
+    .btn--primary{ background:rgba(56,56,56,.95); }
+    .btn--primary:hover{ border-color: rgba(221,179,179,.6); }
   </style>
 
-  <!-- JS -->
   <script defer src="/js/config.js"></script>
   <script defer src="/js/includes.js"></script>
   <script defer src="/js/site.js"></script>
 
-  <!-- Structured data -->
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "SOMI Klinikken",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Langgata 31",
-      "postalCode": "4307",
-      "addressLocality": "Sandnes",
-      "addressCountry": "NO"
+    "@context":"https://schema.org",
+    "@type":"LocalBusiness",
+    "name":"SOMI Klinikken",
+    "address":{
+      "@type":"PostalAddress",
+      "streetAddress":"Langgata 31",
+      "postalCode":"4307",
+      "addressLocality":"Sandnes",
+      "addressCountry":"NO"
     },
-    "telephone": "+47 929 39 171",
-    "email": "[email protected]",
-    "url": "/"
+    "telephone":"+47 929 39 171",
+    "email":"[email protected]",
+    "url":"/"
   }
   </script>
 </head>
 
 <body>
-  <!-- Header via partial -->
   <div data-include="/partials/header.html"></div>
 
   <main>
-    <!-- HERO -->
     <section class="section hero">
       <div class="container split">
         <div class="reveal">
           <div class="kicker">Estetisk klinikk i Sandnes</div>
           <h1 class="h1">Trygge behandlinger.<br>Naturlige resultater.</h1>
-          <p class="muted">
-            Raskt å finne informasjon, enkelt å bestille. Se priser, velg behandling – og book tid online.
-          </p>
+          <p class="muted">Raskt å finne informasjon, enkelt å bestille. Se priser, velg behandling – og book tid online.</p>
 
           <div style="display:flex; gap:12px; margin-top:22px; flex-wrap:wrap;">
             <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
@@ -112,26 +111,13 @@
           </div>
 
           <div class="tiles reveal" aria-label="Snarveier til populære tjenester">
-            <a class="tile" href="/behandlinger.html#microblading">
-              <div class="t">Microblading</div>
-              <div class="m">Bryn med naturlig form og fylde</div>
-            </a>
-            <a class="tile" href="/behandlinger.html#permanent-makeup">
-              <div class="t">Permanent makeup</div>
-              <div class="m">Lepper og øyne</div>
-            </a>
-            <a class="tile" href="/behandlinger.html#bryn-og-vipper">
-              <div class="t">Bryn &amp; vipper</div>
-              <div class="m">Brow lamination og vippeløft</div>
-            </a>
-            <a class="tile" href="/behandlinger.html#laser">
-              <div class="t">Laser</div>
-              <div class="m">Utvalgte behov (se behandlinger)</div>
-            </a>
+            <a class="tile" href="/behandlinger.html#microblading"><div class="t">Microblading</div><div class="m">Bryn med naturlig form og fylde</div></a>
+            <a class="tile" href="/behandlinger.html#permanent-makeup"><div class="t">Permanent makeup</div><div class="m">Lepper og øyne</div></a>
+            <a class="tile" href="/behandlinger.html#bryn-og-vipper"><div class="t">Bryn &amp; vipper</div><div class="m">Brow lamination og vippeløft</div></a>
+            <a class="tile" href="/behandlinger.html#laser"><div class="t">Laser</div><div class="m">Utvalgte behov (se behandlinger)</div></a>
           </div>
         </div>
 
-        <!-- Practical + trust card -->
         <aside class="card reveal" aria-label="Kontakt og praktisk info">
           <div class="card__inner" style="display:grid; gap:12px;">
             <div>
@@ -151,7 +137,6 @@
       </div>
     </section>
 
-    <!-- How it works (conversion path) -->
     <section class="section section--tight">
       <div class="container">
         <div class="reveal">
@@ -160,18 +145,9 @@
         </div>
 
         <div class="steps">
-          <div class="tile reveal">
-            <div class="t">1) Finn behandling</div>
-            <div class="m">Velg fra behandlinger eller bruk prislisten.</div>
-          </div>
-          <div class="tile reveal">
-            <div class="t">2) Sjekk pris og varighet</div>
-            <div class="m">Alt er listet tydelig for rask beslutning.</div>
-          </div>
-          <div class="tile reveal">
-            <div class="t">3) Book tid online</div>
-            <div class="m">Du sendes til somi.bestille.no.</div>
-          </div>
+          <div class="tile reveal"><div class="t">1) Finn behandling</div><div class="m">Velg fra behandlinger eller bruk prislisten.</div></div>
+          <div class="tile reveal"><div class="t">2) Sjekk pris og varighet</div><div class="m">Alt er listet tydelig for rask beslutning.</div></div>
+          <div class="tile reveal"><div class="t">3) Book tid online</div><div class="m">Du sendes til somi.bestille.no.</div></div>
         </div>
 
         <div style="margin-top:18px;">
@@ -180,7 +156,6 @@
       </div>
     </section>
 
-    <!-- Prices teaser -->
     <section class="section">
       <div class="container">
         <div class="card reveal">
@@ -199,7 +174,6 @@
       </div>
     </section>
 
-    <!-- Team teaser -->
     <section class="section section--tight">
       <div class="container">
         <div class="reveal">
@@ -207,14 +181,12 @@
           <h2 class="h2">Trygge hender, rolig opplevelse</h2>
           <p class="muted">Møt teamet og finn riktig behandler.</p>
         </div>
-
         <div style="margin-top:16px;">
           <a class="btn" href="/team.html">Se teamet</a>
         </div>
       </div>
     </section>
 
-    <!-- Blog teaser -->
     <section class="section section--tight">
       <div class="container">
         <div class="card reveal">
@@ -231,7 +203,6 @@
       </div>
     </section>
 
-    <!-- Final CTA -->
     <section class="section section--tight">
       <div class="container">
         <div class="card reveal">
@@ -251,7 +222,6 @@
     </section>
   </main>
 
-  <!-- Footer via partial -->
   <div data-include="/partials/footer.html"></div>
 </body>
 </html>
