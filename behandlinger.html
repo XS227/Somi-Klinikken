@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Behandlinger | SOMI Klinikken Sandnes</title>
+  <meta name="description" content="Se behandlingene hos SOMI Klinikken i Sandnes. Velg kategori, finn riktig behandling og bestill time online." />
+  <link rel="canonical" href="/behandlinger.html" />
+  <base href="/" />
+
+  <link rel="stylesheet" href="/css/tokens.css" />
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/layout.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/motion.css" />
+  <link rel="stylesheet" href="/css/header.css" />
+  <link rel="stylesheet" href="/css/footer.css" />
+  <link rel="stylesheet" href="/css/treatments.css" />
+
+  <script defer src="/js/config.js"></script>
+  <script defer src="/js/includes.js"></script>
+  <script defer src="/js/site.js"></script>
+
+  <style>
+    .page-hero{ padding-top: calc(var(--header-h,72px) + 18px); }
+  </style>
+</head>
+
+<body>
+  <div data-include="/partials/header.html"></div>
+
+  <main>
+    <section class="section page-hero">
+      <div class="container">
+        <div class="reveal">
+          <div class="kicker">Behandlinger</div>
+          <h1 class="h1">Finn riktig behandling</h1>
+          <p class="muted">Velg kategori eller søk. Detaljer ligger på undersider for hver behandling.</p>
+        </div>
+
+        <div class="toolbar reveal" style="margin-top:22px;">
+          <label class="field" aria-label="Søk i behandlinger">
+            <span style="opacity:.65;">Søk</span>
+            <input id="treatSearch" type="search" placeholder="Søk etter behandling…" autocomplete="off" />
+          </label>
+
+          <label class="field" aria-label="Velg kategori">
+            <span style="opacity:.65;">Kategori</span>
+            <select id="treatCategory">
+              <option value="all">Alle</option>
+              <option value="microblading">Microblading</option>
+              <option value="bryn-og-vipper">Bryn og vipper</option>
+              <option value="hudpleie">Hudpleie</option>
+              <option value="permanent-makeup">Permanent makeup</option>
+              <option value="laser">Laser</option>
+            </select>
+          </label>
+
+          <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
+        </div>
+
+        <div id="emptyState" class="empty-state" style="display:none;">
+          Ingen treff. Prøv et annet søk eller velg “Alle”.
+        </div>
+
+        <!-- Ankermål for forsiden -->
+        <div id="microblading"></div>
+
+        <!-- Du kan fylle inn flere kort/tjenester etter behov -->
+        <section class="category reveal" data-category="microblading" style="margin-top:28px;">
+          <div class="category__head">
+            <h2 class="h2" style="margin:0;">Microblading</h2>
+            <span class="badge">Populært</span>
+          </div>
+          <div class="cards">
+            <article class="t-card" data-name="Ny microblading" data-tags="microblading bryn">
+              <div class="t-card__inner">
+                <div class="t-name">Ny microblading</div>
+                <div class="t-meta"><span>Se priser</span><span>—</span></div>
+                <div class="t-actions">
+                  <a class="btn btn--ghost" href="/behandlinger/ny-microblading.html">Les mer</a>
+                  <a class="btn btn--primary" href="#" data-booking-link>Book</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <div id="permanent-makeup"></div>
+        <section class="category reveal" data-category="permanent-makeup" style="margin-top:44px;">
+          <div class="category__head">
+            <h2 class="h2" style="margin:0;">Permanent makeup</h2>
+          </div>
+          <div class="cards">
+            <article class="t-card" data-name="Leppefarge / lipblush" data-tags="lepper lipblush permanent makeup">
+              <div class="t-card__inner">
+                <div class="t-name">Leppefarge / lipblush</div>
+                <div class="t-meta"><span>Se priser</span><span>—</span></div>
+                <div class="t-actions">
+                  <a class="btn btn--ghost" href="/behandlinger/lipblush.html">Les mer</a>
+                  <a class="btn btn--primary" href="#" data-booking-link>Book</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <div id="bryn-og-vipper"></div>
+        <section class="category reveal" data-category="bryn-og-vipper" style="margin-top:44px;">
+          <div class="category__head">
+            <h2 class="h2" style="margin:0;">Bryn og vipper</h2>
+          </div>
+          <div class="cards">
+            <article class="t-card" data-name="Vippeløft" data-tags="vippeløft vipper">
+              <div class="t-card__inner">
+                <div class="t-name">Vippeløft</div>
+                <div class="t-meta"><span>Se priser</span><span>—</span></div>
+                <div class="t-actions">
+                  <a class="btn btn--ghost" href="/behandlinger/vippeloft.html">Les mer</a>
+                  <a class="btn btn--primary" href="#" data-booking-link>Book</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <div id="laser"></div>
+        <section class="category reveal" data-category="laser" style="margin-top:44px;">
+          <div class="category__head">
+            <h2 class="h2" style="margin:0;">Laser</h2>
+          </div>
+          <div class="cards">
+            <article class="t-card" data-name="Laser (utvalgte behov)" data-tags="laser">
+              <div class="t-card__inner">
+                <div class="t-name">Laser (utvalgte behov)</div>
+                <div class="t-meta"><span>Se priser</span><span>—</span></div>
+                <div class="t-actions">
+                  <a class="btn btn--ghost" href="/behandlinger/laser.html">Les mer</a>
+                  <a class="btn btn--primary" href="#" data-booking-link>Book</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+      </div>
+    </section>
+  </main>
+
+  <div data-include="/partials/footer.html"></div>
+
+  <script>
+    (function () {
+      const search = document.getElementById("treatSearch");
+      const select = document.getElementById("treatCategory");
+      const empty = document.getElementById("emptyState");
+
+      const cats = Array.from(document.querySelectorAll(".category[data-category]"));
+      const cards = Array.from(document.querySelectorAll(".t-card[data-name]"));
+      const norm = (s) => (s || "").toLowerCase().trim();
+
+      function apply() {
+        const q = norm(search.value);
+        const c = select.value;
+
+        cats.forEach(sec => sec.style.display = (c === "all" || sec.dataset.category === c) ? "" : "none");
+
+        let visible = 0;
+
+        cards.forEach(card => {
+          const sec = card.closest(".category");
+          const secVisible = sec && sec.style.display !== "none";
+          if (!secVisible) { card.style.display = "none"; return; }
+
+          const name = norm(card.dataset.name);
+          const tags = norm(card.dataset.tags);
+          const hit = !q || name.includes(q) || tags.includes(q);
+          card.style.display = hit ? "" : "none";
+          if (hit) visible++;
+        });
+
+        cats.forEach(sec => {
+          if (sec.style.display === "none") return;
+          const any = Array.from(sec.querySelectorAll(".t-card")).some(c => c.style.display !== "none");
+          sec.style.display = any ? "" : "none";
+        });
+
+        empty.style.display = (visible === 0) ? "" : "none";
+      }
+
+      search && search.addEventListener("input", apply);
+      select && select.addEventListener("change", apply);
+      apply();
+    })();
+  </script>
+</body>
+</html>
+
