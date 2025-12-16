@@ -1,10 +1,62 @@
-/* Layout utilities for spacing and grid helpers. */
+/* layout.css — shared layout primitives */
 
-.container {
-  width: min(1200px, 92vw);
-  margin: 0 auto;
+:root {
+  --gutter: 20px;
 }
 
+/* container */
+.container {
+  width: min(1120px, calc(100% - (var(--gutter) * 2)));
+  margin-inline: auto;
+}
+
+/* sections */
 .section {
-  padding: 3rem 0;
+  padding: 64px 0;
+}
+
+.section--tight {
+  padding: 44px 0;
+}
+
+@media (max-width: 900px) {
+  .section { padding: 48px 0; }
+  .section--tight { padding: 36px 0; }
+}
+
+/* headings helpers (if not already in base/components) */
+.h1 { font-size: clamp(40px, 6vw, 64px); line-height: 1.02; margin: 10px 0 10px; }
+.h2 { font-size: clamp(26px, 3.2vw, 36px); line-height: 1.15; margin: 10px 0 10px; }
+.muted { opacity: .78; }
+
+/* card base */
+.card {
+  border-radius: var(--r-lg);
+  background: rgba(255,255,255,.72);
+  border: 1px solid rgba(56,56,56,.10);
+  box-shadow: var(--sh-soft);
+}
+.card__inner { padding: 18px; }
+
+/* ===== ADD AT END: HERO FIX (prevents huge empty top space) ===== */
+
+/* Home hero must NEVER be full-viewport on mobile unless explicitly intended */
+.section.hero {
+  min-height: auto !important;
+  height: auto !important;
+  padding-top: calc(var(--header-h, 72px) + 18px) !important;
+  padding-bottom: 28px !important;
+}
+
+/* If any global rules are forcing sections to be 100vh, this neutralizes hero only */
+.section.hero * {
+  place-content: initial;
+}
+
+@media (min-width: 981px) {
+  /* Keep it premium on desktop without pushing content below fold */
+  .section.hero {
+    padding-top: calc(var(--header-h, 72px) + 24px) !important;
+    padding-bottom: 44px !important;
+  }
 }
