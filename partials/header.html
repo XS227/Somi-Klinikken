@@ -1,4 +1,4 @@
-<header class="site-header" role="banner">
+<header class="site-header" role="banner" data-site-header>
   <div class="container">
     <div class="header__row">
       <a class="brand" href="/index.html" aria-label="SOMI Klinikken">
@@ -17,22 +17,28 @@
 
       <div class="header__actions">
         <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
-        <button class="menu-btn" type="button" aria-label="Åpne meny" aria-expanded="false" data-menu-toggle>☰</button>
+        <button class="menu-btn" type="button"
+                aria-label="Åpne meny"
+                aria-expanded="false"
+                data-menu-toggle>
+          ☰
+        </button>
       </div>
     </div>
   </div>
 
-  <!-- Mobile panel (absolute via header.css) -->
-  <div class="mobile-panel" data-mobile-panel>
-    <div class="mobile-panel__inner">
-      <a class="btn" href="/index.html">Start</a>
-      <a class="btn" href="/om.html">Om</a>
-      <a class="btn" href="/team.html">Team</a>
-      <a class="btn" href="/behandlinger.html">Behandlinger</a>
-      <a class="btn" href="/priser.html">Priser</a>
-      <a class="btn" href="/blogg.html">Blogg</a>
-      <a class="btn" href="/kontakt.html">Kontakt</a>
-      <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
+  <div class="mobile-panel" data-mobile-panel aria-hidden="true">
+    <div class="container">
+      <div class="mobile-panel__inner">
+        <a class="mnav" href="/index.html">Start</a>
+        <a class="mnav" href="/om.html">Om</a>
+        <a class="mnav" href="/team.html">Team</a>
+        <a class="mnav" href="/behandlinger.html">Behandlinger</a>
+        <a class="mnav" href="/priser.html">Priser</a>
+        <a class="mnav" href="/blogg.html">Blogg</a>
+        <a class="mnav" href="/kontakt.html">Kontakt</a>
+        <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
+      </div>
     </div>
   </div>
 </header>
