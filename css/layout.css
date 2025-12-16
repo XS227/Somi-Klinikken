@@ -1,65 +1,65 @@
-:root{
-  --gutter: 20px;
-}
+/* hotfix.css — force fix for blank space top on mobile */
 
-/* container */
-.container{
-  width: min(1120px, calc(100% - (var(--gutter) * 2)));
-  margin-inline: auto;
-}
-
-/* sections */
-.section{
-  padding: 64px 0;
-}
-.section--tight{
-  padding: 44px 0;
-}
-@media (max-width: 900px){
-  .section{ padding: 48px 0; }
-  .section--tight{ padding: 36px 0; }
-}
-
-/* headings helpers */
-.h1{ font-size: clamp(40px, 6vw, 64px); line-height: 1.02; margin: 10px 0 10px; }
-.h2{ font-size: clamp(26px, 3.2vw, 36px); line-height: 1.15; margin: 10px 0 10px; }
-.muted{ opacity: .78; }
-
-/* card base */
-.card{
-  border-radius: var(--r-lg);
-  background: rgba(255,255,255,.72);
-  border: 1px solid rgba(56,56,56,.10);
-  box-shadow: var(--sh-soft);
-}
-.card__inner{ padding: 18px; }
-
-/* =========================
-   HERO HARD FIX (the bug)
-   ========================= */
-
-/* Kill any min-h-screen / 100vh behavior for hero */
+/* 1) Kill any full-screen hero/first-section behavior */
 .section.hero,
-.hero{
+.hero,
+main > section:first-child,
+main > div:first-child,
+main > header:first-child {
   min-height: auto !important;
   height: auto !important;
 }
 
-/* Make hero start right under sticky header (no empty space) */
-.section.hero{
+/* 2) Ensure first content starts below sticky header (no giant blank area) */
+.section.hero,
+.hero,
+main > section:first-child {
   padding-top: calc(var(--header-h, 72px) + 18px) !important;
   padding-bottom: 28px !important;
 }
 
-/* Prevent flex/grid alignment rules from pushing content down */
-.section.hero *{
-  place-content: initial;
+/* 3) If you have a “hero image” element reserving height without showing image */
+.hero-img,
+.hero-image,
+.hero-media,
+.hero__media,
+.hero__image,
+.hero__bg,
+.hero-bg {
+  height: auto !important;
+  min-height: 0 !important;
 }
 
-/* Keep desktop premium but not "empty" */
-@media (min-width: 981px){
-  .section.hero{
-    padding-top: calc(var(--header-h, 72px) + 24px) !important;
-    padding-bottom: 44px !important;
-  }
+/* Hide empty hero images (common cause of large blank top) */
+img.hero-img[src=""],
+img.hero-img:not([src]),
+img.hero-image[src=""],
+img.hero-image:not([src]) {
+  display: none !important;
+}
+
+/* If an empty div is used as hero background with vh */
+.hero-bg:empty,
+.hero__bg:empty {
+  display: none !important;
+}
+
+/* 4) Neutralize “align end/center pushing content down” inside hero */
+.section.hero *,
+.hero * {
+  place-content: initial !important;
+  align-content: initial !important;
+  align-items: initial !important;
+}
+
+/* 5) Fix logo collapsing to tiny 's mi' artifacts */
+.brand__logo {
+  width: 56px !important;
+  height: 56px !important;
+  max-width: none !important;
+  object-fit: contain !important;
+  display: block !important;
+}
+@media (max-width: 480px) {
+  .brand__logo { width: 48px !important; height: 48px !important; }
 }
