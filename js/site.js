@@ -42,6 +42,12 @@
     return Math.round(header.getBoundingClientRect().height + 8);
   }
 
+  function setCurrentYear() {
+    const yearEl = document.querySelector("[data-year]");
+    if (!yearEl) return;
+    yearEl.textContent = String(new Date().getFullYear());
+  }
+
   function smoothScrollTo(id) {
     const targetId = id.replace("#", "");
     const el = document.getElementById(targetId);
@@ -127,6 +133,7 @@
     wireBookingLinks(document);
     setHeaderHeightVar();
     setActiveNav();
+    setCurrentYear();
     closeMenu();
 
     if(window.location.hash === "#kart"){
@@ -139,6 +146,7 @@
     wireBookingLinks(document);
     setHeaderHeightVar();
     setActiveNav();
+    setCurrentYear();
   });
   obs.observe(document.documentElement, { childList: true, subtree: true });
 })();
