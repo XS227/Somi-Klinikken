@@ -3,11 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Om SOMI Klinikken | Estetisk klinikk i Sandnes</title>
-  <meta name="description" content="Les om SOMI Klinikken i Sandnes. Vår tilnærming: trygge behandlinger, naturlige resultater og personlig oppfølging." />
-  <link rel="canonical" href="/om.html" />
-  <base href="/" />
+  <title>Om SOMI Klinikken i Sandnes | Trygg, presis og naturlig estetikk</title>
+  <meta name="description" content="Om SOMI Klinikken i Sandnes: En klinikk bygget på omtanke. Vi kombinerer medisinsk kompetanse med estetisk blikk – med fokus på trygghet, presisjon og naturlige resultater." />
 
+  <!-- CSS -->
   <link rel="stylesheet" href="/css/tokens.css" />
   <link rel="stylesheet" href="/css/base.css" />
   <link rel="stylesheet" href="/css/layout.css" />
@@ -15,77 +14,303 @@
   <link rel="stylesheet" href="/css/motion.css" />
   <link rel="stylesheet" href="/css/header.css" />
   <link rel="stylesheet" href="/css/footer.css" />
+  <link rel="stylesheet" href="/css/hotfix.css" />
 
-  <script defer src="/js/config.js"></script>
+  <style>
+    :root{ --gutter: 22px; }
+
+    .page{
+      padding-top: calc(var(--header-h, 72px) + 26px);
+      padding-bottom: 70px;
+    }
+
+    .kicker{
+      letter-spacing: .18em;
+      font-size: 12px;
+      text-transform: uppercase;
+      color: rgba(56,56,56,.62);
+    }
+
+    .h1-serif{
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(36px, 5.2vw, 58px);
+      line-height: 1.03;
+      margin: 10px 0 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .lead{
+      max-width: 72ch;
+      color: rgba(56,56,56,.74);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    .hero{
+      background: rgba(221,179,179,0.14);
+      border: 1px solid rgba(221,179,179,0.22);
+      border-radius: 24px;
+      padding: 26px;
+      box-shadow: 0 14px 34px rgba(0,0,0,0.06);
+    }
+
+    .hero-actions{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 18px;
+      margin-top: 18px;
+      align-items: start;
+    }
+
+    .card{
+      border-radius: 22px;
+      background: rgba(255,255,255,0.76);
+      border: 1px solid rgba(56,56,56,0.12);
+      box-shadow: 0 14px 34px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+
+    .card-pad{ padding: 18px; }
+
+    .why{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .why .tile{
+      border-radius: 18px;
+      background: rgba(255,255,255,0.74);
+      border: 1px solid rgba(56,56,56,0.10);
+      padding: 16px;
+      box-shadow: 0 14px 34px rgba(0,0,0,0.06);
+      min-height: 132px;
+    }
+
+    .tile h3{
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 20px;
+      margin: 6px 0 8px;
+    }
+
+    .muted{ color: rgba(56,56,56,.74); line-height: 1.65; margin: 0; }
+
+    .quote{
+      margin-top: 16px;
+      border-radius: 22px;
+      background: rgba(221,179,179,0.12);
+      border: 1px solid rgba(221,179,179,0.22);
+      padding: 18px;
+    }
+    .quote p{ margin: 0; color: rgba(56,56,56,.78); line-height: 1.7; }
+    .quote .who{ margin-top: 10px; color: rgba(56,56,56,.68); font-size: 14px; }
+
+    .about-block{
+      margin-top: 26px;
+      display:grid;
+      grid-template-columns: 420px 1fr;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .photo{
+      border-radius: 24px;
+      border: 1px solid rgba(56,56,56,0.10);
+      overflow: hidden;
+      background: rgba(255,255,255,0.70);
+      box-shadow: 0 14px 34px rgba(0,0,0,0.08);
+    }
+    .photo img{
+      width: 100%;
+      height: auto;
+      display:block;
+      object-fit: cover;
+    }
+
+    .about-text h2{
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 34px;
+      line-height: 1.08;
+      margin: 8px 0 10px;
+    }
+    .about-text p{ margin: 0 0 10px; color: rgba(56,56,56,.74); line-height: 1.75; }
+
+    .cta-row{
+      margin-top: 14px;
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .practical{
+      margin-top: 26px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .list{
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: rgba(56,56,56,.74);
+      line-height: 1.75;
+    }
+
+    @media (max-width: 980px){
+      .why{ grid-template-columns: 1fr; }
+      .grid-2{ grid-template-columns: 1fr; }
+      .about-block{ grid-template-columns: 1fr; }
+      .practical{ grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <!-- JS -->
   <script defer src="/js/includes.js"></script>
   <script defer src="/js/site.js"></script>
 
-  <style>
-    .page-hero{ padding-top: calc(var(--header-h,72px) + 18px); }
-    .grid{ display:grid; grid-template-columns: 1.1fr .9fr; gap: 18px; align-items:start; }
-    @media (max-width: 900px){ .grid{ grid-template-columns:1fr; } }
-    .kicker{ font-family:"Corbel",system-ui,sans-serif; letter-spacing:.08em; text-transform:uppercase; font-size:12px; opacity:.75; }
-    .list{ margin:0; padding-left: 18px; opacity:.9; }
-    .btn--primary{ background: rgba(56,56,56,.95); }
-  </style>
+  <!-- Optional: LocalBusiness schema (bra for SEO) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"LocalBusiness",
+    "name":"SOMI Klinikken",
+    "address":{
+      "@type":"PostalAddress",
+      "streetAddress":"Langgata 31",
+      "postalCode":"4307",
+      "addressLocality":"Sandnes",
+      "addressCountry":"NO"
+    },
+    "telephone":"+47 929 39 171",
+    "url":"/",
+    "areaServed":"Sandnes"
+  }
+  </script>
 </head>
 
 <body>
   <div data-include="/partials/header.html"></div>
 
-  <main>
-    <section class="section page-hero">
-      <div class="container grid">
-        <div class="reveal">
-          <div class="kicker">Om oss</div>
-          <h1 class="h1">SOMI Klinikken</h1>
-          <p class="muted">
-            Vår prioritet er trygghet, presisjon og et naturlig uttrykk. Vi legger vekt på tydelig informasjon,
-            riktig forventningsstyring og en rolig opplevelse.
+  <main class="page">
+    <div class="container">
+
+      <!-- HERO -->
+      <section class="hero">
+        <div class="kicker">Hvorfor velge SOMI</div>
+        <h1 class="h1-serif">En klinikk bygget på omtanke</h1>
+        <p class="lead">
+          Vi kombinerer medisinsk kompetanse med estetisk blikk – og møter deg med ærlighet,
+          trygghet og tilstedeværelse. Målet er et naturlig uttrykk og en rolig opplevelse,
+          fra første vurdering til oppfølging etter behandling.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
+          <a class="btn" href="/priser.html">Se priser</a>
+          <a class="btn" href="/team.html">Møt teamet</a>
+        </div>
+
+        <div class="why" aria-label="Hvorfor velge oss">
+          <div class="tile">
+            <div class="kicker">1</div>
+            <h3>Naturlige resultater</h3>
+            <p class="muted">Vi jobber i små steg og med helhetlig tilnærming for å fremheve det du allerede har, uten “overbehandlet” preg.</p>
+          </div>
+          <div class="tile">
+            <div class="kicker">2</div>
+            <h3>Trygg oppfølging</h3>
+            <p class="muted">Journalføring, informasjon og etterkontroll er alltid en del av behandlingsløpet.</p>
+          </div>
+          <div class="tile">
+            <div class="kicker">3</div>
+            <h3>Sentral beliggenhet</h3>
+            <p class="muted">Klinikken ligger i hjertet av Sandnes, med korte avstander til både parkering og kollektivtransport.</p>
+          </div>
+        </div>
+
+        <div class="quote" aria-label="Omtale">
+          <p>
+            «Altså hvordan skal jeg forklare at hver speil jeg passerer så må jeg se meg selv og beundrer meg selv!
+            Formen er flott, den får ansiktet mitt til å gløde. Helt ærlig Katarina, de er så flotte at jeg ikke har ord.
+            Best av alt var at jeg ikke måtte “lide for skjønnheten”. Fantastisk service!! Tusen, tusen takk Katarina!!!»
+          </p>
+          <div class="who">Kasjost Asi · ★★★★★</div>
+        </div>
+      </section>
+
+      <!-- ABOUT (KATARINA) -->
+      <section class="about-block" aria-label="Om klinikken">
+        <figure class="photo">
+          <img src="https://somi.setaei.com/img/Katarina-jobber.jpg" alt="Katarina i arbeid hos SOMI Klinikken i Sandnes" loading="lazy">
+        </figure>
+
+        <div class="about-text">
+          <div class="kicker">Om klinikken</div>
+          <h2>En klinikk bygget på omtanke</h2>
+
+          <p>
+            SOMI Klinikk ble etablert i 2021 for å gi et rolig, trygt og faglig sterkt tilbud innen estetisk medisin.
+          </p>
+          <p>
+            Vi legger vekt på tydelig informasjon, riktig forventningsstyring og en trygg måte å fremheve det naturlige på
+            – med behandlingsplan som er tilpasset deg.
+          </p>
+          <p>
+            Vi følger gjeldende retningslinjer, benytter dokumenterte produkter og deltar jevnlig på kurs og faglige samlinger.
+            Slik sørger vi for at teknikker og sikkerhetsrutiner alltid er oppdatert.
           </p>
 
-          <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:18px;">
+          <div class="cta-row">
+            <a class="btn btn--primary" href="#" data-booking-link>Bestill time</a>
+            <a class="btn" href="/kontakt.html">Kontakt oss</a>
+            <a class="btn" href="/team.html">Bli kjent med teamet</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRAKTISK + “HVA DU KAN FORVENTE” -->
+      <section class="practical" aria-label="Praktisk informasjon og forventninger">
+        <div class="card card-pad">
+          <div class="kicker">Praktisk</div>
+          <h2 style="font-family:Georgia, 'Times New Roman', serif; margin:8px 0 10px;">Adresse og kontakt</h2>
+          <p class="muted"><strong>Adresse</strong><br>Langgata 31, 4307 Sandnes</p>
+          <p class="muted" style="margin-top:10px;"><strong>Telefon</strong><br>+47 929 39 171</p>
+          <p class="muted" style="margin-top:10px;"><strong>E-post</strong><br>[email protected]</p>
+          <p class="muted" style="margin-top:10px;">Klinikken er åpen etter avtale.</p>
+          <div class="cta-row" style="margin-top:14px;">
+            <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
+            <a class="btn" href="/kontakt.html">Kontakt</a>
+          </div>
+        </div>
+
+        <div class="card card-pad">
+          <div class="kicker">Hva du kan forvente</div>
+          <h2 style="font-family:Georgia, 'Times New Roman', serif; margin:8px 0 10px;">Klare valg – enkel booking</h2>
+          <ul class="list">
+            <li>Ryddig info om priser og varighet – raskt å finne det du trenger</li>
+            <li>Tydelig forventningsstyring før behandling</li>
+            <li>Etterkontroll og oppfølging ved behov</li>
+            <li>Booking som leder direkte til timebestilling</li>
+          </ul>
+          <div class="cta-row" style="margin-top:14px;">
             <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
             <a class="btn" href="/priser.html">Se priser</a>
+            <a class="btn" href="/behandlinger.html">Behandlinger</a>
           </div>
         </div>
+      </section>
 
-        <aside class="card reveal">
-          <div class="card__inner">
-            <div class="kicker">Praktisk</div>
-            <div style="margin-top:10px;"><strong>Adresse</strong><br>Langgata 31, 4307 Sandnes</div>
-            <div style="margin-top:10px;"><strong>Telefon</strong><br><a href="tel:+4792939171">+47 929 39 171</a></div>
-            <div style="margin-top:10px;"><strong>E-post</strong><br><a href="mailto:[email protected]">[email protected]</a></div>
-            <div class="muted" style="margin-top:10px;">Klinikken er åpen etter avtale.</div>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <section class="section section--tight">
-      <div class="container">
-        <div class="card reveal">
-          <div class="card__inner">
-            <div class="kicker">Vår tilnærming</div>
-            <h2 class="h2">Klare valg – enkel booking</h2>
-            <ul class="list" style="margin-top:10px;">
-              <li>Ryddige priser og varighet på tjenester</li>
-              <li>Behandlingssider med forberedelser og etterbehandling</li>
-              <li>Booking som leder direkte til timebestilling</li>
-            </ul>
-
-            <div style="margin-top:18px; display:flex; gap:12px; flex-wrap:wrap;">
-              <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
-              <a class="btn" href="/behandlinger.html">Behandlinger</a>
-              <a class="btn" href="/kontakt.html">Kontakt</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    </div>
   </main>
 
   <div data-include="/partials/footer.html"></div>
 </body>
 </html>
-
