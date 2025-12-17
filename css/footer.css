@@ -7,8 +7,8 @@
 
 .footer__grid{
   display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 22px;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 28px 22px;
   align-items:start;
 }
 
@@ -41,6 +41,8 @@
   letter-spacing: .02em;
 }
 
+.footer__actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
+
 .footer__links a{
   display:block;
   padding: 6px 0;
@@ -59,6 +61,9 @@
   color: rgba(56,56,56,0.72);
   font-size: 14px;
 }
+
+.footer__credits a{ color: inherit; font-weight: 700; }
+.footer__credits span{ color: #e85c8b; }
 
 @media (max-width: 900px){
   .footer__grid{ grid-template-columns: 1fr; }
