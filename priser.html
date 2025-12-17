@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Om SOMI Klinikken | Estetisk klinikk i Sandnes</title>
-  <meta name="description" content="Les om SOMI Klinikken i Sandnes. Vår tilnærming: trygge behandlinger, naturlige resultater og personlig oppfølging." />
-  <link rel="canonical" href="/om.html" />
-  <base href="/" />
 
+  <title>Priser | SOMI Klinikken Sandnes – oversikt over behandlinger og varighet</title>
+  <meta name="description" content="Se priser hos SOMI Klinikken i Sandnes. Ryddig oversikt over behandlinger, varighet og pris. Søk eller filtrer på kategori – og book time online." />
+
+  <!-- CSS -->
   <link rel="stylesheet" href="/css/tokens.css" />
   <link rel="stylesheet" href="/css/base.css" />
   <link rel="stylesheet" href="/css/layout.css" />
@@ -17,76 +17,705 @@
   <link rel="stylesheet" href="/css/footer.css" />
   <link rel="stylesheet" href="/css/hotfix.css" />
 
-  <script defer src="/js/config.js"></script>
+  <style>
+    /* Kun “struktur”-CSS for å gjøre prislisten pen og mobilvennlig */
+    .page{
+      padding-top: calc(var(--header-h, 72px) + 26px);
+      padding-bottom: 70px;
+    }
+    .kicker{
+      letter-spacing: .18em;
+      font-size: 12px;
+      text-transform: uppercase;
+      color: rgba(56,56,56,.62);
+    }
+    .h1-serif{
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(34px, 5vw, 54px);
+      line-height: 1.05;
+      margin: 10px 0 10px;
+      letter-spacing: -0.01em;
+    }
+    .lead{
+      max-width: 74ch;
+      color: rgba(56,56,56,.74);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    .section{ margin-top: 18px; }
+
+    .toolbar{
+      position: sticky;
+      top: calc(var(--header-h, 72px) + 10px);
+      z-index: 20;
+      backdrop-filter: blur(10px);
+      background: rgba(248,248,248,0.78);
+      border: 1px solid rgba(56,56,56,0.12);
+      border-radius: 18px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+      padding: 12px;
+    }
+    .toolbar-grid{
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr auto;
+      gap: 10px;
+      align-items: center;
+    }
+    .input, .select{
+      width: 100%;
+      border: 1px solid rgba(56,56,56,0.16);
+      background: rgba(255,255,255,0.86);
+      border-radius: 14px;
+      padding: 12px 12px;
+      font: inherit;
+      outline: none;
+    }
+    .input:focus, .select:focus{
+      border-color: rgba(56,56,56,0.32);
+    }
+    .toolbar-actions{
+      display:flex;
+      gap: 10px;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+    }
+
+    .cards{
+      display: grid;
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .card{
+      border-radius: 22px;
+      background: rgba(255,255,255,0.76);
+      border: 1px solid rgba(56,56,56,0.12);
+      box-shadow: 0 14px 34px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+
+    details.card > summary{
+      cursor: pointer;
+      list-style: none;
+      padding: 16px 16px;
+      display:flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    details.card > summary::-webkit-details-marker{ display:none; }
+
+    .cat-title{
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 26px;
+      line-height: 1.1;
+      margin: 0;
+    }
+    .cat-desc{
+      margin: 6px 0 0;
+      color: rgba(56,56,56,.68);
+      line-height: 1.6;
+      max-width: 80ch;
+    }
+    .chev{
+      color: rgba(56,56,56,.55);
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .list{
+      border-top: 1px solid rgba(56,56,56,0.10);
+      padding: 12px 12px 14px;
+      display: grid;
+      gap: 8px;
+    }
+    .row{
+      display:grid;
+      grid-template-columns: 1fr 120px 110px;
+      gap: 10px;
+      align-items: center;
+      border: 1px solid rgba(56,56,56,0.10);
+      background: rgba(255,255,255,0.78);
+      border-radius: 16px;
+      padding: 12px 12px;
+    }
+    .name{
+      font-weight: 600;
+      color: rgba(56,56,56,.92);
+      line-height: 1.35;
+    }
+    .sub{
+      color: rgba(56,56,56,.64);
+      font-size: 13px;
+      line-height: 1.4;
+      margin-top: 4px;
+    }
+    .meta{
+      text-align: right;
+      color: rgba(56,56,56,.78);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .price{
+      text-align: right;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .jump{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      border: 1px solid rgba(56,56,56,0.12);
+      background: rgba(255,255,255,0.72);
+      border-radius: 999px;
+      padding: 8px 12px;
+      text-decoration: none;
+      color: rgba(56,56,56,.86);
+    }
+
+    .note{
+      margin-top: 12px;
+      color: rgba(56,56,56,.68);
+      line-height: 1.65;
+    }
+
+    @media (max-width: 860px){
+      .toolbar-grid{ grid-template-columns: 1fr; }
+      .toolbar-actions{ justify-content: flex-start; }
+      .row{ grid-template-columns: 1fr; }
+      .meta, .price{ text-align: left; }
+    }
+  </style>
+
+  <!-- JS -->
   <script defer src="/js/includes.js"></script>
   <script defer src="/js/site.js"></script>
-
-  <style>
-    .page-hero{ padding-top: calc(var(--header-h,72px) + 18px); }
-    .grid{ display:grid; grid-template-columns: 1.1fr .9fr; gap: 18px; align-items:start; }
-    @media (max-width: 900px){ .grid{ grid-template-columns:1fr; } }
-    .kicker{ font-family:"Corbel",system-ui,sans-serif; letter-spacing:.08em; text-transform:uppercase; font-size:12px; opacity:.75; }
-    .list{ margin:0; padding-left: 18px; opacity:.9; }
-    .btn--primary{ background: rgba(56,56,56,.95); }
-  </style>
 </head>
 
 <body>
   <div data-include="/partials/header.html"></div>
 
-  <main>
-    <section class="section page-hero">
-      <div class="container grid">
-        <div class="reveal">
-          <div class="kicker">Om oss</div>
-          <h1 class="h1">SOMI Klinikken</h1>
-          <p class="muted">
-            Vår prioritet er trygghet, presisjon og et naturlig uttrykk. Vi legger vekt på tydelig informasjon,
-            riktig forventningsstyring og en rolig opplevelse.
-          </p>
+  <main class="page">
+    <div class="container">
 
-          <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:18px;">
-            <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
-            <a class="btn" href="/priser.html">Se priser</a>
+      <header class="section">
+        <div class="kicker">Priser</div>
+        <h1 class="h1-serif">Ryddig oversikt over priser</h1>
+        <p class="lead">
+          Finn behandling raskt med søk eller filtrer på kategori. Her finner du pris og varighet samlet på ett sted.
+          For detaljer/forberedelser ligger informasjon på behandlingssidene.
+        </p>
+
+        <nav class="jump" aria-label="Hopp til kategori">
+          <a class="chip" href="#k-microblading">Microblading</a>
+          <a class="chip" href="#k-bryn-vipper">Bryn og vipper</a>
+          <a class="chip" href="#k-dermalogica">Dermalogica</a>
+          <a class="chip" href="#k-hudpleie">Hudpleie</a>
+        </nav>
+      </header>
+
+      <!-- Sticky søk/filter -->
+      <section class="section toolbar" aria-label="Søk og filter">
+        <div class="toolbar-grid">
+          <input id="q" class="input" type="search" placeholder="Søk etter behandling (f.eks. 'browlamination', 'peel', 'microblading')…" autocomplete="off" />
+          <select id="cat" class="select" aria-label="Velg kategori">
+            <option value="all">Alle kategorier</option>
+            <option value="microblading">Microblading</option>
+            <option value="bryn-vipper">Bryn og vipper</option>
+            <option value="dermalogica">Dermalogica</option>
+            <option value="hudpleie">Hudpleie</option>
+          </select>
+          <div class="toolbar-actions">
+            <a class="btn btn--primary" href="https://somi.bestille.no/" target="_blank" rel="noopener">BOOK TIME</a>
+            <button class="btn" type="button" id="expandAll">Åpne alle</button>
+            <button class="btn" type="button" id="collapseAll">Lukk alle</button>
           </div>
         </div>
+        <div class="note" id="resultNote" aria-live="polite"></div>
+      </section>
 
-        <aside class="card reveal">
-          <div class="card__inner">
-            <div class="kicker">Praktisk</div>
-            <div style="margin-top:10px;"><strong>Adresse</strong><br>Langgata 31, 4307 Sandnes</div>
-            <div style="margin-top:10px;"><strong>Telefon</strong><br><a href="tel:+4792939171">+47 929 39 171</a></div>
-            <div style="margin-top:10px;"><strong>E-post</strong><br><a href="mailto:[email protected]">[email protected]</a></div>
-            <div class="muted" style="margin-top:10px;">Klinikken er åpen etter avtale.</div>
-          </div>
-        </aside>
-      </div>
-    </section>
+      <!-- KATEGORIER -->
+      <section class="section cards" id="priceCards">
 
-    <section class="section section--tight">
-      <div class="container">
-        <div class="card reveal">
-          <div class="card__inner">
-            <div class="kicker">Vår tilnærming</div>
-            <h2 class="h2">Klare valg – enkel booking</h2>
-            <ul class="list" style="margin-top:10px;">
-              <li>Ryddige priser og varighet på tjenester</li>
-              <li>Behandlingssider med forberedelser og etterbehandling</li>
-              <li>Booking som leder direkte til timebestilling</li>
-            </ul>
+        <!-- Microblading -->
+        <details class="card" open data-cat="microblading" id="k-microblading">
+          <summary>
+            <div>
+              <div class="kicker">Kategori</div>
+              <h2 class="cat-title">Microblading</h2>
+              <p class="cat-desc">Naturlige, presise bryn med individuell fargetilpasning.</p>
+            </div>
+            <div class="chev">Åpne/lukk</div>
+          </summary>
 
-            <div style="margin-top:18px; display:flex; gap:12px; flex-wrap:wrap;">
-              <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
-              <a class="btn" href="/behandlinger.html">Behandlinger</a>
-              <a class="btn" href="/kontakt.html">Kontakt</a>
+          <div class="list">
+            <div class="row" data-name="Touch up microblading (inkludert)">
+              <div>
+                <div class="name">Touch up microblading (inkludert)</div>
+                <div class="sub">Touch up som er inkludert i ny behandling.</div>
+              </div>
+              <div class="meta">1 t 45 min</div>
+              <div class="price">0 kr</div>
+            </div>
+
+            <div class="row" data-name="Ny microblading">
+              <div>
+                <div class="name">Ny microblading</div>
+                <div class="sub">Førstegangsbehandling med individuell form og farge.</div>
+              </div>
+              <div class="meta">3 t</div>
+              <div class="price">645 kr</div>
+            </div>
+
+            <div class="row" data-name="Ekstra touch up microblading/powderbrows/lip blush">
+              <div>
+                <div class="name">Ekstra touch up microblading/powderbrows/lip blush</div>
+                <div class="sub">Ekstra touch-up innen 8 uker etter touch up.</div>
+              </div>
+              <div class="meta">1 t 30 min</div>
+              <div class="price">800 kr</div>
+            </div>
+
+            <div class="row" data-name="Oppfriskning microblading">
+              <div>
+                <div class="name">Oppfriskning microblading</div>
+                <div class="sub">Årlig oppfriskning for tidligere SOMI-kunder.</div>
+              </div>
+              <div class="meta">1 t 45 min</div>
+              <div class="price">285 kr</div>
+            </div>
+
+            <div class="row" data-name="Ny microblading + shading">
+              <div>
+                <div class="name">Ny microblading + shading</div>
+                <div class="sub">Strå + skygge for mer dybde eller “sminket” uttrykk.</div>
+              </div>
+              <div class="meta">3 t</div>
+              <div class="price">685 kr</div>
+            </div>
+
+            <div class="row" data-name="Oppfriskning microblading + shading">
+              <div>
+                <div class="name">Oppfriskning microblading + shading</div>
+                <div class="sub">Oppfriskning med ekstra dybde og texture farge.</div>
+              </div>
+              <div class="meta">1 t 45 min</div>
+              <div class="price">375 kr</div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
+        </details>
+
+        <!-- Bryn og vipper -->
+        <details class="card" open data-cat="bryn-vipper" id="k-bryn-vipper">
+          <summary>
+            <div>
+              <div class="kicker">Kategori</div>
+              <h2 class="cat-title">Bryn og vipper</h2>
+              <p class="cat-desc">Forming, farging og løft for et naturlig, våkent blikk.</p>
+            </div>
+            <div class="chev">Åpne/lukk</div>
+          </summary>
+
+          <div class="list">
+            <div class="row" data-name="Brynstyling (form, farge, voks)">
+              <div>
+                <div class="name">Brynstyling (form, farge, voks)</div>
+                <div class="sub">Forming, farging og voksing av bryn.</div>
+              </div>
+              <div class="meta">30 min</div>
+              <div class="price">690 kr</div>
+            </div>
+
+            <div class="row" data-name="Browlamination">
+              <div>
+                <div class="name">Browlamination</div>
+                <div class="sub">Permanent form med farging/forming inkludert.</div>
+              </div>
+              <div class="meta">45 min</div>
+              <div class="price">1 070 kr</div>
+            </div>
+
+            <div class="row" data-name="Vippeløft inkl. farge og lashfiller">
+              <div>
+                <div class="name">Vippeløft inkl. farge og lashfiller</div>
+                <div class="sub">Naturlig løft med farge og lashfiller inkludert.</div>
+              </div>
+              <div class="meta">1 t</div>
+              <div class="price">1 140 kr</div>
+            </div>
+
+            <div class="row" data-name="Browlamination + Vippeløft, inkl. farge">
+              <div>
+                <div class="name">Browlamination + Vippeløft, inkl. farge</div>
+                <div class="sub">Kombinasjonspakke for bryn og vipper.</div>
+              </div>
+              <div class="meta">1 t 30 min</div>
+              <div class="price">1 690 kr</div>
+            </div>
+
+            <div class="row" data-name="Brynstyling (form, farge, voks) + Vippeløft inkl. farge">
+              <div>
+                <div class="name">Brynstyling (form, farge, voks) + Vippeløft inkl. farge</div>
+                <div class="sub">Kombinasjon med brynstyling og vippeløft.</div>
+              </div>
+              <div class="meta">1 t 15 min</div>
+              <div class="price">1 480 kr</div>
+            </div>
+
+            <div class="row" data-name="Farging av vipper">
+              <div>
+                <div class="name">Farging av vipper</div>
+                <div class="sub">Rask behandling som fremhever vippene.</div>
+              </div>
+              <div class="meta">15 min</div>
+              <div class="price">290 kr</div>
+            </div>
+
+            <div class="row" data-name="Farging av bryn">
+              <div>
+                <div class="name">Farging av bryn</div>
+                <div class="sub">Definerer og fyller ut brynene.</div>
+              </div>
+              <div class="meta">15 min</div>
+              <div class="price">320 kr</div>
+            </div>
+
+            <div class="row" data-name="Brynstyling for menn">
+              <div>
+                <div class="name">Brynstyling for menn</div>
+                <div class="sub">Skånsom forming og rydding av bryn.</div>
+              </div>
+              <div class="meta">30 min</div>
+              <div class="price">490 kr</div>
+            </div>
+
+            <div class="row" data-name="Brynstyling + voks overleppe">
+              <div>
+                <div class="name">Brynstyling + voks overleppe</div>
+                <div class="sub">Ryddige bryn og pen overleppe.</div>
+              </div>
+              <div class="meta">45 min</div>
+              <div class="price">850 kr</div>
+            </div>
+
+            <div class="row" data-name="Forming av bryn">
+              <div>
+                <div class="name">Forming av bryn</div>
+                <div class="sub">Presis forming av brynene.</div>
+              </div>
+              <div class="meta">30 min</div>
+              <div class="price">490 kr</div>
+            </div>
+
+            <div class="row" data-name="Brynstyling + farging av vipper">
+              <div>
+                <div class="name">Brynstyling + farging av vipper</div>
+                <div class="sub">Full pakke for bryn og vipper.</div>
+              </div>
+              <div class="meta">45 min</div>
+              <div class="price">850 kr</div>
+            </div>
+          </div>
+        </details>
+
+        <!-- Dermalogica -->
+        <details class="card" open data-cat="dermalogica" id="k-dermalogica">
+          <summary>
+            <div>
+              <div class="kicker">Kategori</div>
+              <h2 class="cat-title">Dermalogica</h2>
+              <p class="cat-desc">Skreddersydde hudpleiebehandlinger til dine behov.</p>
+            </div>
+            <div class="chev">Åpne/lukk</div>
+          </summary>
+
+          <div class="list">
+            <div class="row" data-name="Dermalogica Signaturebehandling">
+              <div>
+                <div class="name">Dermalogica Signaturebehandling</div>
+                <div class="sub">Skreddersydd ansiktsbehandling med aktive ingredienser og tilpasning.</div>
+              </div>
+              <div class="meta">45 min</div>
+              <div class="price">1 000 kr</div>
+            </div>
+
+            <div class="row" data-name="Dermalogica Kjemisk Peeling">
+              <div>
+                <div class="name">Dermalogica Kjemisk Peeling</div>
+                <div class="sub">Avansert, skreddersydd behandlingsteknikk.</div>
+              </div>
+              <div class="meta">45 min</div>
+              <div class="price">1 200 kr</div>
+            </div>
+
+            <div class="row" data-name="Dermalogica Målrettet Pigmentering – 30 min">
+              <div>
+                <div class="name">Dermalogica Målrettet Pigmentering – 30 min</div>
+                <div class="sub">Hudfornyende behandling med fokus på pigment.</div>
+              </div>
+              <div class="meta">30 min</div>
+              <div class="price">790 kr</div>
+            </div>
+
+            <div class="row" data-name="Dermalogica Målrettet Pigmentering – 60 min">
+              <div>
+                <div class="name">Dermalogica Målrettet Pigmentering – 60 min</div>
+                <div class="sub">For mer dyptvirkende og omfattende behandling.</div>
+              </div>
+              <div class="meta">1 t</div>
+              <div class="price">1 300 kr</div>
+            </div>
+
+            <div class="row" data-name="Dermalogica Målrettet Akne – 30 min">
+              <div>
+                <div class="name">Dermalogica Målrettet Akne – 30 min</div>
+                <div class="sub">Ansiktsbehandling med fokus på akne/urenheter.</div>
+              </div>
+              <div class="meta">30 min</div>
+              <div class="price">790 kr</div>
+            </div>
+
+            <div class="row" data-name="Dermalogica Målrettet Akne – 60 min">
+              <div>
+                <div class="name">Dermalogica Målrettet Akne – 60 min</div>
+                <div class="sub">For dypere rens og mer grundig behandling.</div>
+              </div>
+              <div class="meta">1 t</div>
+              <div class="price">1 300 kr</div>
+            </div>
+
+            <div class="row" data-name="Dermalogica Målrettet Aldring – 30 min">
+              <div>
+                <div class="name">Dermalogica Målrettet Aldring – 30 min</div>
+                <div class="sub">Utført med aktive ingredienser for glød og spenst.</div>
+              </div>
+              <div class="meta">30 min</div>
+              <div class="price">790 kr</div>
+            </div>
+
+            <div class="row" data-name="Dermalogica Målrettet Aldring – 60 min">
+              <div>
+                <div class="name">Dermalogica Målrettet Aldring – 60 min</div>
+                <div class="sub">Mer omfattende anti-age behandling.</div>
+              </div>
+              <div class="meta">1 t</div>
+              <div class="price">1 300 kr</div>
+            </div>
+
+            <div class="row" data-name="Dermalogica Målrettet Sensitivitet – 30 min">
+              <div>
+                <div class="name">Dermalogica Målrettet Sensitivitet – 30 min</div>
+                <div class="sub">Behandling for sensitiv hud.</div>
+              </div>
+              <div class="meta">30 min</div>
+              <div class="price">790 kr</div>
+            </div>
+
+            <div class="row" data-name="Dermalogica Målrettet Sensitivitet – 60 min">
+              <div>
+                <div class="name">Dermalogica Målrettet Sensitivitet – 60 min</div>
+                <div class="sub">For mer intensiv og dyptvirkende pleie.</div>
+              </div>
+              <div class="meta">1 t</div>
+              <div class="price">1 300 kr</div>
+            </div>
+
+            <div class="row" data-name="Facemapping Hudanalyse">
+              <div>
+                <div class="name">Facemapping Hudanalyse</div>
+                <div class="sub">Grundig hudanalyse som svar på hva huden din trenger.</div>
+              </div>
+              <div class="meta">15 min</div>
+              <div class="price">0 kr</div>
+            </div>
+          </div>
+        </details>
+
+        <!-- Hudpleie -->
+        <details class="card" open data-cat="hudpleie" id="k-hudpleie">
+          <summary>
+            <div>
+              <div class="kicker">Kategori</div>
+              <h2 class="cat-title">Hudpleie</h2>
+              <p class="cat-desc">Dyptvirkende hudpleie med peels og spesialbehandlinger.</p>
+            </div>
+            <div class="chev">Åpne/lukk</div>
+          </summary>
+
+          <div class="list">
+            <div class="row" data-name="PRX–T33">
+              <div>
+                <div class="name">PRX–T33</div>
+                <div class="sub">Metoden gir “glow-time”.</div>
+              </div>
+              <div class="meta">45 min</div>
+              <div class="price">1 899 kr</div>
+            </div>
+
+            <div class="row" data-name="Somi Klassisk anti-age hudpleie">
+              <div>
+                <div class="name">Somi Klassisk anti-age hudpleie</div>
+                <div class="sub">Dyprens, massasje og masker for glød og spenst.</div>
+              </div>
+              <div class="meta">45 min</div>
+              <div class="price">1 299 kr</div>
+            </div>
+
+            <div class="row" data-name="Somi Peel for acne og urenhet">
+              <div>
+                <div class="name">Somi Peel for acne og urenhet</div>
+                <div class="sub">Spesialbehandling med fokus på talg og tilstoppinger.</div>
+              </div>
+              <div class="meta">45 min</div>
+              <div class="price">850 kr</div>
+            </div>
+
+            <div class="row" data-name="LED-lysterapi">
+              <div>
+                <div class="name">LED-lysterapi</div>
+                <div class="sub">Skånsom lysbehandling for ro og reparasjon.</div>
+              </div>
+              <div class="meta">30 min</div>
+              <div class="price">895 kr</div>
+            </div>
+
+            <div class="row" data-name="Somi Dyprens">
+              <div>
+                <div class="name">Somi Dyprens</div>
+                <div class="sub">Grundig dyprens med damp og kjemisk peel.</div>
+              </div>
+              <div class="meta">1 t</div>
+              <div class="price">1 299 kr</div>
+            </div>
+
+            <div class="row" data-name="Fjerning av skin tags/vorter">
+              <div>
+                <div class="name">Fjerning av skin tags/vorter</div>
+                <div class="sub">Rask og skånsom fjerning av små hudforandringer.</div>
+              </div>
+              <div class="meta">15 min</div>
+              <div class="price">150 kr</div>
+            </div>
+
+            <div class="row" data-name="Laser skin rejuvenation + PRX–T33">
+              <div>
+                <div class="name">Laser skin rejuvenation + PRX–T33</div>
+                <div class="sub">Kombinasjon for hudfornyelse.</div>
+              </div>
+              <div class="meta">1 t</div>
+              <div class="price">2 999 kr</div>
+            </div>
+
+            <div class="row" data-name="TCA-Peel">
+              <div>
+                <div class="name">TCA-Peel</div>
+                <div class="sub">Medisinsk dybde kjemisk peel for struktur og pigment.</div>
+              </div>
+              <div class="meta">45 min</div>
+              <div class="price">1 899 kr</div>
+            </div>
+
+            <div class="row" data-name="Dermaplaning">
+              <div>
+                <div class="name">Dermaplaning</div>
+                <div class="sub">Eksfolierende behandling som gir glød og jevnere hud.</div>
+              </div>
+              <div class="meta">45 min</div>
+              <div class="price">990 kr</div>
+            </div>
+
+            <div class="row" data-name="Carbon peel laser">
+              <div>
+                <div class="name">Carbon peel laser</div>
+                <div class="sub">Laser med kullmaske for renere, mattere hud.</div>
+              </div>
+              <div class="meta">1 t</div>
+              <div class="price">1 499 kr</div>
+            </div>
+          </div>
+        </details>
+
+      </section>
+
+      <p class="note" style="margin-top:14px;">
+        Tips: Bruk søkefeltet for å finne behandling på få sekunder. For innhold som “før/etter”, forberedelser og etterbehandling,
+        gå til <a href="/behandlinger.html">Behandlinger</a>.
+      </p>
+
+    </div>
   </main>
 
   <div data-include="/partials/footer.html"></div>
+
+  <script>
+    (function(){
+      const q = document.getElementById('q');
+      const cat = document.getElementById('cat');
+      const cardsWrap = document.getElementById('priceCards');
+      const note = document.getElementById('resultNote');
+      const cards = Array.from(cardsWrap.querySelectorAll('details.card'));
+
+      const normalize = (s) => (s || '').toLowerCase().trim();
+
+      function applyFilter(){
+        const term = normalize(q.value);
+        const selected = cat.value;
+
+        let visibleRows = 0;
+        let visibleCats = 0;
+
+        for(const card of cards){
+          const cardCat = card.getAttribute('data-cat');
+          const inCat = (selected === 'all') || (selected === cardCat);
+
+          const rows = Array.from(card.querySelectorAll('.row'));
+          let anyRow = false;
+
+          for(const row of rows){
+            const name = normalize(row.getAttribute('data-name'));
+            const text = normalize(row.textContent);
+            const hit = !term || name.includes(term) || text.includes(term);
+            const show = inCat && hit;
+
+            row.style.display = show ? '' : 'none';
+            if(show){
+              anyRow = true;
+              visibleRows++;
+            }
+          }
+
+          card.style.display = anyRow ? '' : 'none';
+          if(anyRow) visibleCats++;
+        }
+
+        if(!q.value && cat.value === 'all'){
+          note.textContent = '';
+        } else {
+          note.textContent = `Viser ${visibleRows} behandling${visibleRows===1?'':'er'} i ${visibleCats} kategori${visibleCats===1?'':'er'}.`;
+        }
+      }
+
+      q.addEventListener('input', applyFilter);
+      cat.addEventListener('change', applyFilter);
+
+      document.getElementById('expandAll').addEventListener('click', () => {
+        cards.forEach(d => { if(d.style.display !== 'none') d.open = true; });
+      });
+
+      document.getElementById('collapseAll').addEventListener('click', () => {
+        cards.forEach(d => d.open = false);
+      });
+
+      applyFilter();
+    })();
+  </script>
 </body>
 </html>
-
