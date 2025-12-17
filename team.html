@@ -3,12 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <title>Team | SOMI Klinikken i Sandnes</title>
-  <meta name="description" content="Møt teamet hos SOMI Klinikken i Sandnes. Erfarne behandlere innen microblading, permanent makeup, bryn og vipper, hud og laser. Bestill time online." />
-  <link rel="canonical" href="/team.html" />
-
-  <base href="/" />
+  <title>Team | SOMI Klinikken</title>
+  <meta name="description" content="Møt teamet hos SOMI Klinikken i Sandnes. Trygg, presis og profesjonell behandling – enkel booking." />
 
   <link rel="stylesheet" href="/css/tokens.css" />
   <link rel="stylesheet" href="/css/base.css" />
@@ -17,224 +13,97 @@
   <link rel="stylesheet" href="/css/motion.css" />
   <link rel="stylesheet" href="/css/header.css" />
   <link rel="stylesheet" href="/css/footer.css" />
-
-  <script defer src="/js/config.js"></script>
-  <script defer src="/js/includes.js"></script>
-  <script defer src="/js/site.js"></script>
+  <link rel="stylesheet" href="/css/hotfix.css" />
 
   <style>
-    .page-hero { padding-top: calc(var(--header-h,72px) + 18px); }
-
-    .kicker{
-      font-family:"Corbel",system-ui,sans-serif;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      font-size:12px;
-      opacity:.75;
-    }
-
-    .lead { max-width: 62ch; }
+    .page-hero{ padding-top: calc(var(--header-h, 72px) + 26px); padding-bottom: 22px; }
+    .kicker{ letter-spacing: .16em; font-size: 12px; color: rgba(56,56,56,.62); text-transform: uppercase; }
+    .lead{ max-width: 62ch; color: rgba(56,56,56,.74); }
 
     .team-grid{
       display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 18px;
-    }
-    @media (max-width: 980px){ .team-grid{ grid-template-columns: repeat(2,1fr); } }
-    @media (max-width: 620px){ .team-grid{ grid-template-columns: 1fr; } }
-
-    .member{
-      border-radius: var(--r-lg);
-      background: rgba(255,255,255,.72);
-      border: 1px solid rgba(56,56,56,.10);
-      box-shadow: var(--sh-soft);
-      overflow: hidden;
-      display: grid;
-    }
-
-    .member__media{
-      position: relative;
-      aspect-ratio: 4 / 3;
-      background: rgba(56,56,56,.06);
-      overflow:hidden;
-    }
-
-    .member__media img{
-      width:100%;
-      height:100%;
-      object-fit: cover;
-      display:block;
-      filter: saturate(0.92);
-      transform: scale(1.02);
-    }
-
-    .badge{
-      position:absolute;
-      left: 14px;
-      top: 14px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.72);
-      border: 1px solid rgba(56,56,56,.12);
-      backdrop-filter: blur(10px);
-      font-size: 12px;
-      opacity: .92;
-    }
-
-    .member__body{
-      padding: 16px;
-      display: grid;
-      gap: 10px;
-    }
-
-    .member__name{
-      font-weight: 600;
-      font-size: 18px;
-      letter-spacing: .01em;
-    }
-    .member__role{
-      opacity: .78;
-      font-size: 14px;
-      margin-top: -6px;
-    }
-    .member__bio{
-      opacity: .86;
-      font-size: 14px;
-      line-height: 1.55;
-    }
-
-    .meta{
-      display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      opacity: .80;
-      font-size: 14px;
-    }
-    .meta a{ text-decoration: underline; text-underline-offset: 4px; }
-
-    .actions{
-      display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 4px;
-    }
-
-    .icon-btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      width: 42px;
-      height: 42px;
-      border-radius: 999px;
-      border: 1px solid rgba(56,56,56,.14);
-      background: rgba(255,255,255,.72);
-      box-shadow: var(--sh-soft);
-      transition: transform var(--dur-2) var(--ease-out), border-color var(--dur-2) var(--ease-out);
-    }
-    .icon-btn:hover{ transform: translateY(-1px); border-color: rgba(56,56,56,.22); }
-
-    .btn--primary{ background: rgba(56,56,56,.95); }
-
-    .split{
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
+      grid-template-columns: repeat(12, 1fr);
       gap: 18px;
-      align-items: start;
-      margin-top: 18px;
+      padding: 22px 0 64px;
     }
-    @media (max-width: 900px){ .split{ grid-template-columns: 1fr; } }
+    .member{
+      grid-column: span 6;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(56,56,56,0.12);
+      box-shadow: 0 14px 34px rgba(0,0,0,0.08);
+      overflow:hidden;
+      display:grid;
+      grid-template-rows: 220px 1fr;
+    }
+    .member__media{
+      background: linear-gradient(135deg, rgba(221,179,179,0.18), rgba(255,255,255,0.0));
+      border-bottom: 1px solid rgba(56,56,56,0.08);
+    }
+    .member__body{ padding: 18px; display:grid; gap: 10px; }
+    .member__name{ font-weight: 700; font-size: 20px; margin:0; }
+    .member__role{ color: rgba(56,56,56,.72); margin:0; }
+    .member__bio{ color: rgba(56,56,56,.74); margin:0; line-height: 1.6; }
+
+    .member__actions{ display:flex; align-items:center; gap:10px; flex-wrap: wrap; padding-top: 6px; }
+    .icon-btn{
+      width: 44px; height: 44px;
+      border-radius: 999px;
+      border: 1px solid rgba(56,56,56,0.12);
+      background: rgba(255,255,255,0.70);
+      display:inline-flex; align-items:center; justify-content:center;
+      box-shadow: 0 14px 34px rgba(0,0,0,0.08);
+    }
+    .icon-btn svg{ display:block; }
+
+    @media (max-width: 900px){
+      .member{ grid-column: span 12; }
+      .member{ grid-template-rows: 200px 1fr; }
+    }
   </style>
+
+  <script defer src="/js/includes.js"></script>
+  <script defer src="/js/site.js"></script>
 </head>
 
 <body>
   <div data-include="/partials/header.html"></div>
 
   <main>
-    <!-- Hero -->
-    <section class="section page-hero">
+    <section class="page-hero">
       <div class="container">
-        <div class="reveal">
-          <div class="kicker">Team</div>
-          <h1 class="h1">Møt oss</h1>
-          <p class="muted lead">
-            Erfarne behandlere, rolig opplevelse og fokus på naturlige resultater.
-            Finn riktig behandler og bestill time online.
-          </p>
-
-          <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:18px;">
-            <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
-            <a class="btn" href="/behandlinger.html">Behandlinger</a>
-            <a class="btn" href="/priser.html">Priser</a>
-          </div>
+        <div class="kicker">TEAM</div>
+        <h1 class="h1" style="margin-top:10px;">Møt oss</h1>
+        <p class="lead">
+          Et lite, dedikert team med fokus på trygghet, presisjon og et naturlig uttrykk.
+          Book time direkte via vår eksterne løsning.
+        </p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+          <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
+          <a class="btn" href="/kontakt.html">Kontakt</a>
         </div>
+      </div>
+    </section>
 
-        <!-- Team cards -->
+    <section class="section section--tight">
+      <div class="container">
         <div class="team-grid">
 
-          <!-- 1) Bytt ut bilde/tekst med ekte data -->
-          <article class="member reveal">
-            <div class="member__media">
-              <!-- Sett inn ekte bilde i /assets/team/ ... -->
-              <img src="/assets/team/ansatt-1.jpg" alt="Ansatt 1 – SOMI Klinikken" loading="lazy" />
-              <div class="badge">Microblading / PMU</div>
-            </div>
+          <!-- Medlem 1 (erstatt med ekte data når du limer inn fra V9) -->
+          <article class="member">
+            <div class="member__media"></div>
             <div class="member__body">
-              <div>
-                <div class="member__name">Ansatt 1</div>
-                <div class="member__role">Microblading · Permanent makeup</div>
-              </div>
-
-              <div class="member__bio">
-                Kort introduksjon: erfaring, stil og hva kunden kan forvente (1–2 setninger).
-              </div>
-
-              <div class="meta">
-                <a href="tel:+4792939171">+47 929 39 171</a>
-                <a href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a>
-              </div>
-
-              <div class="actions">
+              <h2 class="member__name">Ansatt 1</h2>
+              <p class="member__role">Microblading / PMU</p>
+              <p class="member__bio">Kort introduksjon: erfaring, stil og hva kunden kan forvente (1–2 setninger).</p>
+              <div class="member__actions">
                 <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
-                <a class="btn" href="/kontakt.html">Kontakt</a>
-
-                <a class="icon-btn" href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
-                  <!-- minimal IG glyph -->
+                <a class="icon-btn" href="tel:+4792939171" aria-label="Ring">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5z" stroke="currentColor" stroke-width="1.6"/>
-                    <path d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10z" stroke="currentColor" stroke-width="1.6"/>
-                    <path d="M17.5 6.5h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M6.6 10.8c1.3 2.6 3.4 4.7 6 6l2-2c.3-.3.8-.4 1.2-.3 1 .3 2 .5 3.1.5.7 0 1.2.5 1.2 1.2V20c0 .7-.5 1.2-1.2 1.2C11.4 21.2 2.8 12.6 2.8 2.8 2.8 2.1 3.3 1.6 4 1.6h3.6c.7 0 1.2.5 1.2 1.2 0 1 .2 2.1.5 3.1.1.4 0 .9-.3 1.2l-2 1.7z"
+                      stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
                   </svg>
                 </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- 2) -->
-          <article class="member reveal">
-            <div class="member__media">
-              <img src="/assets/team/ansatt-2.jpg" alt="Ansatt 2 – SOMI Klinikken" loading="lazy" />
-              <div class="badge">Hud / Laser</div>
-            </div>
-            <div class="member__body">
-              <div>
-                <div class="member__name">Ansatt 2</div>
-                <div class="member__role">Hudpleie · Laser</div>
-              </div>
-
-              <div class="member__bio">
-                Kort introduksjon: fokusområde, tilnærming og oppfølging (1–2 setninger).
-              </div>
-
-              <div class="meta">
-                <a href="tel:+4792939171">+47 929 39 171</a>
-                <a href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a>
-              </div>
-
-              <div class="actions">
-                <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
-                <a class="btn" href="/kontakt.html">Kontakt</a>
-
                 <a class="icon-btn" href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5z" stroke="currentColor" stroke-width="1.6"/>
@@ -246,31 +115,21 @@
             </div>
           </article>
 
-          <!-- 3) -->
-          <article class="member reveal">
-            <div class="member__media">
-              <img src="/assets/team/ansatt-3.jpg" alt="Ansatt 3 – SOMI Klinikken" loading="lazy" />
-              <div class="badge">Bryn &amp; vipper</div>
-            </div>
+          <!-- Medlem 2 -->
+          <article class="member">
+            <div class="member__media"></div>
             <div class="member__body">
-              <div>
-                <div class="member__name">Ansatt 3</div>
-                <div class="member__role">Bryn · Vippeløft</div>
-              </div>
-
-              <div class="member__bio">
-                Kort introduksjon: hva de er best på og hva kunden opplever (1–2 setninger).
-              </div>
-
-              <div class="meta">
-                <a href="tel:+4792939171">+47 929 39 171</a>
-                <a href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a>
-              </div>
-
-              <div class="actions">
+              <h2 class="member__name">Ansatt 2</h2>
+              <p class="member__role">Hud / Laser</p>
+              <p class="member__bio">Kort introduksjon: fokusområder, behandlingstilnærming og hva kunden kan forvente.</p>
+              <div class="member__actions">
                 <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
-                <a class="btn" href="/kontakt.html">Kontakt</a>
-
+                <a class="icon-btn" href="tel:+4792939171" aria-label="Ring">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M6.6 10.8c1.3 2.6 3.4 4.7 6 6l2-2c.3-.3.8-.4 1.2-.3 1 .3 2 .5 3.1.5.7 0 1.2.5 1.2 1.2V20c0 .7-.5 1.2-1.2 1.2C11.4 21.2 2.8 12.6 2.8 2.8 2.8 2.1 3.3 1.6 4 1.6h3.6c.7 0 1.2.5 1.2 1.2 0 1 .2 2.1.5 3.1.1.4 0 .9-.3 1.2l-2 1.7z"
+                      stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                  </svg>
+                </a>
                 <a class="icon-btn" href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5z" stroke="currentColor" stroke-width="1.6"/>
@@ -283,23 +142,6 @@
           </article>
 
         </div>
-
-        <!-- Conversion block -->
-        <div class="card reveal" style="margin-top:18px;">
-          <div class="card__inner"
-               style="display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; align-items:center;">
-            <div>
-              <div class="kicker">Usikker på valg?</div>
-              <h2 class="h2" style="margin:6px 0 0;">Start med en rask avklaring</h2>
-              <div class="muted">Kontakt oss – eller gå direkte til booking og velg behandling.</div>
-            </div>
-            <div style="display:flex; gap:12px; flex-wrap:wrap;">
-              <a class="btn" href="/kontakt.html">Kontakt</a>
-              <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
-            </div>
-          </div>
-        </div>
-
       </div>
     </section>
   </main>
