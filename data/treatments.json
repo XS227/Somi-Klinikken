@@ -1,0 +1,341 @@
+{
+  "updated": "2024-01-01",
+  "categories": [
+    {
+      "id": "microblading",
+      "title": "Microblading",
+      "desc": "Naturlige, presise bryn med individuell fargetilpasning.",
+      "items": [
+        {
+          "id": "touch-up-microblading-inkludert",
+          "name": "Touch up microblading (inkludert)",
+          "short": "Touch up som er inkludert i ny behandling.",
+          "duration": "1 t 45 min",
+          "price": "0 kr",
+          "tags": ["microblading", "oppfriskning"]
+        },
+        {
+          "id": "ny-microblading",
+          "name": "Ny microblading",
+          "short": "Førstegangsbehandling med individuell form og farge.",
+          "duration": "3 t",
+          "price": "645 kr",
+          "popular": true,
+          "tags": ["bryn", "nykunde"]
+        },
+        {
+          "id": "ekstra-touch-up-microblading",
+          "name": "Ekstra touch up microblading/powderbrows/lip blush",
+          "short": "Ekstra touch-up innen 8 uker etter touch up.",
+          "duration": "1 t 30 min",
+          "price": "800 kr",
+          "tags": ["touch-up"]
+        },
+        {
+          "id": "oppfriskning-microblading",
+          "name": "Oppfriskning microblading",
+          "short": "Årlig oppfriskning for tidligere SOMI-kunder.",
+          "duration": "1 t 45 min",
+          "price": "285 kr",
+          "tags": ["oppfriskning", "bryn"]
+        },
+        {
+          "id": "ny-microblading-shading",
+          "name": "Ny microblading + shading",
+          "short": "Strå + skygge for mer dybde eller “sminket” uttrykk.",
+          "duration": "3 t",
+          "price": "685 kr",
+          "tags": ["kombinasjon", "bryn"]
+        },
+        {
+          "id": "oppfriskning-microblading-shading",
+          "name": "Oppfriskning microblading + shading",
+          "short": "Oppfriskning med ekstra dybde og tekstur.",
+          "duration": "1 t 45 min",
+          "price": "375 kr",
+          "tags": ["oppfriskning", "shading"]
+        }
+      ]
+    },
+    {
+      "id": "bryn-vipper",
+      "title": "Bryn og vipper",
+      "desc": "Forming, farging og løft for et naturlig, våkent blikk.",
+      "items": [
+        {
+          "id": "brynstyling",
+          "name": "Brynstyling (form, farge, voks)",
+          "short": "Forming, farging og voksing av bryn.",
+          "duration": "30 min",
+          "price": "690 kr",
+          "popular": true,
+          "tags": ["bryn", "styling"]
+        },
+        {
+          "id": "browlamination",
+          "name": "Browlamination",
+          "short": "Permanent form med farging/forming inkludert.",
+          "duration": "45 min",
+          "price": "1 070 kr",
+          "tags": ["bryn", "lamination"]
+        },
+        {
+          "id": "vippeloft",
+          "name": "Vippeløft inkl. farge og lashfiller",
+          "short": "Naturlig løft med farge og lashfiller inkludert.",
+          "duration": "1 t",
+          "price": "1 140 kr",
+          "tags": ["vipper", "løft"]
+        },
+        {
+          "id": "browlamination-vippeloft",
+          "name": "Browlamination + Vippeløft, inkl. farge",
+          "short": "Kombinasjonspakke for bryn og vipper.",
+          "duration": "1 t 30 min",
+          "price": "1 690 kr",
+          "tags": ["pakke", "bryn", "vipper"]
+        },
+        {
+          "id": "brynstyling-vippeloft",
+          "name": "Brynstyling (form, farge, voks) + Vippeløft inkl. farge",
+          "short": "Kombinasjon med brynstyling og vippeløft.",
+          "duration": "1 t 15 min",
+          "price": "1 480 kr",
+          "tags": ["pakke", "bryn", "vipper"]
+        },
+        {
+          "id": "farging-av-vipper",
+          "name": "Farging av vipper",
+          "short": "Rask behandling som fremhever vippene.",
+          "duration": "15 min",
+          "price": "290 kr",
+          "tags": ["vipper", "farge"]
+        },
+        {
+          "id": "farging-av-bryn",
+          "name": "Farging av bryn",
+          "short": "Definerer og fyller ut brynene.",
+          "duration": "15 min",
+          "price": "320 kr",
+          "tags": ["bryn", "farge"]
+        },
+        {
+          "id": "brynstyling-for-menn",
+          "name": "Brynstyling for menn",
+          "short": "Skånsom forming og rydding av bryn.",
+          "duration": "30 min",
+          "price": "490 kr",
+          "tags": ["bryn", "menn"]
+        },
+        {
+          "id": "brynstyling-voks-overleppe",
+          "name": "Brynstyling + voks overleppe",
+          "short": "Ryddige bryn og pen overleppe.",
+          "duration": "45 min",
+          "price": "850 kr",
+          "tags": ["bryn", "voks"]
+        },
+        {
+          "id": "forming-av-bryn",
+          "name": "Forming av bryn",
+          "short": "Presis forming av brynene.",
+          "duration": "30 min",
+          "price": "490 kr",
+          "tags": ["bryn", "forming"]
+        },
+        {
+          "id": "brynstyling-farging-av-vipper",
+          "name": "Brynstyling + farging av vipper",
+          "short": "Full pakke for bryn og vipper.",
+          "duration": "45 min",
+          "price": "850 kr",
+          "tags": ["pakke", "bryn", "vipper"]
+        }
+      ]
+    },
+    {
+      "id": "dermalogica",
+      "title": "Dermalogica",
+      "desc": "Skreddersydde hudpleiebehandlinger til dine behov.",
+      "items": [
+        {
+          "id": "dermalogica-signature",
+          "name": "Dermalogica Signaturebehandling",
+          "short": "Skreddersydd ansiktsbehandling med aktive ingredienser.",
+          "duration": "45 min",
+          "price": "1 000 kr",
+          "popular": true,
+          "tags": ["hudpleie", "klassisk"]
+        },
+        {
+          "id": "dermalogica-kjemisk-peeling",
+          "name": "Dermalogica Kjemisk Peeling",
+          "short": "Avansert, skreddersydd behandlingsteknikk.",
+          "duration": "45 min",
+          "price": "1 200 kr",
+          "tags": ["peel", "hudfornyelse"]
+        },
+        {
+          "id": "dermalogica-pigment-30",
+          "name": "Dermalogica Målrettet Pigmentering – 30 min",
+          "short": "Hudfornyende behandling med fokus på pigment.",
+          "duration": "30 min",
+          "price": "790 kr",
+          "tags": ["pigment", "hurtig"]
+        },
+        {
+          "id": "dermalogica-pigment-60",
+          "name": "Dermalogica Målrettet Pigmentering – 60 min",
+          "short": "For mer dyptvirkende og omfattende behandling.",
+          "duration": "1 t",
+          "price": "1 300 kr",
+          "tags": ["pigment", "hudfornyelse"]
+        },
+        {
+          "id": "dermalogica-akne-30",
+          "name": "Dermalogica Målrettet Akne – 30 min",
+          "short": "Ansiktsbehandling med fokus på akne/urenheter.",
+          "duration": "30 min",
+          "price": "790 kr",
+          "tags": ["akne", "hurtig"]
+        },
+        {
+          "id": "dermalogica-akne-60",
+          "name": "Dermalogica Målrettet Akne – 60 min",
+          "short": "For mer intensiv behandling av akne og urenheter.",
+          "duration": "1 t",
+          "price": "1 300 kr",
+          "tags": ["akne", "hudpleie"]
+        },
+        {
+          "id": "dermalogica-aldring-30",
+          "name": "Dermalogica Målrettet Aldring – 30 min",
+          "short": "Rask anti-age behandling.",
+          "duration": "30 min",
+          "price": "790 kr",
+          "tags": ["anti-age", "hurtig"]
+        },
+        {
+          "id": "dermalogica-aldring-60",
+          "name": "Dermalogica Målrettet Aldring – 60 min",
+          "short": "Mer dyptvirkende anti-age fokus.",
+          "duration": "1 t",
+          "price": "1 300 kr",
+          "tags": ["anti-age", "hudpleie"]
+        },
+        {
+          "id": "dermalogica-sensitivitet-30",
+          "name": "Dermalogica Målrettet Sensitivitet – 30 min",
+          "short": "Skånsom behandling for sensitiv hud.",
+          "duration": "30 min",
+          "price": "790 kr",
+          "tags": ["sensitiv", "hurtig"]
+        },
+        {
+          "id": "dermalogica-sensitivitet-60",
+          "name": "Dermalogica Målrettet Sensitivitet – 60 min",
+          "short": "For mer intensiv og dyptvirkende pleie.",
+          "duration": "1 t",
+          "price": "1 300 kr",
+          "tags": ["sensitiv", "hudpleie"]
+        },
+        {
+          "id": "facemapping-hudanalyse",
+          "name": "Facemapping Hudanalyse",
+          "short": "Grundig hudanalyse som svar på hva huden din trenger.",
+          "duration": "15 min",
+          "price": "0 kr",
+          "tags": ["kartlegging", "analyse"]
+        }
+      ]
+    },
+    {
+      "id": "hudpleie",
+      "title": "Hudpleie",
+      "desc": "Dyptvirkende hudpleie med peels og spesialbehandlinger.",
+      "items": [
+        {
+          "id": "prx-t33",
+          "name": "PRX–T33",
+          "short": "Metoden gir “glow-time”.",
+          "duration": "45 min",
+          "price": "1 899 kr",
+          "popular": true,
+          "tags": ["peel", "glow"]
+        },
+        {
+          "id": "somi-klassisk-anti-age",
+          "name": "Somi Klassisk anti-age hudpleie",
+          "short": "Dyprens, massasje og masker for glød og spenst.",
+          "duration": "45 min",
+          "price": "1 299 kr",
+          "tags": ["anti-age", "hudpleie"]
+        },
+        {
+          "id": "somi-peel-acne",
+          "name": "Somi Peel for acne og urenhet",
+          "short": "Spesialbehandling med fokus på talg og tilstoppinger.",
+          "duration": "45 min",
+          "price": "850 kr",
+          "tags": ["akne", "peel"]
+        },
+        {
+          "id": "led-lysterapi",
+          "name": "LED-lysterapi",
+          "short": "Skånsom lysbehandling for ro og reparasjon.",
+          "duration": "30 min",
+          "price": "895 kr",
+          "tags": ["lys", "hudpleie"]
+        },
+        {
+          "id": "somi-dyprens",
+          "name": "Somi Dyprens",
+          "short": "Grundig dyprens med damp og kjemisk peel.",
+          "duration": "1 t",
+          "price": "1 299 kr",
+          "tags": ["dyprens", "peel"]
+        },
+        {
+          "id": "fjerning-skin-tags",
+          "name": "Fjerning av skin tags/vorter",
+          "short": "Rask og skånsom fjerning av små hudforandringer.",
+          "duration": "15 min",
+          "price": "150 kr",
+          "tags": ["fjerning", "hudpleie"]
+        },
+        {
+          "id": "laser-skin-rejuvenation-prx",
+          "name": "Laser skin rejuvenation + PRX–T33",
+          "short": "Kombinasjon for hudfornyelse.",
+          "duration": "1 t",
+          "price": "2 999 kr",
+          "tags": ["laser", "peel"]
+        },
+        {
+          "id": "tca-peel",
+          "name": "TCA-Peel",
+          "short": "Medisinsk dybde kjemisk peel for struktur og pigment.",
+          "duration": "45 min",
+          "price": "1 899 kr",
+          "tags": ["peel", "hudfornyelse"]
+        },
+        {
+          "id": "dermaplaning",
+          "name": "Dermaplaning",
+          "short": "Eksfolierende behandling som gir glød og jevnere hud.",
+          "duration": "45 min",
+          "price": "990 kr",
+          "tags": ["eksfoliering", "glow"]
+        },
+        {
+          "id": "carbon-peel-laser",
+          "name": "Carbon peel laser",
+          "short": "Laser med kullmaske for renere, mattere hud.",
+          "duration": "1 t",
+          "price": "1 499 kr",
+          "tags": ["laser", "peel"]
+        }
+      ]
+    }
+  ]
+}
