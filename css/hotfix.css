@@ -1,0 +1,41 @@
+/* Contrast + readability hard reset */
+html, body {
+  background: #F3F1EE !important;
+  color: rgba(56,56,56,0.96) !important;
+}
+
+main, section, .section, .container, .card, .tile {
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+p, li, a, span, small, label, input, textarea, button {
+  color: inherit;
+}
+
+/* Avoid accidental global opacity on wrappers */
+[data-include], .reveal, .fade, .hero, .hero-bg {
+  opacity: 1 !important;
+}
+
+/* Ensure header stays sticky */
+.site-header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 100 !important;
+}
+
+/* Make logo visibly larger (even if logo PNG has whitespace) */
+.brand__logo{
+  height: 52px !important;
+  width: auto !important;
+  max-width: 190px !important;
+  object-fit: contain !important;
+  display:block !important;
+}
+@media (max-width: 480px){
+  .brand__logo{ height: 54px !important; }
+}
+
+/* Give more side padding on mobile */
+:root{ --gutter: 22px; }
