@@ -7,15 +7,21 @@
 
 .footer__grid{
   display:grid;
-  grid-template-columns: 1.2fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 22px;
   align-items:start;
 }
 
+.footer__col{
+  display:flex;
+  flex-direction:column;
+  gap: 10px;
+}
+
 .footer__brand{
   display:flex;
-  gap: 12px;
-  align-items:center;
+  gap: 14px;
+  align-items:flex-start;
 }
 .footer__logo{
   height: 40px;
@@ -28,6 +34,11 @@
   font-size: 14px;
   margin-top: 10px;
   line-height: 1.55;
+}
+
+.footer__heading{
+  font-weight: 700;
+  letter-spacing: .02em;
 }
 
 .footer__links a{
@@ -51,4 +62,5 @@
 
 @media (max-width: 900px){
   .footer__grid{ grid-template-columns: 1fr; }
+  .footer__brand{ align-items:center; }
 }

@@ -1,0 +1,91 @@
+.treatmentPage{
+  padding-top: calc(var(--header-h, 72px) + 24px);
+  padding-bottom: 70px;
+}
+
+.treatment-hero{
+  position: relative;
+  overflow: hidden;
+  padding: 26px;
+  border-radius: 22px;
+  background: linear-gradient(145deg, #f5f5ff, #f9fafc);
+  border: 1px solid rgba(56,56,56,0.08);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+  display:grid;
+  gap: 14px;
+}
+
+.treatment-hero .kicker{ letter-spacing:.18em; text-transform:uppercase; color: rgba(56,56,56,0.60); font-size: 12px; }
+.treatment-title{ font-family: Georgia,"Times New Roman",serif; font-size: clamp(32px, 5vw, 48px); margin: 0; line-height: 1.1; }
+.treatment-lead{ margin: 0; color: rgba(56,56,56,0.72); line-height: 1.65; max-width: 70ch; }
+
+.treatment-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.meta-pill{
+  display:flex;
+  align-items:center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(56,56,56,0.12);
+  background: rgba(255,255,255,0.80);
+  color: rgba(56,56,56,0.78);
+  font-size: 14px;
+}
+
+.badge-list{ display:flex; gap: 8px; flex-wrap:wrap; }
+.pill{
+  display:inline-flex;
+  align-items:center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(56,56,56,0.12);
+  background: rgba(255,255,255,0.86);
+  color: rgba(56,56,56,0.75);
+  font-size: 12px;
+}
+
+.section-card{
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 18px;
+  border: 1px solid rgba(56,56,56,0.08);
+  background: rgba(255,255,255,0.86);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.06);
+}
+
+.section-card h2{ margin: 0 0 10px; font-size: 20px; }
+.section-card p{ margin: 0 0 10px; color: rgba(56,56,56,0.70); line-height: 1.6; }
+.section-card ul{ margin: 0; padding-left: 18px; color: rgba(56,56,56,0.78); line-height: 1.6; display:grid; gap: 6px; }
+
+.treatment-grid{ display:grid; grid-template-columns: 1.1fr 0.9fr; gap: 14px; align-items: start; }
+
+.treatment-cta{
+  display:flex;
+  flex-wrap:wrap;
+  gap: 10px;
+  align-items:center;
+}
+
+.note-box{
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(56,56,56,0.04);
+  color: rgba(56,56,56,0.70);
+  line-height: 1.5;
+}
+
+@media (max-width: 900px){
+  .treatment-grid{ grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px){
+  .treatment-hero{ padding: 18px; }
+}

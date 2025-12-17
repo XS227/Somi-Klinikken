@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Somi Dyprens | Hudpleie hos SOMI Klinikken</title>
+  <meta name="description" content="Grundig dyprens med damp og kjemisk peel." />
+  <link rel="stylesheet" href="/css/tokens.css" />
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/layout.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/motion.css" />
+  <link rel="stylesheet" href="/css/header.css" />
+  <link rel="stylesheet" href="/css/footer.css" />
+  <link rel="stylesheet" href="/css/treatment.css" />
+  <link rel="stylesheet" href="/css/hotfix.css" />
+  <script defer src="/js/includes.js"></script>
+  <script defer src="/js/site.js"></script>
+  <script defer src="/js/treatment-page.js"></script>
+</head>
+<body>
+  <div data-include="/partials/header.html"></div>
+  <main class="treatmentPage" data-treatment-page data-treatment-id="somi-dyprens">
+    <div class="container">
+      <section class="treatment-hero">
+        <p class="kicker">Behandling · Hudpleie</p>
+        <h1 class="treatment-title" data-field="title">Somi Dyprens</h1>
+        <p class="treatment-lead" data-field="lead">Grundig dyprens med damp og kjemisk peel.</p>
+        <div class="treatment-meta">
+          <span class="meta-pill">Kategori: <strong data-field="category" style="margin-left:6px;">Hudpleie</strong></span>
+          <span class="meta-pill">Varighet: <strong data-field="duration" style="margin-left:6px;">1 t</strong></span>
+          <span class="meta-pill">Pris: <strong data-field="price" style="margin-left:6px;">1 299 kr</strong></span>
+          <span class="meta-pill">Merknader: <span data-field="tags" class="badge-list"></span></span>
+        </div>
+        <div class="treatment-cta">
+          <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
+          <a class="btn" data-back-link href="/behandlinger.html">Tilbake til behandlinger</a>
+          <a class="btn" href="/priser.html">Se priser</a>
+        </div>
+      </section>
+
+      <div class="treatment-grid">
+        <section class="section-card">
+          <h2>Dette får du</h2>
+          <p>Et kort sammendrag av hva behandlingen innebærer og hva du kan forvente.</p>
+          <ul data-list="benefits"></ul>
+        </section>
+
+        <section class="section-card">
+          <h2>Praktisk info</h2>
+          <p>Pris og tid kan variere ved kombinasjoner. Kontakt oss om du trenger råd.</p>
+          <div class="note-box">
+            <div><strong>Pris:</strong> <span data-field="price">1 299 kr</span></div>
+            <div><strong>Varighet:</strong> <span data-field="duration">1 t</span></div>
+            <div><strong>Kategori:</strong> <span data-field="category">Hudpleie</span></div>
+          </div>
+          <div class="treatment-cta" style="margin-top:10px;">
+            <a class="btn btn--primary" href="#" data-booking-link>Bestill time</a>
+            <a class="btn" href="/contact.html">Kontakt oss</a>
+          </div>
+        </section>
+      </div>
+
+      <div class="treatment-grid">
+        <section class="section-card">
+          <h2>Før timen</h2>
+          <p>Små forberedelser kan gi et bedre resultat.</p>
+          <ul data-list="prep"></ul>
+        </section>
+
+        <section class="section-card">
+          <h2>Etter timen</h2>
+          <p>Følg rådene nedenfor for å sikre god etterbehandling.</p>
+          <ul data-list="aftercare"></ul>
+        </section>
+      </div>
+
+      <div class="section-card">
+        <h2>Spørsmål?</h2>
+        <p>Du når oss på <a href="mailto:post@somiklinikken.no">post@somiklinikken.no</a> eller <a href="tel:+4792939171">+47 929 39 171</a>. Vi hjelper deg å velge riktig behandling.</p>
+        <div class="treatment-cta">
+          <a class="btn" href="/contact.html">Kontakt oss</a>
+          <a class="btn" href="/behandlinger.html#hudpleie" data-back-link>Tilbake til Hudpleie</a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <div data-include="/partials/footer.html"></div>
+</body>
+</html>
