@@ -1,58 +1,60 @@
-<footer class="site-footer" role="contentinfo">
+<footer class="siteFooter" role="contentinfo">
   <div class="container">
-    <div class="footer__grid">
-      <div class="footer__col">
-        <div class="footer__brand">
-          <img class="footer__logo" src="/logo.png" alt="SOMI Klinikken" />
-          <div>
-            <div class="footer__heading">Kontakt</div>
-            <div class="footer__muted">
-              Langgata 31, 4307 Sandnes<br>
-              <a href="tel:+4792939171">+47 929 39 171</a><br>
-              <a href="mailto:post@somiklinikken.no">post@somiklinikken.no</a><br>
-              Klinikken er åpen etter avtale.
-            </div>
-            <div class="footer__actions">
-              <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
-              <a class="btn" href="/contact.html">Kontakt oss</a>
-            </div>
-          </div>
+    <div class="footerGrid">
+      <!-- Kontakt -->
+      <section class="footerCol">
+        <p class="footerKicker">Kontakt</p>
+        <p class="footerText">
+          Langgata 31, 4306 Sandnes<br />
+          <a class="footerLink" href="tel:+4792939171">+47 929 39 171</a><br />
+          <a class="footerLink" href="mailto:post@somiklinikken.no">post@somiklinikken.no</a><br />
+          <span class="footerMuted">Åpent etter avtale</span>
+        </p>
+
+        <div class="footerActions">
+          <a class="btn btn--primary" href="https://somi.bestille.no/" target="_blank" rel="noopener">BOOK TIME</a>
+          <a class="btn" href="/contact.html">Kontakt</a>
         </div>
-      </div>
+      </section>
 
-      <div class="footer__col footer__links" aria-label="Meny">
-        <div class="footer__heading">Meny</div>
-        <a href="/index.html">Start</a>
-        <a href="/om.html">Om</a>
-        <a href="/team.html">Team</a>
-        <a href="/behandlinger.html">Behandlinger</a>
-        <a href="/priser.html">Priser</a>
-        <a href="/faq.html">FAQ</a>
-        <a href="/blogg.html">Blogg</a>
-        <a href="/contact.html">Kontakt</a>
-      </div>
+      <!-- Meny -->
+      <nav class="footerCol" aria-label="Meny">
+        <p class="footerKicker">Meny</p>
+        <ul class="footerList">
+          <li><a class="footerLink" href="/index.html">Start</a></li>
+          <li><a class="footerLink" href="/om.html">Om</a></li>
+          <li><a class="footerLink" href="/team.html">Team</a></li>
+          <li><a class="footerLink" href="/behandlinger.html">Behandlinger</a></li>
+          <li><a class="footerLink" href="/priser.html">Priser</a></li>
+          <li><a class="footerLink" href="/contact.html">Kontakt</a></li>
+        </ul>
+      </nav>
 
-      <div class="footer__col footer__links" aria-label="Behandlingskategorier">
-        <div class="footer__heading">Behandlingskategorier</div>
-        <a href="/behandlinger.html#microblading">Microblading</a>
-        <a href="/behandlinger.html#bryn-vipper">Bryn og vipper</a>
-        <a href="/behandlinger.html#dermalogica">Dermalogica</a>
-        <a href="/behandlinger.html#hudpleie">Hudpleie</a>
-      </div>
+      <!-- Info -->
+      <nav class="footerCol" aria-label="Info">
+        <p class="footerKicker">Info</p>
+        <ul class="footerList">
+          <li><a class="footerLink" href="/personvern.html">Personvern</a></li>
+          <li><a class="footerLink" href="/faq.html">FAQ</a></li>
+          <li><a class="footerLink" href="/blog.html">Blogg</a></li>
+          <li><a class="footerLink" href="https://www.google.com/maps?q=Langgata+31,+4306+Sandnes" target="_blank" rel="noopener">Kart og parkering</a></li>
+        </ul>
+      </nav>
 
-      <div class="footer__col footer__links" aria-label="Juridisk og info">
-        <div class="footer__heading">Info</div>
-        <a href="/faq.html">Mest stilte spørsmål</a>
-        <a href="/personvern.html">Personvernerklæring</a>
-        <a href="/contact.html#kart">Kart og parkering</a>
-        <a href="/blogg.html">Blogg</a>
-        <div class="footer__muted">Følg oss for oppdateringer og tilbud.</div>
-      </div>
+      <!-- Sosial -->
+      <nav class="footerCol" aria-label="Sosiale medier">
+        <p class="footerKicker">Følg oss</p>
+        <ul class="footerList">
+          <li><a class="footerLink" href="#" rel="noopener">Instagram</a></li>
+          <li><a class="footerLink" href="#" rel="noopener">Facebook</a></li>
+        </ul>
+        <p class="footerTiny">Følg oss for oppdateringer og tilbud.</p>
+      </nav>
     </div>
 
-    <div class="footer__bottom">
-      <div>© SOMI Klinikken – Sandnes</div>
-      <div class="footer__credits">Utviklet med <span aria-hidden="true">♥</span> av <a href="https://setaei.com" target="_blank" rel="noopener">SETAEI</a></div>
+    <div class="footerBottom">
+      <p class="footerTiny">© <span data-year></span> SOMI Klinikken – Sandnes</p>
+      <p class="footerTiny">Utviklet av SETAEI</p>
     </div>
   </div>
 </footer>
