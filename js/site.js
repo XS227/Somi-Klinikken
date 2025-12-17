@@ -1,13 +1,5 @@
 (() => {
-  const BOOKING_URL_DEFAULT = "https://somi.bestille.no/";
-
-  const getBookingUrl = () => {
-    try {
-      return (window.SOMI_CONFIG && window.SOMI_CONFIG.bookingUrl) || BOOKING_URL_DEFAULT;
-    } catch (_) {
-      return BOOKING_URL_DEFAULT;
-    }
-  };
+  const BOOKING_URL = "https://somi.bestille.no/";
 
   function setHeaderHeightVar() {
     const header = document.querySelector("[data-site-header]");
@@ -17,86 +9,84 @@
   }
 
   function wireBookingLinks(root = document) {
-    const bookingUrl = getBookingUrl();
     root.querySelectorAll("[data-booking-link]").forEach(a => {
-      a.setAttribute("href", bookingUrl);
-      a.setAttribute("rel", "noopener");
+      a.setAttribute("href", BOOKING_URL);
       a.setAttribute("target", "_blank");
+      a.setAttribute("rel", "noopener");
     });
   }
 
-  function wireMobileMenu() {
+  function closeMenu() {
     const header = document.querySelector("[data-site-header]");
-    if (!header) return false;
-
+    if (!header) return;
     const btn = header.querySelector("[data-menu-toggle]");
     const panel = header.querySelector("[data-mobile-panel]");
-    if (!btn || !panel) return false;
+    if (!btn || !panel) return;
 
-    const close = () => {
-      btn.setAttribute("aria-expanded", "false");
-      panel.classList.remove("is-open");
-      panel.setAttribute("aria-hidden", "true");
-      document.body.classList.remove("no-scroll");
-      setHeaderHeightVar();
-    };
+    btn.setAttribute("aria-expanded", "false");
+    panel.classList.remove("is-open");
+    panel.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("no-scroll");
+    setHeaderHeightVar();
+  }
 
-    const open = () => {
+  function toggleMenu() {
+    const header = document.querySelector("[data-site-header]");
+    if (!header) return;
+    const btn = header.querySelector("[data-menu-toggle]");
+    const panel = header.querySelector("[data-mobile-panel]");
+    if (!btn || !panel) return;
+
+    const isOpen = panel.classList.contains("is-open");
+    if (isOpen) closeMenu();
+    else {
       btn.setAttribute("aria-expanded", "true");
       panel.classList.add("is-open");
       panel.setAttribute("aria-hidden", "false");
       document.body.classList.add("no-scroll");
       setHeaderHeightVar();
-    };
-
-    btn.addEventListener("click", () => {
-      const isOpen = panel.classList.contains("is-open");
-      isOpen ? close() : open();
-    });
-
-    // Close on link click
-    panel.addEventListener("click", (e) => {
-      const a = e.target.closest("a");
-      if (!a) return;
-      close();
-    });
-
-    // Close on resize to desktop
-    window.addEventListener("resize", () => {
-      if (window.innerWidth > 980) close();
-      setHeaderHeightVar();
-    });
-
-    // Close on ESC
-    window.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") close();
-    });
-
-    // Sticky “scrolled” state
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 6) header.classList.add("is-scrolled");
-      else header.classList.remove("is-scrolled");
-    }, { passive: true });
-
-    // Initial
-    close();
-    setHeaderHeightVar();
-    return true;
+    }
   }
 
-  function init() {
-    wireBookingLinks(document);
-    setHeaderHeightVar();
-    wireMobileMenu();
-  }
+  // Event delegation: works even if header is injected later
+  document.addEventListener("click", (e) => {
+    const toggle = e.target.closest("[data-menu-toggle]");
+    if (toggle) {
+      e.preventDefault();
+      toggleMenu();
+      return;
+    }
 
-  // Run now + observe injected partials
-  document.addEventListener("DOMContentLoaded", init);
-
-  const obs = new MutationObserver(() => {
-    // Re-init if header/footer/partials got injected
-    init();
+    const inPanelLink = e.target.closest("[data-mobile-panel] a");
+    if (inPanelLink) closeMenu();
   });
 
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeMenu();
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 980) closeMenu();
+    setHeaderHeightVar();
+  });
+
+  window.addEventListener("scroll", () => {
+    const header = document.querySelector("[data-site-header]");
+    if (!header) return;
+    if (window.scrollY > 6) header.classList.add("is-scrolled");
+    else header.classList.remove("is-scrolled");
+  }, { passive: true });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    wireBookingLinks(document);
+    setHeaderHeightVar();
+    closeMenu();
+  });
+
+  // If includes injects later, just re-apply booking links + header height
+  const obs = new MutationObserver(() => {
+    wireBookingLinks(document);
+    setHeaderHeightVar();
+  });
   obs.observe(document.documentElement, { childList: true, subtree: true });
 })();
