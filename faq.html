@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mest stilte spørsmål | SOMI Klinikken Sandnes</title>
+  <meta name="description" content="FAQ for SOMI Klinikken: svar på vanlige spørsmål om bryn, permanent makeup, hudpleie, etterbehandling, booking og betaling. Få trygg veiledning i Sandnes." />
+
+  <link rel="stylesheet" href="/css/tokens.css" />
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/layout.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/motion.css" />
+  <link rel="stylesheet" href="/css/header.css" />
+  <link rel="stylesheet" href="/css/footer.css" />
+  <link rel="stylesheet" href="/css/hotfix.css" />
+
+  <style>
+    :root { --faq-gap: 16px; }
+
+    .page {
+      padding-top: calc(var(--header-h, 72px) + 28px);
+      padding-bottom: 80px;
+    }
+
+    .faq__intro {
+      max-width: 880px;
+    }
+
+    .kicker {
+      letter-spacing: .18em;
+      font-size: 12px;
+      text-transform: uppercase;
+      color: rgba(56,56,56,.62);
+    }
+
+    .h1-serif {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(36px, 5.4vw, 58px);
+      line-height: 1.05;
+      margin: 10px 0 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .lead {
+      color: rgba(56,56,56,.76);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .faq__grid {
+      margin-top: 26px;
+      display: grid;
+      grid-template-columns: 1.02fr .98fr;
+      gap: var(--faq-gap);
+      align-items: start;
+    }
+
+    .faq__panel {
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(56,56,56,0.12);
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: 0 14px 34px rgba(0,0,0,0.06);
+    }
+
+    .faq__panel h2 {
+      margin: 4px 0 10px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 24px;
+    }
+
+    .faq__panel p {
+      margin: 0;
+      color: rgba(56,56,56,.72);
+      line-height: 1.65;
+    }
+
+    .faq__list {
+      display: grid;
+      gap: var(--faq-gap);
+    }
+
+    .faq-item {
+      border-radius: 16px;
+      background: rgba(255,255,255,0.84);
+      border: 1px solid rgba(56,56,56,0.12);
+      box-shadow: 0 12px 26px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+
+    details {
+      padding: 14px 16px;
+    }
+
+    summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      list-style: none;
+      font-weight: 600;
+      color: #383838;
+      position: relative;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    summary::after {
+      content: "+";
+      font-weight: 700;
+      color: rgba(56,56,56,.58);
+    }
+
+    details[open] summary::after { content: "–"; }
+
+    .faq-item p {
+      margin: 10px 0 2px;
+      color: rgba(56,56,56,.74);
+      line-height: 1.65;
+    }
+
+    .faq__cta {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .note {
+      margin-top: 10px;
+      color: rgba(56,56,56,.68);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 960px){
+      .faq__grid { grid-template-columns: 1fr; }
+      .page { padding-top: calc(var(--header-h, 72px) + 18px); }
+    }
+  </style>
+
+  <script defer src="/js/includes.js"></script>
+  <script defer src="/js/site.js"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Hvor lenge varer resultatet av microblading?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Varighet ligger normalt mellom 12–18 måneder. Etter 4–6 uker anbefaler vi en påfyllstime for å sikre jevn farge, og deretter en vedlikeholdsbehandling når fargen begynner å blekne."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Hvordan forbereder jeg meg til permanent makeup?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Unngå soling, sterke kremer og blodfortynnende produkter 48 timer før timen. Kom med ren hud uten sminke. Vi gjør alltid en konsultasjon først slik at form og nyanse passer ansiktet ditt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Hva gjør jeg etter en hudpleiebehandling?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Hold huden ren, bruk mild rens og solfaktor SPF 30+ i minst en uke. Unngå peeling, solarium og intens trening første døgnet for å la huden roe seg."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Er behandlingene smertefulle?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "De fleste opplever bare lett ubehag. Vi bruker bedøvende krem ved behov, særlig på bryn og lepper, for å gi en så behagelig opplevelse som mulig."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kan jeg trene eller bade etter behandlingen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Vent 24 timer med svette og bading etter hudpleie. Etter permanent makeup og microblading bør du unngå vann og svette i området i 5–7 dager for best heling."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Hvordan booker og endrer jeg time?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Book online via vår bookingknapp. Trenger du å endre eller avbestille, gjør det senest 24 timer før avtalen for å unngå gebyr. Du kan også kontakte oss på telefon eller e-post."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <div data-include="/partials/header.html"></div>
+
+  <main class="page">
+    <div class="container">
+      <header class="faq__intro">
+        <div class="kicker">Mest stilte spørsmål</div>
+        <h1 class="h1-serif">Svar fra klinikkteamet</h1>
+        <p class="lead">
+          Her finner du korte svar på det vi får flest spørsmål om – fra forberedelse og etterbehandling
+          til varighet, smerte og booking. Vi oppdaterer listen jevnlig slik at du er trygg før besøket ditt i Sandnes.
+        </p>
+        <div class="faq__cta">
+          <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
+          <a class="btn" href="/contact.html">Ta kontakt</a>
+        </div>
+      </header>
+
+      <section class="faq__grid" aria-label="Ofte stilte spørsmål">
+        <div class="faq__list">
+          <div class="faq-item">
+            <details open>
+              <summary>Hvor lenge varer resultatet av microblading?</summary>
+              <p>Vanlig varighet er 12–18 måneder. En påfyllstime etter 4–6 uker gir jevnere pigment, og deretter anbefaler vi vedlikehold når fargen blekner.</p>
+            </details>
+          </div>
+          <div class="faq-item">
+            <details>
+              <summary>Hvordan forbereder jeg meg til permanent makeup eller brynbehandling?</summary>
+              <p>Unngå soling, sterke syrer og blodfortynnende midler 48 timer før. Kom med ren hud uten sminke. Vi kartlegger form og nyanse sammen før behandlingen starter.</p>
+            </details>
+          </div>
+          <div class="faq-item">
+            <details>
+              <summary>Hva kan jeg forvente etter hudpleie eller Dermalogica-behandling?</summary>
+              <p>Hold huden ren og bruk solfaktor SPF 30+ i en uke. Vent med peeling, solarium og hard trening første døgnet så huden rekker å roe seg.</p>
+            </details>
+          </div>
+          <div class="faq-item">
+            <details>
+              <summary>Er behandlingene smertefulle?</summary>
+              <p>De fleste opplever kun lett ubehag. Vi bruker bedøvende krem ved behov, spesielt på bryn og lepper, for å sikre en behagelig opplevelse.</p>
+            </details>
+          </div>
+          <div class="faq-item">
+            <details>
+              <summary>Kan jeg trene eller bade etter behandlingen?</summary>
+              <p>Vent 24 timer med svette og bading etter hudpleie. Etter microblading og permanent makeup bør du holde området tørt i 5–7 dager for best heling.</p>
+            </details>
+          </div>
+          <div class="faq-item">
+            <details>
+              <summary>Tilbys patch-test for allergi?</summary>
+              <p>Ja, vi kan utføre patch-test før pigmentering eller nye produkter for å redusere risiko for reaksjoner. Gi beskjed ved booking dersom du har sensitiv hud eller allergier.</p>
+            </details>
+          </div>
+          <div class="faq-item">
+            <details>
+              <summary>Hvordan booker eller endrer jeg en time?</summary>
+              <p>Book enkelt via bookingknappen. Endre eller avbestill senest 24 timer før for å unngå gebyr. Du kan også ringe <a href="tel:+4792939171">+47 929 39 171</a> eller sende e-post til <a href="mailto:post@somiklinikken.no">post@somiklinikken.no</a>.</p>
+            </details>
+          </div>
+          <div class="faq-item">
+            <details>
+              <summary>Hvilke betalinger aksepteres?</summary>
+              <p>Vi tar kort, VIPPS og faktura etter avtale. Du får alltid kvittering og råd om eventuelle produkter som støtter etterbehandling.</p>
+            </details>
+          </div>
+        </div>
+
+        <aside class="faq__panel" aria-label="Praktisk informasjon">
+          <h2>Korte praktiske råd</h2>
+          <p>
+            Kom i god tid, spesielt ved første besøk, slik at vi kan kartlegge mål og ønsker. Unngå koffein rett før timen hvis du er sensitiv, og husk solkrem etter behandlinger for å beskytte resultatet.
+          </p>
+          <p class="note">Usikker på hvilken behandling du skal velge? Vi anbefaler en konsultasjon slik at vi kan gi deg en trygg og personlig plan.</p>
+          <div class="faq__cta">
+            <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
+            <a class="btn" href="/behandlinger.html">Se alle behandlinger</a>
+          </div>
+        </aside>
+      </section>
+    </div>
+  </main>
+
+  <div data-include="/partials/footer.html"></div>
+</body>
+</html>

@@ -22,7 +22,7 @@
 
   <style>
     .page-hero{ padding-top: calc(var(--header-h,72px) + 18px); }
-    .kicker{ font-family:"Corbel",system-ui,sans-serif; letter-spacing:.08em; text-transform:uppercase; font-size:12px; opacity:.75; }
+    .kicker{ font-family:"Corbel",system-ui,sans-serif; letter-spacing:.08em; text-transform:uppercase; font-size:12px; opacity:.85; color: var(--c-muted); }
     .posts{ display:grid; grid-template-columns: repeat(3,1fr); gap:14px; margin-top:18px; }
     @media (max-width: 980px){ .posts{ grid-template-columns: repeat(2,1fr);} }
     @media (max-width: 620px){ .posts{ grid-template-columns: 1fr;} }
@@ -35,8 +35,8 @@
       display:grid;
       gap:8px;
     }
-    .post .t{ font-weight:600; }
-    .post .m{ opacity:.78; font-size:14px; }
+    .post .t{ font-weight:600; color: var(--c-text); }
+    .post .m{ color: var(--c-muted); font-size:14px; line-height:1.5; }
     .btn--primary{ background: rgba(56,56,56,.95); }
   </style>
 </head>
@@ -54,23 +54,46 @@
         </div>
 
         <div class="posts">
-          <!-- Bytt ut med ekte artikler når dere er klare -->
           <article class="post reveal">
+            <div class="kicker">Bryn</div>
             <div class="t">Microblading: før og etter behandling</div>
             <div class="m">Hva du bør vite før du bestiller, og hvordan du tar vare på brynene etterpå.</div>
             <a class="btn" href="/blogg/microblading-for-og-etter.html">Les mer</a>
           </article>
 
           <article class="post reveal">
+            <div class="kicker">Permanent makeup</div>
             <div class="t">Permanent makeup: forventninger og resultat</div>
             <div class="m">Hvordan prosessen foregår og hva som er normalt i helingsfasen.</div>
             <a class="btn" href="/blogg/permanent-makeup-forventninger.html">Les mer</a>
           </article>
 
           <article class="post reveal">
+            <div class="kicker">Vipper</div>
             <div class="t">Vippeløft: hvor lenge varer det?</div>
             <div class="m">Varighet, vedlikehold og tips for best mulig resultat.</div>
             <a class="btn" href="/blogg/vippeloft-varighet.html">Les mer</a>
+          </article>
+
+          <article class="post reveal">
+            <div class="kicker">Hudpleie</div>
+            <div class="t">Få maks ut av Dermalogica-behandlingen din</div>
+            <div class="m">Rutiner og produkter som forlenger gløden etter klinikkbesøket.</div>
+            <a class="btn" href="/blogg/dermalogica-etterbehandling.html">Les mer</a>
+          </article>
+
+          <article class="post reveal">
+            <div class="kicker">Trygghet</div>
+            <div class="t">Slik jobber vi med hygiene og sikkerhet</div>
+            <div class="m">Fra sterile nåler til hudanalyse – dette gjør vi for at du skal føle deg trygg.</div>
+            <a class="btn" href="/blogg/hygiene-og-sikkerhet.html">Les mer</a>
+          </article>
+
+          <article class="post reveal">
+            <div class="kicker">Forberedelser</div>
+            <div class="t">Velg riktig brynbehandling for deg</div>
+            <div class="m">Når passer microblading, hybrid-bryn eller farging – og hva bør du spørre om?</div>
+            <a class="btn" href="/blogg/velg-riktig-brynbehandling.html">Les mer</a>
           </article>
         </div>
 
