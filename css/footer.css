@@ -33,6 +33,14 @@
   color: rgba(56,56,56,.74);
   font-size: 14px;
 }
+.footer__muted a{
+  color: inherit;
+  text-decoration: none;
+}
+.footer__muted a:hover{
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 
 .footer__actions{
   display: flex;
