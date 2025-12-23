@@ -4,10 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Bestill time | SOMI Klinikken – onlinebooking i fullskjerm</title>
-  <meta name="description" content="Bestill time hos SOMI Klinikken i Sandnes. Fullskjermsvisning av onlinebooking – velg behandling og tidspunkt direkte i vinduet." />
+  <title>Bestill time | SOMI Klinikken</title>
+  <meta name="description" content="Bestill time hos SOMI Klinikken i Sandnes. Online booking i fullskjermsvisning." />
   <link rel="canonical" href="/booking.html" />
 
+  <!-- Core styles -->
   <link rel="stylesheet" href="/css/tokens.css" />
   <link rel="stylesheet" href="/css/base.css" />
   <link rel="stylesheet" href="/css/layout.css" />
@@ -15,14 +16,25 @@
   <link rel="stylesheet" href="/css/motion.css" />
   <link rel="stylesheet" href="/css/header.css" />
   <link rel="stylesheet" href="/css/footer.css" />
-  <link rel="stylesheet" href="/css/hotfix.css" />
 
   <style>
-    html, body { height: 100%; }
+    /* =====================================================
+       GLOBAL – Brandbook matched
+    ===================================================== */
+    html, body {
+      height: 100%;
+    }
+
     body {
-      background: #f9f7f4;
       display: flex;
       flex-direction: column;
+      background: linear-gradient(
+        180deg,
+        #F4E3DC 0%,
+        #F9F7F4 38%,
+        #FFFFFF 100%
+      );
+      color: #383838;
     }
 
     main.bookingPage {
@@ -32,117 +44,165 @@
       min-height: calc(100vh - var(--header-h, 72px));
     }
 
+    /* =====================================================
+       HERO
+    ===================================================== */
     .bookingHero {
-      background: linear-gradient(120deg, rgba(221, 179, 179, 0.16), rgba(255, 255, 255, 0.9));
-      border-bottom: 1px solid rgba(56, 56, 56, 0.08);
-      padding: 26px 0 18px;
-      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.05);
+      padding: 28px 0 20px;
+      border-bottom: 1px solid rgba(56,56,56,0.08);
     }
 
     .bookingHero__inner {
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      gap: 16px;
+      gap: 20px;
       flex-wrap: wrap;
     }
 
     .bookingTitle {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(32px, 4vw, 46px);
-      margin: 6px 0 6px;
-      letter-spacing: -0.01em;
+      font-family: "Eastman Alternate Trial", Georgia, serif;
+      font-size: clamp(34px, 4vw, 48px);
+      letter-spacing: -0.015em;
+      margin: 6px 0 4px;
       line-height: 1.05;
     }
 
     .bookingLead {
-      max-width: 78ch;
-      color: rgba(56, 56, 56, 0.75);
-      margin: 0;
+      max-width: 72ch;
+      color: rgba(56,56,56,0.75);
       line-height: 1.6;
+      margin: 0;
     }
 
     .bookingActions {
       display: flex;
-      align-items: center;
       gap: 12px;
-      flex-wrap: wrap;
     }
 
+    /* =====================================================
+       BOOKING FRAME
+    ===================================================== */
     .bookingFrame {
       flex: 1;
+      padding: 24px 0 40px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      padding: 10px 0 26px;
+      align-items: center;
+    }
+
+    .bookingFrame__shell {
+      width: 100%;
+      max-width: 1280px;
+      background: #FFFFFF;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 24px 48px rgba(0,0,0,0.06);
     }
 
     .bookingFrame__iframe {
-      flex: 1;
       width: 100%;
+      height: calc(100vh - var(--header-h, 72px) - 220px);
       border: none;
-      background: #fff;
-      box-shadow: 0 16px 34px rgba(0, 0, 0, 0.08);
-      min-height: calc(100vh - var(--header-h, 72px) - 110px);
+      background: #FFFFFF;
     }
 
     .bookingFallback {
       text-align: center;
       font-size: 14px;
-      color: rgba(56, 56, 56, 0.68);
+      margin-top: 14px;
+      color: rgba(56,56,56,0.65);
     }
 
     .bookingFallback a {
       color: inherit;
       text-decoration: underline;
-      text-underline-offset: 2px;
+      text-underline-offset: 3px;
     }
 
-    @media (max-width: 720px) {
-      .bookingHero__inner { align-items: flex-start; }
-      .bookingFrame__iframe { min-height: 70vh; }
+    /* =====================================================
+       MOBILE
+    ===================================================== */
+    @media (max-width: 768px) {
+      .bookingHero {
+        padding: 22px 0 16px;
+      }
+
+      .bookingFrame {
+        padding: 16px 0 28px;
+      }
+
+      .bookingFrame__shell {
+        border-radius: 14px;
+      }
+
+      .bookingFrame__iframe {
+        height: 75vh;
+      }
     }
   </style>
 
+  <!-- Site scripts -->
   <script defer src="/js/config.js"></script>
   <script defer src="/js/includes.js"></script>
   <script defer src="/js/site.js"></script>
 </head>
 
 <body class="bookingPage">
+
+  <!-- Header -->
   <div data-include="/partials/header.html"></div>
 
   <main class="bookingPage">
+
+    <!-- Hero -->
     <section class="bookingHero" aria-label="Onlinebooking">
       <div class="container bookingHero__inner">
         <div>
           <p class="kicker">Onlinebooking</p>
           <h1 class="bookingTitle">Bestill time</h1>
-          <p class="bookingLead">Fullskjermsvisning av bookingvinduet slik at du kan velge behandling og tidspunkt uten å forlate siden.</p>
+          <p class="bookingLead">
+            Velg behandling og tidspunkt direkte i bookingvinduet – uten å forlate SOMI Klinikken.
+          </p>
         </div>
 
         <div class="bookingActions">
-          <a class="btn btn--primary" id="widget-ILWq7BYhKTehHQB0B4TX25VcvLzmRI63" href="https://anolla.com/url/ILWq7BYhKTehHQB0B4TX25VcvLzmRI63" target="_blank" rel="noopener">Åpne i nytt vindu</a>
+          <a
+            class="btn btn--primary"
+            href="https://anolla.com/url/ILWq7BYhKTehHQB0B4TX25VcvLzmRI63"
+            target="_blank"
+            rel="noopener"
+          >
+            Åpne i nytt vindu
+          </a>
         </div>
       </div>
     </section>
 
+    <!-- Booking -->
     <section class="bookingFrame" aria-label="Fullskjerm booking">
-      <iframe
-        class="bookingFrame__iframe"
-        src="https://anolla.com/url/ILWq7BYhKTehHQB0B4TX25VcvLzmRI63"
-        title="Onlinebooking – SOMI Klinikken"
-        loading="lazy"
-        allowfullscreen></iframe>
+      <div class="bookingFrame__shell">
+        <iframe
+          class="bookingFrame__iframe"
+          src="https://anolla.com/url/ILWq7BYhKTehHQB0B4TX25VcvLzmRI63"
+          title="Onlinebooking – SOMI Klinikken"
+          loading="lazy"
+          allowfullscreen>
+        </iframe>
+      </div>
 
       <p class="bookingFallback">
-        Hvis bookingvinduet ikke vises, <a href="https://anolla.com/url/ILWq7BYhKTehHQB0B4TX25VcvLzmRI63" target="_blank" rel="noopener">åpne linken i nytt vindu</a>.
+        Hvis bookingvinduet ikke vises,
+        <a href="https://anolla.com/url/ILWq7BYhKTehHQB0B4TX25VcvLzmRI63" target="_blank" rel="noopener">
+          åpne booking i nytt vindu
+        </a>.
       </p>
     </section>
+
   </main>
 
+  <!-- Footer -->
   <div data-include="/partials/footer.html"></div>
 
-  <script src="https://anolla.com/widget/js?token=ILWq7BYhKTehHQB0B4TX25VcvLzmRI63" defer></script>
 </body>
 </html>
