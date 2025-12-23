@@ -1,5 +1,5 @@
 (() => {
-  const BOOKING_URL = "https://somi.bestille.no/";
+  const BOOKING_URL = "/booking.html";
 
   function setHeaderHeightVar() {
     const header = document.querySelector("[data-site-header]");
