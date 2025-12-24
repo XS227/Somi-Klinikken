@@ -11,6 +11,7 @@
     const nodes = Array.from(document.querySelectorAll("[data-include]"));
     if (!nodes.length) {
       document.dispatchEvent(new CustomEvent("partials:loaded"));
+      document.dispatchEvent(new Event("includes:done"));
       return;
     }
 
@@ -33,6 +34,7 @@
     );
 
     document.dispatchEvent(new CustomEvent("partials:loaded"));
+    document.dispatchEvent(new Event("includes:done"));
   }
 
   document.addEventListener("DOMContentLoaded", includePartials);
