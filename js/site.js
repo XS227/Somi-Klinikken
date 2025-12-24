@@ -141,12 +141,10 @@
     }
   });
 
-  // If includes injects later, just re-apply booking links + header height
-  const obs = new MutationObserver(() => {
+  document.addEventListener("includes:done", () => {
     wireBookingLinks(document);
     setHeaderHeightVar();
     setActiveNav();
     setCurrentYear();
   });
-  obs.observe(document.documentElement, { childList: true, subtree: true });
 })();
