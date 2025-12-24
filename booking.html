@@ -13,13 +13,14 @@
   <link rel="stylesheet" href="/css/header.css" />
 
   <style>
-    html, body {
-      height: 100%;
-      margin: 0;
+    :root {
+      --booking-bg: #f8f6f4;
     }
 
     body {
-      background: #ffffff;
+      background: var(--booking-bg);
+      margin: 0;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
@@ -27,26 +28,32 @@
     main.bookingPage {
       flex: 1;
       display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 14px 50px;
     }
 
     .bookingFrame {
-      flex: 1;
-      display: flex;
+      width: min(720px, 100%);
+      background: #fff;
+      border: 1px solid rgba(56,56,56,0.12);
+      border-radius: 20px;
+      box-shadow: 0 14px 34px rgba(0,0,0,0.08);
+      padding: 22px;
     }
 
-    .bookingFrame__iframe {
-      width: 100%;
-      height: calc(100vh - var(--header-h, 72px));
-      border: none;
-      background: #ffffff;
+    .bookingFrame__inner{
+      display:grid;
+      gap:14px;
     }
 
-    /* Safety: fjern footer hvis noe injectes */
-    footer,
-    .footer,
-    .siteFooter {
-      display: none !important;
+    .bookingFrame__actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
     }
+
+    .muted{ color: rgba(56,56,56,.72); line-height:1.6; }
   </style>
 
   <script defer src="/js/config.js"></script>
@@ -61,16 +68,48 @@
 
   <!-- Booking only -->
   <main class="bookingPage">
-    <section class="bookingFrame">
-      <iframe
-        class="bookingFrame__iframe"
-        src="https://anolla.com/url/ILWq7BYhKTehHQB0B4TX25VcvLzmRI63"
-        title="Onlinebooking – SOMI Klinikken"
-        loading="eager"
-        allowfullscreen>
-      </iframe>
+    <section class="bookingFrame" aria-labelledby="bookingRedirectTitle">
+      <div class="bookingFrame__inner">
+        <div>
+          <p class="kicker">Onlinebooking</p>
+          <h1 class="h2" id="bookingRedirectTitle">Vi sender deg til booking</h1>
+          <p class="muted" data-booking-status>
+            Du blir automatisk sendt videre til vår bookingløsning.
+          </p>
+        </div>
+        <div class="bookingFrame__actions">
+          <a class="btn btn--primary" data-booking-link href="https://somi.bestille.no/" target="_blank" rel="noopener">Åpne booking i ny fane</a>
+          <a class="btn" href="/contact.html">Kontakt oss</a>
+        </div>
+        <div class="muted">
+          Hvis du ikke blir videresendt automatisk kan du bruke knappen over.
+        </div>
+      </div>
     </section>
   </main>
 
+  <script>
+    (function(){
+      const bookingUrl = (window.SOMI_CONFIG && window.SOMI_CONFIG.bookingUrl) || "https://somi.bestille.no/";
+      const link = document.querySelector("[data-booking-link]");
+      const status = document.querySelector("[data-booking-status]");
+
+      if(link){
+        link.setAttribute("href", bookingUrl);
+        link.setAttribute("target", "_blank");
+        link.setAttribute("rel", "noopener");
+      }
+
+      // Redirect after a short delay so brukere rekker å se fallback-lenken
+      setTimeout(() => { window.location.replace(bookingUrl); }, 120);
+
+      // Update status text if redirect is blocked av nettleser eller CSP
+      setTimeout(() => {
+        if(status){
+          status.textContent = "Hvis du ikke ble sendt videre automatisk, åpne booking i ny fane nedenfor.";
+        }
+      }, 900);
+    })();
+  </script>
 </body>
 </html>

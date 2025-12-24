@@ -1,6 +1,6 @@
 (() => {
   const DATA_URL = "/data/treatments.json";
-  const BOOKING_URL = "https://somi.bestille.no/";
+  const BOOKING_URL = (window.SOMI_CONFIG && window.SOMI_CONFIG.bookingUrl) || "https://somi.bestille.no/";
 
   const defaults = {
     microblading: {
