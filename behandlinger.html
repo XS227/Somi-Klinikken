@@ -100,7 +100,7 @@
         <h1 class="h1-serif">Finn riktig behandling</h1>
         <p class="lead">
           Velg kategori eller søk. Her får du en kort forklaring per behandling – detaljene ligger på egen side.
-          Du kan alltid booke direkte via vår eksterne booking.
+          Du kan alltid booke direkte via vår bookingside.
         </p>
       </header>
 
@@ -111,7 +111,7 @@
             <option value="all">Alle kategorier</option>
           </select>
           <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;">
-            <a class="btn btn--primary" href="https://somi.bestille.no/" target="_blank" rel="noopener">BOOK TIME</a>
+            <a class="btn btn--primary" href="/booking.html" data-booking-link>BOOK TIME</a>
             <a class="btn" href="/priser.html">Se priser</a>
           </div>
         </div>
@@ -127,7 +127,11 @@
   <script>
     (function(){
       const DATA_URL = "/data/treatments.json";
-      const BOOKING_URL = (window.SOMI_CONFIG && window.SOMI_CONFIG.bookingUrl) || "https://somi.bestille.no/";
+      const BOOKING_URL = (window.SOMI_CONFIG && window.SOMI_CONFIG.bookingUrl) || "/booking.html";
+      const bookingTarget = (() => {
+        const url = new URL(BOOKING_URL, window.location.origin);
+        return url.origin === window.location.origin ? "" : ' target="_blank" rel="noopener"';
+      })();
 
       const cardsEl = document.getElementById("cards");
       const qEl = document.getElementById("q");
@@ -176,7 +180,7 @@
                     <div class="badges">${badges.join("")}</div>
                     <div class="actions">
                       <a class="btn" href="/behandlinger/${it.id}.html">Les mer</a>
-                      <a class="btn btn--primary" href="${BOOKING_URL}" target="_blank" rel="noopener">Book</a>
+                      <a class="btn btn--primary" href="${BOOKING_URL}"${bookingTarget}>Book</a>
                     </div>
                   </div>
                   <div class="meta">

@@ -1,5 +1,5 @@
 window.SOMI_CONFIG = {
-  bookingUrl: "https://somi.bestille.no/",
+  bookingUrl: "/booking.html",
   clinic: {
     name: "SOMI Klinikken",
     address: "Langgata 31, 4307 Sandnes",

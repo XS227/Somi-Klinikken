@@ -5,12 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Bestill time | SOMI Klinikken</title>
+  <meta name="description" content="Book time hos SOMI Klinikken via vår onlinebooking. Velg behandling og tidspunkt direkte i kalenderen." />
 
   <!-- Styles -->
   <link rel="stylesheet" href="/css/tokens.css" />
   <link rel="stylesheet" href="/css/base.css" />
   <link rel="stylesheet" href="/css/layout.css" />
+  <link rel="stylesheet" href="/css/components.css" />
   <link rel="stylesheet" href="/css/header.css" />
+  <link rel="stylesheet" href="/css/footer.css" />
 
   <style>
     :root {
@@ -18,42 +21,109 @@
     }
 
     body {
-      background: var(--booking-bg);
       margin: 0;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      background: var(--booking-bg);
     }
 
     main.bookingPage {
       flex: 1;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 30px 14px 50px;
+      flex-direction: column;
+      gap: 20px;
+      padding: calc(var(--header-h, 72px) + 18px) 0 60px;
     }
 
-    .bookingFrame {
-      width: min(720px, 100%);
+    .bookingHero {
+      padding: 0 14px;
+    }
+
+    .bookingHero__inner {
+      background: #fff;
+      border: 1px solid rgba(56,56,56,0.1);
+      border-radius: 20px;
+      box-shadow: 0 14px 34px rgba(0,0,0,0.08);
+      padding: clamp(18px, 3vw, 26px);
+      display: grid;
+      gap: 12px;
+    }
+
+    .bookingHero h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1.08;
+      margin: 4px 0 6px;
+    }
+
+    .bookingLead {
+      max-width: 72ch;
+      color: rgba(56,56,56,.76);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .bookingActions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .bookingHint {
+      color: rgba(56,56,56,.68);
+      margin: 0;
+    }
+
+    .bookingEmbed {
+      padding: 0 14px;
+    }
+
+    .embedShell {
       background: #fff;
       border: 1px solid rgba(56,56,56,0.12);
       border-radius: 20px;
       box-shadow: 0 14px 34px rgba(0,0,0,0.08);
-      padding: 22px;
+      overflow: hidden;
     }
 
-    .bookingFrame__inner{
-      display:grid;
-      gap:14px;
+    .embedShell__frame {
+      width: 100%;
+      border: 0;
+      min-height: 840px;
+      display: block;
     }
 
-    .bookingFrame__actions{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
+    .embedShell__footer {
+      padding: 14px 16px;
+      background: rgba(248,246,244,0.7);
+      border-top: 1px solid rgba(56,56,56,0.08);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    .muted{ color: rgba(56,56,56,.72); line-height:1.6; }
+    .embedShell__footer p {
+      margin: 0;
+      color: rgba(56,56,56,.72);
+      line-height: 1.5;
+    }
+
+    .kicker {
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(56,56,56,.62);
+      font-size: 12px;
+      margin: 0;
+    }
+
+    @media (max-width: 720px) {
+      .embedShell__frame { min-height: 960px; }
+      .embedShell__footer { flex-direction: column; align-items: flex-start; }
+    }
   </style>
 
   <script defer src="/js/config.js"></script>
@@ -66,50 +136,45 @@
   <!-- Header -->
   <div data-include="/partials/header.html"></div>
 
-  <!-- Booking only -->
   <main class="bookingPage">
-    <section class="bookingFrame" aria-labelledby="bookingRedirectTitle">
-      <div class="bookingFrame__inner">
+    <section class="bookingHero">
+      <div class="container bookingHero__inner">
         <div>
           <p class="kicker">Onlinebooking</p>
-          <h1 class="h2" id="bookingRedirectTitle">Vi sender deg til booking</h1>
-          <p class="muted" data-booking-status>
-            Du blir automatisk sendt videre til vår bookingløsning.
+          <h1>Bestill time hos SOMI Klinikken</h1>
+          <p class="bookingLead">
+            Velg behandling og tidspunkt direkte i kalenderen. Dersom du trenger hjelp til å velge riktig, kan du
+            kontakte oss – vi svarer raskt.
           </p>
         </div>
-        <div class="bookingFrame__actions">
-          <a class="btn btn--primary" data-booking-link href="https://somi.bestille.no/" target="_blank" rel="noopener">Åpne booking i ny fane</a>
+        <div class="bookingActions">
+          <a class="btn btn--primary" href="/booking.html" data-booking-link>Gå til booking</a>
           <a class="btn" href="/contact.html">Kontakt oss</a>
+          <p class="bookingHint">Booking lastes nedenfor. Du kan også åpne den i ny fane.</p>
         </div>
-        <div class="muted">
-          Hvis du ikke blir videresendt automatisk kan du bruke knappen over.
+      </div>
+    </section>
+
+    <section class="bookingEmbed" aria-label="Onlinebooking">
+      <div class="container">
+        <div class="embedShell">
+          <iframe
+            class="embedShell__frame"
+            src="https://anolla.com/book/trust-at-no1"
+            title="Onlinebooking – SOMI Klinikken"
+            loading="lazy"
+            allow="payment"
+          ></iframe>
+          <div class="embedShell__footer">
+            <p>Får du ikke lastet inn bookingvinduet? Åpne løsningen i en ny fane.</p>
+            <a class="btn" href="https://anolla.com/book/trust-at-no1" target="_blank" rel="noopener">Åpne i ny fane</a>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
-  <script>
-    (function(){
-      const bookingUrl = (window.SOMI_CONFIG && window.SOMI_CONFIG.bookingUrl) || "https://somi.bestille.no/";
-      const link = document.querySelector("[data-booking-link]");
-      const status = document.querySelector("[data-booking-status]");
-
-      if(link){
-        link.setAttribute("href", bookingUrl);
-        link.setAttribute("target", "_blank");
-        link.setAttribute("rel", "noopener");
-      }
-
-      // Redirect after a short delay so brukere rekker å se fallback-lenken
-      setTimeout(() => { window.location.replace(bookingUrl); }, 120);
-
-      // Update status text if redirect is blocked av nettleser eller CSP
-      setTimeout(() => {
-        if(status){
-          status.textContent = "Hvis du ikke ble sendt videre automatisk, åpne booking i ny fane nedenfor.";
-        }
-      }, 900);
-    })();
-  </script>
+  <!-- Footer -->
+  <div data-include="/partials/footer.html"></div>
 </body>
 </html>

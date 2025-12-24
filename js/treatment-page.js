@@ -1,6 +1,6 @@
 (() => {
   const DATA_URL = "/data/treatments.json";
-  const BOOKING_URL = (window.SOMI_CONFIG && window.SOMI_CONFIG.bookingUrl) || "https://somi.bestille.no/";
+  const BOOKING_URL = (window.SOMI_CONFIG && window.SOMI_CONFIG.bookingUrl) || "/booking.html";
 
   const defaults = {
     microblading: {
@@ -106,8 +106,15 @@
 
     document.querySelectorAll("[data-booking-link]").forEach(a => {
       a.setAttribute("href", BOOKING_URL);
-      a.setAttribute("target", "_blank");
-      a.setAttribute("rel", "noopener");
+      const url = new URL(BOOKING_URL, window.location.origin);
+      const isInternal = url.origin === window.location.origin;
+      if (isInternal) {
+        a.removeAttribute("target");
+        a.removeAttribute("rel");
+      } else {
+        a.setAttribute("target", "_blank");
+        a.setAttribute("rel", "noopener");
+      }
     });
 
     const backLink = document.querySelector("[data-back-link]");
