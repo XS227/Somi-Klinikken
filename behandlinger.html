@@ -79,6 +79,41 @@
     }
     .badges{ display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
 
+    .category-filters{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin: 16px 0 6px;
+      padding:10px 12px;
+      background: rgba(255,255,255,0.82);
+      border:1px solid rgba(56,56,56,0.10);
+      border-radius:16px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+    }
+    .filter-chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(56,56,56,0.14);
+      background: rgba(248,248,248,0.92);
+      color: inherit;
+      text-decoration:none;
+      font-weight: 600;
+      letter-spacing:0.01em;
+      transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
+    }
+    .filter-chip:hover{
+      transform: translateY(-1px);
+      border-color: rgba(56,56,56,0.30);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+    }
+    .filter-chip:focus-visible{
+      outline:2px solid rgba(56,56,56,0.45);
+      outline-offset:2px;
+    }
+
     @media (max-width: 860px){
       .toolbar-grid{ grid-template-columns: 1fr; }
       .item{ grid-template-columns: 1fr; }
@@ -103,6 +138,13 @@
           Du kan alltid booke direkte via vår bookingside.
         </p>
       </header>
+
+      <nav class="category-filters" aria-label="Snarveier til kategorier">
+        <a href="#microblading" class="filter-chip">Microblading</a>
+        <a href="#bryn-vipper" class="filter-chip">Bryn og vipper</a>
+        <a href="#dermalogica" class="filter-chip">Dermalogica</a>
+        <a href="#hudpleie" class="filter-chip">Hudpleie</a>
+      </nav>
 
       <section class="toolbar" aria-label="Søk og filter">
         <div class="toolbar-grid">
