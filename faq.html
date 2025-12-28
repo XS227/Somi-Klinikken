@@ -48,15 +48,81 @@
       margin: 0;
     }
 
+    .jump{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      border: 1px solid rgba(56,56,56,0.12);
+      background: rgba(255,255,255,0.72);
+      border-radius: 999px;
+      padding: 8px 12px;
+      text-decoration: none;
+      color: rgba(56,56,56,.86);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.05);
+    }
+    .chip.is-active{
+      background: rgba(221,179,179,0.16);
+      border-color: rgba(221,179,179,0.35);
+      color: rgba(56,56,56,.98);
+    }
+
     .faq__grid {
-      margin-top: 26px;
+      margin-top: 24px;
       display: grid;
-      grid-template-columns: 1.02fr .98fr;
+      grid-template-columns: 1.08fr .92fr;
       gap: var(--faq-gap);
       align-items: start;
     }
 
+    .faq__sections{
+      display: grid;
+      gap: 14px;
+    }
+
+    .faq-section{
+      border-radius: 22px;
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(56,56,56,0.12);
+      box-shadow: 0 14px 34px rgba(0,0,0,0.08);
+      overflow: hidden;
+      scroll-margin-top: calc(var(--header-h, 72px) + 12px);
+    }
+
+    .faq-section__head{
+      padding: 14px 16px 10px;
+      display:flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .faq-section__meta{
+      display:grid;
+      gap: 6px;
+    }
+
+    .faq-section__title{
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 26px;
+      line-height: 1.1;
+    }
+
+    .faq-section__desc{
+      margin: 0;
+      color: rgba(56,56,56,.68);
+      line-height: 1.6;
+      max-width: 60ch;
+    }
+
     .faq__panel {
+      position: sticky;
+      top: calc(var(--header-h, 72px) + 12px);
       background: rgba(255,255,255,0.78);
       border: 1px solid rgba(56,56,56,0.12);
       border-radius: 18px;
@@ -78,19 +144,20 @@
 
     .faq__list {
       display: grid;
-      gap: var(--faq-gap);
+      gap: 1px;
+      background: linear-gradient(to bottom, rgba(56,56,56,0.08), rgba(56,56,56,0.04));
     }
 
     .faq-item {
-      border-radius: 16px;
-      background: rgba(255,255,255,0.84);
-      border: 1px solid rgba(56,56,56,0.12);
-      box-shadow: 0 12px 26px rgba(0,0,0,0.05);
+      border-radius: 0;
+      background: rgba(255,255,255,0.88);
+      border: 1px solid rgba(56,56,56,0.08);
+      box-shadow: none;
       overflow: hidden;
     }
 
     details {
-      padding: 14px 16px;
+      padding: 12px 14px;
     }
 
     summary {
@@ -136,13 +203,123 @@
     }
 
     @media (max-width: 960px){
-      .faq__grid { grid-template-columns: 1fr; }
+      .faq__grid { grid-template-columns: 1fr; gap: 16px; }
+      .faq__panel { position: static; }
       .page { padding-top: calc(var(--header-h, 72px) + 18px); }
+    }
+
+    /* Chatbot */
+    .chatbot{
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 40;
+      max-width: 360px;
+      width: calc(100vw - 32px);
+    }
+    .chatbot__card{
+      background: rgba(255,255,255,0.96);
+      border: 1px solid rgba(56,56,56,0.14);
+      border-radius: 18px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+      overflow: hidden;
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .chatbot.is-open .chatbot__card{ display: flex; }
+
+    .chatbot__head{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 12px 12px 0;
+    }
+    .chatbot__title{
+      margin: 0;
+      font-weight: 700;
+      letter-spacing: .01em;
+    }
+    .chatbot__status{
+      font-size: 13px;
+      color: rgba(56,56,56,.6);
+    }
+    .chatbot__body{
+      padding: 0 12px 12px;
+      display: grid;
+      gap: 8px;
+      max-height: 380px;
+      overflow-y: auto;
+    }
+    .chatbot__bubble{
+      padding: 10px 12px;
+      border-radius: 14px;
+      line-height: 1.55;
+      font-size: 14px;
+      background: rgba(221,179,179,0.16);
+      color: rgba(56,56,56,.9);
+    }
+    .chatbot__bubble.is-user{
+      background: rgba(56,56,56,0.9);
+      color: #fff;
+    }
+    .chatbot__actions{
+      padding: 0 12px 12px;
+      display:flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .chatbot__input{
+      flex:1;
+      border: 1px solid rgba(56,56,56,0.16);
+      border-radius: 14px;
+      padding: 10px 12px;
+      font: inherit;
+      background: rgba(255,255,255,0.9);
+    }
+    .chatbot__toggle{
+      margin-top: 8px;
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(56,56,56,0.16);
+      padding: 10px 14px;
+      background: rgba(255,255,255,0.88);
+      box-shadow: 0 16px 34px rgba(0,0,0,0.12);
+      font-weight: 600;
+      color: rgba(56,56,56,.9);
+    }
+    .btn--ghost{
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(56,56,56,0.12);
+      color: inherit;
+      padding: 8px 12px;
+    }
+    .chatbot__suggest{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .chatbot__pill{
+      border-radius: 12px;
+      border: 1px solid rgba(56,56,56,0.12);
+      background: rgba(255,255,255,0.92);
+      padding: 6px 10px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    .chatbot a{
+      color: inherit;
+      font-weight: 600;
+      text-decoration: underline;
     }
   </style>
 
   <script defer src="/js/includes.js"></script>
   <script defer src="/js/site.js"></script>
+  <script defer src="/js/faq.js"></script>
 
   <script type="application/ld+json">
   {
@@ -159,42 +336,66 @@
       },
       {
         "@type": "Question",
-        "name": "Hvordan forbereder jeg meg til permanent makeup?",
+        "name": "Hvordan forbereder jeg meg til microblading eller permanent makeup?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Unngå soling, sterke kremer og blodfortynnende produkter 48 timer før timen. Kom med ren hud uten sminke. Vi gjør alltid en konsultasjon først slik at form og nyanse passer ansiktet ditt."
+          "text": "Unngå soling, sterke syrer og blodfortynnende midler 48 timer før timen. Kom med ren hud uten sminke. Vi kartlegger form og nyanse sammen slik at brynene matcher ansiktet ditt."
         }
       },
       {
         "@type": "Question",
-        "name": "Hva gjør jeg etter en hudpleiebehandling?",
+        "name": "Er microblading smertefullt?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Hold huden ren, bruk mild rens og solfaktor SPF 30+ i minst en uke. Unngå peeling, solarium og intens trening første døgnet for å la huden roe seg."
+          "text": "De fleste opplever kun lett ubehag. Vi bruker bedøvende krem ved behov, spesielt på bryn og lepper, for å sikre en behagelig opplevelse."
         }
       },
       {
         "@type": "Question",
-        "name": "Er behandlingene smertefulle?",
+        "name": "Kan jeg trene eller bade etter bryn- og PMU-behandling?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "De fleste opplever bare lett ubehag. Vi bruker bedøvende krem ved behov, særlig på bryn og lepper, for å gi en så behagelig opplevelse som mulig."
+          "text": "Vent 24 timer med svette og bading etter hudpleie. Etter microblading og permanent makeup bør du unngå vann og svette i området i 5–7 dager for best heling."
         }
       },
       {
         "@type": "Question",
-        "name": "Kan jeg trene eller bade etter behandlingen?",
+        "name": "Tilbys patch-test for allergi?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Vent 24 timer med svette og bading etter hudpleie. Etter permanent makeup og microblading bør du unngå vann og svette i området i 5–7 dager for best heling."
+          "text": "Ja, vi kan utføre patch-test før pigmentering eller nye produkter for å redusere risiko for reaksjoner. Gi beskjed ved booking dersom du har sensitiv hud eller allergier."
         }
       },
       {
         "@type": "Question",
-        "name": "Hvordan booker og endrer jeg time?",
+        "name": "Hva kan jeg forvente etter hudpleie eller Dermalogica-behandling?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Book online via vår bookingknapp. Trenger du å endre eller avbestille, gjør det senest 24 timer før avtalen for å unngå gebyr. Du kan også kontakte oss på telefon eller e-post."
+          "text": "Hold huden ren og bruk solfaktor SPF 30+ i minst en uke. Vent med peeling, solarium og intens trening første døgnet for å la huden roe seg."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Hva gjør jeg hvis huden blir rød eller stram?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Dette er normalt kort tid etter aktive behandlinger. Bruk mild rens, rikelig fukt og solkrem. Oppstår sterk irritasjon eller hevelse, tar du kontakt med oss for vurdering."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Hvordan booker eller endrer jeg en time?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Book enkelt via bookingknappen. Endre eller avbestill senest 24 timer før for å unngå gebyr. Du kan også ringe +47 929 39 171 eller sende e-post til post@somiklinikken.no."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Hvilke betalinger aksepteres?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Vi tar kort, VIPPS og faktura etter avtale. Du får alltid kvittering og råd om eventuelle produkter som støtter etterbehandling."
         }
       }
     ]
@@ -218,58 +419,135 @@
           <a class="btn btn--primary" href="#" data-booking-link>BOOK TIME</a>
           <a class="btn" href="/contact.html">Ta kontakt</a>
         </div>
+        <nav class="jump" aria-label="Hopp til kategori">
+          <a class="chip is-active" data-faq-chip href="#microblading">Microblading</a>
+          <a class="chip" data-faq-chip href="#bryn-pmu">Bryn & permanent makeup</a>
+          <a class="chip" data-faq-chip href="#hudpleie">Hudpleie & etterbehandling</a>
+          <a class="chip" data-faq-chip href="#booking-betaling">Booking & betaling</a>
+        </nav>
       </header>
 
       <section class="faq__grid" aria-label="Ofte stilte spørsmål">
-        <div class="faq__list">
-          <div class="faq-item">
-            <details open>
-              <summary>Hvor lenge varer resultatet av microblading?</summary>
-              <p>Vanlig varighet er 12–18 måneder. En påfyllstime etter 4–6 uker gir jevnere pigment, og deretter anbefaler vi vedlikehold når fargen blekner.</p>
-            </details>
-          </div>
-          <div class="faq-item">
-            <details>
-              <summary>Hvordan forbereder jeg meg til permanent makeup eller brynbehandling?</summary>
-              <p>Unngå soling, sterke syrer og blodfortynnende midler 48 timer før. Kom med ren hud uten sminke. Vi kartlegger form og nyanse sammen før behandlingen starter.</p>
-            </details>
-          </div>
-          <div class="faq-item">
-            <details>
-              <summary>Hva kan jeg forvente etter hudpleie eller Dermalogica-behandling?</summary>
-              <p>Hold huden ren og bruk solfaktor SPF 30+ i en uke. Vent med peeling, solarium og hard trening første døgnet så huden rekker å roe seg.</p>
-            </details>
-          </div>
-          <div class="faq-item">
-            <details>
-              <summary>Er behandlingene smertefulle?</summary>
-              <p>De fleste opplever kun lett ubehag. Vi bruker bedøvende krem ved behov, spesielt på bryn og lepper, for å sikre en behagelig opplevelse.</p>
-            </details>
-          </div>
-          <div class="faq-item">
-            <details>
-              <summary>Kan jeg trene eller bade etter behandlingen?</summary>
-              <p>Vent 24 timer med svette og bading etter hudpleie. Etter microblading og permanent makeup bør du holde området tørt i 5–7 dager for best heling.</p>
-            </details>
-          </div>
-          <div class="faq-item">
-            <details>
-              <summary>Tilbys patch-test for allergi?</summary>
-              <p>Ja, vi kan utføre patch-test før pigmentering eller nye produkter for å redusere risiko for reaksjoner. Gi beskjed ved booking dersom du har sensitiv hud eller allergier.</p>
-            </details>
-          </div>
-          <div class="faq-item">
-            <details>
-              <summary>Hvordan booker eller endrer jeg en time?</summary>
-              <p>Book enkelt via bookingknappen. Endre eller avbestill senest 24 timer før for å unngå gebyr. Du kan også ringe <a href="tel:+4792939171">+47 929 39 171</a> eller sende e-post til <a href="mailto:post@somiklinikken.no">post@somiklinikken.no</a>.</p>
-            </details>
-          </div>
-          <div class="faq-item">
-            <details>
-              <summary>Hvilke betalinger aksepteres?</summary>
-              <p>Vi tar kort, VIPPS og faktura etter avtale. Du får alltid kvittering og råd om eventuelle produkter som støtter etterbehandling.</p>
-            </details>
-          </div>
+        <div class="faq__sections" id="faqSections">
+          <article class="faq-section" id="microblading" data-faq-section data-title="Microblading" data-description="Varighet, forberedelser og trygghet for bryn med mikroblading." data-keywords="microblading,bryn,powderbrows">
+            <div class="faq-section__head">
+              <div class="faq-section__meta">
+                <div class="kicker">Kategori</div>
+                <h2 class="faq-section__title">Microblading</h2>
+                <p class="faq-section__desc">Varighet, forberedelser og trygghet for presise bryn.</p>
+              </div>
+            </div>
+            <div class="faq__list">
+              <div class="faq-item">
+                <details open data-faq-question data-qa-id="varighet" data-keywords="varighet,holdbarhet,retensjon,pigment">
+                  <summary>Hvor lenge varer resultatet av microblading?</summary>
+                  <div class="faq-answer" data-answer-text>
+                    <p>Varighet ligger normalt mellom 12–18 måneder. Etter 4–6 uker anbefaler vi en påfyllstime for å sikre jevn farge, og deretter en vedlikeholdsbehandling når fargen begynner å blekne.</p>
+                  </div>
+                </details>
+              </div>
+              <div class="faq-item">
+                <details data-faq-question data-qa-id="forberedelse" data-keywords="forberedelse,prepp,permanent makeup,bryn">
+                  <summary>Hvordan forbereder jeg meg til microblading eller permanent makeup?</summary>
+                  <div class="faq-answer" data-answer-text>
+                    <p>Unngå soling, sterke syrer og blodfortynnende midler 48 timer før timen. Kom med ren hud uten sminke. Vi kartlegger form og nyanse sammen slik at brynene matcher ansiktet ditt.</p>
+                  </div>
+                </details>
+              </div>
+              <div class="faq-item">
+                <details data-faq-question data-qa-id="smerte" data-keywords="smerte,ubehag,bedovende,komfort">
+                  <summary>Er microblading smertefullt?</summary>
+                  <div class="faq-answer" data-answer-text>
+                    <p>De fleste opplever kun lett ubehag. Vi bruker bedøvende krem ved behov, spesielt på bryn og lepper, for å sikre en behagelig opplevelse.</p>
+                  </div>
+                </details>
+              </div>
+            </div>
+          </article>
+
+          <article class="faq-section" id="bryn-pmu" data-faq-section data-title="Bryn & permanent makeup" data-description="Vedlikehold, allergi og trygghet for bryn, vipper og pigmentering." data-keywords="bryn,vipper,pmu,permanent makeup,powderbrows">
+            <div class="faq-section__head">
+              <div class="faq-section__meta">
+                <div class="kicker">Kategori</div>
+                <h2 class="faq-section__title">Bryn & permanent makeup</h2>
+                <p class="faq-section__desc">Hverdagsrutiner, allergitrygghet og etterbehandling.</p>
+              </div>
+            </div>
+            <div class="faq__list">
+              <div class="faq-item">
+                <details data-faq-question data-qa-id="trening-bading" data-keywords="trene,bade,etterbehandling,svette,vann">
+                  <summary>Kan jeg trene eller bade etter bryn- og PMU-behandling?</summary>
+                  <div class="faq-answer" data-answer-text>
+                    <p>Vent 24 timer med svette og bading etter hudpleie. Etter microblading og permanent makeup bør du unngå vann og svette i området i 5–7 dager for best heling.</p>
+                  </div>
+                </details>
+              </div>
+              <div class="faq-item">
+                <details data-faq-question data-qa-id="allergi" data-keywords="allergi,patch-test,reagerer,sensitiv">
+                  <summary>Tilbys patch-test for allergi?</summary>
+                  <div class="faq-answer" data-answer-text>
+                    <p>Ja, vi kan utføre patch-test før pigmentering eller nye produkter for å redusere risiko for reaksjoner. Gi beskjed ved booking dersom du har sensitiv hud eller allergier.</p>
+                  </div>
+                </details>
+              </div>
+            </div>
+          </article>
+
+          <article class="faq-section" id="hudpleie" data-faq-section data-title="Hudpleie & etterbehandling" data-description="Ettervern for Dermalogica, peelinger og hudro." data-keywords="hudpleie,dermalogica,peel,etterbehandling">
+            <div class="faq-section__head">
+              <div class="faq-section__meta">
+                <div class="kicker">Kategori</div>
+                <h2 class="faq-section__title">Hudpleie & etterbehandling</h2>
+                <p class="faq-section__desc">Hva du kan forvente etter hudpleie og hvordan du beskytter resultatet.</p>
+              </div>
+            </div>
+            <div class="faq__list">
+              <div class="faq-item">
+                <details data-faq-question data-qa-id="hudpleie-etter" data-keywords="hudpleie,dermalogica,etterpå,spf,etterbehandling">
+                  <summary>Hva kan jeg forvente etter hudpleie eller Dermalogica-behandling?</summary>
+                  <div class="faq-answer" data-answer-text>
+                    <p>Hold huden ren og bruk solfaktor SPF 30+ i minst en uke. Vent med peeling, solarium og hard trening første døgnet så huden rekker å roe seg.</p>
+                  </div>
+                </details>
+              </div>
+              <div class="faq-item">
+                <details data-faq-question data-qa-id="trygghet-hud" data-keywords="sensitiv,ro,irritasjon,ettervern">
+                  <summary>Hva gjør jeg hvis huden blir rød eller stram?</summary>
+                  <div class="faq-answer" data-answer-text>
+                    <p>Dette er normalt kort tid etter aktive behandlinger. Bruk mild rens, rikelig fukt og solkrem. Oppstår sterk irritasjon eller hevelse, tar du kontakt med oss for vurdering.</p>
+                  </div>
+                </details>
+              </div>
+            </div>
+          </article>
+
+          <article class="faq-section" id="booking-betaling" data-faq-section data-title="Booking & betaling" data-description="Hvordan du bestiller, endrer eller betaler tryggt." data-keywords="booking,betaling,online,reservasjon,tid">
+            <div class="faq-section__head">
+              <div class="faq-section__meta">
+                <div class="kicker">Kategori</div>
+                <h2 class="faq-section__title">Booking & betaling</h2>
+                <p class="faq-section__desc">Bestill time, endre avtaler og se hvilke betalingsmetoder vi tar.</p>
+              </div>
+            </div>
+            <div class="faq__list">
+              <div class="faq-item">
+                <details data-faq-question data-qa-id="booking" data-keywords="booke,endre,avbestille,online,time">
+                  <summary>Hvordan booker eller endrer jeg en time?</summary>
+                  <div class="faq-answer" data-answer-text>
+                    <p>Book enkelt via bookingknappen. Endre eller avbestill senest 24 timer før for å unngå gebyr. Du kan også ringe <a href="tel:+4792939171">+47 929 39 171</a> eller sende e-post til <a href="mailto:post@somiklinikken.no">post@somiklinikken.no</a>.</p>
+                  </div>
+                </details>
+              </div>
+              <div class="faq-item">
+                <details data-faq-question data-qa-id="betaling" data-keywords="betaling,vipps,kort,faktura">
+                  <summary>Hvilke betalinger aksepteres?</summary>
+                  <div class="faq-answer" data-answer-text>
+                    <p>Vi tar kort, VIPPS og faktura etter avtale. Du får alltid kvittering og råd om eventuelle produkter som støtter etterbehandling.</p>
+                  </div>
+                </details>
+              </div>
+            </div>
+          </article>
         </div>
 
         <aside class="faq__panel" aria-label="Praktisk informasjon">
@@ -286,6 +564,25 @@
       </section>
     </div>
   </main>
+
+  <div class="chatbot" data-chatbot>
+    <button class="chatbot__toggle" type="button" data-chatbot-toggle>🤖 SOMI AI-chatbot</button>
+    <div class="chatbot__card" aria-live="polite">
+      <div class="chatbot__head">
+        <div>
+          <p class="chatbot__title">SOMI AI</p>
+          <p class="chatbot__status">Fakta fra FAQ og klinikkinfo</p>
+        </div>
+        <button class="btn btn--ghost" type="button" data-chatbot-toggle>Minimer</button>
+      </div>
+      <div class="chatbot__body" data-chat-log></div>
+      <div class="chatbot__suggest" data-chat-suggest></div>
+      <div class="chatbot__actions">
+        <input class="chatbot__input" type="text" placeholder="Spør om behandlinger, åpningstid, ansatt…" data-chat-input />
+        <button class="btn btn--primary" type="button" data-chat-send>Send</button>
+      </div>
+    </div>
+  </div>
 
   <div data-include="/partials/footer.html"></div>
 </body>
