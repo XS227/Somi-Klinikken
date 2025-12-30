@@ -13,291 +13,175 @@
   <link rel="stylesheet" href="/css/layout.css" />
   <link rel="stylesheet" href="/css/components.css" />
   <link rel="stylesheet" href="/css/header.css" />
-  <link rel="stylesheet" href="/css/footer.css" />
+  <!-- IKKE inkluder footer.css her, siden du vil fjerne footer visuelt -->
 
   <style>
-    :root {
+    :root{
       --booking-bg: #f8f6f4;
-
-      /* Fallbacks; oppdateres via JS når header faktisk er lastet */
-      --header-h: 72px;
-      --embed-radius: 20px;
-
-      /* Sticky footer høyde (må samsvare med faktisk høyde) */
-      --sticky-footer-h: 72px;
-
-      /* iOS safe-area */
+      --topbar-h: 60px;
+      --safe-t: env(safe-area-inset-top, 0px);
       --safe-b: env(safe-area-inset-bottom, 0px);
+    }
+
+    html, body {
+      height: 100%;
     }
 
     body {
       margin: 0;
-      min-height: 100vh;
+      background: var(--booking-bg);
+      overflow: hidden; /* Viktig: unngå dobbel-scroll rundt iframe */
+    }
+
+    /* Minimal SOMI-topbar som gir "vi er fortsatt på SOMI"-følelse */
+    .bookingTopbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      height: calc(var(--topbar-h) + var(--safe-t));
+      padding-top: var(--safe-t);
+
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(56,56,56,0.10);
+    }
+
+    .bookingTopbar__inner {
+      height: var(--topbar-h);
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+
+      padding: 0 12px;
+    }
+
+    .bookingBrand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    /* En enkel “wordmark” uten bilde. Bytt gjerne til SVG/logo om du vil. */
+    .bookingBrand__logo {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 2px;
+      font-family: Georgia, "Times New Roman", serif;
+      letter-spacing: 0.04em;
+      color: #383838;
+      font-size: 18px;
+      line-height: 1;
+      user-select: none;
+      white-space: nowrap;
+    }
+    .bookingBrand__logo span:last-child { color: #DDB3B3; } /* SOMI-brand rosa */
+
+    .bookingBrand__hint {
+      color: rgba(56,56,56,.62);
+      font-size: 12px;
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 40vw;
+    }
+
+    .bookingTopbar__actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    /* Små “chip”-knapper som passer topbar */
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 34px;
+      padding: 0 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(56,56,56,0.14);
+      background: #fff;
+      color: #383838;
+      text-decoration: none;
+      font-size: 13px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .chip--primary {
+      background: #383838;
+      color: #fff;
+      border-color: #383838;
+    }
+
+    /* Selve bookingflaten */
+    .bookingStage {
+      height: calc(100vh - (var(--topbar-h) + var(--safe-t)));
+      height: calc(100dvh - (var(--topbar-h) + var(--safe-t)));
       background: var(--booking-bg);
     }
 
-    main.bookingPage {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      padding: calc(var(--header-h) + 18px) 0 28px;
-    }
-
-    .bookingHero { padding: 0 14px; }
-
-    .bookingHero__inner {
-      background: #fff;
-      border: 1px solid rgba(56,56,56,0.1);
-      border-radius: var(--embed-radius);
-      box-shadow: 0 14px 34px rgba(0,0,0,0.08);
-      padding: clamp(18px, 3vw, 26px);
-      display: grid;
-      gap: 12px;
-    }
-
-    .bookingHero h1 {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(30px, 4vw, 46px);
-      line-height: 1.08;
-      margin: 4px 0 6px;
-    }
-
-    .bookingLead {
-      max-width: 72ch;
-      color: rgba(56,56,56,.76);
-      line-height: 1.6;
-      margin: 0;
-    }
-
-    .bookingActions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .bookingHint {
-      color: rgba(56,56,56,.68);
-      margin: 0;
-    }
-
-    .kicker {
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: rgba(56,56,56,.62);
-      font-size: 12px;
-      margin: 0;
-    }
-
-    .bookingEmbed { padding: 0 14px; }
-
-    /*
-      EmbedShell er en "ramme".
-      Vi bruker en egen .embedClip for å kunne ha overflow hidden (rounded corners)
-      uten å ødelegge sticky/footer-oppsettet.
-    */
-    .embedShell {
-      background: #fff;
-      border: 1px solid rgba(56,56,56,0.12);
-      border-radius: var(--embed-radius);
-      box-shadow: 0 14px 34px rgba(0,0,0,0.08);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .embedClip {
-      border-top-left-radius: var(--embed-radius);
-      border-top-right-radius: var(--embed-radius);
-      overflow: hidden;
-      background: #fff;
-    }
-
-    /*
-      NØKKEL: iframe-høyde = viewport - header - sticky footer - små paddings
-      Bruk 100dvh på moderne mobilnettlesere; fallback med 100vh.
-    */
-    .embedShell__frame {
+    .bookingFrame {
       width: 100%;
+      height: 100%;
       border: 0;
       display: block;
-
-      /* fallback */
-      height: calc(100vh - var(--header-h) - var(--sticky-footer-h) - 48px);
-
-      /* moderne mobil (hindrer “adresselinje-jitter”) */
-      height: calc(100dvh - var(--header-h) - var(--sticky-footer-h) - 48px);
-
-      /* minimum for store steps/modaler */
-      min-height: 720px;
+      background: #fff;
     }
 
-    /*
-      Sticky footer som alltid er synlig nederst på siden mens brukeren booker.
-      Vi tar hensyn til safe-area på iPhone.
-    */
-    .embedShell__footer {
-      position: sticky;
-      bottom: 0;
-      z-index: 5;
-
-      padding: 12px 14px;
-      padding-bottom: calc(12px + var(--safe-b));
-
-      background: rgba(248,246,244,0.88);
-      backdrop-filter: blur(10px);
-
-      border-top: 1px solid rgba(56,56,56,0.10);
-
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-      justify-content: space-between;
-
-      /* Brukes som "mål" for høydevariabelen */
-      min-height: var(--sticky-footer-h);
-    }
-
-    .embedShell__footer p {
-      margin: 0;
-      color: rgba(56,56,56,.72);
-      line-height: 1.5;
-    }
-
-    @media (max-width: 720px) {
-      main.bookingPage {
-        padding: calc(var(--header-h) + 14px) 0 18px;
-      }
-
-      .embedShell__frame {
-        min-height: 780px;
-      }
-
-      .embedShell__footer {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+    /* Mobil: skjul hint-tekst hvis det blir trangt */
+    @media (max-width: 420px) {
+      .bookingBrand__hint { display: none; }
+      .chip { padding: 0 10px; }
     }
   </style>
 
   <script defer src="/js/config.js"></script>
   <script defer src="/js/includes.js"></script>
   <script defer src="/js/site.js"></script>
-
-  <script>
-    (function () {
-      function px(n) { return Math.max(0, Math.round(n)) + 'px'; }
-
-      function setHeaderHeightVar() {
-        // Forsøk å finne en faktisk header etter at partial er inkludert.
-        const header =
-          document.querySelector('header') ||
-          document.querySelector('.siteHeader') ||
-          document.querySelector('[data-header]') ||
-          document.querySelector('body > header');
-
-        if (!header) return false;
-
-        const h = header.getBoundingClientRect().height;
-        if (h && h > 20) {
-          document.documentElement.style.setProperty('--header-h', px(h));
-          return true;
-        }
-        return false;
-      }
-
-      function setStickyFooterHeightVar() {
-        const footer = document.querySelector('.embedShell__footer');
-        if (!footer) return false;
-
-        const h = footer.getBoundingClientRect().height;
-        if (h && h > 40) {
-          document.documentElement.style.setProperty('--sticky-footer-h', px(h));
-          return true;
-        }
-        return false;
-      }
-
-      function updateVars() {
-        setHeaderHeightVar();
-        setStickyFooterHeightVar();
-      }
-
-      // Oppdater på load + resize/orientation
-      window.addEventListener('load', updateVars, { passive: true });
-      window.addEventListener('resize', updateVars, { passive: true });
-      window.addEventListener('orientationchange', updateVars, { passive: true });
-
-      // Observer DOM siden header kommer inn via includes.js (async)
-      const mo = new MutationObserver(() => {
-        const okH = setHeaderHeightVar();
-        const okF = setStickyFooterHeightVar();
-        if (okH && okF) mo.disconnect();
-      });
-
-      document.addEventListener('DOMContentLoaded', () => {
-        mo.observe(document.documentElement, { childList: true, subtree: true });
-        // initial
-        updateVars();
-      });
-    })();
-  </script>
 </head>
 
 <body>
-  <!-- Header -->
-  <div data-include="/partials/header.html"></div>
+  <!-- Du kan beholde SOMI-header om du vil, men da får du “dobbel topbar”.
+       Anbefaling: IKKE inkluder global header her. -->
+  <!-- <div data-include="/partials/header.html"></div> -->
 
-  <main class="bookingPage">
-    <section class="bookingHero">
-      <div class="container bookingHero__inner">
-        <div>
-          <p class="kicker">Onlinebooking</p>
-          <h1>Bestill time hos SOMI Klinikken</h1>
-          <p class="bookingLead">
-            Velg behandling og tidspunkt direkte i kalenderen. Dersom du trenger hjelp til å velge riktig, kan du
-            kontakte oss – vi svarer raskt.
-          </p>
+  <header class="bookingTopbar" role="banner" aria-label="SOMI navigasjon">
+    <div class="bookingTopbar__inner">
+      <div class="bookingBrand">
+        <div class="bookingBrand__logo" aria-label="SOMI">
+          <span>SO</span><span>MI</span>
         </div>
-        <div class="bookingActions">
-          <a class="btn btn--primary" href="/booking.html" data-booking-link>Gå til booking</a>
-          <a class="btn" href="/contact.html">Kontakt oss</a>
-          <p class="bookingHint">Booking lastes nedenfor. Du kan også åpne den i ny fane.</p>
-        </div>
+        <div class="bookingBrand__hint">Trygg onlinebooking</div>
       </div>
-    </section>
 
-    <section class="bookingEmbed" aria-label="Onlinebooking">
-      <div class="container">
-        <div class="embedShell">
-          <div class="embedClip">
-            <iframe
-              class="embedShell__frame"
-              src="https://somi.bestille.no/"
-              title="Onlinebooking – SOMI Klinikken"
-              loading="lazy"
-              allow="payment"
-            ></iframe>
-          </div>
+      <nav class="bookingTopbar__actions" aria-label="Handlinger">
+        <a class="chip" href="/" aria-label="Til forsiden">Tilbake</a>
+        <a class="chip" href="/contact.html">Kontakt</a>
+        <a class="chip chip--primary" href="https://somi.bestille.no/" target="_blank" rel="noopener">
+          Åpne i ny fane
+        </a>
+      </nav>
+    </div>
+  </header>
 
-          <div class="embedShell__footer" role="contentinfo" aria-label="Booking-informasjon">
-            <p>
-              Trenger du hjelp, eller laster ikke bookingvinduet? Åpne løsningen i ny fane – eller kontakt oss.
-            </p>
-            <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
-              <a class="btn" href="https://somi.bestille.no/" target="_blank" rel="noopener">Åpne i ny fane</a>
-              <a class="btn btn--primary" href="/contact.html">Kontakt oss</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+  <main class="bookingStage" aria-label="Onlinebooking">
+    <iframe
+      class="bookingFrame"
+      src="https://somi.bestille.no/"
+      title="Onlinebooking – SOMI Klinikken"
+      loading="eager"
+      allow="payment"
+    ></iframe>
   </main>
 
-  <!-- Footer -->
-  <div data-include="/partials/footer.html"></div>
+  <!-- Footer fjernet helt -->
+  <!-- <div data-include="/partials/footer.html"></div> -->
 </body>
 </html>
