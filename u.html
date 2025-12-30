@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#383838" />
+  <title>SOMI — Under arbeid</title>
+  <style>
+    :root{
+      /* SOMI brand palette (from brandbook) */
+      --ink:#383838;
+      --rose:#DDB3B3;
+      --blush:#F4E3DC;
+      --mist:#E8E6E4;
+
+      --bg1: rgb(239,239,238);
+      --bg2: rgb(220,220,219);
+
+      --card: rgba(255,255,255,.72);
+      --cardBorder: rgba(56,56,56,.10);
+      --shadow: 0 18px 60px rgba(56,56,56,.14);
+      --radius: 22px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      color:var(--ink);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Noto Sans", Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        linear-gradient(45deg, var(--bg1), var(--bg2));
+      overflow-x:hidden;
+    }
+
+    /* Subtle “arch” motif */
+    .arch-glow{
+      position:fixed;
+      inset:-10vmax;
+      pointer-events:none;
+      background:
+        radial-gradient(closest-side at 35% 40%, rgba(221,179,179,.28), transparent 62%),
+        radial-gradient(closest-side at 65% 55%, rgba(244,227,220,.34), transparent 64%),
+        radial-gradient(closest-side at 50% 20%, rgba(255,255,255,.40), transparent 55%);
+      filter: blur(10px);
+      z-index:0;
+    }
+
+    .wrap{
+      min-height:100%;
+      display:grid;
+      place-items:center;
+      padding: clamp(18px, 4vw, 48px);
+      position:relative;
+      z-index:1;
+    }
+
+    .shell{
+      width:min(980px, 100%);
+      display:grid;
+      gap:18px;
+    }
+
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    /* Simple vector “logo” (text + arch) */
+    .mark{
+      width:56px;
+      height:56px;
+      border-radius:18px;
+      background: rgba(255,255,255,.65);
+      border: 1px solid var(--cardBorder);
+      box-shadow: 0 10px 30px rgba(56,56,56,.10);
+      display:grid;
+      place-items:center;
+      position:relative;
+      overflow:hidden;
+    }
+    .mark svg{ width:42px; height:42px; display:block; }
+    .brandname{
+      line-height:1.05;
+    }
+    .brandname .name{
+      font-weight:700;
+      letter-spacing:.12em;
+      font-size: 18px;
+    }
+    .brandname .sub{
+      font-size: 12px;
+      opacity:.78;
+      letter-spacing:.02em;
+      margin-top:4px;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.55);
+      border: 1px solid var(--cardBorder);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      font-size: 13px;
+      letter-spacing:.01em;
+    }
+    .dot{
+      width:8px; height:8px; border-radius:999px;
+      background: var(--rose);
+      box-shadow: 0 0 0 6px rgba(221,179,179,.22);
+    }
+
+    .card{
+      border-radius: var(--radius);
+      background: var(--card);
+      border: 1px solid var(--cardBorder);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      overflow:hidden;
+      position:relative;
+    }
+
+    .content{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 0;
+    }
+
+    @media (max-width: 860px){
+      .content{ grid-template-columns: 1fr; }
+      header{ flex-direction:column; align-items:flex-start; }
+    }
+
+    .left{
+      padding: clamp(18px, 3.2vw, 34px);
+      position:relative;
+    }
+
+    .right{
+      padding: clamp(18px, 3.2vw, 34px);
+      border-left: 1px solid rgba(56,56,56,.08);
+      background:
+        linear-gradient(180deg, rgba(244,227,220,.18), rgba(221,179,179,.12));
+    }
+    @media (max-width: 860px){
+      .right{ border-left:none; border-top: 1px solid rgba(56,56,56,.08); }
+    }
+
+    h1{
+      margin: 6px 0 10px;
+      font-size: clamp(28px, 3.8vw, 44px);
+      letter-spacing: -0.02em;
+      line-height: 1.06;
+    }
+    .lede{
+      margin: 0 0 18px;
+      font-size: 15.5px;
+      line-height: 1.55;
+      opacity: .92;
+      max-width: 62ch;
+    }
+
+    .line{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      margin: 10px 0;
+      font-size: 14px;
+      line-height:1.5;
+    }
+    .badge{
+      flex:0 0 auto;
+      width:28px;
+      height:28px;
+      border-radius: 10px;
+      background: rgba(255,255,255,.65);
+      border: 1px solid rgba(56,56,56,.10);
+      display:grid;
+      place-items:center;
+    }
+    .badge svg{ width:16px; height:16px; }
+
+    .ctaRow{
+      margin-top: 18px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 12px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(56,56,56,.12);
+      background: rgba(255,255,255,.68);
+      color: var(--ink);
+      text-decoration:none;
+      font-size: 14px;
+      transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+      box-shadow: 0 10px 28px rgba(56,56,56,.10);
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.78); }
+    .btn:active{ transform: translateY(0); }
+    .btn .mini{
+      width:10px; height:10px; border-radius:999px;
+      background: var(--rose);
+    }
+
+    .muted{
+      font-size: 12.5px;
+      opacity:.78;
+      line-height:1.45;
+    }
+
+    /* Tree SVG sizing */
+    .treeWrap{
+      display:grid;
+      place-items:center;
+      gap:16px;
+      min-height: 320px;
+    }
+    .tree{
+      width: min(320px, 86%);
+      height: auto;
+      filter: drop-shadow(0 18px 40px rgba(56,56,56,.14));
+    }
+
+    /* Decorative “snow floor” */
+    .snowbank{
+      margin-top: 6px;
+      width: min(360px, 92%);
+      height: 46px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.75);
+      border: 1px solid rgba(56,56,56,.08);
+      box-shadow: 0 14px 40px rgba(56,56,56,.08);
+      position:relative;
+      overflow:hidden;
+    }
+    .snowbank:before{
+      content:"";
+      position:absolute; inset:-30px -60px;
+      background:
+        radial-gradient(circle at 20% 60%, rgba(221,179,179,.30) 0 18px, transparent 19px),
+        radial-gradient(circle at 55% 40%, rgba(244,227,220,.35) 0 22px, transparent 23px),
+        radial-gradient(circle at 82% 62%, rgba(221,179,179,.22) 0 16px, transparent 17px);
+      filter: blur(1px);
+      opacity:.65;
+    }
+
+    /* Snowfall (no images) */
+    .snow{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:2;
+      overflow:hidden;
+    }
+    .flake{
+      position:absolute;
+      top:-12px;
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.92);
+      box-shadow: 0 0 0 2px rgba(255,255,255,.22);
+      opacity:.9;
+      animation: fall linear infinite;
+    }
+    .flake.alt{
+      width:4px; height:4px;
+      opacity:.75;
+      background: rgba(255,255,255,.85);
+      box-shadow:none;
+    }
+    @keyframes fall{
+      from { transform: translate3d(0, -10px, 0); }
+      to   { transform: translate3d(var(--drift), calc(100vh + 40px), 0); }
+    }
+
+    /* Reduce motion */
+    @media (prefers-reduced-motion: reduce){
+      .flake{ animation: none; display:none; }
+      .btn{ transition:none; }
+      .arch-glow{ filter:none; }
+    }
+
+    footer{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      padding: 10px 4px 0;
+      color: rgba(56,56,56,.78);
+      font-size: 12.5px;
+    }
+    .sep{ opacity:.45; }
+
+    /* “Mid between years” meter */
+    .meter{
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.60);
+      border: 1px solid rgba(56,56,56,.10);
+    }
+    .meterTop{
+      display:flex;
+      justify-content:space-between;
+      align-items:baseline;
+      gap:10px;
+      margin-bottom:10px;
+    }
+    .meterTop .title{
+      font-weight:650;
+      letter-spacing:.01em;
+      font-size: 13.5px;
+    }
+    .meterTop .value{
+      font-variant-numeric: tabular-nums;
+      font-size: 13px;
+      opacity:.86;
+    }
+    .bar{
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(56,56,56,.08);
+      overflow:hidden;
+      position:relative;
+    }
+    .bar > span{
+      display:block;
+      height:100%;
+      width: 50%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(221,179,179,.75), rgba(244,227,220,.85));
+      box-shadow: 0 0 0 6px rgba(221,179,179,.14) inset;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="arch-glow" aria-hidden="true"></div>
+
+  <!-- Snow layer -->
+  <div class="snow" aria-hidden="true" id="snow"></div>
+
+  <div class="wrap">
+    <div class="shell">
+
+      <header>
+        <div class="brand" aria-label="SOMI">
+          <div class="mark" aria-hidden="true">
+            <!-- Minimal arch logo motif -->
+            <svg viewBox="0 0 64 64" role="img" aria-label="SOMI symbol">
+              <path d="M14 44V34c0-10 8-18 18-18s18 8 18 18v10"
+                    fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"/>
+              <path d="M16 46h32"
+                    fill="none" stroke="#DDB3B3" stroke-width="3" stroke-linecap="round" opacity=".9"/>
+              <circle cx="32" cy="32" r="2.8" fill="#383838" opacity=".55"/>
+            </svg>
+          </div>
+          <div class="brandname">
+            <div class="name">SOMI</div>
+            <div class="sub">Under arbeid</div>
+          </div>
+        </div>
+
+        <div class="pill" role="status" aria-live="polite">
+          <span class="dot" aria-hidden="true"></span>
+          <span>Vi er midt mellom 2025 og 2026 — og gjør oss klare for nytt nettsted.</span>
+        </div>
+      </header>
+
+      <section class="card" aria-label="Under arbeid innhold">
+        <div class="content">
+
+          <div class="left">
+            <h1>Varm jul, og et elegant nytt år.</h1>
+            <p class="lede">
+              Nettsiden er midlertidig under oppgradering. Vi finpusser en ny løsning som skal føles like rolig,
+              presis og luksuriøs som opplevelsen hos SOMI.
+            </p>
+
+            <div class="line">
+              <div class="badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 2v6" stroke="#383838" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M12 22v-6" stroke="#383838" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+                  <path d="M5 7c2.5 2 6 2 7 0 1 2 4.5 2 7 0" fill="none" stroke="#DDB3B3" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div>
+                <strong>Julestemning, men profesjonelt.</strong><br/>
+                Vi er i en rolig overgang mellom 2025 og 2026 — takk for tålmodigheten.
+              </div>
+            </div>
+
+            <div class="line">
+              <div class="badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M7 12h10" stroke="#383838" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M12 7v10" stroke="#383838" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+                  <path d="M8 20h8" stroke="#DDB3B3" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div>
+                <strong>Ny nettside-løsning.</strong><br/>
+                Strammere navigasjon, bedre flyt og et uttrykk som matcher brandet.
+              </div>
+            </div>
+
+            <div class="meter" aria-label="Status mellom 2025 og 2026">
+              <div class="meterTop">
+                <div class="title">Overgang 2025 → 2026</div>
+                <div class="value" id="midValue">50%</div>
+              </div>
+              <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+                <span id="barFill" style="width:50%"></span>
+              </div>
+              <div class="muted" style="margin-top:10px;">
+                Vi lanserer snart — med en varmere, mer sømløs opplevelse.
+              </div>
+            </div>
+
+            <div class="ctaRow">
+              <a class="btn" href="#" onclick="return false;" aria-disabled="true" title="Kommer snart">
+                <span class="mini" aria-hidden="true"></span>
+                Tilbake snart
+              </a>
+              <span class="muted">Ved behov: kontakt oss via de vanlige kanalene.</span>
+            </div>
+          </div>
+
+          <aside class="right" aria-label="Juleillustrasjon">
+            <div class="treeWrap">
+              <!-- SVG Christmas tree (no images) -->
+              <svg class="tree" viewBox="0 0 360 420" role="img" aria-label="Julegran">
+                <!-- star -->
+                <path d="M180 28l10 22 24 3-18 16 5 24-21-12-21 12 5-24-18-16 24-3z"
+                      fill="rgba(221,179,179,.95)" stroke="rgba(56,56,56,.18)" stroke-width="2"/>
+
+                <!-- tree body (soft, minimalistic) -->
+                <path d="M180 70
+                         C150 110 132 130 118 154
+                         C146 150 160 152 180 140
+                         C200 152 214 150 242 154
+                         C228 130 210 110 180 70Z"
+                      fill="rgba(255,255,255,.78)" stroke="rgba(56,56,56,.16)" stroke-width="2" />
+
+                <path d="M180 140
+                         C136 196 112 230 90 270
+                         C132 266 156 270 180 252
+                         C204 270 228 266 270 270
+                         C248 230 224 196 180 140Z"
+                      fill="rgba(255,255,255,.76)" stroke="rgba(56,56,56,.14)" stroke-width="2" />
+
+                <path d="M180 252
+                         C124 322 96 360 66 406
+                         C118 402 150 406 180 384
+                         C210 406 242 402 294 406
+                         C264 360 236 322 180 252Z"
+                      fill="rgba(255,255,255,.74)" stroke="rgba(56,56,56,.12)" stroke-width="2" />
+
+                <!-- ornaments -->
+                <circle cx="140" cy="160" r="7" fill="rgba(221,179,179,.92)"/>
+                <circle cx="220" cy="160" r="7" fill="rgba(244,227,220,.95)"/>
+                <circle cx="120" cy="290" r="8" fill="rgba(244,227,220,.95)"/>
+                <circle cx="240" cy="290" r="8" fill="rgba(221,179,179,.88)"/>
+                <circle cx="180" cy="210" r="6" fill="rgba(221,179,179,.86)"/>
+
+                <!-- trunk -->
+                <rect x="160" y="382" width="40" height="26" rx="10"
+                      fill="rgba(56,56,56,.72)" opacity=".55"/>
+                <rect x="154" y="384" width="52" height="30" rx="12"
+                      fill="rgba(56,56,56,.14)"/>
+
+                <!-- subtle ribbon -->
+                <path d="M106 330C150 316 210 316 254 330" fill="none" stroke="rgba(221,179,179,.55)" stroke-width="6" stroke-linecap="round"/>
+                <path d="M120 256C154 242 206 242 240 256" fill="none" stroke="rgba(244,227,220,.65)" stroke-width="6" stroke-linecap="round"/>
+              </svg>
+
+              <div class="snowbank" aria-hidden="true"></div>
+
+              <div class="muted" style="text-align:center; max-width:42ch;">
+                God jul og godt nytt år. Vi gleder oss til å ønske deg velkommen inn i 2026 med en ny digital opplevelse.
+              </div>
+            </div>
+          </aside>
+
+        </div>
+      </section>
+
+      <footer>
+        <div>
+          <strong>SOMI</strong> <span class="sep">•</span> Midlertidig side
+        </div>
+        <div id="stamp" aria-label="Dato og år">2025/2026</div>
+      </footer>
+
+    </div>
+  </div>
+
+  <script>
+    // Snow generator (no images)
+    (function(){
+      const snow = document.getElementById('snow');
+      if(!snow) return;
+
+      const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) return;
+
+      const flakeCount = Math.min(90, Math.max(45, Math.floor(window.innerWidth / 16)));
+      for(let i=0;i<flakeCount;i++){
+        const f = document.createElement('span');
+        f.className = 'flake' + (Math.random() > 0.6 ? ' alt' : '');
+        const left = Math.random() * 100;
+        const dur  = 7 + Math.random() * 10;
+        const delay= -Math.random() * dur;
+        const drift= (Math.random() * 80 - 40).toFixed(0) + 'px';
+        const size = (Math.random() > 0.6) ? (3 + Math.random()*3) : (2 + Math.random()*3);
+        f.style.left = left + 'vw';
+        f.style.animationDuration = dur + 's';
+        f.style.animationDelay = delay + 's';
+        f.style.setProperty('--drift', drift);
+        f.style.transform = 'translate3d(0,0,0)';
+        f.style.opacity = (0.55 + Math.random()*0.45).toFixed(2);
+        f.style.width = size + 'px';
+        f.style.height = size + 'px';
+        snow.appendChild(f);
+      }
+    })();
+
+    // “Mid between 2025 and 2026” meter: show half-year progress between Jul 1, 2025 and Jun 30, 2026
+    (function(){
+      const start = new Date('2025-07-01T00:00:00');
+      const end   = new Date('2026-07-01T00:00:00');
+      const now   = new Date();
+
+      const clamp = (n,min,max)=>Math.max(min,Math.min(max,n));
+      const pct = clamp(((now - start) / (end - start)) * 100, 0, 100);
+
+      const value = document.getElementById('midValue');
+      const fill  = document.getElementById('barFill');
+      if(value) value.textContent = Math.round(pct) + '%';
+      if(fill)  fill.style.width  = pct.toFixed(1) + '%';
+
+      const stamp = document.getElementById('stamp');
+      if(stamp){
+        const y = now.getFullYear();
+        stamp.textContent = `${y} • ${now.toLocaleDateString('no-NO', { day:'2-digit', month:'long' })}`;
+      }
+    })();
+  </script>
+</body>
+</html>
