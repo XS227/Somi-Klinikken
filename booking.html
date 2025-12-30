@@ -18,6 +18,16 @@
   <style>
     :root {
       --booking-bg: #f8f6f4;
+
+      /* Fallbacks; oppdateres via JS når header faktisk er lastet */
+      --header-h: 72px;
+      --embed-radius: 20px;
+
+      /* Sticky footer høyde (må samsvare med faktisk høyde) */
+      --sticky-footer-h: 72px;
+
+      /* iOS safe-area */
+      --safe-b: env(safe-area-inset-bottom, 0px);
     }
 
     body {
@@ -33,17 +43,15 @@
       display: flex;
       flex-direction: column;
       gap: 20px;
-      padding: calc(var(--header-h, 72px) + 18px) 0 60px;
+      padding: calc(var(--header-h) + 18px) 0 28px;
     }
 
-    .bookingHero {
-      padding: 0 14px;
-    }
+    .bookingHero { padding: 0 14px; }
 
     .bookingHero__inner {
       background: #fff;
       border: 1px solid rgba(56,56,56,0.1);
-      border-radius: 20px;
+      border-radius: var(--embed-radius);
       box-shadow: 0 14px 34px rgba(0,0,0,0.08);
       padding: clamp(18px, 3vw, 26px);
       display: grid;
@@ -76,42 +84,6 @@
       margin: 0;
     }
 
-    .bookingEmbed {
-      padding: 0 14px;
-    }
-
-    .embedShell {
-      background: #fff;
-      border: 1px solid rgba(56,56,56,0.12);
-      border-radius: 20px;
-      box-shadow: 0 14px 34px rgba(0,0,0,0.08);
-      overflow: hidden;
-    }
-
-    .embedShell__frame {
-      width: 100%;
-      border: 0;
-      min-height: 840px;
-      display: block;
-    }
-
-    .embedShell__footer {
-      padding: 14px 16px;
-      background: rgba(248,246,244,0.7);
-      border-top: 1px solid rgba(56,56,56,0.08);
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .embedShell__footer p {
-      margin: 0;
-      color: rgba(56,56,56,.72);
-      line-height: 1.5;
-    }
-
     .kicker {
       letter-spacing: .18em;
       text-transform: uppercase;
@@ -120,19 +92,162 @@
       margin: 0;
     }
 
+    .bookingEmbed { padding: 0 14px; }
+
+    /*
+      EmbedShell er en "ramme".
+      Vi bruker en egen .embedClip for å kunne ha overflow hidden (rounded corners)
+      uten å ødelegge sticky/footer-oppsettet.
+    */
+    .embedShell {
+      background: #fff;
+      border: 1px solid rgba(56,56,56,0.12);
+      border-radius: var(--embed-radius);
+      box-shadow: 0 14px 34px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .embedClip {
+      border-top-left-radius: var(--embed-radius);
+      border-top-right-radius: var(--embed-radius);
+      overflow: hidden;
+      background: #fff;
+    }
+
+    /*
+      NØKKEL: iframe-høyde = viewport - header - sticky footer - små paddings
+      Bruk 100dvh på moderne mobilnettlesere; fallback med 100vh.
+    */
+    .embedShell__frame {
+      width: 100%;
+      border: 0;
+      display: block;
+
+      /* fallback */
+      height: calc(100vh - var(--header-h) - var(--sticky-footer-h) - 48px);
+
+      /* moderne mobil (hindrer “adresselinje-jitter”) */
+      height: calc(100dvh - var(--header-h) - var(--sticky-footer-h) - 48px);
+
+      /* minimum for store steps/modaler */
+      min-height: 720px;
+    }
+
+    /*
+      Sticky footer som alltid er synlig nederst på siden mens brukeren booker.
+      Vi tar hensyn til safe-area på iPhone.
+    */
+    .embedShell__footer {
+      position: sticky;
+      bottom: 0;
+      z-index: 5;
+
+      padding: 12px 14px;
+      padding-bottom: calc(12px + var(--safe-b));
+
+      background: rgba(248,246,244,0.88);
+      backdrop-filter: blur(10px);
+
+      border-top: 1px solid rgba(56,56,56,0.10);
+
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+
+      /* Brukes som "mål" for høydevariabelen */
+      min-height: var(--sticky-footer-h);
+    }
+
+    .embedShell__footer p {
+      margin: 0;
+      color: rgba(56,56,56,.72);
+      line-height: 1.5;
+    }
+
     @media (max-width: 720px) {
-      .embedShell__frame { min-height: 960px; }
-      .embedShell__footer { flex-direction: column; align-items: flex-start; }
+      main.bookingPage {
+        padding: calc(var(--header-h) + 14px) 0 18px;
+      }
+
+      .embedShell__frame {
+        min-height: 780px;
+      }
+
+      .embedShell__footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
   </style>
 
   <script defer src="/js/config.js"></script>
   <script defer src="/js/includes.js"></script>
   <script defer src="/js/site.js"></script>
+
+  <script>
+    (function () {
+      function px(n) { return Math.max(0, Math.round(n)) + 'px'; }
+
+      function setHeaderHeightVar() {
+        // Forsøk å finne en faktisk header etter at partial er inkludert.
+        const header =
+          document.querySelector('header') ||
+          document.querySelector('.siteHeader') ||
+          document.querySelector('[data-header]') ||
+          document.querySelector('body > header');
+
+        if (!header) return false;
+
+        const h = header.getBoundingClientRect().height;
+        if (h && h > 20) {
+          document.documentElement.style.setProperty('--header-h', px(h));
+          return true;
+        }
+        return false;
+      }
+
+      function setStickyFooterHeightVar() {
+        const footer = document.querySelector('.embedShell__footer');
+        if (!footer) return false;
+
+        const h = footer.getBoundingClientRect().height;
+        if (h && h > 40) {
+          document.documentElement.style.setProperty('--sticky-footer-h', px(h));
+          return true;
+        }
+        return false;
+      }
+
+      function updateVars() {
+        setHeaderHeightVar();
+        setStickyFooterHeightVar();
+      }
+
+      // Oppdater på load + resize/orientation
+      window.addEventListener('load', updateVars, { passive: true });
+      window.addEventListener('resize', updateVars, { passive: true });
+      window.addEventListener('orientationchange', updateVars, { passive: true });
+
+      // Observer DOM siden header kommer inn via includes.js (async)
+      const mo = new MutationObserver(() => {
+        const okH = setHeaderHeightVar();
+        const okF = setStickyFooterHeightVar();
+        if (okH && okF) mo.disconnect();
+      });
+
+      document.addEventListener('DOMContentLoaded', () => {
+        mo.observe(document.documentElement, { childList: true, subtree: true });
+        // initial
+        updateVars();
+      });
+    })();
+  </script>
 </head>
 
 <body>
-
   <!-- Header -->
   <div data-include="/partials/header.html"></div>
 
@@ -158,16 +273,24 @@
     <section class="bookingEmbed" aria-label="Onlinebooking">
       <div class="container">
         <div class="embedShell">
-          <iframe
-            class="embedShell__frame"
-            src="https://somi.bestille.no/"
-            title="Onlinebooking – SOMI Klinikken"
-            loading="lazy"
-            allow="payment"
-          ></iframe>
-          <div class="embedShell__footer">
-            <p>Får du ikke lastet inn bookingvinduet? Åpne løsningen i en ny fane.</p>
-            <a class="btn" href="https://somi.bestille.no/" target="_blank" rel="noopener">Åpne i ny fane</a>
+          <div class="embedClip">
+            <iframe
+              class="embedShell__frame"
+              src="https://somi.bestille.no/"
+              title="Onlinebooking – SOMI Klinikken"
+              loading="lazy"
+              allow="payment"
+            ></iframe>
+          </div>
+
+          <div class="embedShell__footer" role="contentinfo" aria-label="Booking-informasjon">
+            <p>
+              Trenger du hjelp, eller laster ikke bookingvinduet? Åpne løsningen i ny fane – eller kontakt oss.
+            </p>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+              <a class="btn" href="https://somi.bestille.no/" target="_blank" rel="noopener">Åpne i ny fane</a>
+              <a class="btn btn--primary" href="/contact.html">Kontakt oss</a>
+            </div>
           </div>
         </div>
       </div>
