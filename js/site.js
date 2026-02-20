@@ -55,6 +55,31 @@
     yearEl.textContent = String(new Date().getFullYear());
   }
 
+  function initFooterAccordions() {
+    document.querySelectorAll(".footer__group").forEach((group, index) => {
+      const toggle = group.querySelector(".footer__toggle");
+      const links = group.querySelector(".footer__links");
+      if (!toggle || !links) return;
+      if (!links.id) links.id = `footer-group-${index}`;
+      toggle.setAttribute("aria-controls", links.id);
+
+      const open = toggle.getAttribute("aria-expanded") === "true";
+      links.hidden = !open;
+      links.classList.toggle("is-open", open);
+
+      if (toggle.dataset.bound === "true") return;
+      toggle.dataset.bound = "true";
+
+      toggle.addEventListener("click", () => {
+        const isOpen = toggle.getAttribute("aria-expanded") === "true";
+        const next = !isOpen;
+        toggle.setAttribute("aria-expanded", String(next));
+        links.hidden = !next;
+        requestAnimationFrame(() => links.classList.toggle("is-open", next));
+      });
+    });
+  }
+
   function smoothScrollTo(id) {
     const targetId = id.replace("#", "");
     const el = document.getElementById(targetId);
@@ -141,6 +166,7 @@
     setHeaderHeightVar();
     setActiveNav();
     setCurrentYear();
+    initFooterAccordions();
     closeMenu();
 
     if(window.location.hash === "#kart"){
@@ -153,5 +179,6 @@
     setHeaderHeightVar();
     setActiveNav();
     setCurrentYear();
+    initFooterAccordions();
   });
 })();
