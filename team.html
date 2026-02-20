@@ -60,12 +60,13 @@
     .team-grid{
       margin-top: 26px;
       display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 18px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      align-items: stretch;
     }
 
     .member{
-      grid-column: span 6;
+      grid-column: span 1;
       border-radius: 22px;
       background: rgba(255,255,255,0.76);
       border: 1px solid rgba(56,56,56,0.12);
@@ -121,7 +122,8 @@
 
     .member__img{
       width: 100%;
-      aspect-ratio: 4 / 3;
+      aspect-ratio: 5 / 4;
+      max-height: 220px;
       object-fit: cover;
       border-radius: 18px;
       border: 1px solid rgba(56,56,56,0.08);
@@ -159,12 +161,28 @@
       border-color: rgba(221,179,179,0.55);
     }
 
-    @media (max-width: 900px){
-      .member{ grid-column: span 12; }
+    @media (max-width: 980px){
+      .team-grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .name{ font-size: 24px; }
+      .member__img{ max-height: 190px; }
     }
 
-    @media (max-width: 520px){
+    @media (max-width: 700px){
+      .team-grid{
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: 86%;
+        grid-template-columns: none;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        overscroll-behavior-x: contain;
+        padding-bottom: 8px;
+      }
+      .team-grid::-webkit-scrollbar{ height: 8px; }
+      .team-grid::-webkit-scrollbar-thumb{ background: rgba(56,56,56,0.25); border-radius: 999px; }
+      .member{
+        scroll-snap-align: start;
+      }
       .member__head{ padding: 16px 14px 10px; }
       .member__media{ padding: 0 14px 14px; }
       .member__body{ padding: 0 14px 16px; }
@@ -223,44 +241,6 @@
             </p>
             <div class="cta">
               <a class="btn" href="#" data-booking-link>Bestill time hos Katarina</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Elina -->
-        <article class="member">
-          <div class="member__head">
-            <div>
-              <div class="role">Autorisert sykepleier</div>
-              <h2 class="name">Elina</h2>
-            </div>
-            <div class="icon-row">
-              <a class="icon-btn" href="tel:+4792939171" aria-label="Ring">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M6.6 10.8c1.3 2.6 3.4 4.7 6 6l2-2c.3-.3.8-.4 1.2-.3 1 .3 2 .5 3.1.5.7 0 1.2.5 1.2 1.2V20c0 .7-.5 1.2-1.2 1.2C11.4 21.2 2.8 12.6 2.8 2.8 2.8 2.1 3.3 1.6 4 1.6h3.6c.7 0 1.2.5 1.2 1.2 0 1 .2 2.1.5 3.1.1.4 0 .9-.3 1.2l-2 1.7z"
-                        stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-                </svg>
-              </a>
-              <a class="icon-btn" href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5z" stroke="currentColor" stroke-width="1.6"/>
-                  <path d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10z" stroke="currentColor" stroke-width="1.6"/>
-                  <path d="M17.5 6.5h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-                </svg>
-              </a>
-            </div>
-          </div>
-
-          <div class="member__media">
-            <img class="member__img" src="/assets/img/team/elina.svg" alt="Elina – autorisert sykepleier" loading="lazy" />
-          </div>
-
-          <div class="member__body">
-            <p class="desc">
-              Spesialisert på injeksjonsbehandlinger ved SOMI Klinikk – med fokus på trygghet, presisjon og naturlig balanse.
-            </p>
-            <div class="cta">
-              <a class="btn" href="#" data-booking-link>Bestill konsultasjon hos Elina</a>
             </div>
           </div>
         </article>
