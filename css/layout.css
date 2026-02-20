@@ -1,65 +1,60 @@
-/* hotfix.css — force fix for blank space top on mobile */
-
-/* 1) Kill any full-screen hero/first-section behavior */
-.section.hero,
-.hero,
-main > section:first-child,
-main > div:first-child,
-main > header:first-child {
-  min-height: auto !important;
-  height: auto !important;
+.container{
+  width: min(1120px, calc(100% - (var(--gutter) * 2)));
+  margin-inline:auto;
 }
 
-/* 2) Ensure first content starts below sticky header (no giant blank area) */
-.section.hero,
-.hero,
-main > section:first-child {
-  padding-top: calc(var(--header-h, 72px) + 18px) !important;
-  padding-bottom: 28px !important;
+.section{ padding: 120px 0; }
+.section--tight{ padding: 120px 0; }
+@media (max-width: 900px){
+  .section,
+  .section--tight{ padding: 80px 0; }
 }
 
-/* 3) If you have a “hero image” element reserving height without showing image */
-.hero-img,
-.hero-image,
-.hero-media,
-.hero__media,
-.hero__image,
-.hero__bg,
-.hero-bg {
-  height: auto !important;
-  min-height: 0 !important;
+.card{
+  border-radius: var(--r-lg);
+  background: #FFFFFF;
+  border: 1px solid rgba(56,56,56,0.08);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+}
+.card__inner{ padding: 24px; }
+
+.tile{
+  border-radius: var(--r-lg);
+  background: #FFFFFF;
+  border: 1px solid rgba(56,56,56,0.08);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+  padding: 20px;
+  display: grid;
+  gap: 8px;
+  transition: transform var(--dur-2) var(--ease-out), border-color var(--dur-2) var(--ease-out);
+}
+.tile:hover{ transform: translateY(-4px); border-color: rgba(56,56,56,0.16); }
+.tile .t{ font-weight: 600; }
+.tile .m{ color: var(--c-muted); font-size: 16px; }
+
+.price-card{
+  border-radius: var(--r-lg);
+  background: #FFFFFF;
+  border: 1px solid rgba(56,56,56,0.08);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+  overflow: hidden;
+}
+.price-row{
+  display:grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 10px;
+  padding: 16px;
+  border-top: 1px solid rgba(56,56,56,0.08);
+  align-items: center;
+}
+.price-row:first-child{ border-top:none; }
+.price-name{ font-weight: 500; }
+.price-time{ font-size: 14px; color: var(--c-muted); white-space: nowrap; }
+.price-amount{ font-weight: 600; white-space: nowrap; }
+
+@media (max-width: 700px){
+  .price-row{ grid-template-columns: 1fr; gap: 6px; padding: 14px; }
+  .price-time, .price-amount{ font-size: 14px; }
 }
 
-/* Hide empty hero images (common cause of large blank top) */
-img.hero-img[src=""],
-img.hero-img:not([src]),
-img.hero-image[src=""],
-img.hero-image:not([src]) {
-  display: none !important;
-}
-
-/* If an empty div is used as hero background with vh */
-.hero-bg:empty,
-.hero__bg:empty {
-  display: none !important;
-}
-
-/* 4) Neutralize “align end/center pushing content down” inside hero */
-.section.hero *,
-.hero * {
-  place-content: initial !important;
-  align-content: initial !important;
-  align-items: initial !important;
-}
-
-/* 5) Fix logo collapsing to tiny 's mi' artifacts */
-.brand__logo {
-  width: 56px !important;
-  height: 56px !important;
-  max-width: none !important;
-  object-fit: contain !important;
-  display: block !important;
-}
-@media (max-width: 480px) {
-  .brand__logo { width: 48px !important; height: 48px !important; }
-}
+.reveal{ will-change: transform, opacity; }

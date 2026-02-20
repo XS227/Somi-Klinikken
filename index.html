@@ -26,115 +26,98 @@
 
   <style>
     .kicker{ font-family:"Corbel",system-ui,sans-serif; letter-spacing:.08em; text-transform:uppercase; font-size:12px; opacity:.75; }
-    .hero-grid,.about-grid{ display:grid; grid-template-columns:1fr 1fr; gap:20px; align-items:center; }
-    @media (max-width: 940px){ .hero-grid,.about-grid{ grid-template-columns:1fr; } }
 
-    .cta-row{ display:flex; gap:12px; margin-top:20px; flex-wrap:wrap; }
+    .hero{
+      background:#E8E6E4;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero::after,
+    .about-image::before,
+    .cta-shell::after{
+      content:"";
+      position:absolute;
+      width:clamp(220px,32vw,460px);
+      aspect-ratio: 1 / 1;
+      border-radius: 999px 999px 0 0;
+      border: 2px solid rgba(56,56,56,0.08);
+      border-bottom: 0;
+      opacity:.09;
+      pointer-events:none;
+    }
+    .hero::after{
+      right:-120px;
+      bottom:-30px;
+      transform: scale(1.1);
+    }
+
+    .hero-grid,.about-grid{ display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:24px; align-items:center; position:relative; z-index:1; }
+    .hero-copy{ grid-column: span 6; }
+    .hero-media{ grid-column: span 6; }
+    .about-image{ grid-column: span 6; position:relative; overflow:hidden; }
+    .about-copy{ grid-column: span 6; }
+    @media (max-width: 940px){
+      .hero-copy,.hero-media,.about-image,.about-copy{ grid-column: 1 / -1; }
+      .hero::after,.about-image::before,.cta-shell::after{ border-width:1.5px; }
+    }
+
+    .hero-copy .h1 + p,
+    .about-copy .h2 + p,
+    .reveal .h2 + p{ margin-top:24px; }
+    .cta-row{ display:flex; gap:12px; margin-top:32px; flex-wrap:wrap; }
 
     .media-embed{
-      border-radius: var(--r-lg);
+      border-radius: 20px;
       overflow: hidden;
-      border:1px solid rgba(56,56,56,.12);
-      box-shadow: var(--sh-soft);
-      background: rgba(255,255,255,.74);
+      border:1px solid rgba(56,56,56,.08);
+      box-shadow: 0 10px 30px rgba(0,0,0,.03);
+      background:#fff;
       min-height: 580px;
     }
     .media-embed iframe{ width:100%; height:100%; min-height:580px; border:0; }
 
-    .category-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:16px; }
-    @media (max-width: 980px){ .category-grid{ grid-template-columns:repeat(2,1fr); } }
-    @media (max-width: 620px){ .category-grid{ grid-template-columns:1fr; } }
+    .category-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:24px; margin-top:32px; }
+    @media (max-width: 980px){ .category-grid{ grid-template-columns:1fr; } }
 
-    .category-card,.blog-card{
+    .category-card,.blog-card,.timeline-step{
       display:grid;
       gap:8px;
       text-decoration:none;
       color:inherit;
-      border-radius:var(--r-lg);
-      background:rgba(255,255,255,.74);
-      border:1px solid rgba(56,56,56,.10);
-      box-shadow:var(--sh-soft);
-      padding:18px;
-      transition:transform 180ms ease, border-color 180ms ease;
+      border-radius:20px;
+      background:#FFFFFF;
+      border:1px solid rgba(56,56,56,.08);
+      box-shadow:0 10px 30px rgba(0,0,0,.03);
+      padding:22px;
+      transition:transform 180ms ease;
     }
-    .category-card:hover,.blog-card:hover{ transform: translateY(-2px); border-color:rgba(56,56,56,.22); }
+    .category-card:hover,.blog-card:hover,.timeline-step:hover{ transform: translateY(-4px); }
 
-    .about-image{
-      border-radius: var(--r-lg);
-      border: 1px solid rgba(56,56,56,.12);
-      box-shadow: var(--sh-soft);
-      background: rgba(255,255,255,.65);
-      padding: 20px;
-      display:flex;
-      justify-content:center;
-      align-items:center;
+    .about-image::before{
+      left:-75px;
+      bottom:-36px;
+      opacity:.1;
     }
-    .about-image img{ width:100%; max-width:420px; height:auto; }
+    .about-image img{ width:100%; max-width:420px; height:auto; margin:0 auto; }
 
-    .timeline{
-      margin-top: 16px;
-      display:grid;
-      grid-template-columns: repeat(4,1fr);
-      gap:12px;
-      position: relative;
-    }
-    .timeline::before{
-      content:"";
-      position:absolute;
-      top: 18px;
-      left: 12%;
-      right: 12%;
-      height:2px;
-      background: rgba(56,56,56,.16);
-      z-index:0;
-    }
-    .timeline-step{
+    .timeline{ margin-top:32px; display:grid; grid-template-columns: repeat(2,1fr); gap:24px; }
+    .timeline-step .num{ width:28px; height:28px; border-radius:50%; display:grid; place-items:center; background:rgba(56,56,56,.95); color:#fff; font-size:13px; margin-bottom:8px; }
+    @media (max-width: 900px){ .timeline{ grid-template-columns:1fr; } }
+
+    .blog-grid{ margin-top:32px; display:grid; grid-template-columns:repeat(2,1fr); gap:24px; }
+    @media (max-width: 900px){ .blog-grid{ grid-template-columns:1fr; } }
+
+    .cta-shell{
       position:relative;
-      z-index:1;
-      background:rgba(255,255,255,.78);
-      border:1px solid rgba(56,56,56,.1);
-      border-radius:16px;
-      padding:18px 14px 14px;
+      border-radius:20px;
+      background:#FFFFFF;
+      border:1px solid rgba(56,56,56,.08);
+      box-shadow:0 10px 30px rgba(0,0,0,.03);
+      padding:36px;
+      overflow:hidden;
     }
-    .timeline-step .num{
-      width:28px;
-      height:28px;
-      border-radius:50%;
-      display:grid;
-      place-items:center;
-      background: rgba(56,56,56,.95);
-      color:#fff;
-      font-size:13px;
-      margin-bottom:8px;
-    }
-    @media (max-width: 900px){
-      .timeline{ grid-template-columns:1fr; }
-      .timeline::before{ display:none; }
-    }
-
-    .blog-slider{
-      margin-top: 16px;
-      overflow: hidden;
-      border-radius: var(--r-lg);
-      border: 1px solid rgba(56,56,56,.09);
-      background: rgba(255,255,255,.5);
-      padding: 12px 0;
-    }
-    .blog-track{
-      display:flex;
-      gap:12px;
-      width:max-content;
-      animation: slide-loop 28s linear infinite;
-      padding: 0 12px;
-    }
-    .blog-slider:hover .blog-track{ animation-play-state: paused; }
-    .blog-card{ width: 280px; flex-shrink:0; }
-    @keyframes slide-loop{
-      from{ transform:translateX(0); }
-      to{ transform:translateX(-50%); }
-    }
-
-    .btn--primary{ background:rgba(56,56,56,.95); }
+    .cta-shell::after{ right:-80px; top:22px; opacity:.08; }
+    .cta-shell .btn--soft{ background:#EDE5DD; border-color:rgba(56,56,56,.08); }
   </style>
 
   <script defer src="/js/config.js"></script>
@@ -148,7 +131,7 @@
   <main>
     <section class="section hero">
       <div class="container hero-grid">
-        <div class="reveal">
+        <div class="reveal hero-copy">
           <div class="kicker">Velkommen til SOMI Klinikken</div>
           <h1 class="h1">Rolig, personlig og trygg behandling.</h1>
           <p class="muted">Hos oss får du veiledning, naturlige resultater og en behagelig opplevelse fra første konsultasjon til ferdig behandling.</p>
@@ -158,7 +141,7 @@
           </div>
         </div>
 
-        <aside class="media-embed reveal" aria-label="Instagram video">
+        <aside class="media-embed reveal hero-media" aria-label="Instagram video">
           <iframe
             src="https://www.instagram.com/reel/DJb67ndsUex/embed/?autoplay=1&mute=1"
             title="Instagram video fra SOMI"
@@ -201,7 +184,7 @@
         <div class="about-image reveal">
           <img src="/assets/img/team/katarina.svg" alt="Katarina i klinikken" />
         </div>
-        <div class="reveal">
+        <div class="reveal about-copy">
           <div class="kicker">Om SOMI</div>
           <h2 class="h2">Hvem er SOMI?</h2>
           <p class="muted">SOMI Klinikken drives av Katarina med fokus på kvalitet, trygghet og personlig oppfølging. Vi kombinerer faglig presisjon med et rolig miljø der du kan føle deg ivaretatt.</p>
@@ -234,57 +217,44 @@
           <h2 class="h2">Siste innlegg</h2>
         </div>
 
-        <div class="blog-slider" aria-label="Siste blogginnlegg">
-          <div class="blog-track">
-            <article class="blog-card">
+        <div class="blog-grid" aria-label="Siste blogginnlegg">
+            <article class="blog-card reveal">
               <div class="kicker">Bryn</div>
               <strong>Microblading: før og etter behandling</strong>
               <p class="muted">Forberedelser og etterpleie for best resultat.</p>
               <a class="btn" href="/blogg/microblading-for-og-etter.html">Les mer</a>
             </article>
-            <article class="blog-card">
+            <article class="blog-card reveal">
               <div class="kicker">Permanent makeup</div>
               <strong>Forventninger og resultat</strong>
               <p class="muted">Hva som skjer i prosessen og helingsfasen.</p>
               <a class="btn" href="/blogg/permanent-makeup-forventninger.html">Les mer</a>
             </article>
-            <article class="blog-card">
+            <article class="blog-card reveal">
               <div class="kicker">Vipper</div>
               <strong>Vippeløft: hvor lenge varer det?</strong>
               <p class="muted">Tips for vedlikehold og holdbarhet.</p>
               <a class="btn" href="/blogg/vippeloft-varighet.html">Les mer</a>
             </article>
-            <article class="blog-card">
+            <article class="blog-card reveal">
               <div class="kicker">Hudpleie</div>
               <strong>Få maks ut av Dermalogica-behandlingen</strong>
               <p class="muted">Enkle råd for glød mellom behandlingene.</p>
               <a class="btn" href="/blogg/dermalogica-etterbehandling.html">Les mer</a>
             </article>
+        </div>
+      </div>
+    </section>
 
-            <article class="blog-card" aria-hidden="true">
-              <div class="kicker">Bryn</div>
-              <strong>Microblading: før og etter behandling</strong>
-              <p class="muted">Forberedelser og etterpleie for best resultat.</p>
-              <a class="btn" href="/blogg/microblading-for-og-etter.html">Les mer</a>
-            </article>
-            <article class="blog-card" aria-hidden="true">
-              <div class="kicker">Permanent makeup</div>
-              <strong>Forventninger og resultat</strong>
-              <p class="muted">Hva som skjer i prosessen og helingsfasen.</p>
-              <a class="btn" href="/blogg/permanent-makeup-forventninger.html">Les mer</a>
-            </article>
-            <article class="blog-card" aria-hidden="true">
-              <div class="kicker">Vipper</div>
-              <strong>Vippeløft: hvor lenge varer det?</strong>
-              <p class="muted">Tips for vedlikehold og holdbarhet.</p>
-              <a class="btn" href="/blogg/vippeloft-varighet.html">Les mer</a>
-            </article>
-            <article class="blog-card" aria-hidden="true">
-              <div class="kicker">Hudpleie</div>
-              <strong>Få maks ut av Dermalogica-behandlingen</strong>
-              <p class="muted">Enkle råd for glød mellom behandlingene.</p>
-              <a class="btn" href="/blogg/dermalogica-etterbehandling.html">Les mer</a>
-            </article>
+    <section class="section section--tight">
+      <div class="container">
+        <div class="cta-shell reveal">
+          <div class="kicker">Klar for konsultasjon?</div>
+          <h2 class="h2">Book en rolig og presis vurdering hos SOMI.</h2>
+          <p class="muted">Vi hjelper deg med riktig behandling basert på hudtilstand, mål og trygg forventningsavklaring.</p>
+          <div class="cta-row">
+            <a class="btn btn--primary" href="#" data-booking-link>Book time</a>
+            <a class="btn btn--soft" href="/contact.html">Kontakt oss</a>
           </div>
         </div>
       </div>
