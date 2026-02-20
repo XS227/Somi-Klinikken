@@ -1,33 +1,27 @@
 :root{
-  /* Brand neutrals (soft, not sterile) */
-  --c-bg: #F3F1EE;
-  --c-surface: rgba(255,255,255,0.72);
-  --c-surface-strong: rgba(255,255,255,0.86);
-  --c-border: rgba(56,56,56,0.12);
-  --c-border-strong: rgba(56,56,56,0.18);
   --c-text: rgba(56,56,56,0.96);
   --c-muted: rgba(56,56,56,0.72);
 
-  /* Subtle brand pink accent (gender-neutral application) */
-  --c-accent: #DDB3B3;         /* dusty rose */
-  --c-accent-2: #E7C7C7;       /* lighter */
-  --c-accent-ink: rgba(56,56,56,0.96);
+  --c-white: #FFFFFF;
+  --c-warm-gray: #E8E6E4;
+  --c-beige: #EDE5DD;
+  --c-accent: #DDB3B3;
 
-  /* Radius & shadow */
+  --c-bg: var(--c-white);
+  --c-surface: #FFFFFF;
+  --c-border: rgba(56,56,56,0.08);
+  --c-border-strong: rgba(56,56,56,0.16);
+
   --r-sm: 12px;
   --r-md: 16px;
-  --r-lg: 22px;
+  --r-lg: 20px;
 
-  --sh-soft: 0 14px 34px rgba(0,0,0,0.08);
+  --sh-soft: 0 10px 30px rgba(0,0,0,0.03);
 
-  /* Motion */
   --dur-1: 160ms;
   --dur-2: 240ms;
   --ease-out: cubic-bezier(.2,.8,.2,1);
 
-  /* Layout */
   --gutter: 22px;
-
-  /* Header height variable set by JS (fallback) */
-  --header-h: 72px;
+  --header-h: 80px;
 }

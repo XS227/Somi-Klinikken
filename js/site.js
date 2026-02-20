@@ -95,11 +95,16 @@
     if (!header) return;
     const btn = header.querySelector("[data-menu-toggle]");
     const panel = header.querySelector("[data-mobile-panel]");
+    const overlay = header.querySelector("[data-mobile-overlay]");
     if (!btn || !panel) return;
 
     btn.setAttribute("aria-expanded", "false");
     panel.classList.remove("is-open");
     panel.setAttribute("aria-hidden", "true");
+    if (overlay) {
+      overlay.classList.remove("is-open");
+      overlay.setAttribute("aria-hidden", "true");
+    }
     document.body.classList.remove("no-scroll");
     setHeaderHeightVar();
   }
@@ -109,6 +114,7 @@
     if (!header) return;
     const btn = header.querySelector("[data-menu-toggle]");
     const panel = header.querySelector("[data-mobile-panel]");
+    const overlay = header.querySelector("[data-mobile-overlay]");
     if (!btn || !panel) return;
 
     const isOpen = panel.classList.contains("is-open");
@@ -117,6 +123,10 @@
       btn.setAttribute("aria-expanded", "true");
       panel.classList.add("is-open");
       panel.setAttribute("aria-hidden", "false");
+      if (overlay) {
+        overlay.classList.add("is-open");
+        overlay.setAttribute("aria-hidden", "false");
+      }
       document.body.classList.add("no-scroll");
       setHeaderHeightVar();
     }
@@ -133,6 +143,9 @@
 
     const inPanelLink = e.target.closest("[data-mobile-panel] a");
     if (inPanelLink) closeMenu();
+
+    const inOverlay = e.target.closest("[data-mobile-overlay]");
+    if (inOverlay) closeMenu();
 
     const anchor = e.target.closest("a[href]");
     if (anchor) {
