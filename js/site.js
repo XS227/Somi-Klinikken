@@ -81,6 +81,28 @@
   }
 
 
+
+  function initInstagramFeed() {
+    const feed = document.querySelector("[data-instagram-feed]");
+    if (!feed) return;
+
+    const posts = [
+      { href: "https://www.instagram.com/reel/DJb67ndsUex/", embed: "https://www.instagram.com/reel/DJb67ndsUex/embed/captioned/", hashtags: ["#somiklinikken", "#bryn"] },
+      { href: "https://www.instagram.com/reel/DJb67ndsUex/", embed: "https://www.instagram.com/reel/DJb67ndsUex/embed/captioned/", hashtags: ["#somiklinikken", "#hudpleie"] },
+      { href: "https://www.instagram.com/reel/DJb67ndsUex/", embed: "https://www.instagram.com/reel/DJb67ndsUex/embed/captioned/", hashtags: ["#somiklinikken", "#sandnes"] },
+      { href: "https://www.instagram.com/reel/DJb67ndsUex/", embed: "https://www.instagram.com/reel/DJb67ndsUex/embed/captioned/", hashtags: ["#somiklinikken", "#microblading"] },
+      { href: "https://www.instagram.com/reel/DJb67ndsUex/", embed: "https://www.instagram.com/reel/DJb67ndsUex/embed/captioned/", hashtags: ["#somiklinikken", "#laser"] }
+    ];
+
+    const filteredPosts = posts.filter(post => post.hashtags.includes("#somiklinikken"));
+
+    feed.innerHTML = filteredPosts.map((post, index) => `
+      <a class="footer__insta-item" href="${post.href}" target="_blank" rel="noopener" aria-label="Åpne Instagram innlegg ${index + 1}">
+        <iframe src="${post.embed}" title="Instagram innlegg fra SOMI Klinikken ${index + 1}" loading="lazy" allowfullscreen></iframe>
+      </a>
+    `).join("");
+  }
+
   function smoothScrollTo(id) {
     const targetId = id.replace("#", "");
     const el = document.getElementById(targetId);
@@ -182,6 +204,7 @@
     setActiveNav();
     setCurrentYear();
     initFooterAccordions();
+    initInstagramFeed();
     closeMenu();
 
     if(window.location.hash === "#kart"){
@@ -195,5 +218,6 @@
     setActiveNav();
     setCurrentYear();
     initFooterAccordions();
+    initInstagramFeed();
   });
 })();
