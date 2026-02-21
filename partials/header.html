@@ -2,12 +2,39 @@
   <div class="container">
     <div class="header__row">
       <a class="brand" href="/index.html" aria-label="SOMI Klinikken">
-        <span class="brand__wordmark">SOMI</span>
+        <img src="/p/LogoSomi.PNG" alt="SOMI Klinikken" class="brand__logo" />
       </a>
 
       <nav class="nav" aria-label="Hovedmeny">
         <a href="/om.html">Om</a>
-        <a href="/behandlinger.html">Behandlinger</a>
+        <div class="nav-dropdown" data-nav-dropdown>
+          <button class="nav-dropdown__toggle" type="button" aria-expanded="false" data-nav-dropdown-toggle>
+            Behandlinger
+          </button>
+          <div class="nav-dropdown__panel" aria-label="Kategorier under behandlinger">
+            <details class="nav-dropdown__group" open>
+              <summary><a class="nav-dropdown__cat" href="/kategorier/microblading.html">Microblading</a></summary>
+              <a class="nav-dropdown__sub" href="/behandlinger/ny-microblading.html">Ny microblading</a>
+              <a class="nav-dropdown__sub" href="/behandlinger/ny-microblading-shading.html">Ny microblading + shading</a>
+            </details>
+            <details class="nav-dropdown__group">
+              <summary><a class="nav-dropdown__cat" href="/kategorier/bryn-og-vipper.html">Bryn og vipper</a></summary>
+              <a class="nav-dropdown__sub" href="/behandlinger/vippeloft.html">Vippeløft</a>
+              <a class="nav-dropdown__sub" href="/behandlinger/browlamination.html">Browlamination</a>
+            </details>
+            <details class="nav-dropdown__group">
+              <summary><a class="nav-dropdown__cat" href="/kategorier/dermalogica.html">Dermalogica</a></summary>
+              <a class="nav-dropdown__sub" href="/behandlinger/dermalogica-signature.html">Dermalogica signature</a>
+              <a class="nav-dropdown__sub" href="/behandlinger/dermalogica-akne-60.html">Dermalogica akne 60</a>
+            </details>
+            <details class="nav-dropdown__group">
+              <summary><a class="nav-dropdown__cat" href="/kategorier/hudpleie.html">Hudpleie og laser</a></summary>
+              <a class="nav-dropdown__sub" href="/behandlinger/carbon-peel-laser.html">Carbon peel laser</a>
+              <a class="nav-dropdown__sub" href="/behandlinger/prx-t33.html">PRX-T33</a>
+            </details>
+          </div>
+        </div>
+        <a href="/team.html">Team</a>
         <a href="/priser.html">Priser</a>
         <a href="/resultater.html">Resultater</a>
         <a href="/booking.html">Gavekort</a>
@@ -34,7 +61,30 @@
     <div class="container">
       <div class="mobile-panel__inner">
         <a class="mnav" href="/om.html">Om</a>
-        <a class="mnav" href="/behandlinger.html">Behandlinger</a>
+        <details class="mnav-group" data-mobile-nav-group>
+          <summary class="mnav mnav--summary">Behandlinger</summary>
+          <details class="mnav-subgroup" open>
+            <summary class="mnav mnav--child">Microblading</summary>
+            <a class="mnav mnav--child" href="/kategorier/microblading.html">Kategori</a>
+            <a class="mnav mnav--child" href="/behandlinger/ny-microblading.html">Ny microblading</a>
+          </details>
+          <details class="mnav-subgroup">
+            <summary class="mnav mnav--child">Bryn og vipper</summary>
+            <a class="mnav mnav--child" href="/kategorier/bryn-og-vipper.html">Kategori</a>
+            <a class="mnav mnav--child" href="/behandlinger/vippeloft.html">Vippeløft</a>
+          </details>
+          <details class="mnav-subgroup">
+            <summary class="mnav mnav--child">Dermalogica</summary>
+            <a class="mnav mnav--child" href="/kategorier/dermalogica.html">Kategori</a>
+            <a class="mnav mnav--child" href="/behandlinger/dermalogica-signature.html">Signature</a>
+          </details>
+          <details class="mnav-subgroup">
+            <summary class="mnav mnav--child">Hudpleie og laser</summary>
+            <a class="mnav mnav--child" href="/kategorier/hudpleie.html">Kategori</a>
+            <a class="mnav mnav--child" href="/behandlinger/carbon-peel-laser.html">Carbon peel</a>
+          </details>
+        </details>
+        <a class="mnav" href="/team.html">Team</a>
         <a class="mnav" href="/priser.html">Priser</a>
         <a class="mnav" href="/resultater.html">Resultater</a>
         <a class="mnav" href="/booking.html">Gavekort</a>

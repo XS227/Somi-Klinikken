@@ -95,17 +95,26 @@
     .category-card{
       display:grid;
       gap:10px;
+      overflow:hidden;
       text-decoration:none;
       color:inherit;
       border-radius:18px;
       background:#fff;
       border:1px solid rgba(56,56,56,.08);
-      box-shadow:0 10px 30px rgba(0,0,0,.03);
-      padding:24px;
+      box-shadow:0 8px 22px rgba(0,0,0,.03);
+      padding:16px;
       min-height:170px;
       transition:transform 180ms ease;
     }
     .category-card:hover{ transform: translateY(-4px); }
+    .category-card video{
+      width:100%;
+      aspect-ratio:16 / 9;
+      object-fit:cover;
+      border-radius:12px;
+      border:1px solid rgba(56,56,56,.08);
+      box-shadow:0 8px 20px rgba(0,0,0,.04);
+    }
 
     .about-image{ grid-column: span 6; }
     .about-copy{ grid-column: span 6; }
@@ -126,6 +135,12 @@
     .about-arch img,
     .about-arch video{ width:100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius:150px 150px 16px 16px; display:block; }
 
+    [data-motion-media]{
+      transform: translateY(var(--motion-y, 0px));
+      will-change: transform;
+      transition: transform 220ms ease-out;
+    }
+
     .check-grid{ margin-top:28px; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px 24px; }
     .check-item{ display:flex; gap:12px; align-items:flex-start; }
     .check-item b{ font-size:18px; line-height:1.4; font-weight:500; }
@@ -139,8 +154,23 @@
     }
     .timeline-step .num{ width:28px; height:28px; border-radius:50%; display:grid; place-items:center; background:rgba(56,56,56,.95); color:#fff; font-size:13px; margin-bottom:12px; }
 
+    .blog-shell{
+      margin-top:20px;
+      display:grid;
+      grid-template-columns:auto 1fr auto;
+      align-items:center;
+      gap:12px;
+    }
+    .blog-arrow{
+      width:40px;
+      height:40px;
+      border-radius:50%;
+      border:1px solid rgba(56,56,56,.2);
+      background:#fff;
+      cursor:pointer;
+    }
     .blog-slider{
-      margin-top:30px;
+      margin-top:0;
       display:grid;
       grid-auto-flow:column;
       grid-auto-columns:minmax(260px,1fr);
@@ -151,13 +181,25 @@
     }
     .blog-card{
       scroll-snap-align:start;
-      border-radius:18px;
+      border-radius:14px;
       border:1px solid rgba(56,56,56,.08);
       background:#fff;
-      box-shadow:0 10px 30px rgba(0,0,0,.03);
-      padding:24px;
+      box-shadow:0 8px 22px rgba(0,0,0,.03);
+      padding:16px;
       display:grid;
       gap:10px;
+    }
+
+
+    .parallax-band{
+      min-height:320px;
+      border-radius:22px;
+      background-image:url('/p/vegg.JPG');
+      background-size:cover;
+      background-position:center;
+      background-attachment:fixed;
+      border:1px solid rgba(56,56,56,.08);
+      box-shadow:0 16px 36px rgba(0,0,0,.08);
     }
 
     .cta-zone{ background:rgba(237,229,221,0.32); }
@@ -191,6 +233,8 @@
     }
     @media (max-width: 700px){
       .category-grid,.timeline{ grid-template-columns:1fr; }
+      .blog-shell{ grid-template-columns:1fr; }
+      .blog-arrow{ display:none; }
       .hero{ padding:90px 0; }
       .end-cta{ padding:30px 24px; }
     }
@@ -226,7 +270,7 @@
           </div>
         </div>
 
-        <aside class="hero-media reveal media-embed" aria-label="Introduksjonsvideo fra SOMI Klinikken">
+        <aside class="hero-media reveal media-embed" data-motion-media aria-label="Introduksjonsvideo fra SOMI Klinikken">
           <video
             src="/v/showreel.MP4"
             autoplay
@@ -246,10 +290,10 @@
           <h2 class="h2">Finn behandlingen som passer deg</h2>
         </div>
         <div class="category-grid">
-          <a class="category-card reveal" href="/behandlinger.html#microblading"><strong>Microblading</strong><span class="muted">Naturlige bryn med presis form og tilpasset uttrykk.</span></a>
-          <a class="category-card reveal" href="/behandlinger.html#bryn-vipper"><strong>Bryn &amp; vipper</strong><span class="muted">Forming, farge og løft som fremhever ansiktstrekk.</span></a>
-          <a class="category-card reveal" href="/behandlinger.html#dermalogica"><strong>Dermalogica</strong><span class="muted">Målrettet hudpleie basert på din hudtilstand.</span></a>
-          <a class="category-card reveal" href="/behandlinger.html#hudpleie"><strong>Hud &amp; laser</strong><span class="muted">Avansert behandling med fokus på hudfornyelse.</span></a>
+          <a class="category-card reveal" href="/kategorier/microblading.html"><video src="/vipper.mp4" muted loop playsinline preload="metadata"></video><strong>Microblading</strong><span class="muted">Naturlige bryn med presis form og tilpasset uttrykk.</span></a>
+          <a class="category-card reveal" href="/kategorier/bryn-og-vipper.html"><video src="/vipper.mp4" muted loop playsinline preload="metadata"></video><strong>Bryn &amp; vipper</strong><span class="muted">Forming, farge og løft som fremhever ansiktstrekk.</span></a>
+          <a class="category-card reveal" href="/kategorier/dermalogica.html"><video src="/vipper.mp4" muted loop playsinline preload="metadata"></video><strong>Dermalogica</strong><span class="muted">Målrettet hudpleie basert på din hudtilstand.</span></a>
+          <a class="category-card reveal" href="/kategorier/hudpleie.html"><video src="/vipper.mp4" muted loop playsinline preload="metadata"></video><strong>Hud &amp; laser</strong><span class="muted">Avansert behandling med fokus på hudfornyelse.</span></a>
         </div>
       </div>
     </section>
@@ -257,7 +301,7 @@
     <section class="section section--tight">
       <div class="container about-grid">
         <div class="about-image reveal">
-          <div class="about-arch">
+          <div class="about-arch" data-motion-media>
             <video
               src="/v/gaveeske.mp4"
               autoplay
@@ -311,11 +355,21 @@
         <div class="reveal">
           <h2 class="h2">Siste innlegg</h2>
         </div>
-        <div class="blog-slider" aria-label="Siste blogginnlegg">
-          <article class="blog-card reveal"><strong>Microblading: før og etter behandling</strong><p class="muted">Forberedelser og etterpleie for best resultat.</p><a class="btn" href="/blogg/microblading-for-og-etter.html">Les mer</a></article>
-          <article class="blog-card reveal"><strong>Forventninger og resultat</strong><p class="muted">Hva som skjer i prosessen og helingsfasen.</p><a class="btn" href="/blogg/permanent-makeup-forventninger.html">Les mer</a></article>
-          <article class="blog-card reveal"><strong>Vippeløft: hvor lenge varer det?</strong><p class="muted">Tips for vedlikehold og holdbarhet.</p><a class="btn" href="/blogg/vippeloft-varighet.html">Les mer</a></article>
+        <div class="blog-shell">
+          <button class="blog-arrow" type="button" data-blog-prev aria-label="Forrige innlegg">←</button>
+          <div class="blog-slider" aria-label="Siste blogginnlegg" data-blog-slider>
+            <article class="blog-card reveal"><strong>Microblading: før og etter behandling</strong><p class="muted">Forberedelser og etterpleie for best resultat.</p><a class="btn" href="/blogg/microblading-for-og-etter.html">Les mer</a></article>
+            <article class="blog-card reveal"><strong>Forventninger og resultat</strong><p class="muted">Hva som skjer i prosessen og helingsfasen.</p><a class="btn" href="/blogg/permanent-makeup-forventninger.html">Les mer</a></article>
+            <article class="blog-card reveal"><strong>Vippeløft: hvor lenge varer det?</strong><p class="muted">Tips for vedlikehold og holdbarhet.</p><a class="btn" href="/blogg/vippeloft-varighet.html">Les mer</a></article>
+          </div>
+          <button class="blog-arrow" type="button" data-blog-next aria-label="Neste innlegg">→</button>
         </div>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container">
+        <div class="parallax-band reveal" role="img" aria-label="Interiørbilde fra klinikken"></div>
       </div>
     </section>
 
@@ -333,5 +387,40 @@
   </main>
 
   <div data-include="/partials/footer.html"></div>
+
+  <script>
+    (() => {
+      const slider = document.querySelector('[data-blog-slider]');
+      const prev = document.querySelector('[data-blog-prev]');
+      const next = document.querySelector('[data-blog-next]');
+      const media = document.querySelectorAll('[data-motion-media]');
+      const thumbs = document.querySelectorAll('.category-card video');
+
+      thumbs.forEach(video => {
+        video.muted = true;
+        video.play().catch(() => {});
+      });
+
+      if (slider && prev && next) {
+        const step = () => Math.max(260, Math.round(slider.clientWidth * 0.84));
+        prev.addEventListener('click', () => slider.scrollBy({ left: -step(), behavior: 'smooth' }));
+        next.addEventListener('click', () => slider.scrollBy({ left: step(), behavior: 'smooth' }));
+      }
+
+      const updateMotion = () => {
+        media.forEach((el, index) => {
+          const rect = el.getBoundingClientRect();
+          const midpoint = window.innerHeight * 0.55;
+          const delta = (midpoint - rect.top) * 0.04;
+          const limited = Math.max(-18, Math.min(18, delta + index * 2));
+          el.style.setProperty('--motion-y', `${limited.toFixed(1)}px`);
+        });
+      };
+
+      window.addEventListener('scroll', updateMotion, { passive: true });
+      window.addEventListener('resize', updateMotion);
+      updateMotion();
+    })();
+  </script>
 </body>
 </html>

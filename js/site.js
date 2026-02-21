@@ -28,17 +28,27 @@
   }
 
   function setActiveNav() {
-    const links = document.querySelectorAll(".nav a, .mnav");
+    const links = document.querySelectorAll(".nav a, .mnav, .nav-dropdown__toggle");
     if (!links.length) return;
     const current = normalizePath(window.location.pathname || "/");
 
+    const treatmentPaths = ["/behandlinger.html", "/behandlinger/", "/kategorier/"];
+
     links.forEach(link => {
+      if (link.matches(".nav-dropdown__toggle")) {
+        const isTreatmentsActive = treatmentPaths.some(path => current === path || current.startsWith(path));
+        link.classList.toggle("is-active", isTreatmentsActive);
+        return;
+      }
+
       const href = link.getAttribute("href");
       if (!href) return;
       const url = new URL(href, window.location.origin);
       const linkPath = normalizePath(url.pathname);
-      const isBehandlinger = linkPath === "/behandlinger.html" && (current === "/behandlinger.html" || current.startsWith("/behandlinger/"));
-      const isActive = linkPath === current || isBehandlinger || (linkPath === "/contact.html" && current.endsWith("/contact.html"));
+      const isBehandlinger = linkPath === "/behandlinger.html" && treatmentPaths.some(path => current === path || current.startsWith(path));
+      const isCategory = linkPath.startsWith("/kategorier/") && current.startsWith("/kategorier/") && linkPath === current;
+      const isTreatmentDetail = linkPath.startsWith("/behandlinger/") && current.startsWith("/behandlinger/") && linkPath === current;
+      const isActive = linkPath === current || isBehandlinger || isCategory || isTreatmentDetail || (linkPath === "/contact.html" && current.endsWith("/contact.html"));
       link.classList.toggle("is-active", isActive);
     });
   }
@@ -130,6 +140,35 @@
     fadeEls.forEach(el => observer.observe(el));
   }
 
+
+  function initNavDropdowns() {
+    const dropdowns = document.querySelectorAll("[data-nav-dropdown]");
+    dropdowns.forEach(dropdown => {
+      const toggle = dropdown.querySelector("[data-nav-dropdown-toggle]");
+      if (!toggle || toggle.dataset.bound === "true") return;
+      toggle.dataset.bound = "true";
+
+      toggle.addEventListener("click", () => {
+        const next = !dropdown.classList.contains("is-open");
+        dropdown.classList.toggle("is-open", next);
+        toggle.setAttribute("aria-expanded", String(next));
+      });
+
+      dropdown.addEventListener("mouseleave", () => {
+        dropdown.classList.remove("is-open");
+        toggle.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    document.addEventListener("click", (event) => {
+      if (event.target.closest("[data-nav-dropdown]")) return;
+      document.querySelectorAll("[data-nav-dropdown]").forEach(dropdown => {
+        dropdown.classList.remove("is-open");
+        const toggle = dropdown.querySelector("[data-nav-dropdown-toggle]");
+        if (toggle) toggle.setAttribute("aria-expanded", "false");
+      });
+    });
+  }
   function smoothScrollTo(id) {
     const targetId = id.replace("#", "");
     const el = document.getElementById(targetId);
@@ -232,6 +271,7 @@
     setCurrentYear();
     initFooterAccordions();
     initInstagramFeed();
+    initNavDropdowns();
     initScrollFades();
     closeMenu();
 
@@ -247,6 +287,7 @@
     setCurrentYear();
     initFooterAccordions();
     initInstagramFeed();
+    initNavDropdowns();
     initScrollFades();
   });
 })();
