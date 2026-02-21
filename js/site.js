@@ -81,33 +81,6 @@
   }
 
 
-  function initInstagramFeedModal() {
-    const modal = document.querySelector("[data-instagram-modal]");
-    const frame = document.querySelector("[data-instagram-frame]");
-    if (!modal || !frame) return;
-
-    if (modal.dataset.bound !== "true") {
-      modal.dataset.bound = "true";
-      modal.addEventListener("click", (e) => {
-        if (!e.target.closest("[data-instagram-close]")) return;
-        modal.hidden = true;
-        frame.removeAttribute("src");
-        document.body.classList.remove("no-scroll");
-      });
-    }
-
-    document.querySelectorAll(".footer__insta-item").forEach((item) => {
-      if (item.dataset.bound === "true") return;
-      item.dataset.bound = "true";
-      item.addEventListener("click", () => {
-        const permalink = item.getAttribute("data-instagram-permalink") || "https://www.instagram.com/somiklinikken/";
-        frame.src = `${permalink.replace(/\/$/, "")}/embed/`;
-        modal.hidden = false;
-        document.body.classList.add("no-scroll");
-      });
-    });
-  }
-
   function smoothScrollTo(id) {
     const targetId = id.replace("#", "");
     const el = document.getElementById(targetId);
@@ -189,13 +162,6 @@
   window.addEventListener("keydown", (e) => {
     if (e.key !== "Escape") return;
     closeMenu();
-    const modal = document.querySelector("[data-instagram-modal]");
-    const frame = document.querySelector("[data-instagram-frame]");
-    if (modal && !modal.hidden) {
-      modal.hidden = true;
-      if (frame) frame.removeAttribute("src");
-      document.body.classList.remove("no-scroll");
-    }
   });
 
   window.addEventListener("resize", () => {
@@ -216,7 +182,6 @@
     setActiveNav();
     setCurrentYear();
     initFooterAccordions();
-    initInstagramFeedModal();
     closeMenu();
 
     if(window.location.hash === "#kart"){
@@ -230,6 +195,5 @@
     setActiveNav();
     setCurrentYear();
     initFooterAccordions();
-    initInstagramFeedModal();
   });
 })();
