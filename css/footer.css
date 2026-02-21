@@ -25,6 +25,11 @@
   text-decoration: none;
 }
 .footer__instagram-head a:hover{ text-decoration: underline; }
+.footer__instagram-tag{
+  margin: 0 0 10px;
+  font-size: 13px;
+  color: rgba(56,56,56,.72);
+}
 .footer__instagram-grid{
   display:grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
