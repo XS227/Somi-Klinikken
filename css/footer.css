@@ -36,12 +36,13 @@
   border-radius: 10px;
   background: #fff;
   overflow: hidden;
-  cursor: pointer;
+  display: block;
+  text-decoration: none;
 }
-.footer__insta-item img{
+.footer__insta-item iframe{
   width: 100%;
   aspect-ratio: 1 / 1;
-  object-fit: cover;
+  border: 0;
   display: block;
 }
 
@@ -146,45 +147,6 @@
 
 .footer__credits a{ color: inherit; font-weight: 700; text-decoration: none; }
 .footer__credits a:hover{ text-decoration: underline; }
-
-.instagram-modal{
-  position: fixed;
-  inset: 0;
-  z-index: 120;
-}
-.instagram-modal__backdrop{
-  position:absolute;
-  inset:0;
-  background: rgba(0,0,0,.56);
-}
-.instagram-modal__dialog{
-  position: relative;
-  z-index: 1;
-  width: min(760px, 92vw);
-  margin: 5vh auto;
-  background: #fff;
-  border-radius: 14px;
-  overflow: hidden;
-}
-.instagram-modal__dialog iframe{
-  width: 100%;
-  height: min(80vh, 760px);
-  border: 0;
-}
-.instagram-modal__close{
-  position: absolute;
-  right: 8px;
-  top: 8px;
-  width: 34px;
-  height: 34px;
-  border: 0;
-  border-radius: 999px;
-  background: rgba(0,0,0,.65);
-  color: #fff;
-  cursor: pointer;
-  font-size: 24px;
-  line-height: 1;
-}
 
 @media (max-width: 980px){
   .footer__instagram-grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
