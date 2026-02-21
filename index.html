@@ -123,7 +123,8 @@
       border-color:rgba(56,56,56,0.1);
       opacity:.35;
     }
-    .about-arch img{ width:100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius:150px 150px 16px 16px; }
+    .about-arch img,
+    .about-arch video{ width:100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius:150px 150px 16px 16px; display:block; }
 
     .check-grid{ margin-top:28px; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px 24px; }
     .check-item{ display:flex; gap:12px; align-items:flex-start; }
@@ -227,7 +228,7 @@
 
         <aside class="hero-media reveal media-embed" aria-label="Introduksjonsvideo fra SOMI Klinikken">
           <video
-            src="/v/open.mp4"
+            src="/v/showreel.MP4"
             autoplay
             muted
             loop
@@ -257,7 +258,14 @@
       <div class="container about-grid">
         <div class="about-image reveal">
           <div class="about-arch">
-            <img src="/assets/img/hero/clinic-interior.svg" alt="Behandling i rolige omgivelser" loading="lazy" />
+            <video
+              src="/v/gaveeske.mp4"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              aria-label="Video fra SOMI Klinikken"></video>
           </div>
         </div>
         <div class="about-copy reveal">
