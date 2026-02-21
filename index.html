@@ -98,7 +98,8 @@
       bottom:-36px;
       opacity:.1;
     }
-    .about-image img{ width:100%; max-width:420px; height:auto; margin:0 auto; }
+    .about-image img,
+    .about-image video{ width:100%; max-width:420px; height:auto; margin:0 auto; display:block; border-radius:20px; }
 
     .timeline{ margin-top:32px; display:grid; grid-template-columns: repeat(2,1fr); gap:24px; }
     .timeline-step .num{ width:28px; height:28px; border-radius:50%; display:grid; place-items:center; background:rgba(56,56,56,.95); color:#fff; font-size:13px; margin-bottom:8px; }
@@ -141,10 +142,10 @@
           </div>
         </div>
 
-        <aside class="media-embed reveal hero-media" aria-label="Instagram video">
+        <aside class="media-embed reveal hero-media" aria-label="YouTube video">
           <iframe
-            src="https://www.instagram.com/reel/DJb67ndsUex/embed/?autoplay=1&mute=1"
-            title="Instagram video fra SOMI"
+            src="https://www.youtube.com/embed/oZ3rdypU_z8?autoplay=1&mute=1&loop=1&playlist=oZ3rdypU_z8"
+            title="YouTube video fra SOMI"
             loading="lazy"
             allow="autoplay; encrypted-media"
             allowfullscreen></iframe>
@@ -182,7 +183,7 @@
     <section class="section section--tight">
       <div class="container about-grid">
         <div class="about-image reveal">
-          <img src="/assets/img/team/katarina.svg" alt="Katarina i klinikken" />
+          <video src="/v/showreel.MP4" autoplay muted loop playsinline controls aria-label="Showreel fra SOMI"></video>
         </div>
         <div class="reveal about-copy">
           <div class="kicker">Om SOMI</div>
