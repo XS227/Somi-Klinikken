@@ -103,6 +103,27 @@
     `).join("");
   }
 
+  function initScrollFades() {
+    const fadeEls = document.querySelectorAll("[data-scroll-fade]");
+    if (!fadeEls.length) return;
+
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced || !("IntersectionObserver" in window)) {
+      fadeEls.forEach(el => el.classList.add("is-in"));
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-in");
+        obs.unobserve(entry.target);
+      });
+    }, { threshold: 0.2 });
+
+    fadeEls.forEach(el => observer.observe(el));
+  }
+
   function smoothScrollTo(id) {
     const targetId = id.replace("#", "");
     const el = document.getElementById(targetId);
@@ -205,6 +226,7 @@
     setCurrentYear();
     initFooterAccordions();
     initInstagramFeed();
+    initScrollFades();
     closeMenu();
 
     if(window.location.hash === "#kart"){
@@ -219,5 +241,6 @@
     setCurrentYear();
     initFooterAccordions();
     initInstagramFeed();
+    initScrollFades();
   });
 })();

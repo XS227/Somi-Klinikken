@@ -28,6 +28,29 @@
     .kicker{ letter-spacing:.08em; text-transform:uppercase; font-size:12px; opacity:.7; }
 
     .hero{ background:#E8E6E4; padding:120px 0; position:relative; overflow:hidden; }
+    .hero-arches{
+      position:absolute;
+      inset:0;
+      z-index:0;
+      pointer-events:none;
+      opacity:0;
+      transition:opacity 700ms ease-out;
+    }
+    .hero-arches.is-in{ opacity:1; }
+    .hero-arches svg{
+      position:absolute;
+      right:-120px;
+      top:10px;
+      width:min(640px,56vw);
+      height:auto;
+      display:block;
+    }
+    .hero-arches path{
+      fill:none;
+      stroke:#FFFFFF;
+      stroke-width:2;
+      opacity:.28;
+    }
     .hero::after,
     .about-arch::before,
     .end-cta::after{
@@ -182,6 +205,15 @@
 
   <main>
     <section class="hero">
+      <div class="hero-arches" data-scroll-fade aria-hidden="true">
+        <svg viewBox="0 0 520 340" focusable="false">
+          <path d="M40 320 C40 182 152 70 290 70 C428 70 480 182 480 320" />
+          <path d="M70 320 C70 199 168 102 289 102 C410 102 450 199 450 320" />
+          <path d="M100 320 C100 216 183 134 288 134 C393 134 420 216 420 320" />
+          <path d="M130 320 C130 234 199 166 287 166 C375 166 390 234 390 320" />
+          <path d="M160 320 C160 252 214 198 286 198 C358 198 360 252 360 320" />
+        </svg>
+      </div>
       <div class="container hero-grid">
         <div class="hero-copy reveal">
           <div class="kicker">Velkommen til SOMI Klinikken</div>
