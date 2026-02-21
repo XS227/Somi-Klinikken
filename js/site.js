@@ -86,6 +86,7 @@
     const feed = document.querySelector("[data-instagram-feed]");
     if (!feed) return;
 
+    const requiredTag = "#somiklinikken";
     const posts = [
       { href: "https://www.instagram.com/reel/DJb67ndsUex/", embed: "https://www.instagram.com/reel/DJb67ndsUex/embed/captioned/", hashtags: ["#somiklinikken", "#bryn"] },
       { href: "https://www.instagram.com/reel/DJb67ndsUex/", embed: "https://www.instagram.com/reel/DJb67ndsUex/embed/captioned/", hashtags: ["#somiklinikken", "#hudpleie"] },
@@ -94,9 +95,14 @@
       { href: "https://www.instagram.com/reel/DJb67ndsUex/", embed: "https://www.instagram.com/reel/DJb67ndsUex/embed/captioned/", hashtags: ["#somiklinikken", "#laser"] }
     ];
 
-    const filteredPosts = posts.filter(post => post.hashtags.includes("#somiklinikken"));
+    const hasRequiredTag = (hashtags = []) => hashtags
+      .map(tag => (tag || "").trim().toLowerCase())
+      .includes(requiredTag);
 
-    feed.innerHTML = filteredPosts.map((post, index) => `
+    const filteredPosts = posts.filter(post => hasRequiredTag(post.hashtags));
+    const uniquePosts = filteredPosts.filter((post, index, allPosts) => index === allPosts.findIndex(item => item.href === post.href));
+
+    feed.innerHTML = uniquePosts.map((post, index) => `
       <a class="footer__insta-item" href="${post.href}" target="_blank" rel="noopener" aria-label="Åpne Instagram innlegg ${index + 1}">
         <iframe src="${post.embed}" title="Instagram innlegg fra SOMI Klinikken ${index + 1}" loading="lazy" allowfullscreen></iframe>
       </a>
