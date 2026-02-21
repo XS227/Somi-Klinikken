@@ -1,19 +1,40 @@
 <footer class="site-footer" role="contentinfo">
   <div class="container">
-    <div class="footer__grid">
-      <section class="footer__col footer__col--contact">
-        <p class="footer__heading">Kontakt</p>
-        <p class="footer__muted">
-          Langgata 31, 4306 Sandnes<br />
-          <a href="tel:+4792939171">+47 929 39 171</a><br />
-          <a href="mailto:post@somiklinikken.no">post@somiklinikken.no</a><br />
-          Åpent etter avtale
-        </p>
+    <section class="footer__instagram" aria-label="Instagram feed">
+      <div class="footer__instagram-head">
+        <p class="footer__heading">Fra Instagram</p>
+        <a href="https://www.instagram.com/somiklinikken" target="_blank" rel="noopener">@somiklinikken</a>
+      </div>
 
-        <div class="footer__actions">
-          <a class="btn btn--primary" href="/booking.html" data-booking-link>BOOK TIME</a>
-        </div>
-      </section>
+      <div class="footer__instagram-grid" data-instagram-feed>
+        <button class="footer__insta-item" type="button" data-instagram-permalink="https://www.instagram.com/reel/DJb67ndsUex/" data-instagram-caption="SOMI Klinikken på Instagram">
+          <img src="/assets/img/hero/hero-woman.svg" alt="Instagram innlegg fra SOMI Klinikken" loading="lazy" />
+        </button>
+        <button class="footer__insta-item" type="button" data-instagram-permalink="https://www.instagram.com/reel/DJb67ndsUex/" data-instagram-caption="SOMI Klinikken på Instagram">
+          <img src="/assets/img/hero/consultation.svg" alt="Instagram innlegg fra SOMI Klinikken" loading="lazy" />
+        </button>
+        <button class="footer__insta-item" type="button" data-instagram-permalink="https://www.instagram.com/reel/DJb67ndsUex/" data-instagram-caption="SOMI Klinikken på Instagram">
+          <img src="/assets/img/hero/beauty-treatment.svg" alt="Instagram innlegg fra SOMI Klinikken" loading="lazy" />
+        </button>
+        <button class="footer__insta-item" type="button" data-instagram-permalink="https://www.instagram.com/reel/DJb67ndsUex/" data-instagram-caption="SOMI Klinikken på Instagram">
+          <img src="/assets/img/hero/clinic-interior.svg" alt="Instagram innlegg fra SOMI Klinikken" loading="lazy" />
+        </button>
+        <button class="footer__insta-item" type="button" data-instagram-permalink="https://www.instagram.com/reel/DJb67ndsUex/" data-instagram-caption="SOMI Klinikken på Instagram">
+          <img src="/assets/img/hero/visit.svg" alt="Instagram innlegg fra SOMI Klinikken" loading="lazy" />
+        </button>
+      </div>
+    </section>
+
+    <div class="footer__grid">
+      <nav class="footer__col footer__group" aria-label="Kontakt">
+        <button class="footer__heading footer__toggle" type="button" aria-expanded="false">Kontakt</button>
+        <ul class="footer__links" hidden>
+          <li>Langgata 31, 4306 Sandnes</li>
+          <li><a href="tel:+4792939171">+47 929 39 171</a></li>
+          <li><a href="mailto:post@somiklinikken.no">post@somiklinikken.no</a></li>
+          <li>Åpent etter avtale</li>
+        </ul>
+      </nav>
 
       <nav class="footer__col footer__group" aria-label="Meny">
         <button class="footer__heading footer__toggle" type="button" aria-expanded="false">Meny</button>
@@ -37,7 +58,7 @@
       <nav class="footer__col footer__group" aria-label="Sosiale medier">
         <button class="footer__heading footer__toggle" type="button" aria-expanded="false">Følg oss</button>
         <ul class="footer__links" hidden>
-          <li><a href="#" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.instagram.com/somiklinikken" target="_blank" rel="noopener">Instagram</a></li>
           <li><a href="#" rel="noopener">Facebook</a></li>
         </ul>
         <p class="footer__muted">Følg oss for oppdateringer og tilbud.</p>
@@ -50,3 +71,11 @@
     </div>
   </div>
 </footer>
+
+<div class="instagram-modal" data-instagram-modal hidden>
+  <div class="instagram-modal__backdrop" data-instagram-close></div>
+  <div class="instagram-modal__dialog" role="dialog" aria-modal="true" aria-label="Instagram innlegg">
+    <button class="instagram-modal__close" type="button" aria-label="Lukk" data-instagram-close>×</button>
+    <iframe data-instagram-frame title="Instagram post" loading="lazy" allowfullscreen></iframe>
+  </div>
+</div>
