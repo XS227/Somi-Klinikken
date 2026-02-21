@@ -192,14 +192,46 @@
 
 
     .parallax-band{
-      min-height:320px;
+      position:relative;
+      min-height:360px;
       border-radius:22px;
       background-image:url('/p/vegg.JPG');
       background-size:cover;
-      background-position:center;
-      background-attachment:fixed;
+      background-position:center var(--parallax-y, 50%);
       border:1px solid rgba(56,56,56,.08);
       box-shadow:0 16px 36px rgba(0,0,0,.08);
+      overflow:hidden;
+      display:grid;
+      align-items:center;
+      justify-items:center;
+      padding:32px;
+    }
+    .parallax-band::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,.18) 0%, rgba(0,0,0,.42) 100%);
+      z-index:0;
+    }
+    .parallax-content{
+      position:relative;
+      z-index:1;
+      text-align:center;
+      color:#fff;
+      max-width:620px;
+    }
+    .parallax-content .h2{ color:#fff; }
+    .parallax-content .cta-row{ justify-content:center; margin-top:20px; }
+    .parallax-content .btn{
+      border-color:rgba(255,255,255,.7);
+      color:#fff;
+      background:rgba(255,255,255,.1);
+      backdrop-filter: blur(3px);
+    }
+    .parallax-content .btn.btn--primary{
+      background:#fff;
+      color:#222;
+      border-color:#fff;
     }
 
     .cta-zone{ background:rgba(237,229,221,0.32); }
@@ -291,7 +323,7 @@
         </div>
         <div class="category-grid">
           <a class="category-card reveal" href="/kategorier/microblading.html"><video src="/vipper.mp4" muted loop playsinline preload="metadata"></video><strong>Microblading</strong><span class="muted">Naturlige bryn med presis form og tilpasset uttrykk.</span></a>
-          <a class="category-card reveal" href="/kategorier/bryn-og-vipper.html"><video src="/vipper.mp4" muted loop playsinline preload="metadata"></video><strong>Bryn &amp; vipper</strong><span class="muted">Forming, farge og løft som fremhever ansiktstrekk.</span></a>
+          <a class="category-card reveal" href="/kategorier/bryn-og-vipper.html"><video src="/vide/v/brynstyling.mp4" muted loop playsinline preload="metadata"></video><strong>Bryn &amp; vipper</strong><span class="muted">Forming, farge og løft som fremhever ansiktstrekk.</span></a>
           <a class="category-card reveal" href="/kategorier/dermalogica.html"><video src="/vipper.mp4" muted loop playsinline preload="metadata"></video><strong>Dermalogica</strong><span class="muted">Målrettet hudpleie basert på din hudtilstand.</span></a>
           <a class="category-card reveal" href="/kategorier/hudpleie.html"><video src="/vipper.mp4" muted loop playsinline preload="metadata"></video><strong>Hud &amp; laser</strong><span class="muted">Avansert behandling med fokus på hudfornyelse.</span></a>
         </div>
@@ -369,17 +401,13 @@
 
     <section class="section section--tight">
       <div class="container">
-        <div class="parallax-band reveal" role="img" aria-label="Interiørbilde fra klinikken"></div>
-      </div>
-    </section>
-
-    <section class="section section--tight cta-zone">
-      <div class="container">
-        <div class="end-cta reveal">
-          <h2 class="h2">Book time når det passer deg</h2>
-          <div class="cta-row" style="margin-top:22px;">
-            <a class="btn btn--primary" href="#" data-booking-link>Book time</a>
-            <a class="btn" href="/contact.html">Kontakt oss</a>
+        <div class="parallax-band reveal" data-parallax-band role="img" aria-label="Interiørbilde fra klinikken">
+          <div class="parallax-content">
+            <h2 class="h2">Book time når det passer deg</h2>
+            <div class="cta-row">
+              <a class="btn btn--primary" href="#" data-booking-link>Book time</a>
+              <a class="btn" href="/contact.html">Kontakt oss</a>
+            </div>
           </div>
         </div>
       </div>
@@ -395,6 +423,7 @@
       const next = document.querySelector('[data-blog-next]');
       const media = document.querySelectorAll('[data-motion-media]');
       const thumbs = document.querySelectorAll('.category-card video');
+      const parallaxBand = document.querySelector('[data-parallax-band]');
 
       thumbs.forEach(video => {
         video.muted = true;
@@ -415,6 +444,15 @@
           const limited = Math.max(-18, Math.min(18, delta + index * 2));
           el.style.setProperty('--motion-y', `${limited.toFixed(1)}px`);
         });
+
+        if (parallaxBand) {
+          const rect = parallaxBand.getBoundingClientRect();
+          const viewportCenter = window.innerHeight / 2;
+          const bandCenter = rect.top + rect.height / 2;
+          const distance = viewportCenter - bandCenter;
+          const shift = Math.max(-14, Math.min(14, distance * 0.03));
+          parallaxBand.style.setProperty('--parallax-y', `${50 + shift}%`);
+        }
       };
 
       window.addEventListener('scroll', updateMotion, { passive: true });
