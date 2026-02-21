@@ -104,7 +104,7 @@
   }
 
   function initScrollFades() {
-    const fadeEls = document.querySelectorAll("[data-scroll-fade]");
+    const fadeEls = document.querySelectorAll("[data-scroll-fade], .reveal");
     if (!fadeEls.length) return;
 
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
