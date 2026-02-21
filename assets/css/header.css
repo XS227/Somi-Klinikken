@@ -13,8 +13,10 @@
 
 /* Sticky header – must be above all page content */
 .site-header{
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 10000;
   background: var(--header-bg);
   border-bottom: 1px solid var(--border);
