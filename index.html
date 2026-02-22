@@ -28,7 +28,7 @@
     .kicker{ letter-spacing:.08em; text-transform:uppercase; font-size:12px; opacity:.7; }
 
     .hero{ background:#E8E6E4; padding:120px 0; position:relative; overflow:hidden; }
-    .hero-arches{
+    .arch-lines{
       position:absolute;
       inset:0;
       z-index:0;
@@ -36,23 +36,37 @@
       opacity:0;
       transition:opacity 700ms ease-out;
     }
-    .hero-arches.is-in{ opacity:1; }
-    .hero-arches svg{
+    .arch-lines.is-in{ opacity:1; }
+    .arch-lines svg{
       position:absolute;
-      right:-120px;
-      top:10px;
+      right:-140px;
+      top:0;
       width:min(640px,56vw);
       height:auto;
       display:block;
     }
-    .hero-arches path{
+    .arch-lines path{
       fill:none;
       stroke:#FFFFFF;
       stroke-width:2;
-      opacity:.28;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+      stroke-dasharray:10 16;
+      animation:archWave 26s linear infinite;
+      opacity:.26;
+      filter:drop-shadow(0 0 10px rgba(255,255,255,0.06));
     }
+    .arch-lines path:nth-child(2){ animation-duration:24s; }
+    .arch-lines path:nth-child(3){ animation-duration:28s; }
+    .arch-lines path:nth-child(4){ animation-duration:22s; }
+    .arch-lines path:nth-child(5){ animation-duration:30s; }
+
+    @keyframes archWave {
+      from { stroke-dashoffset:0; }
+      to { stroke-dashoffset:-38; }
+    }
+
     .hero::after,
-    .about-arch::before,
     .end-cta::after{
       content:"";
       position:absolute;
@@ -67,6 +81,9 @@
       right:clamp(-80px,-2vw,40px);
       top:38px;
     }
+
+    .find-treatment{ background:rgba(241,227,229,0.13); position:relative; overflow:hidden; }
+    .find-treatment .arch-lines svg{ right:-220px; top:-14px; width:min(560px,50vw); }
 
     .hero-grid,.about-grid{ display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:24px; align-items:center; position:relative; z-index:1; }
     .hero-copy{ grid-column: span 7; max-width:620px; }
@@ -120,20 +137,14 @@
     .about-copy{ grid-column: span 6; }
     .about-arch{
       position:relative;
-      border-radius:180px 180px 22px 22px;
+      border-radius:22px;
       border:1px solid rgba(56,56,56,.12);
       padding:16px;
       overflow:hidden;
       max-width:520px;
     }
-    .about-arch::before{
-      inset:10px;
-      border-radius:160px 160px 20px 20px;
-      border-color:rgba(56,56,56,0.1);
-      opacity:.35;
-    }
     .about-arch img,
-    .about-arch video{ width:100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius:150px 150px 16px 16px; display:block; }
+    .about-arch video{ width:100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius:14px; display:block; }
 
     [data-motion-media]{
       transform: translateY(var(--motion-y, 0px));
@@ -238,6 +249,7 @@
       position:relative;
       min-height:360px;
       border-radius:22px;
+      background:#e4e0dc;
       border:1px solid rgba(56,56,56,.08);
       box-shadow:0 16px 36px rgba(0,0,0,.08);
       overflow:hidden;
@@ -261,9 +273,15 @@
       content:"";
       position:absolute;
       inset:0;
-      background:linear-gradient(180deg, rgba(0,0,0,.22) 0%, rgba(0,0,0,.5) 100%);
+      background:linear-gradient(180deg, rgba(0,0,0,.18) 0%, rgba(0,0,0,.4) 100%);
       z-index:-1;
     }
+    .parallax-video-band .arch-lines svg{
+      right:-120px;
+      top:40px;
+      width:min(620px,62vw);
+    }
+    .parallax-video-band .arch-lines path{ opacity:.2; }
     .parallax-video-content{
       position:relative;
       z-index:1;
@@ -326,13 +344,13 @@
 
   <main>
     <section class="hero">
-      <div class="hero-arches" data-scroll-fade aria-hidden="true">
+      <div class="arch-lines" data-scroll-fade aria-hidden="true">
         <svg viewBox="0 0 520 340" focusable="false">
           <path d="M40 320 C40 182 152 70 290 70 C428 70 480 182 480 320" />
-          <path d="M70 320 C70 199 168 102 289 102 C410 102 450 199 450 320" />
-          <path d="M100 320 C100 216 183 134 288 134 C393 134 420 216 420 320" />
-          <path d="M130 320 C130 234 199 166 287 166 C375 166 390 234 390 320" />
-          <path d="M160 320 C160 252 214 198 286 198 C358 198 360 252 360 320" />
+          <path d="M72 320 C72 200 168 102 289 102 C410 102 448 200 448 320" />
+          <path d="M104 320 C104 218 183 134 288 134 C393 134 416 218 416 320" />
+          <path d="M136 320 C136 236 199 166 287 166 C375 166 384 236 384 320" />
+          <path d="M168 320 C168 254 214 198 286 198 C358 198 352 254 352 320" />
         </svg>
       </div>
       <div class="container hero-grid">
@@ -360,7 +378,15 @@
       </div>
     </section>
 
-    <section class="section section--tight">
+    <section class="section section--tight find-treatment">
+      <div class="arch-lines" data-scroll-fade aria-hidden="true">
+        <svg viewBox="0 0 520 340" focusable="false">
+          <path d="M40 320 C40 182 152 70 290 70 C428 70 480 182 480 320" />
+          <path d="M72 320 C72 200 168 102 289 102 C410 102 448 200 448 320" />
+          <path d="M104 320 C104 218 183 134 288 134 C393 134 416 218 416 320" />
+          <path d="M136 320 C136 236 199 166 287 166 C375 166 384 236 384 320" />
+        </svg>
+      </div>
       <div class="container">
         <div class="reveal">
           <h2 class="h2">Finn behandlingen som passer deg</h2>
@@ -416,6 +442,15 @@
       <div class="container">
         <div class="parallax-video-band reveal" data-parallax-video-band aria-label="Video fra klinikken ved booking">
           <video src="/v/open.mp4" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
+          <div class="arch-lines is-in" aria-hidden="true">
+            <svg viewBox="0 0 520 340" focusable="false">
+              <path d="M40 320 C40 182 152 70 290 70 C428 70 480 182 480 320" />
+              <path d="M72 320 C72 200 168 102 289 102 C410 102 448 200 448 320" />
+              <path d="M104 320 C104 218 183 134 288 134 C393 134 416 218 416 320" />
+              <path d="M136 320 C136 236 199 166 287 166 C375 166 384 236 384 320" />
+              <path d="M168 320 C168 254 214 198 286 198 C358 198 352 254 352 320" />
+            </svg>
+          </div>
           <div class="parallax-video-content">
             <h2 class="h2">Slik booker du riktig behandling</h2>
             <div class="timeline">
