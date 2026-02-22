@@ -74,7 +74,6 @@
       gap:14px;
     }
 
-    /* Simple vector “logo” (text + arch) */
     .mark{
       width:56px;
       height:56px;
@@ -86,8 +85,9 @@
       place-items:center;
       position:relative;
       overflow:hidden;
+      padding: 8px;
     }
-    .mark svg{ width:42px; height:42px; display:block; }
+    .mark img{ width:100%; height:100%; object-fit:contain; display:block; }
     .brandname{
       line-height:1.05;
     }
@@ -228,6 +228,38 @@
       line-height:1.45;
     }
 
+    .socialRow{
+      margin-top: 16px;
+      display:flex;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+    .socialLabel{
+      font-size: 13px;
+      opacity:.85;
+      margin-right: 2px;
+    }
+    .socialIcon{
+      width:38px;
+      height:38px;
+      border-radius:999px;
+      border: 1px solid rgba(56,56,56,.12);
+      background: rgba(255,255,255,.76);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      color: var(--ink);
+      text-decoration:none;
+      transition: transform .12s ease, background .12s ease;
+      box-shadow: 0 8px 24px rgba(56,56,56,.10);
+    }
+    .socialIcon:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.9);
+    }
+    .socialIcon svg{ width:18px; height:18px; fill: currentColor; }
+
     /* Tree SVG sizing */
     .treeWrap{
       display:grid;
@@ -367,14 +399,7 @@
       <header>
         <div class="brand" aria-label="SOMI">
           <div class="mark" aria-hidden="true">
-            <!-- Minimal arch logo motif -->
-            <svg viewBox="0 0 64 64" role="img" aria-label="SOMI symbol">
-              <path d="M14 44V34c0-10 8-18 18-18s18 8 18 18v10"
-                    fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"/>
-              <path d="M16 46h32"
-                    fill="none" stroke="#DDB3B3" stroke-width="3" stroke-linecap="round" opacity=".9"/>
-              <circle cx="32" cy="32" r="2.8" fill="#383838" opacity=".55"/>
-            </svg>
+            <img src="/p/LogoSomi.PNG" alt="" />
           </div>
           <div class="brandname">
             <div class="name">SOMI</div>
@@ -440,12 +465,21 @@
             </div>
 
             <div class="ctaRow">
-              <a class="btn" href="#" onclick="return false;" aria-disabled="true" title="Kommer snart">
+              <a class="btn" href="https://somi.bestille.no/OnCust2/#!/" target="_blank" rel="noopener" title="Åpne booking i ny fane">
                 <span class="mini" aria-hidden="true"></span>
-                Tilbake snart
+                Book time
               </a>
               <span class="muted">Ved behov: kontakt oss via de vanlige kanalene.</span>
             </div>
+
+            <div class="socialRow" aria-label="Sosiale kanaler">
+              <span class="socialLabel">Følg oss på Instagram mens vi ferdigstiller siden:</span>
+              <a class="socialIcon" href="https://www.instagram.com/somiklinikken" target="_blank" rel="noopener" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3Zm-5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5Zm5.25-3.35a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1Z"/>
+                </svg>
+              </a>
+              </div>
           </div>
 
           <aside class="right" aria-label="Juleillustrasjon">
