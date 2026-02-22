@@ -1,5 +1,7 @@
 (() => {
   const BOOKING_URL = (window.SOMI_CONFIG && window.SOMI_CONFIG.bookingUrl) || "/booking.html";
+  const ACCESS_CODE = "2026";
+  const ACCESS_STORAGE_KEY = "somi:temporary-access-ok";
 
   function setHeaderHeightVar() {
     const header = document.querySelector("[data-site-header]");
@@ -169,6 +171,55 @@
       });
     });
   }
+
+  function initAccessGate() {
+    if (document.body.dataset.accessGateBound === "true") return;
+    document.body.dataset.accessGateBound = "true";
+
+    const hasAccess = window.localStorage.getItem(ACCESS_STORAGE_KEY) === "true";
+    if (hasAccess) return;
+
+    const overlay = document.createElement("div");
+    overlay.className = "access-gate";
+    overlay.innerHTML = `
+      <div class="access-gate__dialog" role="dialog" aria-modal="true" aria-labelledby="access-gate-title">
+        <img class="access-gate__logo" src="/assets/img/brand/logo.png" alt="SOMI Klinikken" />
+        <h2 class="h3" id="access-gate-title">Midlertidig tilgang</h2>
+        <p>Tast inn tilgangskode for å se nettsiden.</p>
+        <form class="access-gate__form" novalidate>
+          <label class="sr-only" for="access-gate-input">Tilgangskode</label>
+          <input id="access-gate-input" class="input" type="password" inputmode="numeric" autocomplete="one-time-code" placeholder="Tilgangskode" required />
+          <button class="btn btn--primary" type="submit">Åpne nettsiden</button>
+          <p class="access-gate__error" aria-live="polite"></p>
+        </form>
+      </div>
+    `;
+
+    document.body.appendChild(overlay);
+    document.documentElement.classList.add("access-locked");
+
+    const form = overlay.querySelector(".access-gate__form");
+    const input = overlay.querySelector("#access-gate-input");
+    const error = overlay.querySelector(".access-gate__error");
+
+    input.focus();
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const attempt = (input.value || "").trim();
+      if (attempt === ACCESS_CODE) {
+        window.localStorage.setItem(ACCESS_STORAGE_KEY, "true");
+        document.documentElement.classList.remove("access-locked");
+        overlay.remove();
+        return;
+      }
+
+      error.textContent = "Feil kode. Prøv igjen.";
+      input.value = "";
+      input.focus();
+    });
+  }
+
   function smoothScrollTo(id) {
     const targetId = id.replace("#", "");
     const el = document.getElementById(targetId);
@@ -274,6 +325,7 @@
     initNavDropdowns();
     initScrollFades();
     closeMenu();
+    initAccessGate();
 
     if(window.location.hash === "#kart"){
       setTimeout(() => smoothScrollTo("kart"), 120);
@@ -289,5 +341,6 @@
     initInstagramFeed();
     initNavDropdowns();
     initScrollFades();
+    initAccessGate();
   });
 })();
