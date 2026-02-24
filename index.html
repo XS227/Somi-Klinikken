@@ -124,7 +124,7 @@
       transition:transform 180ms ease;
     }
     .category-card:hover{ transform: translateY(-4px); }
-    .category-card video{
+    .category-card img{
       width:100%;
       aspect-ratio:16 / 9;
       object-fit:cover;
@@ -392,10 +392,10 @@
           <h2 class="h2">Finn behandlingen som passer deg</h2>
         </div>
         <div class="category-grid">
-          <a class="category-card reveal" href="/kategorier/microblading.html"><video src="/vipper.mp4" muted loop playsinline preload="metadata"></video><strong>Microblading</strong><span class="muted">Naturlige bryn med presis form og tilpasset uttrykk.</span></a>
-          <a class="category-card reveal" href="/kategorier/bryn-og-vipper.html"><video src="/vide/v/brynstyling.mp4" muted loop playsinline preload="metadata"></video><strong>Bryn &amp; vipper</strong><span class="muted">Forming, farge og løft som fremhever ansiktstrekk.</span></a>
-          <a class="category-card reveal" href="/kategorier/dermalogica.html"><video src="/vipper.mp4" muted loop playsinline preload="metadata"></video><strong>Dermalogica</strong><span class="muted">Målrettet hudpleie basert på din hudtilstand.</span></a>
-          <a class="category-card reveal" href="/kategorier/hudpleie.html"><video src="/vipper.mp4" muted loop playsinline preload="metadata"></video><strong>Hud &amp; laser</strong><span class="muted">Avansert behandling med fokus på hudfornyelse.</span></a>
+          <a class="category-card reveal" href="/kategorier/microblading.html"><img src="/p/microbehandling.jpg" alt="Microblading behandling"><strong>Microblading</strong><span class="muted">Naturlige bryn med presis form og tilpasset uttrykk.</span></a>
+          <a class="category-card reveal" href="/kategorier/bryn-og-vipper.html"><img src="/p/pmukatarina.JPG" alt="Bryn og vipper behandling"><strong>Bryn &amp; vipper</strong><span class="muted">Forming, farge og løft som fremhever ansiktstrekk.</span></a>
+          <a class="category-card reveal" href="/kategorier/dermalogica.html"><img src="/p/dermalogica.jpg" alt="Dermalogica hudpleie"><strong>Dermalogica</strong><span class="muted">Målrettet hudpleie basert på din hudtilstand.</span></a>
+          <a class="category-card reveal" href="/kategorier/hudpleie.html"><img src="/p/hudhud.jpg" alt="Hud og laser behandling"><strong>Hud &amp; laser</strong><span class="muted">Avansert behandling med fokus på hudfornyelse.</span></a>
         </div>
       </div>
     </section>
@@ -504,14 +504,8 @@
       const prev = document.querySelector('[data-blog-prev]');
       const next = document.querySelector('[data-blog-next]');
       const media = document.querySelectorAll('[data-motion-media]');
-      const thumbs = document.querySelectorAll('.category-card video');
       const parallaxBand = document.querySelector('[data-parallax-band]');
       const parallaxVideoBand = document.querySelector('[data-parallax-video-band]');
-
-      thumbs.forEach(video => {
-        video.muted = true;
-        video.play().catch(() => {});
-      });
 
       if (slider && prev && next) {
         const step = () => Math.max(260, Math.round(slider.clientWidth * 0.84));
