@@ -297,6 +297,31 @@
     }
 
     .cta-zone{ background:rgba(237,229,221,0.32); }
+    .google-reviews{ background:rgba(241,227,229,0.16); }
+    .reviews-wrap{
+      border:1px solid rgba(56,56,56,.08);
+      border-radius:22px;
+      background:#fff;
+      box-shadow:0 10px 28px rgba(0,0,0,.03);
+      padding:34px;
+      display:grid;
+      gap:22px;
+    }
+    .reviews-head{ display:flex; justify-content:space-between; align-items:flex-end; gap:20px; flex-wrap:wrap; }
+    .reviews-rating{ display:grid; gap:6px; }
+    .stars{ display:flex; align-items:center; gap:6px; color:#D4A63F; font-size:18px; letter-spacing:1px; }
+    .stars .score{ color:#222; font-size:16px; letter-spacing:0; margin-left:8px; }
+    .review-grid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+    .review-card{
+      border-radius:16px;
+      border:1px solid rgba(56,56,56,.08);
+      background:rgba(248,245,242,0.7);
+      padding:18px;
+      display:grid;
+      gap:10px;
+    }
+    .review-card p{ margin:0; }
+    .review-card .who{ font-size:14px; color:#555; }
     .end-cta{
       position:relative;
       border:1px solid rgba(56,56,56,.08);
@@ -318,6 +343,7 @@
     @media (max-width: 1080px){
       .category-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); }
       .timeline{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .review-grid{ grid-template-columns:1fr 1fr; }
     }
     @media (max-width: 940px){
       .hero-copy,.hero-media,.about-image,.about-copy{ grid-column:1 / -1; }
@@ -327,10 +353,12 @@
     }
     @media (max-width: 700px){
       .category-grid,.timeline{ grid-template-columns:1fr; }
+      .review-grid{ grid-template-columns:1fr; }
       .blog-shell{ grid-template-columns:1fr; }
       .blog-arrow{ display:none; }
       .hero{ padding:90px 0; }
       .end-cta{ padding:30px 24px; }
+      .reviews-wrap{ padding:24px; }
     }
   </style>
 
@@ -490,6 +518,45 @@
               <a class="btn btn--primary" href="#" data-booking-link>Book time</a>
               <a class="btn" href="/contact.html">Kontakt oss</a>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight google-reviews" aria-label="Google anmeldelser">
+      <div class="container">
+        <div class="reviews-wrap reveal">
+          <div class="reviews-head">
+            <div>
+              <div class="kicker">Google anmeldelser</div>
+              <h2 class="h2" style="margin:10px 0 0;">Kundene våre gir oss topp score</h2>
+            </div>
+            <div class="reviews-rating" aria-label="5 av 5 stjerner på Google">
+              <div class="stars" aria-hidden="true">★ ★ ★ ★ ★ <span class="score">5.0 på Google</span></div>
+              <p class="muted" style="margin:0;">Basert på verifiserte tilbakemeldinger fra kunder.</p>
+            </div>
+          </div>
+
+          <div class="review-grid">
+            <article class="review-card">
+              <div class="stars" aria-hidden="true">★ ★ ★ ★ ★</div>
+              <p>"Jeg ble tatt godt imot og fikk tydelige råd hele veien. Resultatet ser naturlig og veldig pent ut."</p>
+              <span class="who">Google-kunde</span>
+            </article>
+            <article class="review-card">
+              <div class="stars" aria-hidden="true">★ ★ ★ ★ ★</div>
+              <p>"Rolig atmosfære, høy profesjonalitet og veldig god oppfølging etter behandling."</p>
+              <span class="who">Google-kunde</span>
+            </article>
+            <article class="review-card">
+              <div class="stars" aria-hidden="true">★ ★ ★ ★ ★</div>
+              <p>"SOMI er nøye, hyggelige og forklarer alt på en trygg måte. Anbefales på det varmeste."</p>
+              <span class="who">Google-kunde</span>
+            </article>
+          </div>
+
+          <div>
+            <a class="btn btn--primary" target="_blank" rel="noopener noreferrer" href="https://www.google.com/search?client=ms-android-samsung-ss&hs=1z49&sa=X&sca_esv=80b90e68a26a4cba&hl=en-DE&sxsrf=ANbL-n7PFAocKcICp596dxqK79Q3ZUTUNw:1771968836362&q=Somi+klinikken+AS+Reviews&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNDUyNDMzNzExMTQ3MLQwMrMwMtrAyPiKUTI4PzdTITsnMy8zOzs1T8ExWCEotSwztbx4EStuOQDRJXN7UwAAAA&rldimm=15216674441701826822&tbm=lcl&ved=2ahUKEwiXm62oivOSAxUx1AIHHZwYDEoQ9fQKegQIZBAG&biw=980&bih=1749&dpr=3.5#lkt=LocalPoiReviews">Se alle anmeldelser på Google</a>
           </div>
         </div>
       </div>
