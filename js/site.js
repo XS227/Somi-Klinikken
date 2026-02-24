@@ -183,7 +183,7 @@
     overlay.className = "access-gate";
     overlay.innerHTML = `
       <div class="access-gate__dialog" role="dialog" aria-modal="true" aria-labelledby="access-gate-title">
-        <img class="access-gate__logo" src="/assets/img/brand/logo.png" alt="SOMI Klinikken" />
+        <img class="access-gate__logo" src="/p/LogoSomi.PNG" alt="SOMI Klinikken" />
         <h2 class="h3" id="access-gate-title">Midlertidig tilgang</h2>
         <p>Tast inn tilgangskode for å se nettsiden.</p>
         <form class="access-gate__form" novalidate>
