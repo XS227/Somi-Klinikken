@@ -15,9 +15,13 @@
         "Gi beskjed dersom du har nylige hudbehandlinger eller medisiner."
       ],
       after: [
-        "Hold området rent og unngå svette, solarium og badstu første dagene.",
-        "Ikke plukk i skorpene – la huden gro naturlig.",
-        "Bruk anbefalt salve og solfaktor for å bevare resultatet."
+        "Hold området rent og unngå svette, solarium og badstu de første dagene.",
+        "Ikke plukk i eventuelle skorper – la huden gro i eget tempo.",
+        "Bruk anbefalt salve og SPF for å bevare farge og form."
+      ],
+      reviews: [
+        "Katarina tok seg god tid til oppmåling, og brynene ble akkurat så naturlige som jeg ønsket. – Google-kunde",
+        "Veldig trygg prosess fra konsultasjon til etterkontroll. Resultatet holder seg kjempefint. – Google-kunde"
       ]
     },
     "bryn-vipper": {
@@ -30,9 +34,12 @@
         "Unngå selvbruning rundt øyne/bryn samme dag.",
         "Gi beskjed om allergier eller om du tidligere har reagert på farge."],
       after: [
-        "Unngå vann, damp og oljebaserte produkter første 24 timene.",
-        "Børst bryn/vipper forsiktig for å beholde formen.",
-        "Bestill vedlikeholdstime etter anbefalt intervall."],
+        "Unngå vann, damp og oljebaserte produkter de første 24 timene.",
+        "Børst bryn/vipper forsiktig for å bevare løft og retning.",
+        "Bestill vedlikehold når effekten begynner å avta."],
+      reviews: [
+        "Brynstylingen ga ansiktet et løft med en gang. Nøyaktig, rolig og veldig profesjonelt. – Google-kunde",
+        "Vippeløftet holdt lenge, og jeg fikk tydelige råd om etterpleie. – Google-kunde"],
     },
     dermalogica: {
       benefits: [
@@ -45,8 +52,11 @@
         "Informer om medisiner, graviditet/amming og hudreaksjoner."],
       after: [
         "Bruk solfaktor daglig de første dagene etter behandling.",
-        "Vent med egenpeeling og retinol i minst 48 timer.",
+        "Vent med hjemmepeel og retinol i minst 48 timer.",
         "Følg hudterapeutens anbefalinger for hjemmepleie."],
+      reviews: [
+        "Hudanalysen var grundig, og behandlingen ble tydelig tilpasset huden min. – Google-kunde",
+        "Merket mindre rødhet og jevnere hudtone allerede etter første time. – Google-kunde"],
     },
     hudpleie: {
       benefits: [
@@ -58,9 +68,12 @@
         "Pause retinol/eksfolierende produkter 2 døgn i forkant.",
         "Informer om medisiner, hudsykdommer og tidligere reaksjoner."],
       after: [
-        "Bruk solfaktor og unngå direkte sol første dagene.",
-        "Hold huden godt fuktet og vent med sterke produkter 2–3 døgn.",
+        "Bruk solfaktor og unngå direkte sol de første dagene.",
+        "Hold huden godt fuktet og vent med sterke produkter i 2–3 døgn.",
         "Ta kontakt dersom du opplever uventede reaksjoner."],
+      reviews: [
+        "Dyprensen hos SOMI gjorde huden klarere uten å irritere. – Google-kunde",
+        "Laserbehandlingen ble forklart steg for steg, og jeg følte meg veldig trygg. – Google-kunde"],
     }
   };
 
@@ -134,10 +147,11 @@
       tagsWrap.innerHTML = badges.join("");
     }
 
-    const def = defaults[category.id] || { benefits: [], prep: [], after: [] };
+    const def = defaults[category.id] || { benefits: [], prep: [], after: [], reviews: [] };
     fillList(document.querySelector("[data-list='benefits']"), def.benefits);
     fillList(document.querySelector("[data-list='prep']"), def.prep);
     fillList(document.querySelector("[data-list='aftercare']"), def.after);
+    fillList(document.querySelector("[data-list='reviews']"), def.reviews);
 
     document.querySelectorAll("[data-booking-link]").forEach(a => {
       a.setAttribute("href", BOOKING_URL);

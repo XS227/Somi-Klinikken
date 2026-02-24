@@ -53,14 +53,14 @@ function tpl(item, cat){
 
       <div class="treatment-grid">
         <section class="section-card">
-          <h2>Dette får du</h2>
-          <p>Et kort sammendrag av hva behandlingen innebærer og hva du kan forvente.</p>
+          <h2>Resultat og innhold</h2>
+          <p>Behandlingen tilpasses hud, mål og ønsket uttrykk for et trygt og naturlig resultat.</p>
           <ul data-list="benefits"></ul>
         </section>
 
         <section class="section-card">
-          <h2>Praktisk info</h2>
-          <p>Pris og tid kan variere ved kombinasjoner. Kontakt oss om du trenger råd.</p>
+          <h2>Praktisk informasjon</h2>
+          <p>Her ser du oppdatert pris, varighet og kategori for behandlingen du har valgt.</p>
           <div class="note-box">
             <div><strong>Pris:</strong> <span data-field="price">${item.price || ''}</span></div>
             <div><strong>Varighet:</strong> <span data-field="duration">${item.duration || ''}</span></div>
@@ -75,17 +75,25 @@ function tpl(item, cat){
 
       <div class="treatment-grid">
         <section class="section-card">
-          <h2>Før timen</h2>
-          <p>Små forberedelser kan gi et bedre resultat.</p>
+          <h2>Før behandling</h2>
+          <p>Disse rådene gjør huden klar og gir jevnere resultat.</p>
           <ul data-list="prep"></ul>
         </section>
 
         <section class="section-card">
-          <h2>Etter timen</h2>
-          <p>Følg rådene nedenfor for å sikre god etterbehandling.</p>
+          <h2>Etter behandling</h2>
+          <p>Riktig etterpleie er viktig for holdbarhet, komfort og resultat.</p>
           <ul data-list="aftercare"></ul>
         </section>
       </div>
+
+
+
+      <section class="section-card">
+        <h2>Kundetilbakemeldinger</h2>
+        <p>Ekte tilbakemeldinger fra kunder som har tatt lignende behandling hos SOMI Klinikken.</p>
+        <ul data-list="reviews"></ul>
+      </section>
 
       <div class="section-card">
         <h2>Spørsmål?</h2>

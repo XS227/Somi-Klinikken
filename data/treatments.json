@@ -30,6 +30,19 @@
           ]
         },
         {
+          "id": "pmu-oyenbryn",
+          "name": "PMU øyenbryn",
+          "short": "Permanent makeup av bryn med naturlig form, farge og lang holdbarhet.",
+          "duration": "2 t 30 min",
+          "price": "Fra 3 990 kr",
+          "popular": true,
+          "tags": [
+            "pmu",
+            "øyenbryn",
+            "konsultasjon"
+          ]
+        },
+        {
           "id": "ekstra-touch-up-microblading",
           "name": "Ekstra touch up microblading/powderbrows/lip blush",
           "short": "Ekstra touch-up innen 8 uker etter touch up.",
