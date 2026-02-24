@@ -176,7 +176,7 @@
     if (document.body.dataset.accessGateBound === "true") return;
     document.body.dataset.accessGateBound = "true";
 
-    const hasAccess = window.localStorage.getItem(ACCESS_STORAGE_KEY) === "true";
+    const hasAccess = window.sessionStorage.getItem(ACCESS_STORAGE_KEY) === "true";
     if (hasAccess) return;
 
     const overlay = document.createElement("div");
@@ -208,7 +208,7 @@
       event.preventDefault();
       const attempt = (input.value || "").trim();
       if (attempt === ACCESS_CODE) {
-        window.localStorage.setItem(ACCESS_STORAGE_KEY, "true");
+        window.sessionStorage.setItem(ACCESS_STORAGE_KEY, "true");
         document.documentElement.classList.remove("access-locked");
         overlay.remove();
         return;
