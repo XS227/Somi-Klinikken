@@ -82,10 +82,32 @@
   line-height: 1.5;
 }
 
+.practitioner-card{
+  display:grid;
+  grid-template-columns:1.3fr .7fr;
+  gap:16px;
+  align-items:center;
+  background:linear-gradient(130deg, rgba(221,179,179,0.18), rgba(255,255,255,0.95));
+}
+
+.practitioner-card img{
+  width:100%;
+  max-width:220px;
+  justify-self:end;
+  border-radius:16px;
+  border:1px solid rgba(56,56,56,0.12);
+  background:#fff;
+}
+
+.practitioner-content h2{ margin:4px 0; }
+.practitioner-role{ font-size:14px; text-transform:uppercase; letter-spacing:.1em; color:rgba(56,56,56,.62); }
+
 @media (max-width: 900px){
   .treatment-grid{ grid-template-columns: 1fr; }
 }
 
 @media (max-width: 640px){
   .treatment-hero{ padding: 18px; }
+  .practitioner-card{ grid-template-columns:1fr; }
+  .practitioner-card img{ justify-self:start; max-width:180px; }
 }

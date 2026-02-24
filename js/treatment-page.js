@@ -64,6 +64,41 @@
     }
   };
 
+  const practitioners = {
+    microblading: {
+      name: "Katarina",
+      role: "Eier og daglig leder",
+      image: "/assets/img/team/katarina.svg",
+      alt: "Katarina fra SOMI Klinikken",
+      bio: "Katarina spesialiserer seg på naturlig microblading med presis oppmåling og personlig tilpasning.",
+      cta: "Bestill time hos Katarina"
+    },
+    "bryn-vipper": {
+      name: "Emma",
+      role: "Hudterapeut",
+      image: "/assets/img/team/emma.svg",
+      alt: "Emma fra SOMI Klinikken",
+      bio: "Emma jobber med bryn og vipper for å skape et mykt, symmetrisk og holdbart resultat.",
+      cta: "Bestill time hos Emma"
+    },
+    dermalogica: {
+      name: "Emma",
+      role: "Hudterapeut",
+      image: "/assets/img/team/emma.svg",
+      alt: "Emma fra SOMI Klinikken",
+      bio: "Emma tilpasser Dermalogica-behandlinger etter hudtilstand, mål og sesong for trygg hudforbedring.",
+      cta: "Bestill Dermalogica hos Emma"
+    },
+    hudpleie: {
+      name: "Arianna",
+      role: "Laserspesialist",
+      image: "/assets/img/team/arianna.svg",
+      alt: "Arianna fra SOMI Klinikken",
+      bio: "Arianna tilbyr hud- og laserbehandlinger med fokus på sikkerhet, komfort og synlige resultater.",
+      cta: "Bestill hudbehandling hos Arianna"
+    }
+  };
+
   function findTreatment(id, data){
     for(const cat of data.categories || []){
       const item = (cat.items || []).find(it => it.id === id);
@@ -119,6 +154,28 @@
 
     const backLink = document.querySelector("[data-back-link]");
     if(backLink) backLink.setAttribute("href", `/behandlinger.html#${category.id}`);
+
+    const practitioner = practitioners[category.id];
+    if (practitioner) {
+      const container = document.querySelector(".treatmentPage .container");
+      const lastSectionCard = container ? container.querySelector(".section-card:last-of-type") : null;
+      if (container && lastSectionCard && !container.querySelector("[data-practitioner-card]")) {
+        const section = document.createElement("section");
+        section.className = "section-card practitioner-card";
+        section.setAttribute("data-practitioner-card", "");
+        section.innerHTML = `
+          <div class="practitioner-content">
+            <p class="kicker">Din behandler</p>
+            <h2>${practitioner.name}</h2>
+            <p class="practitioner-role">${practitioner.role}</p>
+            <p>${practitioner.bio}</p>
+            <a class="btn btn--primary" href="${BOOKING_URL}" data-booking-link>${practitioner.cta}</a>
+          </div>
+          <img src="${practitioner.image}" alt="${practitioner.alt}" loading="lazy" />
+        `;
+        container.insertBefore(section, lastSectionCard);
+      }
+    }
   }
 
   function showError(){
