@@ -18,4 +18,8 @@
 .review-card{border-radius:16px;border:1px solid rgba(56,56,56,.08);background:rgba(248,245,242,0.7);padding:18px;display:grid;gap:10px;}
 .review-card p{margin:0;}
 .review-card .who{font-size:14px;color:#555;}
+.review-links{display:grid;gap:8px;}
+.review-links a{color:#8c3841;text-decoration:underline;font-weight:600;}
+.specialist-note{margin-top:4px;border-radius:16px;border:1px solid rgba(56,56,56,.08);background:rgba(248,245,242,0.7);padding:18px;display:grid;gap:8px;}
+.specialist-note p{margin:0;}
 @media (max-width: 700px){.review-grid{grid-template-columns:1fr;}.google-reviews{padding:22px;}}
