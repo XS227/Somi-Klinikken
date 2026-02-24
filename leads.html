@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leads Dashboard | Somi Klinikken</title>
+  <script>
+    const correctPassword = "Somi@2026";
+
+    const userPassword = prompt("Enter admin password:");
+
+    if (userPassword !== correctPassword) {
+      document.body.innerHTML = "<h1>Access denied</h1>";
+      throw new Error("Unauthorized");
+    }
+  </script>
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+  <style>
+    :root {
+      --bg: #f8f9fc;
+      --card: #ffffff;
+      --text: #1e2a3a;
+      --muted: #6f7a88;
+      --accent: #a063c4;
+      --border: #e7e9ef;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.5;
+    }
+
+    .dashboard {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 32px 18px 48px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.5rem, 3vw, 2.1rem);
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-top: 6px;
+    }
+
+    .button {
+      border: 0;
+      background: var(--accent);
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      box-shadow: 0 4px 18px rgba(7, 18, 44, 0.05);
+    }
+
+    .chart {
+      min-height: 340px;
+    }
+
+    .ai-box h2 {
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+    }
+
+    .ai-box ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .note {
+      margin-top: 24px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+  </style>
+  <script>
+    google.charts.load('current', {packages:['corechart']});
+    google.charts.setOnLoadCallback(drawCharts);
+
+    let keywordRows = [
+      ['Keyword', 'Clicks'],
+      ['Botox Nurnberg', 120],
+      ['Leppefiller', 95],
+      ['Hudklinikk Nürnberg', 80],
+      ['Somi Klinikken', 150]
+    ];
+
+    let pageRows = [
+      ['Page', 'Visits'],
+      ['/botox', 340],
+      ['/leppefiller', 290],
+      ['/kontakt', 120],
+      ['/priser', 210]
+    ];
+
+    function drawCharts() {
+      var data = google.visualization.arrayToDataTable(keywordRows);
+
+      var options = {
+        title: 'Top Performing Keywords',
+        curveType: 'function',
+        legend: { position: 'bottom' },
+        colors: ['#a063c4']
+      };
+
+      var chart = new google.visualization.LineChart(document.getElementById('keywords_chart'));
+      chart.draw(data, options);
+
+      var pageData = google.visualization.arrayToDataTable(pageRows);
+      var pageChart = new google.visualization.ColumnChart(document.getElementById('pages_chart'));
+      pageChart.draw(pageData, {
+        title: 'Top Pages',
+        legend: { position: 'none' },
+        colors: ['#5a7be7']
+      });
+
+      renderAiAssessment();
+      setUpdatedLabel();
+    }
+
+    function renderAiAssessment() {
+      const bestKeyword = keywordRows.slice(1).reduce((max, row) => row[1] > max[1] ? row : max);
+      const bestPage = pageRows.slice(1).reduce((max, row) => row[1] > max[1] ? row : max);
+      const weakestPage = pageRows.slice(1).reduce((min, row) => row[1] < min[1] ? row : min);
+
+      document.getElementById('ai_recommendations').innerHTML = `
+        <li><strong>Prioriter søkeord:</strong> "${bestKeyword[0]}" har høyest klikk (${bestKeyword[1]}). Lag mer innhold og annonser rundt dette temaet.</li>
+        <li><strong>Beste side:</strong> ${bestPage[0]} får mest trafikk (${bestPage[1]} besøk). Bruk samme struktur/CTA på flere sider.</li>
+        <li><strong>Forbedringsområde:</strong> ${weakestPage[0]} har lavest trafikk (${weakestPage[1]}). Test bedre SEO-tittel, internlenker og tydeligere call-to-action.</li>
+      `;
+    }
+
+    function setUpdatedLabel() {
+      document.getElementById('last_updated').textContent = new Date().toLocaleString('no-NO');
+    }
+
+    function refreshData() {
+      keywordRows = keywordRows.map((row, i) => i === 0 ? row : [row[0], Math.round(row[1] * (0.93 + Math.random() * 0.2))]);
+      pageRows = pageRows.map((row, i) => i === 0 ? row : [row[0], Math.round(row[1] * (0.93 + Math.random() * 0.2))]);
+      drawCharts();
+    }
+
+    window.addEventListener('resize', drawCharts);
+  </script>
+</head>
+<body>
+  <main class="dashboard">
+    <div class="topbar">
+      <div>
+        <h1>Leads & Trafikkoversikt</h1>
+        <div class="meta">Sist oppdatert: <span id="last_updated">-</span></div>
+      </div>
+      <button class="button" onclick="refreshData()">Oppdater data nå</button>
+    </div>
+
+    <section class="grid">
+      <article class="card">
+        <div id="keywords_chart" class="chart"></div>
+      </article>
+
+      <article class="card">
+        <div id="pages_chart" class="chart"></div>
+      </article>
+
+      <article class="card ai-box" style="grid-column: 1 / -1;">
+        <h2>AI-vurdering for videre optimalisering</h2>
+        <ul id="ai_recommendations"></ul>
+      </article>
+    </section>
+
+    <p class="note">
+      Demoen kan oppdateres nesten automatisk ved å koble dataene til Google Search Console / GA4 API og kjøre oppdatering periodisk.
+      Passord-beskyttelsen her er kun frontend-demo og ikke en sikker produksjonsløsning.
+    </p>
+  </main>
+</body>
+</html>
