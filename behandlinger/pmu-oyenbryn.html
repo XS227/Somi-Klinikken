@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PMU øyenbryn | SOMI Klinikken</title>
-  <meta name="description" content="PMU øyenbryn hos SOMI Klinikken – permanent makeup med tilpasset form, pigment og naturlig resultat." />
+  <meta name="description" content="PMU øyenbryn hos SOMI Klinikken – permanent makeup med naturlige og tidløse bryn tilpasset ditt ansikt." />
   <link rel="stylesheet" href="/css/tokens.css" />
   <link rel="stylesheet" href="/css/base.css" />
   <link rel="stylesheet" href="/css/layout.css" />
@@ -16,83 +16,262 @@
   <link rel="stylesheet" href="/css/hotfix.css" />
   <script defer src="/js/includes.js"></script>
   <script defer src="/js/site.js"></script>
+  <style>
+    .pmu-full-hero {
+      position: relative;
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      min-height: clamp(320px, 70vh, 760px);
+      background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.35)), url('/assets/img/brand/setaei.jpg') center/cover no-repeat;
+      display: grid;
+      align-items: end;
+      padding: clamp(22px, 4vw, 48px);
+      color: #fff;
+    }
+
+    .pmu-full-hero h1 {
+      margin: 0;
+      font-size: clamp(34px, 6vw, 64px);
+      line-height: 1.05;
+      color: #fff;
+    }
+
+    .pmu-full-hero p {
+      margin: 8px 0 0;
+      max-width: 60ch;
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    .pmu-two-col,
+    .pmu-split,
+    .pmu-gallery-grid {
+      display: grid;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .pmu-two-col,
+    .pmu-split {
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: stretch;
+    }
+
+    .pmu-text-stack {
+      display: grid;
+      gap: 14px;
+    }
+
+    .pmu-video,
+    .pmu-split img {
+      width: 100%;
+      height: 100%;
+      min-height: 260px;
+      border-radius: 18px;
+      border: 1px solid rgba(56, 56, 56, 0.12);
+      object-fit: cover;
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+      background: #121212;
+    }
+
+    .pmu-three-col {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .pmu-aftercare-list {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 8px;
+      line-height: 1.65;
+      color: rgba(56, 56, 56, 0.78);
+    }
+
+    .pmu-gallery-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .pmu-gallery-item {
+      margin: 0;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(56, 56, 56, 0.1);
+      background: #fff;
+    }
+
+    .pmu-gallery-button {
+      border: 0;
+      display: block;
+      width: 100%;
+      padding: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .pmu-gallery-button img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .pmu-gallery-item figcaption {
+      padding: 10px 12px;
+      color: rgba(56, 56, 56, 0.7);
+      font-size: 14px;
+    }
+
+    .pmu-lightbox {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 20px;
+      z-index: 1200;
+    }
+
+    .pmu-lightbox.is-open {
+      display: flex;
+    }
+
+    .pmu-lightbox img {
+      max-width: min(1000px, 94vw);
+      max-height: 84vh;
+      border-radius: 12px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    }
+
+    .pmu-lightbox button {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      background: rgba(0, 0, 0, 0.3);
+      color: #fff;
+      border-radius: 999px;
+      width: 42px;
+      height: 42px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 900px) {
+      .pmu-two-col,
+      .pmu-split,
+      .pmu-three-col,
+      .pmu-gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pmu-gallery-button img {
+        height: 220px;
+      }
+    }
+  </style>
 </head>
 <body>
   <div data-include="/partials/header.html"></div>
 
   <main class="treatmentPage">
-    <div class="container">
-      <section class="treatment-hero">
+    <section class="pmu-full-hero" aria-label="PMU øyenbryn hero">
+      <div class="container">
         <p class="kicker">Behandling · PMU</p>
-        <h1 class="treatment-title">PMU øyenbryn</h1>
-        <p class="treatment-lead">Permanent makeup for deg som ønsker mer markerte, symmetriske og naturlige bryn i hverdagen.</p>
-        <div class="treatment-meta">
-          <span class="meta-pill">Kategori: <strong style="margin-left:6px;">Microblading / PMU</strong></span>
-          <span class="meta-pill">Varighet: <strong style="margin-left:6px;">2 t 30 min</strong></span>
-          <span class="meta-pill">Pris: <strong style="margin-left:6px;">Fra 3 990 kr</strong></span>
+        <h1>PMU øyenbryn</h1>
+        <p>Tidløse bryn med naturlig uttrykk, tilpasset ditt ansikt og dine ønsker.</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <section class="pmu-two-col" aria-label="Hva er PMU brows og konsultasjon">
+        <div class="pmu-text-stack">
+          <article class="section-card">
+            <h2>Hva er PMU brows?</h2>
+            <p>Bryn er selve rammen til ansiktet ditt, og kan ha utrolig mye å si for ditt utrykk. Bryn-trenden endrer seg hele tiden, men jeg har fokus på å lage klassiske bryn, som er tidløse. Brynene skal passe ditt utgangspunkt og kle ditt ansikt. Jeg lager naturlige resultater, så du trenger ikke bekymre deg for å få svarte store bryn, eller unaturlige tynne bryn.</p>
+          </article>
+          <article class="section-card">
+            <h2>Konsultasjon</h2>
+            <p>Jeg tegner opp fasong på forhånd. Du forteller hva du er vant til, hva du ønsker og hva du absolutt ikke ønsker, mens jeg kommer med veiledning og råd til hva som kler nettopp deg og ditt ansikt. Sammen blir vi enige om dette før vi starter behandlingen. På denne måten kan du føle deg trygg på at du får noe du vil være komfortabel med. Du kan gjerne vise meg bilder av bryn du liker/ikke liker i konsultasjonen.</p>
+          </article>
         </div>
-        <div class="treatment-cta">
-          <a class="btn btn--primary" href="/booking.html">BOOK TIME</a>
-          <a class="btn" href="/behandlinger.html#microblading">Tilbake til behandlinger</a>
-          <a class="btn" href="/priser.html">Se priser</a>
-        </div>
+        <video class="pmu-video" controls playsinline preload="metadata" aria-label="Video om PMU behandling">
+          <source src="/v/Lipblush2.mp4" type="video/mp4" />
+          Nettleseren din støtter ikke videoavspilling.
+        </video>
       </section>
 
-      <div class="treatment-grid">
-        <section class="section-card">
-          <h2>Hva er PMU øyenbryn?</h2>
-          <p>PMU (permanent makeup) er en kosmetisk pigmentering av bryn der form og farge bygges opp etter ansiktstrekk, hudtone og ønsket uttrykk. Målet er et mykt og naturlig resultat som gjør det enklere å føle seg vel – også uten sminke.</p>
-          <ul>
-            <li>Grundig konsultasjon og oppmåling før start.</li>
-            <li>Tilpasset pigmentvalg for naturlig helhet.</li>
-            <li>Kontroll av form underveis i hele behandlingen.</li>
-          </ul>
-        </section>
+      <section class="pmu-three-col" aria-label="Behandling, healing og varighet">
+        <article class="section-card">
+          <h2>Behandlingen</h2>
+          <p>Vi pigmenterer tynne små strå på huden din, som ser ut som hårstrå. Denne metoden er den mest populære, og gir også det naturligste resultatet. Jeg bruker bedøvende kremer, så dette gjør minimalt vondt. De fleste syns napping er verre.</p>
+          <p>Jeg kan også lage powderbrows (gir en mer makeuplook), eller en kombinasjon av pudder og stråteknikk. Jeg jobber med maskin og nål, og microblading utstyr. Under konsultasjonen finner vi ut sammen hvilken teknikk som vil være mest egnet for deg og din hud, samt ønsket resultat.</p>
+          <p>Behandlingen tar omtrent 1,5 – 2 timer første gang. Jeg anbefaler at du etter 6 uker kommer tilbake for ditt første refill. Refill tar ca. en time. Da justerer vi litt på det du måtte ønske. Noen har da lyst på litt mørkere farge eller tykkere fasong.</p>
+        </article>
+        <article class="section-card">
+          <h2>Healingprosessen</h2>
+          <p>Rett etter behandlingen vil brynene føles litt såre. Fargen vil føles mørkere dagen etter utført behandling, og på dag 3-5 vil overskuddsfarge begynne å flasse. Brynene vil i denne perioden føles litt tørre, så du må smøre med en anbefalt sårkrem. Den komplette helingprosessen tar 6 uker. Du kan lese mer om dette på etterbehandling. Du finner også relevant informasjon under siden spørsmål og svar.</p>
+        </article>
+        <article class="section-card">
+          <h2>Varighet</h2>
+          <p>Permanent makeup på bryn varer ca. 3-5 år. Men det er ingen garanti for at det forsvinner helt eller varer 5 år. Huden opptar farge ulikt og pigmenteringen heles ulikt. Det spiller også en stor rolle hvordan du tar vare på tatoveringen din i etterkant, hudtype og livsstil. Jeg anbefaler alltid et årlig refill for å vedlikeholde fargen.</p>
+        </article>
+      </section>
 
-        <section class="section-card">
-          <h2>Dette er inkludert</h2>
-          <div class="note-box">
-            <div><strong>Konsultasjon:</strong> Vi kartlegger hud, ønsker og tidligere behandlinger.</div>
-            <div><strong>Behandling:</strong> Formtegning, pigmentering og tilpasning.</div>
-            <div><strong>Etterråd:</strong> Du får tydelige råd for trygg tilheling.</div>
-          </div>
-          <div class="treatment-cta" style="margin-top:10px;">
-            <a class="btn btn--primary" href="/booking.html">Bestill PMU</a>
-            <a class="btn" href="/contact.html">Kontakt oss</a>
-          </div>
-        </section>
-      </div>
+      <section class="pmu-split" aria-label="Informasjon etter de første 5 dagene">
+        <img src="/assets/img/brand/setaei.jpg" alt="PMU bryn resultat etter behandling" loading="lazy" />
+        <article class="section-card">
+          <h2>Etter de første 5 dagene</h2>
+          <p>Når skorpene har falt helt av, kan du sminke deg over det pigmenterte området, og vende tilbake til dine normale rutiner. Pigmenteringen kan ha en melkeaktig/grå farge etter at skorpene har falt av. Dette betyr bare at den øverste delen av huden har helet, men lagene av hud under trenger fortsatt tid til å heles.</p>
+          <p>Den komplette helingprosessen tar 6 uker. Etter 6 uker vil den sanne og endelige fargen på pigmenteringen vises. Det er først etter 6 uker at vi kan ta refill.</p>
+          <p>Når pigmenteringen har helet vil fargen føles softere og den vil ikke være like hard / skarp. Vær oppmerksom på at resultatene vil variere fra person til person, og er ekstremt avhengig av huden din, og hvordan du pleier den under helingprosessen. Det kan være behov for flere refill for å oppnå ønsket resultat.</p>
+        </article>
+      </section>
 
-      <div class="treatment-grid">
-        <section class="section-card">
-          <h2>Før behandling</h2>
-          <ul>
-            <li>Unngå alkohol, blodfortynnende og koffein samme dag.</li>
-            <li>Ikke bruk sterke syrer/retinol rundt brynene siste 3–5 dager.</li>
-            <li>Kom gjerne uten brynsminke for enklere oppmåling.</li>
-          </ul>
-        </section>
-
-        <section class="section-card">
-          <h2>Etter behandling</h2>
-          <ul>
-            <li>Hold området tørt og rent de første dagene.</li>
-            <li>Unngå hard trening, badstu, bading og direkte sol i tilhelingsperioden.</li>
-            <li>Ikke plukk på huden – la skorper falle av naturlig.</li>
-          </ul>
-        </section>
-      </div>
-
-      <section class="section-card">
-        <h2>Kundetilbakemeldinger</h2>
-        <ul>
-          <li>"Utrolig fornøyd med PMU-brynene mine. De ser naturlige ut og passer ansiktet mitt perfekt." – Google-kunde</li>
-          <li>"Trygg prosess fra start til slutt. Jeg fikk god forklaring og resultatet ble akkurat som avtalt." – Google-kunde</li>
+      <section class="section-card" aria-label="Etterbehandling og FAQ">
+        <h2>FAQ / etterbehandling</h2>
+        <h3>Etterbehandling</h3>
+        <ul class="pmu-aftercare-list">
+          <li>Den samme dagen som du får utført behandlingen, skal du tørke av brynene med en fuktig og ren bomulls-pads en gang i timen/hver andre time. Brynene vil væske litt rett etter behandlingen, og om du er nøye med å tørke forsiktig av overflødig væske, vil du danne mindre skorper, og pigmenteringen vil heles finere.</li>
+          <li>Unngå rennende vann direkte på pigmenteringen din helt den første dagen. Dag 2 kan du dusje som normalt, men unngå å ha pigmenteringen lenge i vann de første dagene. Dette kan føre til at skorpene blir bløte og faller av for tidlig. Husk at du vil beholde skorpen så lenge som mulig, og la den flasse av naturlig.</li>
+          <li>Smør KUN med anbefalt sårkrem. (BEPHANTHEN) Fås kjøpt på apotek! IKKE BRUK VASELINE eller noe annet. Påfør sårkrem med Q-tips i et tynt lag på kvelden. Bruk q-tips og rene fingre, husk at det et åpent sår, og du bør unngå bakterier for å forhindre infeksjon. Har du naturlig fet hud trenger du ikke bruke sårsalve.</li>
+          <li>Unngå sollys / solarium (bleker pigmenteringen og kan endre fargen totalt). Bruk solbriller.</li>
+          <li>Unngå svømmebasseng (pga klor som bleker og bakterier).</li>
+          <li>Unngå trening / badstue (svetter ut fargen).</li>
+          <li>La pigmenteringen være i fred, men vask forsiktig over med en fuktig pads morgen og kveld. Ikke plukk på skorper, da dette kan forårsake tap av pigment, skape arr eller i verste fall infeksjoner.</li>
+          <li>For å unngå infeksjoner må du IKKE bruke makeup/kremer/pudder på selve pigmenteringen.</li>
         </ul>
       </section>
 
-      <section class="section-card treatment-booking-band" aria-label="Book time">
-        <h2>Klar for PMU øyenbryn?</h2>
+      <section class="section-card" aria-label="Vårt arbeid">
+        <h2>Vårt arbeid</h2>
+        <p>Se tidligere resultater. Klikk på et bilde for å vise det større.</p>
+        <div class="pmu-gallery-grid">
+          <figure class="pmu-gallery-item">
+            <button class="pmu-gallery-button" type="button" data-lightbox-image="/assets/img/brand/setaei.jpg" aria-label="Åpne resultatbilde 1 større">
+              <img src="/assets/img/brand/setaei.jpg" alt="Tidligere PMU brynresultat 1" loading="lazy" />
+            </button>
+            <figcaption>Naturlig brynsform tilpasset ansiktsform.</figcaption>
+          </figure>
+          <figure class="pmu-gallery-item">
+            <button class="pmu-gallery-button" type="button" data-lightbox-image="/assets/img/brand/setaei.jpg" aria-label="Åpne resultatbilde 2 større">
+              <img src="/assets/img/brand/setaei.jpg" alt="Tidligere PMU brynresultat 2" loading="lazy" />
+            </button>
+            <figcaption>Mykere pigmentering med klassisk uttrykk.</figcaption>
+          </figure>
+          <figure class="pmu-gallery-item">
+            <button class="pmu-gallery-button" type="button" data-lightbox-image="/assets/img/brand/setaei.jpg" aria-label="Åpne resultatbilde 3 større">
+              <img src="/assets/img/brand/setaei.jpg" alt="Tidligere PMU brynresultat 3" loading="lazy" />
+            </button>
+            <figcaption>Kombinasjon av naturlige strå og fylde.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section-card treatment-booking-band" aria-label="Book når det passer deg">
+        <h2>Book når det passer deg</h2>
         <div class="treatment-cta">
           <a class="btn btn--primary" href="/booking.html">Book time</a>
           <a class="btn" href="/contact.html">Kontakt oss</a>
@@ -101,6 +280,47 @@
     </div>
   </main>
 
+  <div class="pmu-lightbox" id="pmuLightbox" aria-hidden="true">
+    <button type="button" id="pmuLightboxClose" aria-label="Lukk bilde">×</button>
+    <img id="pmuLightboxImage" src="" alt="Forstørret resultatbilde" />
+  </div>
+
   <div data-include="/partials/footer.html"></div>
+
+  <script>
+    (function () {
+      var lightbox = document.getElementById('pmuLightbox');
+      var lightboxImage = document.getElementById('pmuLightboxImage');
+      var closeButton = document.getElementById('pmuLightboxClose');
+      var imageButtons = document.querySelectorAll('[data-lightbox-image]');
+
+      imageButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          lightboxImage.src = button.getAttribute('data-lightbox-image') || '';
+          lightbox.classList.add('is-open');
+          lightbox.setAttribute('aria-hidden', 'false');
+        });
+      });
+
+      function closeLightbox() {
+        lightbox.classList.remove('is-open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        lightboxImage.src = '';
+      }
+
+      closeButton.addEventListener('click', closeLightbox);
+      lightbox.addEventListener('click', function (event) {
+        if (event.target === lightbox) {
+          closeLightbox();
+        }
+      });
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && lightbox.classList.contains('is-open')) {
+          closeLightbox();
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
