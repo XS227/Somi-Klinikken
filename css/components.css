@@ -140,6 +140,14 @@
   display:grid;
   gap:10px;
 }
+.access-gate__actions{
+  margin-top:16px;
+  display:grid;
+  gap:10px;
+}
+.access-gate__actions .btn{
+  width:100%;
+}
 .access-gate__form .input{
   width:100%;
 }
@@ -148,4 +156,31 @@
   margin:0;
   font-size:14px;
   color:#9f2e2e;
+}
+.access-gate__socials{
+  margin-top:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+}
+.access-gate__social{
+  width:42px;
+  height:42px;
+  border-radius:999px;
+  border:1px solid rgba(56,56,56,0.18);
+  display:grid;
+  place-items:center;
+  color:#2b2b2b;
+  background:#fff;
+  transition:transform .15s ease, border-color .15s ease;
+}
+.access-gate__social:hover{
+  transform:translateY(-1px);
+  border-color:rgba(56,56,56,0.42);
+}
+.access-gate__social svg{
+  width:20px;
+  height:20px;
+  fill:currentColor;
 }

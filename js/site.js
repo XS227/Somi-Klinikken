@@ -185,13 +185,31 @@
       <div class="access-gate__dialog" role="dialog" aria-modal="true" aria-labelledby="access-gate-title">
         <img class="access-gate__logo" src="/p/LogoSomi.PNG" alt="SOMI Klinikken" />
         <h2 class="h3" id="access-gate-title">Midlertidig tilgang</h2>
-        <p>Tast inn tilgangskode for å se nettsiden.</p>
-        <form class="access-gate__form" novalidate>
+        <p>Nettsiden er under arbeid. Du kan gå videre til booking, eller bruke admin-tilgang med kode.</p>
+        <div class="access-gate__actions">
+          <a class="btn btn--primary" href="https://somi.bestille.no/" target="_blank" rel="noopener noreferrer">Gå til booking</a>
+          <button class="btn btn--outline" type="button" data-access-admin-toggle>Admin tilgang</button>
+        </div>
+        <form class="access-gate__form" novalidate hidden>
           <label class="sr-only" for="access-gate-input">Tilgangskode</label>
           <input id="access-gate-input" class="input" type="password" inputmode="numeric" autocomplete="one-time-code" placeholder="Tilgangskode" required />
           <button class="btn btn--primary" type="submit">Åpne nettsiden</button>
           <p class="access-gate__error" aria-live="polite"></p>
         </form>
+        <div class="access-gate__socials" aria-label="Sosiale medier">
+          <a class="access-gate__social" href="https://www.instagram.com/somiklinikken" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7.5 3h9A4.5 4.5 0 0 1 21 7.5v9a4.5 4.5 0 0 1-4.5 4.5h-9A4.5 4.5 0 0 1 3 16.5v-9A4.5 4.5 0 0 1 7.5 3Zm0 1.7A2.8 2.8 0 0 0 4.7 7.5v9a2.8 2.8 0 0 0 2.8 2.8h9a2.8 2.8 0 0 0 2.8-2.8v-9a2.8 2.8 0 0 0-2.8-2.8h-9Zm9.2 1.3a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2ZM12 7.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5Zm0 1.7A2.8 2.8 0 1 0 14.8 12 2.8 2.8 0 0 0 12 9.2Z"/>
+            </svg>
+            <span class="sr-only">Instagram</span>
+          </a>
+          <a class="access-gate__social" href="https://www.facebook.com/share/1ChUJG29T3/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.6 1.6-1.6H17V3.8c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3V10H7.5v3h2.8v8h3.2Z"/>
+            </svg>
+            <span class="sr-only">Facebook</span>
+          </a>
+        </div>
       </div>
     `;
 
@@ -199,10 +217,20 @@
     document.documentElement.classList.add("access-locked");
 
     const form = overlay.querySelector(".access-gate__form");
+    const adminToggle = overlay.querySelector("[data-access-admin-toggle]");
     const input = overlay.querySelector("#access-gate-input");
     const error = overlay.querySelector(".access-gate__error");
 
-    input.focus();
+    if (adminToggle) {
+      adminToggle.addEventListener("click", () => {
+        const isHidden = form.hasAttribute("hidden");
+        form.toggleAttribute("hidden", !isHidden);
+        if (isHidden) input.focus();
+      });
+      adminToggle.focus();
+    } else {
+      input.focus();
+    }
 
     form.addEventListener("submit", (event) => {
       event.preventDefault();
