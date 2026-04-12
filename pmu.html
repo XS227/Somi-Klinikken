@@ -16,86 +16,282 @@
   <link rel="stylesheet" href="/css/category.css" />
   <script defer src="/js/includes.js"></script>
   <script defer src="/js/site.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    .pmu-page {
+      padding-top: calc(var(--header-h, 72px) + 16px);
+      padding-bottom: 72px;
+      background: linear-gradient(180deg, #f7f1ed 0%, #fff 32%, #f9f5f1 100%);
+    }
+    .pmu-stack { display: grid; gap: 26px; }
+    .pmu-hero {
+      min-height: clamp(420px, 72vh, 700px);
+      border-radius: 28px;
+      padding: clamp(20px, 5vw, 48px);
+      color: #fff;
+      display: flex;
+      align-items: end;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, .22);
+      background:
+        linear-gradient(130deg, rgba(0,0,0,.75) 15%, rgba(0,0,0,.3) 58%, rgba(0,0,0,.62) 100%),
+        url('/assets/img/hero/beauty-treatment.svg') center/cover no-repeat;
+    }
+    .pmu-hero__content { max-width: 780px; position: relative; z-index: 1; }
+    .pmu-hero h1 {
+      margin: 10px 0 14px;
+      color: #fff;
+      font-family: Georgia, serif;
+      font-size: clamp(34px, 5.6vw, 64px);
+      line-height: 1.04;
+    }
+    .pmu-hero p { margin: 0; color: rgba(255,255,255,.88); max-width: 64ch; }
+    .pmu-anchor-menu {
+      margin-top: 22px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .pmu-anchor-menu a {
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.35);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      background: rgba(255,255,255,.08);
+      backdrop-filter: blur(2px);
+    }
+    .pmu-anchor-menu a:hover { background: rgba(255,255,255,.2); }
+    .pmu-split {
+      border-radius: 24px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      overflow: hidden;
+      border: 1px solid rgba(56,56,56,.12);
+      box-shadow: 0 18px 38px rgba(0,0,0,.06);
+      background: #fff;
+    }
+    .pmu-split--reverse .pmu-split__text { order: 2; }
+    .pmu-split--reverse .pmu-split__media { order: 1; }
+    .pmu-split__text { padding: clamp(22px, 4vw, 40px); display: grid; gap: 14px; }
+    .pmu-split__text h2 { margin: 0; }
+    .pmu-split__text p,
+    .pmu-split__text li { color: rgba(56,56,56,.82); line-height: 1.65; }
+    .pmu-split__media {
+      min-height: 280px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    .pmu-split__media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,.04) 0%, rgba(0,0,0,.32) 100%);
+    }
+    .pmu-overlay-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 18px;
+    }
+    .pmu-overlay-card {
+      border-radius: 22px;
+      min-height: 320px;
+      padding: 24px;
+      color: #fff;
+      display: flex;
+      align-items: end;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.16);
+    }
+    .pmu-overlay-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(8,8,8,.08) 28%, rgba(8,8,8,.78) 100%);
+    }
+    .pmu-overlay-card__body { position: relative; z-index: 1; display: grid; gap: 8px; }
+    .pmu-overlay-card h3 { margin: 0; color: #fff; font-size: 30px; font-family: Georgia, serif; }
+    .pmu-overlay-card p { margin: 0; color: rgba(255,255,255,.9); }
+    .pmu-gallery {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 12px;
+    }
+    .pmu-gallery__item {
+      border-radius: 16px;
+      min-height: 180px;
+      border: 1px solid rgba(56,56,56,.12);
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    .pmu-gallery__item::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 44%, rgba(0,0,0,.35) 100%);
+    }
+    .pmu-timeline {
+      border-radius: 22px;
+      padding: clamp(20px, 4vw, 36px);
+      background: #fff;
+      border: 1px solid rgba(56,56,56,.12);
+      box-shadow: 0 12px 28px rgba(0,0,0,.06);
+      display: grid;
+      gap: 18px;
+    }
+    .pmu-timeline ul { margin: 0; padding-left: 18px; display: grid; gap: 10px; }
+    .pmu-bottom-cta {
+      border-radius: 24px;
+      padding: clamp(22px, 4vw, 38px);
+      background: linear-gradient(120deg, #2f1f1e 0%, #563332 100%);
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      box-shadow: 0 18px 44px rgba(0,0,0,.2);
+    }
+    .pmu-bottom-cta h2,
+    .pmu-bottom-cta p { margin: 0; color: #fff; }
+    .pmu-bottom-cta p { color: rgba(255,255,255,.84); }
+    .pmu-bottom-cta .btn { white-space: nowrap; }
+    @media (max-width: 940px) {
+      .pmu-split,
+      .pmu-overlay-grid,
+      .pmu-gallery { grid-template-columns: 1fr; }
+      .pmu-split--reverse .pmu-split__text,
+      .pmu-split--reverse .pmu-split__media { order: initial; }
+      .pmu-gallery__item { min-height: 220px; }
+    }
+  </style>
 </head>
 <body>
   <div data-include="/partials/header.html"></div>
 
-  <main class="page">
-    <div class="container">
-      <p class="kicker">Kategori</p>
-      <h1 class="h1">Permanent Makeup – Naturlige bryn tilpasset deg</h1>
-      <p class="lead">Hos oss er målet at du skal oppnå et resultat du er fornøyde med – samtidig som vi tar hensyn til at alle har ulike utgangspunkt. De fleste ønsker et naturlig resultat, men hva som oppleves som “naturlig” varierer fra person til person.</p>
-      <p>Derfor tilbyr vi alltid gratis og uforpliktende konsultasjon, slik at vi sammen kan avklare forventninger og finne riktig behandling for deg.</p>
+  <main class="pmu-page">
+    <div class="container pmu-stack">
+      <section class="pmu-hero" id="top">
+        <div class="pmu-hero__content">
+          <p class="kicker" style="color:rgba(255,255,255,.78)">PMU hos SOMI Klinikken</p>
+          <h1>Våkn opp med bryn som sitter – naturlig, presist og tilpasset deg</h1>
+          <p>Dette er en konverteringsside for deg som vurderer PMU nå: se metoder, resultatstil, healing og book tid direkte nederst. Målet er enkelt: at du føler deg trygg nok til å bestille.</p>
 
-      <div class="grid">
-        <article class="item">
-          <h2>Gratis konsultasjon – viktig for riktig resultat</h2>
-          <p>Har du et spesifikt ønske for brynene dine, anbefaler vi at du starter med en konsultasjon. Her vil vi:</p>
-          <ul>
-            <li>Vurdere hudtype og utgangspunkt</li>
-            <li>Anbefale riktig teknikk (microblading eller shading)</li>
-            <li>Tegne opp fasong slik vi gjør før behandling</li>
-            <li>Visualisere forventet resultat med hårstrå/shading</li>
-          </ul>
-          <p>Dette gir deg en trygghet før du bestemmer deg – og sikrer et best mulig sluttresultat.</p>
-        </article>
+          <nav class="pmu-anchor-menu" aria-label="Meny for PMU">
+            <a href="#metoder">Meny</a>
+            <a href="#hvorfor">Hvorfor PMU</a>
+            <a href="#forste-dager">Første 2–3 dager</a>
+            <a href="#etterbehandling">Etterbehandling</a>
+            <a href="#arbeid">Vårt arbeid</a>
+          </nav>
+        </div>
+      </section>
 
-        <article class="item">
-          <h2>Microblading og Shading – hva passer for deg?</h2>
-          <h3>Microblading</h3>
+      <section class="pmu-split" id="hvorfor">
+        <div class="pmu-split__text">
+          <h2>Hvorfor kunder velger PMU hos oss</h2>
+          <p>Du får bryn som løfter ansiktet uten å se harde ut. Vi tegner alltid opp og tilpasser form til ansikt, hudtype og hverdagen din – før vi starter.</p>
           <ul>
-            <li>Gir et naturlig hårstrå-resultat</li>
-            <li>Passer deg som ønsker fyldigere, men diskrete bryn</li>
-            <li>Best egnet for tørr hud</li>
+            <li>Gratis konsultasjon før behandling</li>
+            <li>Farge og fasong som er laget for deg, ikke malbasert</li>
+            <li>Sterilt engangsutstyr og tydelig etterbehandlingsplan</li>
           </ul>
-          <h3>Shading (Powder Brows)</h3>
-          <ul>
-            <li>Gir en myk look</li>
-            <li>Passer alle hudtyper, spesielt fet hud</li>
-            <li>Gir mer dybde og jevnhet</li>
-          </ul>
-        </article>
+          <p><a class="btn btn--primary" href="/booking.html">Book gratis konsultasjon</a></p>
+        </div>
+        <div class="pmu-split__media" style="background-image:url('/assets/img/hero/consultation.svg')"></div>
+      </section>
 
-        <article class="item">
-          <h2>Har du tidligere permanent makeup?</h2>
-          <p>Hvis du har gjort microblading eller annen permanent makeup tidligere:</p>
-          <ul>
-            <li>Send oss gjerne bilde på forhånd, eller</li>
-            <li>Book en gratis konsultasjon</li>
-          </ul>
-          <p>Vi må alltid gjøre en vurdering før ny behandling, og det er derfor ikke mulig å booke direkte uten dette.</p>
-        </article>
+      <section id="metoder" class="pmu-stack">
+        <div>
+          <p class="kicker">Velg riktig teknikk</p>
+          <h2 class="h1" style="font-size:clamp(30px,4.4vw,48px);margin:0">Microblading eller Shading?</h2>
+        </div>
+        <div class="pmu-overlay-grid">
+          <article class="pmu-overlay-card" style="background:url('/assets/img/hero/hero-woman.svg') center/cover no-repeat;">
+            <div class="pmu-overlay-card__body">
+              <h3>Microblading</h3>
+              <p>Hårstråteknikk for et naturlig resultat. Perfekt for deg som vil fylle inn og definere bryn diskret.</p>
+            </div>
+          </article>
+          <article class="pmu-overlay-card" style="background:url('/assets/img/hero/clinic-interior.svg') center/cover no-repeat;">
+            <div class="pmu-overlay-card__body">
+              <h3>Shading</h3>
+              <p>Myk, pudret finish med mer dybde. Passer alle hudtyper, spesielt deg med fet hud.</p>
+            </div>
+          </article>
+        </div>
+      </section>
 
-        <article class="item">
-          <h2>Under behandlingen</h2>
+      <section class="pmu-split pmu-split--reverse">
+        <div class="pmu-split__text">
+          <h2>Selve behandlingen – steg for steg</h2>
+          <p>Vi starter alltid med opptegning og avklaring av resultatstil. Du godkjenner form og farge før vi går videre.</p>
           <ul>
-            <li>Grundig konsultasjon og opptegning av bryn</li>
-            <li>Du godkjenner form og farge før vi starter</li>
-            <li>Behandlingen utføres med sterilt engangsutstyr</li>
-            <li>Bedøvelse brukes for komfort</li>
+            <li>Opptegning, fargevalg og måling av bryn</li>
+            <li>Bedøvelse for god komfort underveis</li>
+            <li>Behandlingstid: ca. 1,5–2 timer</li>
+            <li>Klare instrukser for heling før du går</li>
           </ul>
-          <p class="meta"><strong>Varighet:</strong> ca. 1,5–2 timer.</p>
-        </article>
+        </div>
+        <div class="pmu-split__media" style="background-image:url('/assets/img/hero/visit.svg')"></div>
+      </section>
 
-        <article class="item">
-          <h2>Etter behandlingen</h2>
-          <p>Brynene vil føles mørkere de først 2–3 dagene etter behandling.</p>
-          <p>For optimal heling:</p>
+      <section class="pmu-timeline" id="forste-dager">
+        <h2>De første 2–3 dagene etter PMU</h2>
+        <p>Brynene vil ofte se mørkere og mer markerte ut enn sluttresultatet. Dette er normalt, og fargen demper seg gradvis når huden roer seg.</p>
+        <ul>
+          <li>Unngå varme dusjer, badstu og trening/svette de første 7 dagene.</li>
+          <li>Ikke ta på, klø eller plukk i området.</li>
+          <li>Unngå sminke på brynene til skorpen har falt av naturlig.</li>
+        </ul>
+      </section>
+
+      <section class="pmu-split" id="etterbehandling">
+        <div class="pmu-split__text">
+          <h2>Etterbehandling som gir bedre resultat</h2>
+          <p>God etterbehandling er avgjørende for hvor jevnt pigmentet gror. Følg disse rådene nøye:</p>
           <ul>
-            <li>Unngå lange varme dusjer, badstu, trening/svette i 7 dager</li>
-            <li>Ikke plukk eller klø i området</li>
-            <li>Følg anbefalt etterbehandling</li>
-            <li>Unngå sol og sminke på brynene til skorpen har falt av</li>
-            <li>Rens brynene med mild rens eller parfymefri såpe 2 dager etter behandlingen. Skum såpen opp i rene hender, og stryk forsiktig over brynene før du skyller av med vann. Fortsett å vaske en gang om dagen til skorpen har falt av.</li>
-            <li>Ikke gnikk og gnu på brynene</li>
+            <li>Rens forsiktig med mild, parfymefri såpe fra dag 2.</li>
+            <li>Skum i rene hender og stryk lett over brynene før skylling.</li>
+            <li>Vask én gang daglig til skorpen er borte.</li>
+            <li>Unngå soling direkte på brynene i helingsperioden.</li>
+            <li>Fullt resultat sees vanligvis etter ca. 4 uker.</li>
           </ul>
-          <p>Fullt resultat sees etter ca. 4 uker.</p>
-        </article>
-      </div>
+        </div>
+        <div class="pmu-split__media" style="background-image:url('/assets/img/hero/faq-client.svg')"></div>
+      </section>
 
-      <p>
-        <a class="btn btn--primary" href="/booking.html">Book gratis konsultasjon</a>
-      </p>
+      <section class="pmu-stack" id="arbeid">
+        <div>
+          <p class="kicker">Galleri</p>
+          <h2 style="margin-top:0">Vårt arbeid</h2>
+          <p class="lead">Se uttrykkene vi jobber med: fra myke, naturlige bryn til mer markert shading. På konsultasjon finner vi stilen som passer deg.</p>
+        </div>
+        <div class="pmu-gallery" aria-label="Galleri av PMU-resultater">
+          <div class="pmu-gallery__item" style="background-image:url('/assets/img/hero/hero-woman.svg')"></div>
+          <div class="pmu-gallery__item" style="background-image:url('/assets/img/hero/consultation.svg')"></div>
+          <div class="pmu-gallery__item" style="background-image:url('/assets/img/hero/beauty-treatment.svg')"></div>
+          <div class="pmu-gallery__item" style="background-image:url('/assets/img/hero/visit.svg')"></div>
+          <div class="pmu-gallery__item" style="background-image:url('/assets/img/hero/clinic-interior.svg')"></div>
+          <div class="pmu-gallery__item" style="background-image:url('/assets/img/hero/faq-client.svg')"></div>
+          <div class="pmu-gallery__item" style="background-image:url('/assets/img/hero/consultation.svg')"></div>
+          <div class="pmu-gallery__item" style="background-image:url('/assets/img/hero/beauty-treatment.svg')"></div>
+        </div>
+      </section>
+
+      <section class="pmu-bottom-cta" id="book">
+        <div>
+          <h2>Klar for bryn som sparer deg tid hver morgen?</h2>
+          <p>Book time nå eller start med gratis konsultasjon. Vi hjelper deg å velge teknikken som passer deg best.</p>
+        </div>
+        <a class="btn btn--primary" href="/booking.html">Book time</a>
+      </section>
     </div>
   </main>
 
