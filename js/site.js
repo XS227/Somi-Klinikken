@@ -156,10 +156,6 @@
         toggle.setAttribute("aria-expanded", String(next));
       });
 
-      dropdown.addEventListener("mouseleave", () => {
-        dropdown.classList.remove("is-open");
-        toggle.setAttribute("aria-expanded", "false");
-      });
     });
 
     document.addEventListener("click", (event) => {
