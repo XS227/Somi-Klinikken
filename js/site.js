@@ -30,14 +30,14 @@
   }
 
   function setActiveNav() {
-    const links = document.querySelectorAll(".nav a, .mnav, .nav-dropdown__toggle");
+    const links = document.querySelectorAll(".nav a, .mnav, .nav-categories__toggle");
     if (!links.length) return;
     const current = normalizePath(window.location.pathname || "/");
 
     const treatmentPaths = ["/behandlinger.html", "/behandlinger/", "/kategorier/"];
 
     links.forEach(link => {
-      if (link.matches(".nav-dropdown__toggle")) {
+      if (link.matches(".nav-categories__toggle")) {
         const isTreatmentsActive = treatmentPaths.some(path => current === path || current.startsWith(path));
         link.classList.toggle("is-active", isTreatmentsActive);
         return;
@@ -143,29 +143,29 @@
   }
 
 
-  function initNavDropdowns() {
-    const dropdowns = document.querySelectorAll("[data-nav-dropdown]");
-    dropdowns.forEach(dropdown => {
-      const toggle = dropdown.querySelector("[data-nav-dropdown-toggle]");
-      if (!toggle || toggle.dataset.bound === "true") return;
-      toggle.dataset.bound = "true";
+  function openCategoryMenu() {
+    const categoryMenu = document.querySelector("[data-category-menu]");
+    if (!categoryMenu) return;
 
-      toggle.addEventListener("click", () => {
-        const next = !dropdown.classList.contains("is-open");
-        dropdown.classList.toggle("is-open", next);
-        toggle.setAttribute("aria-expanded", String(next));
-      });
-
+    categoryMenu.classList.add("is-open");
+    categoryMenu.setAttribute("aria-hidden", "false");
+    document.querySelectorAll("[data-category-menu-toggle]").forEach((button) => {
+      button.setAttribute("aria-expanded", "true");
     });
+    document.body.classList.add("no-scroll");
+    setHeaderHeightVar();
+  }
 
-    document.addEventListener("click", (event) => {
-      if (event.target.closest("[data-nav-dropdown]")) return;
-      document.querySelectorAll("[data-nav-dropdown]").forEach(dropdown => {
-        dropdown.classList.remove("is-open");
-        const toggle = dropdown.querySelector("[data-nav-dropdown-toggle]");
-        if (toggle) toggle.setAttribute("aria-expanded", "false");
-      });
+  function closeCategoryMenu() {
+    const categoryMenu = document.querySelector("[data-category-menu]");
+    if (!categoryMenu) return;
+
+    categoryMenu.classList.remove("is-open");
+    categoryMenu.setAttribute("aria-hidden", "true");
+    document.querySelectorAll("[data-category-menu-toggle]").forEach((button) => {
+      button.setAttribute("aria-expanded", "false");
     });
+    document.body.classList.remove("no-scroll");
   }
 
   function initAccessGate() {
@@ -311,6 +311,22 @@
     const inOverlay = e.target.closest("[data-mobile-overlay]");
     if (inOverlay) closeMenu();
 
+    const categoryToggle = e.target.closest("[data-category-menu-toggle]");
+    if (categoryToggle) {
+      e.preventDefault();
+      closeMenu();
+      openCategoryMenu();
+      return;
+    }
+
+    const categoryClose = e.target.closest("[data-category-menu-close]");
+    const categoryBackdrop = e.target.matches("[data-category-menu]");
+    const categoryLink = e.target.closest("[data-category-menu] a");
+    if (categoryClose || categoryBackdrop || categoryLink) {
+      closeCategoryMenu();
+      if (categoryClose || categoryBackdrop) return;
+    }
+
     const anchor = e.target.closest("a[href]");
     if (anchor) {
       const url = new URL(anchor.getAttribute("href"), window.location.href);
@@ -325,6 +341,7 @@
   window.addEventListener("keydown", (e) => {
     if (e.key !== "Escape") return;
     closeMenu();
+    closeCategoryMenu();
   });
 
   window.addEventListener("resize", () => {
@@ -346,7 +363,7 @@
     setCurrentYear();
     initFooterAccordions();
     initInstagramFeed();
-    initNavDropdowns();
+
     initScrollFades();
     closeMenu();
     initAccessGate();
@@ -363,7 +380,7 @@
     setCurrentYear();
     initFooterAccordions();
     initInstagramFeed();
-    initNavDropdowns();
+
     initScrollFades();
     initAccessGate();
   });
