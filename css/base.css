@@ -51,7 +51,7 @@ img{ max-width:100%; height:auto; display:block; }
 .btn:active{ transform: translateY(0); }
 
 .btn--primary{
-  background: rgba(56,56,56,0.95);
+  background: rgba(76,76,76,0.95);
   border-color: rgba(56,56,56,0.25);
   color:#fff;
 }
