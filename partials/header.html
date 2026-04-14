@@ -7,33 +7,10 @@
 
       <nav class="nav" aria-label="Hovedmeny">
         <a href="/om.html">Om</a>
-        <div class="nav-dropdown" data-nav-dropdown>
-          <button class="nav-dropdown__toggle" type="button" aria-expanded="false" data-nav-dropdown-toggle>
-            Behandlinger
-          </button>
-          <div class="nav-dropdown__panel" aria-label="Kategorier under behandlinger">
-            <details class="nav-dropdown__group" open>
-              <summary><a class="nav-dropdown__cat" href="/kategorier/microblading.html">Microblading</a></summary>
-              <a class="nav-dropdown__sub" href="/behandlinger/ny-microblading.html">Ny microblading</a>
-              <a class="nav-dropdown__sub" href="/behandlinger/ny-microblading-shading.html">Ny microblading + shading</a>
-            </details>
-            <details class="nav-dropdown__group">
-              <summary><a class="nav-dropdown__cat" href="/kategorier/bryn-og-vipper.html">Bryn og vipper</a></summary>
-              <a class="nav-dropdown__sub" href="/behandlinger/vippeloft.html">Vippeløft</a>
-              <a class="nav-dropdown__sub" href="/behandlinger/browlamination.html">Browlamination</a>
-            </details>
-            <details class="nav-dropdown__group">
-              <summary><a class="nav-dropdown__cat" href="/kategorier/dermalogica.html">Dermalogica</a></summary>
-              <a class="nav-dropdown__sub" href="/behandlinger/dermalogica-signature.html">Dermalogica signature</a>
-              <a class="nav-dropdown__sub" href="/behandlinger/dermalogica-akne-60.html">Dermalogica akne 60</a>
-            </details>
-            <details class="nav-dropdown__group">
-              <summary><a class="nav-dropdown__cat" href="/kategorier/hudpleie.html">Hudpleie og laser</a></summary>
-              <a class="nav-dropdown__sub" href="/behandlinger/carbon-peel-laser.html">Carbon peel laser</a>
-              <a class="nav-dropdown__sub" href="/behandlinger/prx-t33.html">PRX-T33</a>
-            </details>
-          </div>
-        </div>
+        <a href="/behandlinger.html">Behandlinger</a>
+        <button class="nav-categories__toggle" type="button" aria-expanded="false" data-category-menu-toggle>
+          Kategori
+        </button>
         <a href="/team.html">Team</a>
         <a href="/priser.html">Priser</a>
         <a href="/resultater.html">Resultater</a>
@@ -62,29 +39,10 @@
     <div class="container">
       <div class="mobile-panel__inner">
         <a class="mnav" href="/om.html">Om</a>
-        <details class="mnav-group" data-mobile-nav-group>
-          <summary class="mnav mnav--summary">Behandlinger</summary>
-          <details class="mnav-subgroup" open>
-            <summary class="mnav mnav--child">Microblading</summary>
-            <a class="mnav mnav--child" href="/kategorier/microblading.html">Kategori</a>
-            <a class="mnav mnav--child" href="/behandlinger/ny-microblading.html">Ny microblading</a>
-          </details>
-          <details class="mnav-subgroup">
-            <summary class="mnav mnav--child">Bryn og vipper</summary>
-            <a class="mnav mnav--child" href="/kategorier/bryn-og-vipper.html">Kategori</a>
-            <a class="mnav mnav--child" href="/behandlinger/vippeloft.html">Vippeløft</a>
-          </details>
-          <details class="mnav-subgroup">
-            <summary class="mnav mnav--child">Dermalogica</summary>
-            <a class="mnav mnav--child" href="/kategorier/dermalogica.html">Kategori</a>
-            <a class="mnav mnav--child" href="/behandlinger/dermalogica-signature.html">Signature</a>
-          </details>
-          <details class="mnav-subgroup">
-            <summary class="mnav mnav--child">Hudpleie og laser</summary>
-            <a class="mnav mnav--child" href="/kategorier/hudpleie.html">Kategori</a>
-            <a class="mnav mnav--child" href="/behandlinger/carbon-peel-laser.html">Carbon peel</a>
-          </details>
-        </details>
+        <a class="mnav" href="/behandlinger.html">Behandlinger</a>
+        <button class="mnav mnav--button" type="button" aria-expanded="false" data-category-menu-toggle>
+          Kategori (13)
+        </button>
         <a class="mnav" href="/team.html">Team</a>
         <a class="mnav" href="/priser.html">Priser</a>
         <a class="mnav" href="/resultater.html">Resultater</a>
@@ -94,6 +52,33 @@
         <a class="mnav" href="/contact.html">Kontakt</a>
         <a class="btn btn--outline" href="#" data-booking-link>Book time</a>
       </div>
+    </div>
+  </div>
+
+  <div class="category-menu" data-category-menu aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="category-menu-title">
+    <div class="category-menu__dialog">
+      <div class="category-menu__head">
+        <div>
+          <p class="category-menu__eyebrow">Kategorier</p>
+          <h2 id="category-menu-title">Velg blant alle 13 kategorier</h2>
+        </div>
+        <button class="category-menu__close" type="button" data-category-menu-close aria-label="Lukk kategorimeny">Lukk</button>
+      </div>
+      <nav class="category-menu__grid" aria-label="Alle kategorier">
+        <a class="category-menu__item" href="/behandlinger.html#microblading">Microblading</a>
+        <a class="category-menu__item" href="/behandlinger.html#permanent-makeup">Permanent Makeup</a>
+        <a class="category-menu__item" href="/behandlinger.html#konsultasjon">Konsultasjon</a>
+        <a class="category-menu__item" href="/behandlinger.html#bryn-og-vipper">Bryn og vipper</a>
+        <a class="category-menu__item" href="/behandlinger.html#laser-pigmentreduksjon">Laser pigmentreduksjon</a>
+        <a class="category-menu__item" href="/behandlinger.html#hudpleie">Hudpleie</a>
+        <a class="category-menu__item" href="/behandlinger.html#laser-permanent-harfjerning">Laser - Permanent hårfjerning</a>
+        <a class="category-menu__item" href="/behandlinger.html#microneedling">Microneedling</a>
+        <a class="category-menu__item" href="/behandlinger.html#dermalogica">Dermalogica</a>
+        <a class="category-menu__item" href="/behandlinger.html#harfjerning-voksing">Hårfjerning/voksing</a>
+        <a class="category-menu__item" href="/behandlinger.html#laser-tattoo-removal">Laser tattoo removal</a>
+        <a class="category-menu__item" href="/behandlinger.html#elektrolyse-permanent-harfjerning">Elektrolyse | Permanent hårfjerning</a>
+        <a class="category-menu__item" href="/behandlinger.html#laser-permanent-harfjerning-pakkepriser">Laser - permanent hårfjerning pakkepriser</a>
+      </nav>
     </div>
   </div>
 </header>
