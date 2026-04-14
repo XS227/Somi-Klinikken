@@ -65,6 +65,13 @@
       align-items: stretch;
     }
 
+    .member--primary{
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1.05fr 1.2fr;
+      gap: 8px;
+    }
+
     .member{
       grid-column: span 1;
       border-radius: 22px;
@@ -165,6 +172,9 @@
       .team-grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .name{ font-size: 24px; }
       .member__img{ max-height: 190px; }
+      .member--primary{
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (max-width: 700px){
@@ -182,6 +192,10 @@
       .team-grid::-webkit-scrollbar-thumb{ background: rgba(56,56,56,0.25); border-radius: 999px; }
       .member{
         scroll-snap-align: start;
+      }
+      .member--primary{
+        grid-column: span 1;
+        display: block;
       }
       .member__head{ padding: 16px 14px 10px; }
       .member__media{ padding: 0 14px 14px; }
@@ -208,11 +222,11 @@
 
       <section class="team-grid" aria-label="Team">
         <!-- Katarina -->
-        <article class="member">
+        <article class="member member--primary">
           <div class="member__head">
             <div>
               <div class="role">Eier og daglig leder</div>
-              <h2 class="name">Katarina</h2>
+              <h2 class="name">Katarina Hammer</h2>
             </div>
             <div class="icon-row" aria-label="Kontakt via ikon">
               <a class="icon-btn" href="tel:+4792939171" aria-label="Ring">
@@ -240,7 +254,10 @@
               Katarina Hammer er eier og daglig leder av Somi Klinikken AS, med over 13 års erfaring innen permanent makeup. Hun er kjent for presis teknikk og naturlige, harmoniske resultater.
             </p>
             <p class="desc">
-              For Katarina handler faget om å forsterke det naturlige med balanse, helhet og et tidløst uttrykk. Arbeidet hennes er preget av høy faglig kvalitet, estetisk forståelse og et gjennomført øye for detaljer.
+              For Katarina handler permanent makeup om å forsterke det naturlige – aldri å dominere, men å skape balanse, helhet og et tidløst uttrykk. Hennes arbeid er preget av høy faglig kvalitet, estetisk forståelse og et gjennomført øye for detaljer.
+            </p>
+            <p class="desc">
+              «For meg er dette mer enn et yrke – det er en lidenskap. Jeg er til stede i hvert eneste arbeid, med et sterkt engasjement for å skape resultater som oppleves som både naturlige og selvtillitsstyrkende.»
             </p>
             <div class="cta">
               <a class="btn" href="#" data-booking-link>Bestill time hos Katarina</a>
@@ -273,23 +290,19 @@
           </div>
 
           <div class="member__media">
-            <video
+            <img
               class="member__img"
-              src="/v/gaveeske.mp4"
-              autoplay
-              muted
-              loop
-              playsinline
-              preload="metadata"
-              aria-label="Arianna – laserspesialist"></video>
+              src="/assets/img/team/arianna.svg"
+              alt="Arianna – laserspesialist"
+              loading="lazy" />
           </div>
 
           <div class="member__body">
             <p class="desc">
-              Arianna er autorisert helsepersonell med videreutdanning som laserspesialist i henhold til strålevernforskriften §13. Hun har fordypet seg gjennom avanserte kurs innen laserbehandling.
+              Jeg er autorisert helsepersonell med videreutdanning som laserspesialist i henhold til strålevernforskriften §13. Jeg har videre fordypet meg gjennom avanserte kurs innen laserbehandling, under veiledning av anerkjente fagpersoner med lang klinisk erfaring.
             </p>
             <p class="desc">
-              Hun arbeider etter høye standarder med fokus på presisjon, kvalitet og kontinuerlig faglig utvikling for å sikre trygge, skreddersydde og effektive behandlinger.
+              Jeg legger stor vekt på presisjon, kvalitet og kontinuerlig faglig utvikling, og arbeider etter høye standarder for å sikre trygge, skreddersydde og effektive behandlinger. Min filosofi er å kombinere faglig ekspertise med en rolig og tillitsfull tilnærming.
             </p>
             <div class="cta">
               <a class="btn" href="#" data-booking-link>Bestill konsultasjon hos Arianna</a>
@@ -322,15 +335,15 @@
           </div>
 
           <div class="member__media">
-            <img class="member__img" src="/p/emma.jpg" alt="Emma – hudterapeut" loading="lazy" />
+            <img class="member__img" src="/assets/img/team/emma.svg" alt="Emma – hudterapeut" loading="lazy" />
           </div>
 
           <div class="member__body">
             <p class="desc">
-              Emma er utdannet hudpleier med videreutdanning som Dermalogica Expert. Gjennom egne erfaringer med hudutfordringer og behandling med isotretinoin har hun utviklet en dyp forståelse for hudhelse.
+              Jeg er utdannet hudpleier med videreutdanning som Dermalogica Expert. Gjennom egne erfaringer med hudutfordringer og behandling med isotretinoin har jeg utviklet en dyp forståelse og et sterkt engasjement for hudhelse.
             </p>
             <p class="desc">
-              Hun tilpasser behandlinger etter hver enkelt kundes behov, og tilbyr også bryns- og vippebehandlinger samt permanent makeup med fokus på naturlige og harmoniske resultater.
+              Jeg har en brennende interesse for faget og er opptatt av å tilpasse behandlinger etter hver enkelt kundes behov. I tillegg tilbyr jeg bryns- og vippebehandlinger samt permanent makeup, med fokus på naturlige og harmoniske resultater.
             </p>
             <div class="cta">
               <a class="btn" href="#" data-booking-link>Bestill konsultasjon hos Emma</a>
