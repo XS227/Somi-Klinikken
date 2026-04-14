@@ -1,468 +1,1282 @@
 {
-  "updated": "2024-01-01",
+  "updated": "2026-04-14",
   "categories": [
     {
       "id": "microblading",
       "title": "Microblading",
-      "desc": "Microblading i Sandnes med naturlige, presise bryn og individuell fargetilpasning.",
+      "desc": "Microblading-behandlinger og oppfriskning.",
       "items": [
-        {
-          "id": "touch-up-microblading-inkludert",
-          "name": "Touch up microblading (inkludert)",
-          "short": "Touch up som er inkludert i ny behandling.",
-          "duration": "1 t 45 min",
-          "price": "0 kr",
-          "tags": [
-            "microblading",
-            "oppfriskning"
-          ]
-        },
         {
           "id": "ny-microblading",
           "name": "Ny microblading",
-          "short": "Førstegangsbehandling med individuell form og farge.",
-          "duration": "3 t",
-          "price": "645 kr",
-          "popular": true,
-          "tags": [
-            "bryn",
-            "nykunde"
-          ]
-        },
-        {
-          "id": "pmu-oyenbryn",
-          "name": "PMU øyenbryn",
-          "short": "Permanent makeup av bryn med naturlig form, farge og lang holdbarhet.",
-          "duration": "2 t 30 min",
-          "price": "Fra 3 990 kr",
-          "popular": true,
-          "tags": [
-            "pmu",
-            "øyenbryn",
-            "konsultasjon"
-          ]
-        },
-        {
-          "id": "ekstra-touch-up-microblading",
-          "name": "Ekstra touch up microblading/powderbrows/lip blush",
-          "short": "Ekstra touch-up innen 8 uker etter touch up.",
+          "short": "",
           "duration": "1 t 30 min",
-          "price": "800 kr",
-          "tags": [
-            "touch-up"
-          ]
-        },
-        {
-          "id": "oppfriskning-microblading",
-          "name": "Oppfriskning microblading",
-          "short": "Årlig oppfriskning for tidligere SOMI-kunder.",
-          "duration": "1 t 45 min",
-          "price": "285 kr",
-          "tags": [
-            "oppfriskning",
-            "bryn"
-          ]
+          "price": "6 650 kr",
+          "tags": [],
+          "hasPage": true
         },
         {
           "id": "ny-microblading-shading",
           "name": "Ny microblading + shading",
-          "short": "Strå + skygge for mer dybde eller “sminket” uttrykk.",
-          "duration": "3 t",
-          "price": "685 kr",
-          "tags": [
-            "kombinasjon",
-            "bryn"
-          ]
+          "short": "",
+          "duration": "1 t 30 min",
+          "price": "7 050 kr",
+          "tags": [],
+          "hasPage": true
+        },
+        {
+          "id": "touch-up-microblading-inkludert",
+          "name": "Touch up microblading (inkl i prisen)",
+          "short": "",
+          "duration": "1 t 15 min",
+          "price": "0 kr",
+          "tags": [],
+          "hasPage": true
+        },
+        {
+          "id": "ekstra-touch-up-microblading",
+          "name": "Ekstra touch up microblading/powderbrows/lipblush",
+          "short": "",
+          "duration": "1 t",
+          "price": "800 kr",
+          "tags": [],
+          "hasPage": true
+        },
+        {
+          "id": "oppfriskning-microblading",
+          "name": "Oppfriskning microblading",
+          "short": "",
+          "duration": "1 t 15 min",
+          "price": "3 050 kr",
+          "tags": [],
+          "hasPage": true
         },
         {
           "id": "oppfriskning-microblading-shading",
           "name": "Oppfriskning microblading + shading",
-          "short": "Oppfriskning med ekstra dybde og tekstur.",
+          "short": "",
+          "duration": "1 t 15 min",
+          "price": "3 950 kr",
+          "tags": [],
+          "hasPage": true
+        }
+      ]
+    },
+    {
+      "id": "permanent-makeup",
+      "title": "Permanent Makeup",
+      "desc": "PMU-behandlinger og oppfriskning.",
+      "items": [
+        {
+          "id": "powderbrows",
+          "name": "Powderbrows",
+          "short": "",
+          "duration": "1 t 30 min",
+          "price": "6 950 kr",
+          "tags": []
+        },
+        {
+          "id": "lipblush",
+          "name": "Lipblush",
+          "short": "",
+          "duration": "2 t 30 min",
+          "price": "7 050 kr",
+          "tags": []
+        },
+        {
+          "id": "lashliner-oppe",
+          "name": "Lashliner oppe",
+          "short": "",
+          "duration": "1 t 30 min",
+          "price": "4 800 kr",
+          "tags": []
+        },
+        {
+          "id": "ny-eyeliner-oppe-med-vipp-shading",
+          "name": "Ny eyeliner oppe med vipp/shading",
+          "short": "",
+          "duration": "2 t 30 min",
+          "price": "5 800 kr",
+          "tags": []
+        },
+        {
+          "id": "pluss-eyeliner-nede",
+          "name": "+ eyeliner nede",
+          "short": "",
+          "duration": "30 min",
+          "price": "1 550 kr",
+          "tags": []
+        },
+        {
+          "id": "touch-up-eyeliner-oppe-og-nede",
+          "name": "Touch up eyeliner oppe og nede",
+          "short": "",
+          "duration": "2 t 15 min",
+          "price": "0 kr",
+          "tags": []
+        },
+        {
+          "id": "touch-up-eyeliner-oppe-eller-nede",
+          "name": "Touch up eyeliner oppe eller nede",
+          "short": "",
+          "duration": "1 t 30 min",
+          "price": "0 kr",
+          "tags": []
+        },
+        {
+          "id": "eyeliner-kun-nede",
+          "name": "Eyeliner kun nede",
+          "short": "",
+          "duration": "1 t",
+          "price": "3 300 kr",
+          "tags": []
+        },
+        {
+          "id": "oppfriskning-lipblush",
+          "name": "Oppfriskning lipblush",
+          "short": "",
           "duration": "1 t 45 min",
-          "price": "375 kr",
-          "tags": [
-            "oppfriskning",
-            "shading"
-          ]
+          "price": "3 800 kr",
+          "tags": []
+        },
+        {
+          "id": "skjonnhetsflekk",
+          "name": "Skjønnhetsflekk",
+          "short": "",
+          "duration": "30 min",
+          "price": "850 kr",
+          "tags": []
+        },
+        {
+          "id": "oppfriskning-eyeliner-oppe-og-nede",
+          "name": "Oppfriskning eyeliner oppe og nede",
+          "short": "",
+          "duration": "1 t 30 min",
+          "price": "3 800 kr",
+          "tags": []
+        },
+        {
+          "id": "touch-up-lipblush-inkl-i-prisen",
+          "name": "Touch up lipblush (inkl. i prisen)",
+          "short": "",
+          "duration": "2 t",
+          "price": "0 kr",
+          "tags": []
+        },
+        {
+          "id": "oppfriskning-eyeliner-oppe-eller-nede",
+          "name": "Oppfriskning eyeliner oppe eller nede",
+          "short": "",
+          "duration": "1 t 15 min",
+          "price": "3 500 kr",
+          "tags": []
+        },
+        {
+          "id": "fregner",
+          "name": "Fregner",
+          "short": "",
+          "duration": "1 t",
+          "price": "2 200 kr",
+          "tags": []
+        },
+        {
+          "id": "oppfriskning-powderbrows-shading",
+          "name": "Oppfriskning powderbrows/shading",
+          "short": "",
+          "duration": "1 t 15 min",
+          "price": "3 400 kr",
+          "tags": []
+        },
+        {
+          "id": "touch-up-powderbrows",
+          "name": "Touch up powderbrows",
+          "short": "",
+          "duration": "1 t",
+          "price": "0 kr",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "konsultasjon",
+      "title": "Konsultasjon",
+      "desc": "Konsultasjoner før behandling.",
+      "items": [
+        {
+          "id": "lipblush-konsultasjon",
+          "name": "Lipblush konsultasjon",
+          "short": "",
+          "duration": "15 min",
+          "price": "0 kr",
+          "tags": []
+        },
+        {
+          "id": "microblading-powderbrows-konsultasjon",
+          "name": "Microblading/powderbrows konsultasjon",
+          "short": "",
+          "duration": "15 min",
+          "price": "0 kr",
+          "tags": []
+        },
+        {
+          "id": "konsultasjon",
+          "name": "Konsultasjon",
+          "short": "",
+          "duration": "15 min",
+          "price": "0 kr",
+          "tags": []
+        },
+        {
+          "id": "hud-konsultasjon",
+          "name": "Hud konsultasjon",
+          "short": "",
+          "duration": "30 min",
+          "price": "0 kr",
+          "tags": []
+        },
+        {
+          "id": "laser-konsultasjon",
+          "name": "Laser konsultasjon",
+          "short": "",
+          "duration": "30 min",
+          "price": "0 kr",
+          "tags": []
         }
       ]
     },
     {
       "id": "bryn-vipper",
       "title": "Bryn og vipper",
-      "desc": "Bryn- og vippebehandlinger i Sandnes med forming, farging og løft for et naturlig uttrykk.",
+      "desc": "Forming, farging og løft for bryn og vipper.",
       "items": [
         {
           "id": "brynstyling",
-          "name": "Brynstyling (form, farge, voks)",
-          "short": "Forming, farging og voksing av bryn.",
+          "name": "Brynstyling (form, farg, voks)",
+          "short": "",
           "duration": "30 min",
-          "price": "690 kr",
-          "popular": true,
-          "tags": [
-            "bryn",
-            "styling"
-          ]
+          "price": "720 kr",
+          "tags": [],
+          "hasPage": true
         },
         {
           "id": "browlamination",
           "name": "Browlamination",
-          "short": "Permanent form med farging/forming inkludert.",
+          "short": "",
           "duration": "45 min",
-          "price": "1 070 kr",
-          "tags": [
-            "bryn",
-            "lamination"
-          ]
+          "price": "1 120 kr",
+          "tags": [],
+          "hasPage": true
         },
         {
           "id": "vippeloft",
           "name": "Vippeløft inkl. farge og lashfiller",
-          "short": "Naturlig løft med farge og lashfiller inkludert.",
+          "short": "",
           "duration": "1 t",
-          "price": "1 140 kr",
-          "tags": [
-            "vipper",
-            "løft"
-          ]
+          "price": "1 190 kr",
+          "tags": [],
+          "hasPage": true
         },
         {
           "id": "browlamination-vippeloft",
           "name": "Browlamination + Vippeløft, inkl. farge",
-          "short": "Kombinasjonspakke for bryn og vipper.",
+          "short": "",
           "duration": "1 t 30 min",
-          "price": "1 690 kr",
-          "tags": [
-            "pakke",
-            "bryn",
-            "vipper"
-          ]
+          "price": "1 760 kr",
+          "tags": [],
+          "hasPage": true
         },
         {
           "id": "brynstyling-vippeloft",
-          "name": "Brynstyling (form, farge, voks) + Vippeløft inkl. farge",
-          "short": "Kombinasjon med brynstyling og vippeløft.",
+          "name": "Brynstyling(form,farg,voks) + Vippeløft ink. farge",
+          "short": "",
           "duration": "1 t 15 min",
-          "price": "1 480 kr",
-          "tags": [
-            "pakke",
-            "bryn",
-            "vipper"
-          ]
+          "price": "1 540 kr",
+          "tags": [],
+          "hasPage": true
         },
         {
           "id": "farging-av-vipper",
           "name": "Farging av vipper",
-          "short": "Rask behandling som fremhever vippene.",
+          "short": "",
           "duration": "15 min",
-          "price": "290 kr",
-          "tags": [
-            "vipper",
-            "farge"
-          ]
+          "price": "300 kr",
+          "tags": [],
+          "hasPage": true
         },
         {
           "id": "farging-av-bryn",
           "name": "Farging av bryn",
-          "short": "Definerer og fyller ut brynene.",
+          "short": "",
           "duration": "15 min",
-          "price": "320 kr",
-          "tags": [
-            "bryn",
-            "farge"
-          ]
+          "price": "340 kr",
+          "tags": [],
+          "hasPage": true
         },
         {
           "id": "brynstyling-for-menn",
           "name": "Brynstyling for menn",
-          "short": "Skånsom forming og rydding av bryn.",
+          "short": "",
           "duration": "30 min",
-          "price": "490 kr",
-          "tags": [
-            "bryn",
-            "menn"
-          ]
+          "price": "550 kr",
+          "tags": [],
+          "hasPage": true
         },
         {
           "id": "brynstyling-voks-overleppe",
           "name": "Brynstyling + voks overleppe",
-          "short": "Ryddige bryn og pen overleppe.",
+          "short": "",
           "duration": "45 min",
-          "price": "850 kr",
-          "tags": [
-            "bryn",
-            "voks"
-          ]
+          "price": "890 kr",
+          "tags": [],
+          "hasPage": true
         },
         {
           "id": "forming-av-bryn",
           "name": "Forming av bryn",
-          "short": "Presis forming av brynene.",
+          "short": "",
           "duration": "30 min",
-          "price": "490 kr",
-          "tags": [
-            "bryn",
-            "forming"
-          ]
+          "price": "520 kr",
+          "tags": [],
+          "hasPage": true
         },
         {
           "id": "brynstyling-farging-av-vipper",
           "name": "Brynstyling + farging av vipper",
-          "short": "Full pakke for bryn og vipper.",
+          "short": "",
           "duration": "45 min",
-          "price": "850 kr",
-          "tags": [
-            "pakke",
-            "bryn",
-            "vipper"
-          ]
+          "price": "890 kr",
+          "tags": [],
+          "hasPage": true
         }
       ]
     },
     {
-      "id": "dermalogica",
-      "title": "Dermalogica",
-      "desc": "Dermalogica ansiktsbehandlinger i Sandnes, skreddersydd til hudtype, hudtilstand og mål.",
+      "id": "laser-pigmentreduksjon",
+      "title": "Laser pigmentreduksjon",
+      "desc": "Laserbehandling mot pigmentering.",
       "items": [
         {
-          "id": "dermalogica-signature",
-          "name": "Dermalogica Signaturebehandling",
-          "short": "Skreddersydd ansiktsbehandling med aktive ingredienser.",
-          "duration": "45 min",
-          "price": "1 000 kr",
-          "popular": true,
-          "tags": [
-            "hudpleie",
-            "klassisk"
-          ]
-        },
-        {
-          "id": "dermalogica-kjemisk-peeling",
-          "name": "Dermalogica Kjemisk Peeling",
-          "short": "Avansert, skreddersydd behandlingsteknikk.",
-          "duration": "45 min",
-          "price": "1 200 kr",
-          "tags": [
-            "peel",
-            "hudfornyelse"
-          ]
-        },
-        {
-          "id": "dermalogica-pigment-30",
-          "name": "Dermalogica Målrettet Pigmentering – 30 min",
-          "short": "Hudfornyende behandling med fokus på pigment.",
-          "duration": "30 min",
-          "price": "790 kr",
-          "tags": [
-            "pigment",
-            "hurtig"
-          ]
-        },
-        {
-          "id": "dermalogica-pigment-60",
-          "name": "Dermalogica Målrettet Pigmentering – 60 min",
-          "short": "For mer dyptvirkende og omfattende behandling.",
-          "duration": "1 t",
-          "price": "1 300 kr",
-          "tags": [
-            "pigment",
-            "hudfornyelse"
-          ]
-        },
-        {
-          "id": "dermalogica-akne-30",
-          "name": "Dermalogica Målrettet Akne – 30 min",
-          "short": "Ansiktsbehandling med fokus på akne/urenheter.",
-          "duration": "30 min",
-          "price": "790 kr",
-          "tags": [
-            "akne",
-            "hurtig"
-          ]
-        },
-        {
-          "id": "dermalogica-akne-60",
-          "name": "Dermalogica Målrettet Akne – 60 min",
-          "short": "For mer intensiv behandling av akne og urenheter.",
-          "duration": "1 t",
-          "price": "1 300 kr",
-          "tags": [
-            "akne",
-            "hudpleie"
-          ]
-        },
-        {
-          "id": "dermalogica-aldring-30",
-          "name": "Dermalogica Målrettet Aldring – 30 min",
-          "short": "Rask anti-age behandling.",
-          "duration": "30 min",
-          "price": "790 kr",
-          "tags": [
-            "anti-age",
-            "hurtig"
-          ]
-        },
-        {
-          "id": "dermalogica-aldring-60",
-          "name": "Dermalogica Målrettet Aldring – 60 min",
-          "short": "Mer dyptvirkende anti-age fokus.",
-          "duration": "1 t",
-          "price": "1 300 kr",
-          "tags": [
-            "anti-age",
-            "hudpleie"
-          ]
-        },
-        {
-          "id": "dermalogica-sensitivitet-30",
-          "name": "Dermalogica Målrettet Sensitivitet – 30 min",
-          "short": "Skånsom behandling for sensitiv hud.",
-          "duration": "30 min",
-          "price": "790 kr",
-          "tags": [
-            "sensitiv",
-            "hurtig"
-          ]
-        },
-        {
-          "id": "dermalogica-sensitivitet-60",
-          "name": "Dermalogica Målrettet Sensitivitet – 60 min",
-          "short": "For mer intensiv og dyptvirkende pleie.",
-          "duration": "1 t",
-          "price": "1 300 kr",
-          "tags": [
-            "sensitiv",
-            "hudpleie"
-          ]
-        },
-        {
-          "id": "facemapping-hudanalyse",
-          "name": "Facemapping Hudanalyse",
-          "short": "Grundig hudanalyse som svar på hva huden din trenger.",
+          "id": "pigmentflekk-overleppe",
+          "name": "Pigmentflekk overleppe",
+          "short": "",
           "duration": "15 min",
-          "price": "0 kr",
-          "tags": [
-            "kartlegging",
-            "analyse"
-          ]
+          "price": "1 100 kr",
+          "tags": []
+        },
+        {
+          "id": "armhuler",
+          "name": "Armhuler",
+          "short": "",
+          "duration": "15 min",
+          "price": "1 550 kr",
+          "tags": []
+        },
+        {
+          "id": "1x1-cm-flekk",
+          "name": "1x1 cm flekk",
+          "short": "",
+          "duration": "15 min",
+          "price": "850 kr",
+          "tags": []
+        },
+        {
+          "id": "panne-eller-kinn",
+          "name": "Panne eller kinn",
+          "short": "",
+          "duration": "30 min",
+          "price": "1 990 kr",
+          "tags": []
+        },
+        {
+          "id": "hele-ansiktet",
+          "name": "Hele ansiktet",
+          "short": "",
+          "duration": "30 min",
+          "price": "2 990 kr",
+          "tags": []
         }
       ]
     },
     {
       "id": "hudpleie",
       "title": "Hudpleie",
-      "desc": "Hudpleiebehandlinger i Sandnes med peels, dyprens og spesialbehandlinger for glød og hudfornyelse.",
+      "desc": "Hudpleie og avanserte hudfornyende behandlinger.",
       "items": [
         {
           "id": "prx-t33",
-          "name": "PRX–T33",
-          "short": "Metoden gir “glow-time”.",
+          "name": "PRX - T33",
+          "short": "",
           "duration": "45 min",
-          "price": "1 899 kr",
-          "popular": true,
-          "tags": [
-            "peel",
-            "glow"
-          ]
+          "price": "1 990 kr",
+          "tags": [],
+          "hasPage": true
         },
         {
           "id": "somi-klassisk-anti-age",
           "name": "Somi Klassisk anti-age hudpleie",
-          "short": "Dyprens, massasje og masker for glød og spenst.",
+          "short": "",
           "duration": "45 min",
-          "price": "1 299 kr",
-          "tags": [
-            "anti-age",
-            "hudpleie"
-          ]
+          "price": "1 350 kr",
+          "tags": [],
+          "hasPage": true
         },
         {
           "id": "somi-peel-acne",
           "name": "Somi Peel for acne og urenhet",
-          "short": "Spesialbehandling med fokus på talg og tilstoppinger.",
+          "short": "",
           "duration": "45 min",
-          "price": "850 kr",
-          "tags": [
-            "akne",
-            "peel"
-          ]
-        },
-        {
-          "id": "led-lysterapi",
-          "name": "LED-lysterapi",
-          "short": "Skånsom lysbehandling for ro og reparasjon.",
-          "duration": "30 min",
-          "price": "895 kr",
-          "tags": [
-            "lys",
-            "hudpleie"
-          ]
+          "price": "890 kr",
+          "tags": [],
+          "hasPage": true
         },
         {
           "id": "somi-dyprens",
           "name": "Somi Dyprens",
-          "short": "Grundig dyprens med damp og kjemisk peel.",
+          "short": "",
           "duration": "1 t",
-          "price": "1 299 kr",
-          "tags": [
-            "dyprens",
-            "peel"
-          ]
-        },
-        {
-          "id": "fjerning-skin-tags",
-          "name": "Fjerning av skin tags/vorter",
-          "short": "Rask og skånsom fjerning av små hudforandringer.",
-          "duration": "15 min",
-          "price": "150 kr",
-          "tags": [
-            "fjerning",
-            "hudpleie"
-          ]
+          "price": "1 350 kr",
+          "tags": [],
+          "hasPage": true
         },
         {
           "id": "laser-skin-rejuvenation-prx",
-          "name": "Laser skin rejuvenation + PRX–T33",
-          "short": "Kombinasjon for hudfornyelse.",
+          "name": "Laser skin rejuvenation + PRX-T33",
+          "short": "",
           "duration": "1 t",
-          "price": "2 999 kr",
-          "tags": [
-            "laser",
-            "peel"
-          ]
+          "price": "2 990 kr",
+          "tags": [],
+          "hasPage": true
         },
         {
           "id": "tca-peel",
           "name": "TCA-Peel",
-          "short": "Medisinsk dybde kjemisk peel for struktur og pigment.",
+          "short": "",
           "duration": "45 min",
-          "price": "1 899 kr",
-          "tags": [
-            "peel",
-            "hudfornyelse"
-          ]
+          "price": "1 990 kr",
+          "tags": [],
+          "hasPage": true
         },
         {
           "id": "dermaplaning",
           "name": "Dermaplaning",
-          "short": "Eksfolierende behandling som gir glød og jevnere hud.",
+          "short": "",
           "duration": "45 min",
           "price": "990 kr",
-          "tags": [
-            "eksfoliering",
-            "glow"
-          ]
+          "tags": [],
+          "hasPage": true
         },
         {
           "id": "carbon-peel-laser",
           "name": "Carbon peel laser",
-          "short": "Laser med kullmaske for renere, mattere hud.",
+          "short": "",
           "duration": "1 t",
-          "price": "1 499 kr",
-          "tags": [
-            "laser",
-            "peel"
-          ]
+          "price": "1 490 kr",
+          "tags": [],
+          "hasPage": true
+        },
+        {
+          "id": "glow-to-go",
+          "name": "GLOW-TO-GO",
+          "short": "",
+          "duration": "45 min",
+          "price": "1 900 kr",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "laser-permanent-harfjerning",
+      "title": "Laser - Permanent hårfjerning",
+      "desc": "Enkeltbehandlinger med laser hårfjerning.",
+      "items": [
+        {
+          "id": "overleppe",
+          "name": "Overleppe",
+          "short": "",
+          "duration": "30 min",
+          "price": "890 kr",
+          "tags": []
+        },
+        {
+          "id": "hake",
+          "name": "Hake",
+          "short": "",
+          "duration": "30 min",
+          "price": "890 kr",
+          "tags": []
+        },
+        {
+          "id": "overleppe-pluss-hake",
+          "name": "Overleppe + hake",
+          "short": "",
+          "duration": "30 min",
+          "price": "1 590 kr",
+          "tags": []
+        },
+        {
+          "id": "ansikt",
+          "name": "Ansikt",
+          "short": "",
+          "duration": "30 min",
+          "price": "1 750 kr",
+          "tags": []
+        },
+        {
+          "id": "nakke",
+          "name": "Nakke",
+          "short": "",
+          "duration": "30 min",
+          "price": "1 250 kr",
+          "tags": []
+        },
+        {
+          "id": "skjegglinje",
+          "name": "Skjegglinje",
+          "short": "",
+          "duration": "30 min",
+          "price": "1 050 kr",
+          "tags": []
+        },
+        {
+          "id": "armhuler",
+          "name": "Armhuler",
+          "short": "",
+          "duration": "30 min",
+          "price": "1 190 kr",
+          "tags": []
+        },
+        {
+          "id": "hele-armer",
+          "name": "Hele armer",
+          "short": "",
+          "duration": "45 min",
+          "price": "1 900 kr",
+          "tags": []
+        },
+        {
+          "id": "1-2-arm",
+          "name": "1/2 arm",
+          "short": "",
+          "duration": "30 min",
+          "price": "1 550 kr",
+          "tags": []
+        },
+        {
+          "id": "mage",
+          "name": "Mage",
+          "short": "",
+          "duration": "30 min",
+          "price": "1 300 kr",
+          "tags": []
+        },
+        {
+          "id": "bryst",
+          "name": "Bryst",
+          "short": "",
+          "duration": "30 min",
+          "price": "1 500 kr",
+          "tags": []
+        },
+        {
+          "id": "rygg",
+          "name": "Rygg",
+          "short": "",
+          "duration": "45 min",
+          "price": "3 100 kr",
+          "tags": []
+        },
+        {
+          "id": "rygg-og-skuldre",
+          "name": "Rygg og skuldre",
+          "short": "",
+          "duration": "45 min",
+          "price": "3 600 kr",
+          "tags": []
+        },
+        {
+          "id": "bikini-brasiliansk",
+          "name": "Bikini Brasiliansk",
+          "short": "",
+          "duration": "30 min",
+          "price": "1 800 kr",
+          "tags": []
+        },
+        {
+          "id": "bikini-klassisk",
+          "name": "Bikini Klassisk",
+          "short": "",
+          "duration": "30 min",
+          "price": "1 600 kr",
+          "tags": []
+        },
+        {
+          "id": "bikini-linje",
+          "name": "Bikini linje",
+          "short": "",
+          "duration": "30 min",
+          "price": "1 300 kr",
+          "tags": []
+        },
+        {
+          "id": "legger",
+          "name": "Legger",
+          "short": "",
+          "duration": "30 min",
+          "price": "2 150 kr",
+          "tags": []
+        },
+        {
+          "id": "lar",
+          "name": "Lår",
+          "short": "",
+          "duration": "30 min",
+          "price": "2 650 kr",
+          "tags": []
+        },
+        {
+          "id": "legger-og-lar",
+          "name": "Legger og lår",
+          "short": "",
+          "duration": "1 t",
+          "price": "4 100 kr",
+          "tags": []
+        },
+        {
+          "id": "brasiliansk-og-armhuler",
+          "name": "Brasiliansk og armhuler",
+          "short": "",
+          "duration": "45 min",
+          "price": "2 850 kr",
+          "tags": []
+        },
+        {
+          "id": "brasiliansk-og-overleppe",
+          "name": "Brasiliansk og overleppe",
+          "short": "",
+          "duration": "45 min",
+          "price": "2 100 kr",
+          "tags": []
+        },
+        {
+          "id": "brasiliansk-og-hele-ansiktet",
+          "name": "Brasiliansk og hele ansiktet",
+          "short": "",
+          "duration": "1 t",
+          "price": "3 300 kr",
+          "tags": []
+        },
+        {
+          "id": "brasiliansk-armhuler-og-hele-ben",
+          "name": "Brasiliansk, armhuler og hele ben",
+          "short": "",
+          "duration": "1 t 15 min",
+          "price": "6 600 kr",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "microneedling",
+      "title": "Microneedling",
+      "desc": "Microneedling-behandlinger og kombinasjoner.",
+      "items": [
+        {
+          "id": "microneedling",
+          "name": "Microneedling",
+          "short": "",
+          "duration": "1 t 15 min",
+          "price": "2 490 kr",
+          "tags": []
+        },
+        {
+          "id": "microneedling-inkl-i-pakke",
+          "name": "Microneedling inkl i pakke",
+          "short": "",
+          "duration": "1 t 15 min",
+          "price": "0 kr",
+          "tags": []
+        },
+        {
+          "id": "somi-signature-peel-pluss-needling-pluss-brynstyling",
+          "name": "Somi signature (peel+needling+brynstyling)",
+          "short": "",
+          "duration": "1 t 15 min",
+          "price": "3 490 kr",
+          "tags": []
+        },
+        {
+          "id": "microneedling-pluss-eksosomer",
+          "name": "Microneedling + eksosomer",
+          "short": "",
+          "duration": "1 t",
+          "price": "4 600 kr",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "dermalogica",
+      "title": "Dermalogica",
+      "desc": "Målrettede Dermalogica-behandlinger.",
+      "items": [
+        {
+          "id": "dermalogica-signature",
+          "name": "Dermalogica Signaturbehandling",
+          "short": "",
+          "duration": "45 min",
+          "price": "1 050 kr",
+          "tags": [],
+          "hasPage": true
+        },
+        {
+          "id": "dermalogica-kjemisk-peeling",
+          "name": "Dermalogica Kjemisk Peeling",
+          "short": "",
+          "duration": "45 min",
+          "price": "1 250 kr",
+          "tags": [],
+          "hasPage": true
+        },
+        {
+          "id": "dermalogica-pigment-30",
+          "name": "Dermalogica Målrettet Pigmentering 30min",
+          "short": "",
+          "duration": "30 min",
+          "price": "850 kr",
+          "tags": [],
+          "hasPage": true
+        },
+        {
+          "id": "dermalogica-pigment-60",
+          "name": "Dermalogica Målrettet Pigmentering 60min",
+          "short": "",
+          "duration": "1 t",
+          "price": "1 390 kr",
+          "tags": [],
+          "hasPage": true
+        },
+        {
+          "id": "dermalogica-akne-30",
+          "name": "Dermalogica Målrettet Akne 30min",
+          "short": "",
+          "duration": "30 min",
+          "price": "850 kr",
+          "tags": [],
+          "hasPage": true
+        },
+        {
+          "id": "dermalogica-akne-60",
+          "name": "Dermalogica Målrettet Akne 60min",
+          "short": "",
+          "duration": "1 t",
+          "price": "1 390 kr",
+          "tags": [],
+          "hasPage": true
+        },
+        {
+          "id": "dermalogica-aldring-30",
+          "name": "Dermalogica Målrettet Aldring 30min",
+          "short": "",
+          "duration": "30 min",
+          "price": "850 kr",
+          "tags": [],
+          "hasPage": true
+        },
+        {
+          "id": "dermalogica-aldring-60",
+          "name": "Dermalogica Målrettet Aldring 60min",
+          "short": "",
+          "duration": "1 t",
+          "price": "1 390 kr",
+          "tags": [],
+          "hasPage": true
+        },
+        {
+          "id": "dermalogica-sensitivitet-30",
+          "name": "Dermalogica Målrettet Sensitivitet 30min",
+          "short": "",
+          "duration": "30 min",
+          "price": "850 kr",
+          "tags": [],
+          "hasPage": true
+        },
+        {
+          "id": "dermalogica-sensitivitet-60",
+          "name": "Dermalogica Målrettet Sensitivitet 60min",
+          "short": "",
+          "duration": "1 t",
+          "price": "1 390 kr",
+          "tags": [],
+          "hasPage": true
+        },
+        {
+          "id": "facemapping-hudanalyse",
+          "name": "Facemapping Hudanalyse",
+          "short": "",
+          "duration": "15 min",
+          "price": "0 kr",
+          "tags": [],
+          "hasPage": true
+        }
+      ]
+    },
+    {
+      "id": "harfjerning-voksing",
+      "title": "Hårfjerning/voksing",
+      "desc": "Voksing og alkaline-behandlinger.",
+      "items": [
+        {
+          "id": "brasiliansk",
+          "name": "Brasiliansk",
+          "short": "",
+          "duration": "30 min",
+          "price": "690 kr",
+          "tags": []
+        },
+        {
+          "id": "armhuler",
+          "name": "Armhuler",
+          "short": "",
+          "duration": "15 min",
+          "price": "300 kr",
+          "tags": []
+        },
+        {
+          "id": "legger",
+          "name": "Legger",
+          "short": "",
+          "duration": "30 min",
+          "price": "350 kr",
+          "tags": []
+        },
+        {
+          "id": "hele-ben",
+          "name": "Hele ben",
+          "short": "",
+          "duration": "45 min",
+          "price": "600 kr",
+          "tags": []
+        },
+        {
+          "id": "hele-armer",
+          "name": "Hele armer",
+          "short": "",
+          "duration": "30 min",
+          "price": "350 kr",
+          "tags": []
+        },
+        {
+          "id": "halve-armer",
+          "name": "Halve armer",
+          "short": "",
+          "duration": "30 min",
+          "price": "290 kr",
+          "tags": []
+        },
+        {
+          "id": "hake",
+          "name": "Hake",
+          "short": "",
+          "duration": "15 min",
+          "price": "200 kr",
+          "tags": []
+        },
+        {
+          "id": "overleppe-pluss-hake",
+          "name": "Overleppe + hake",
+          "short": "",
+          "duration": "15 min",
+          "price": "400 kr",
+          "tags": []
+        },
+        {
+          "id": "hele-ansiktet",
+          "name": "Hele ansiktet",
+          "short": "",
+          "duration": "30 min",
+          "price": "500 kr",
+          "tags": []
+        },
+        {
+          "id": "nesebor",
+          "name": "Nesebor",
+          "short": "",
+          "duration": "15 min",
+          "price": "200 kr",
+          "tags": []
+        },
+        {
+          "id": "overleppe",
+          "name": "Overleppe",
+          "short": "",
+          "duration": "15 min",
+          "price": "200 kr",
+          "tags": []
+        },
+        {
+          "id": "brasiliansk-pluss-armhuler",
+          "name": "Brasiliansk + armhuler",
+          "short": "",
+          "duration": "45 min",
+          "price": "900 kr",
+          "tags": []
+        },
+        {
+          "id": "brasiliansk-pluss-armhuler-pluss-legger",
+          "name": "Brasiliansk + armhuler + legger",
+          "short": "",
+          "duration": "45 min",
+          "price": "1 250 kr",
+          "tags": []
+        },
+        {
+          "id": "brasiliansk-pluss-armhuler-pluss-armer-pluss-hele-ben",
+          "name": "Brasiliansk + armhuler + armer + hele ben",
+          "short": "",
+          "duration": "1 t",
+          "price": "1 650 kr",
+          "tags": []
+        },
+        {
+          "id": "bikinilinje",
+          "name": "Bikinilinje",
+          "short": "",
+          "duration": "15 min",
+          "price": "450 kr",
+          "tags": []
+        },
+        {
+          "id": "bikini-klassisk",
+          "name": "Bikini klassisk",
+          "short": "",
+          "duration": "15 min",
+          "price": "450 kr",
+          "tags": []
+        },
+        {
+          "id": "legger-pluss-bakside-lar",
+          "name": "Legger + bakside lår",
+          "short": "",
+          "duration": "30 min",
+          "price": "450 kr",
+          "tags": []
+        },
+        {
+          "id": "brasiliansk-pluss-hele-ben",
+          "name": "Brasiliansk + hele ben",
+          "short": "",
+          "duration": "1 t",
+          "price": "1 100 kr",
+          "tags": []
+        },
+        {
+          "id": "brasiliansk-pluss-legger",
+          "name": "Brasiliansk + legger",
+          "short": "",
+          "duration": "45 min",
+          "price": "900 kr",
+          "tags": []
+        },
+        {
+          "id": "alkaline-hele-ansiktet",
+          "name": "Alkaline hele ansiktet",
+          "short": "",
+          "duration": "45 min",
+          "price": "1 690 kr",
+          "tags": []
+        },
+        {
+          "id": "alkaline-halve-ansikt",
+          "name": "Alkaline halve ansikt",
+          "short": "",
+          "duration": "30 min",
+          "price": "1 325 kr",
+          "tags": []
+        },
+        {
+          "id": "alkaline-overleppe",
+          "name": "Alkaline overleppe",
+          "short": "",
+          "duration": "30 min",
+          "price": "950 kr",
+          "tags": []
+        },
+        {
+          "id": "alkaline-hake",
+          "name": "Alkaline hake",
+          "short": "",
+          "duration": "15 min",
+          "price": "950 kr",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "laser-tattoo-removal",
+      "title": "Laser tattoo removal",
+      "desc": "Fjerning av pigment og tatovering med laser/saline.",
+      "items": [
+        {
+          "id": "saline-removal-gule-pigmenter-i-bryn",
+          "name": "Saline removal (gule pigmenter i bryn)",
+          "short": "",
+          "duration": "30 min",
+          "price": "1 400 kr",
+          "tags": []
+        },
+        {
+          "id": "laserfjerning-bryn",
+          "name": "Laserfjerning bryn",
+          "short": "",
+          "duration": "30 min",
+          "price": "1 450 kr",
+          "tags": []
+        },
+        {
+          "id": "laserfjerning-tatovering-10x10cm",
+          "name": "Laserfjerning tatovering 10x10cm",
+          "short": "",
+          "duration": "30 min",
+          "price": "1 450 kr",
+          "tags": []
+        },
+        {
+          "id": "konsultasjon",
+          "name": "Konsultasjon",
+          "short": "",
+          "duration": "15 min",
+          "price": "0 kr",
+          "tags": []
+        },
+        {
+          "id": "laserfjerning-tatovering-5x5-cm",
+          "name": "Laserfjerning tatovering 5x5 cm",
+          "short": "",
+          "duration": "30 min",
+          "price": "1 050 kr",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "elektrolyse",
+      "title": "Elektrolyse | Permanent hårfjerning",
+      "desc": "Elektrolyse-behandlinger.",
+      "items": [
+        {
+          "id": "elektrolyse-15-min",
+          "name": "Elektrolyse 15 min",
+          "short": "",
+          "duration": "15 min",
+          "price": "570 kr",
+          "tags": []
+        },
+        {
+          "id": "elektrolyse-30-min",
+          "name": "Elektrolyse 30 min",
+          "short": "",
+          "duration": "30 min",
+          "price": "990 kr",
+          "tags": []
+        },
+        {
+          "id": "elektrolyse-hake-4x15min",
+          "name": "Elektrolyse hake (4x15min)",
+          "short": "",
+          "duration": "15 min",
+          "price": "1 790 kr",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "laser-pakkepriser",
+      "title": "Laser - permanent hårfjerning pakkepriser",
+      "desc": "Pakkepriser (x4) for laser hårfjerning.",
+      "items": [
+        {
+          "id": "overleppe-x-4",
+          "name": "Overleppe x 4",
+          "short": "",
+          "duration": "15 min",
+          "price": "2 450 kr",
+          "tags": []
+        },
+        {
+          "id": "hake-x-4",
+          "name": "Hake x 4",
+          "short": "",
+          "duration": "15 min",
+          "price": "2 450 kr",
+          "tags": []
+        },
+        {
+          "id": "overleppe-pluss-hake-x-4",
+          "name": "Overleppe + hake x 4",
+          "short": "",
+          "duration": "30 min",
+          "price": "4 550 kr",
+          "tags": []
+        },
+        {
+          "id": "ansikt-x-4",
+          "name": "Ansikt x 4",
+          "short": "",
+          "duration": "30 min",
+          "price": "5 150 kr",
+          "tags": []
+        },
+        {
+          "id": "nakke-x-4",
+          "name": "Nakke x 4",
+          "short": "",
+          "duration": "30 min",
+          "price": "3 650 kr",
+          "tags": []
+        },
+        {
+          "id": "skjegglinje-x-4",
+          "name": "Skjegglinje x 4",
+          "short": "",
+          "duration": "30 min",
+          "price": "3 050 kr",
+          "tags": []
+        },
+        {
+          "id": "armhuler-x-4",
+          "name": "Armhuler x 4",
+          "short": "",
+          "duration": "15 min",
+          "price": "3 650 kr",
+          "tags": []
+        },
+        {
+          "id": "hele-armer-x-4",
+          "name": "Hele armer x 4",
+          "short": "",
+          "duration": "45 min",
+          "price": "5 550 kr",
+          "tags": []
+        },
+        {
+          "id": "halve-armer-x-4",
+          "name": "Halve armer x 4",
+          "short": "",
+          "duration": "30 min",
+          "price": "4 550 kr",
+          "tags": []
+        },
+        {
+          "id": "mage-x-4",
+          "name": "Mage x 4",
+          "short": "",
+          "duration": "30 min",
+          "price": "3 700 kr",
+          "tags": []
+        },
+        {
+          "id": "bryst-x-4",
+          "name": "Bryst x 4",
+          "short": "",
+          "duration": "30 min",
+          "price": "4 300 kr",
+          "tags": []
+        },
+        {
+          "id": "rygg-x-4",
+          "name": "Rygg x 4",
+          "short": "",
+          "duration": "45 min",
+          "price": "9 100 kr",
+          "tags": []
+        },
+        {
+          "id": "rygg-og-skuldre-x-4",
+          "name": "Rygg og skuldre x 4",
+          "short": "",
+          "duration": "1 t",
+          "price": "11 000 kr",
+          "tags": []
+        },
+        {
+          "id": "brasiliansk-x-4",
+          "name": "Brasiliansk x 4",
+          "short": "",
+          "duration": "30 min",
+          "price": "5 250 kr",
+          "tags": []
+        },
+        {
+          "id": "bikini-klassisk-x-4",
+          "name": "Bikini klassisk x 4",
+          "short": "",
+          "duration": "30 min",
+          "price": "4 600 kr",
+          "tags": []
+        },
+        {
+          "id": "bikinilinje-x-4",
+          "name": "Bikinilinje x 4",
+          "short": "",
+          "duration": "30 min",
+          "price": "3 700 kr",
+          "tags": []
+        },
+        {
+          "id": "legger-x-4",
+          "name": "Legger x 4",
+          "short": "",
+          "duration": "30 min",
+          "price": "6 150 kr",
+          "tags": []
+        },
+        {
+          "id": "lar-x-4",
+          "name": "Lår x 4",
+          "short": "",
+          "duration": "45 min",
+          "price": "7 700 kr",
+          "tags": []
+        },
+        {
+          "id": "legger-og-lar-x-4",
+          "name": "Legger og lår x 4",
+          "short": "",
+          "duration": "1 t",
+          "price": "11 900 kr",
+          "tags": []
+        },
+        {
+          "id": "brasiliansk-pluss-overleppe-x-4",
+          "name": "Brasiliansk + overleppe x 4",
+          "short": "",
+          "duration": "45 min",
+          "price": "6 150 kr",
+          "tags": []
+        },
+        {
+          "id": "brasiliansk-pluss-armhuler-x-4",
+          "name": "Brasiliansk + armhuler x 4",
+          "short": "",
+          "duration": "45 min",
+          "price": "8 400 kr",
+          "tags": []
+        },
+        {
+          "id": "brasiliansk-pluss-hele-ansiktet-x-4",
+          "name": "Brasiliansk + hele ansiktet x 4",
+          "short": "",
+          "duration": "45 min",
+          "price": "9 700 kr",
+          "tags": []
+        },
+        {
+          "id": "brasiliansk-pluss-armhuler-pluss-hele-ben-x-4",
+          "name": "Brasiliansk + armhuler + hele ben x 4",
+          "short": "",
+          "duration": "1 t 30 min",
+          "price": "20 100 kr",
+          "tags": []
         }
       ]
     }
