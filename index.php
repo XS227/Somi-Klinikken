@@ -1,0 +1,657 @@
+<?php
+session_start();
+require_once __DIR__ . '/includes/content.php';
+
+$content = load_site_content();
+$heroKicker = content_get($content, 'home', 'hero_kicker', 'Velkommen til SOMI Klinikken');
+$heroTitle = content_get($content, 'home', 'hero_title', 'Skånsomme behandlinger med presisjon og naturlig uttrykk.');
+$heroText = content_get($content, 'home', 'hero_text', 'Vi legger vekt på kvalitet, veiledning og riktig behandling for et trygt og profesjonelt resultat.');
+$heroPrimaryLabel = content_get($content, 'home', 'hero_primary_label', 'Book time');
+$heroPrimaryUrl = content_get($content, 'home', 'hero_primary_url', '#');
+$heroSecondaryLabel = content_get($content, 'home', 'hero_secondary_label', 'Se priser');
+$heroSecondaryUrl = content_get($content, 'home', 'hero_secondary_url', '/priser.html');
+$heroImage = content_get($content, 'home', 'hero_image', '/assets/img/hero/beauty-treatment.svg');
+$aboutTitle = content_get($content, 'home', 'about_title', 'Faglig trygghet i rolige omgivelser');
+$aboutText1 = content_get($content, 'home', 'about_text_1', 'SOMI kombinerer dokumenterte metoder med personlig vurdering, slik at du får riktig behandling for dine behov.');
+$aboutText2 = content_get($content, 'home', 'about_text_2', 'Vi prioriterer tydelig informasjon, høy hygiene og et naturlig resultat som harmonerer med ansiktet ditt.');
+$aboutImage = content_get($content, 'home', 'about_image', '/assets/img/hero/clinic-interior.svg');
+?>
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>SOMI Klinikken i Sandnes | Microblading, Permanent Makeup, Hud & Laser</title>
+  <meta name="description" content="SOMI Klinikken i Sandnes tilbyr microblading, permanent makeup, bryn og vipper, hudpleie og laser. Bestill time online på vår bookingside." />
+  <link rel="canonical" href="/index.php" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="SOMI Klinikken i Sandnes" />
+  <meta property="og:description" content="Microblading, permanent makeup, bryn og vipper, hudpleie og laser. Bestill time online." />
+  <meta property="og:image" content="/assets/img/brand/logo.png" />
+
+  <base href="/" />
+
+  <link rel="stylesheet" href="/css/tokens.css" />
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/layout.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/motion.css" />
+  <link rel="stylesheet" href="/css/header.css" />
+  <link rel="stylesheet" href="/css/footer.css" />
+  <link rel="stylesheet" href="/css/hotfix.css" />
+
+  <style>
+    .kicker{ letter-spacing:.08em; text-transform:uppercase; font-size:12px; opacity:.7; }
+
+    .hero{ background:#E8E6E4; padding:120px 0; position:relative; overflow:hidden; }
+    .arch-lines{
+      position:absolute;
+      inset:0;
+      z-index:0;
+      pointer-events:none;
+      opacity:0;
+      transition:opacity 700ms ease-out;
+    }
+    .arch-lines.is-in{ opacity:1; }
+    .arch-lines svg{
+      position:absolute;
+      right:-140px;
+      top:0;
+      width:min(640px,56vw);
+      height:auto;
+      display:block;
+    }
+    .arch-lines path{
+      fill:none;
+      stroke:#FFFFFF;
+      stroke-width:2;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+      stroke-dasharray:10 16;
+      animation:archWave 26s linear infinite;
+      opacity:.26;
+      filter:drop-shadow(0 0 10px rgba(255,255,255,0.06));
+    }
+    .arch-lines path:nth-child(2){ animation-duration:24s; }
+    .arch-lines path:nth-child(3){ animation-duration:28s; }
+    .arch-lines path:nth-child(4){ animation-duration:22s; }
+    .arch-lines path:nth-child(5){ animation-duration:30s; }
+
+    @keyframes archWave {
+      from { stroke-dashoffset:0; }
+      to { stroke-dashoffset:-38; }
+    }
+
+    .hero::after,
+    .end-cta::after{
+      content:"";
+      position:absolute;
+      border-radius:999px 999px 0 0;
+      border:2px solid rgba(56,56,56,0.08);
+      border-bottom:0;
+      pointer-events:none;
+    }
+    .hero::after{
+      width:clamp(280px,36vw,500px);
+      height:clamp(180px,30vw,340px);
+      right:clamp(-80px,-2vw,40px);
+      top:38px;
+    }
+
+    .find-treatment{ background:rgba(241,227,229,0.13); position:relative; overflow:hidden; }
+    .find-treatment .arch-lines svg{ right:-220px; top:-14px; width:min(560px,50vw); }
+
+    .hero-grid,.about-grid{ display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:24px; align-items:center; position:relative; z-index:1; }
+    .hero-copy{ grid-column: span 7; max-width:620px; }
+    .hero-media{ grid-column: 8 / span 5; }
+
+    .hero-copy .h1{ max-width:620px; margin:12px 0 20px; }
+    .hero-copy p{ max-width:620px; }
+    .hero-copy .cta-row{ margin-top:34px; }
+
+    .cta-row{ display:flex; gap:12px; flex-wrap:wrap; }
+
+    .media-embed{
+      border-radius:20px;
+      overflow:hidden;
+      border:1px solid rgba(56,56,56,.08);
+      box-shadow:0 10px 30px rgba(0,0,0,.03);
+      background:#fff;
+      max-width:520px;
+      margin-left:auto;
+      aspect-ratio: 4 / 5;
+    }
+    .media-embed iframe,
+    .media-embed video,
+    .media-embed img{ width:100%; height:100%; border:0; object-fit:cover; display:block; }
+
+    .category-grid{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:24px; margin-top:36px; }
+    .category-card{
+      display:grid;
+      gap:10px;
+      overflow:hidden;
+      text-decoration:none;
+      color:inherit;
+      border-radius:18px;
+      background:#fff;
+      border:1px solid rgba(56,56,56,.08);
+      box-shadow:0 8px 22px rgba(0,0,0,.03);
+      padding:16px;
+      min-height:170px;
+      transition:transform 180ms ease;
+    }
+    .category-card:hover{ transform: translateY(-4px); }
+    .category-card img{
+      width:100%;
+      aspect-ratio:16 / 9;
+      object-fit:cover;
+      border-radius:12px;
+      border:1px solid rgba(56,56,56,.08);
+      box-shadow:0 8px 20px rgba(0,0,0,.04);
+    }
+
+    .about-image{ grid-column: span 6; }
+    .about-copy{ grid-column: span 6; }
+    .about-arch{
+      position:relative;
+      border-radius:22px;
+      border:1px solid rgba(56,56,56,.12);
+      padding:16px;
+      overflow:hidden;
+      max-width:520px;
+    }
+    .about-arch img,
+    .about-arch video{ width:100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius:14px; display:block; }
+
+    [data-motion-media]{
+      transform: translateY(var(--motion-y, 0px));
+      will-change: transform;
+      transition: transform 220ms ease-out;
+    }
+
+    .check-grid{ margin-top:28px; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px 24px; }
+    .check-item{ display:flex; gap:12px; align-items:flex-start; }
+    .check-item b{ font-size:18px; line-height:1.4; font-weight:500; }
+    .intro-team-grid{
+      margin-top:28px;
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:20px;
+    }
+    .intro-member{
+      border:1px solid rgba(56,56,56,.08);
+      border-radius:18px;
+      background:#fff;
+      box-shadow:0 8px 22px rgba(0,0,0,.03);
+      padding:20px;
+      display:grid;
+      gap:12px;
+    }
+    .intro-member h3{ margin:0; font-size:24px; line-height:1.2; }
+    .intro-member .role{ margin:0; color:rgba(56,56,56,.75); font-size:14px; letter-spacing:.02em; }
+    .intro-member p{ margin:0; color:#4f4f4f; font-size:15px; line-height:1.65; }
+
+    .timeline{ margin-top:32px; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:24px; }
+    .timeline-step{
+      border:1px solid rgba(56,56,56,.08);
+      border-radius:16px;
+      padding:20px;
+      background:#fff;
+    }
+    .timeline-step .num{ width:28px; height:28px; border-radius:50%; display:grid; place-items:center; background:rgba(56,56,56,.95); color:#fff; font-size:13px; margin-bottom:12px; }
+
+    .blog-shell{
+      margin-top:20px;
+      display:grid;
+      grid-template-columns:auto 1fr auto;
+      align-items:center;
+      gap:12px;
+    }
+    .blog-arrow{
+      width:40px;
+      height:40px;
+      border-radius:50%;
+      border:1px solid rgba(56,56,56,.2);
+      background:#fff;
+      cursor:pointer;
+    }
+    .blog-slider{
+      margin-top:0;
+      display:grid;
+      grid-auto-flow:column;
+      grid-auto-columns:minmax(260px,1fr);
+      gap:24px;
+      overflow-x:auto;
+      padding-bottom:8px;
+      scroll-snap-type:x mandatory;
+    }
+    .blog-card{
+      scroll-snap-align:start;
+      border-radius:14px;
+      border:1px solid rgba(56,56,56,.08);
+      background:#fff;
+      box-shadow:0 8px 22px rgba(0,0,0,.03);
+      padding:16px;
+      display:grid;
+      gap:10px;
+    }
+
+
+    .parallax-band{
+      position:relative;
+      min-height:360px;
+      border-radius:22px;
+      background-image:url('/p/vegg.JPG');
+      background-size:cover;
+      background-position:center var(--parallax-y, 50%);
+      border:1px solid rgba(56,56,56,.08);
+      box-shadow:0 16px 36px rgba(0,0,0,.08);
+      overflow:hidden;
+      display:grid;
+      align-items:center;
+      justify-items:center;
+      padding:32px;
+    }
+    .parallax-band::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,.18) 0%, rgba(0,0,0,.42) 100%);
+      z-index:0;
+    }
+    .parallax-content{
+      position:relative;
+      z-index:1;
+      text-align:center;
+      color:#fff;
+      max-width:620px;
+    }
+    .parallax-content .h2{ color:#fff; }
+    .parallax-content .cta-row{ justify-content:center; margin-top:20px; }
+    .parallax-content .btn{
+      border-color:rgba(255,255,255,.7);
+      color:#fff;
+      background:rgba(255,255,255,.1);
+      backdrop-filter: blur(3px);
+    }
+    .parallax-content .btn.btn--primary{
+      background:#fff;
+      color:#222;
+      border-color:#fff;
+    }
+
+    .parallax-video-band{
+      position:relative;
+      min-height:360px;
+      border-radius:22px;
+      background:#e4e0dc;
+      border:1px solid rgba(56,56,56,.08);
+      box-shadow:0 16px 36px rgba(0,0,0,.08);
+      overflow:hidden;
+      display:grid;
+      align-items:center;
+      justify-items:center;
+      padding:32px;
+      isolation:isolate;
+    }
+    .parallax-video-band video{
+      position:absolute;
+      inset:-12% 0;
+      width:100%;
+      height:124%;
+      object-fit:cover;
+      object-position:center;
+      transform:translateY(var(--parallax-y-px, 0px));
+      z-index:-2;
+    }
+    .parallax-video-band::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,.18) 0%, rgba(0,0,0,.4) 100%);
+      z-index:-1;
+    }
+    .parallax-video-band .arch-lines svg{
+      right:-120px;
+      top:40px;
+      width:min(620px,62vw);
+    }
+    .parallax-video-band .arch-lines path{ opacity:.2; }
+    .parallax-video-content{
+      position:relative;
+      z-index:1;
+      width:100%;
+    }
+    .parallax-video-content .h2{ color:#fff; text-align:center; }
+    .parallax-video-content .timeline{
+      margin-top:20px;
+    }
+    .parallax-video-content .timeline-step{
+      background:rgba(255,255,255,.92);
+      backdrop-filter: blur(3px);
+    }
+
+    .cta-zone{ background:rgba(237,229,221,0.32); }
+    .google-reviews{ background:rgba(241,227,229,0.16); }
+    .reviews-wrap{
+      border:1px solid rgba(56,56,56,.08);
+      border-radius:22px;
+      background:#fff;
+      box-shadow:0 10px 28px rgba(0,0,0,.03);
+      padding:34px;
+      display:grid;
+      gap:22px;
+    }
+    .reviews-head{ display:flex; justify-content:space-between; align-items:flex-end; gap:20px; flex-wrap:wrap; }
+    .reviews-rating{ display:grid; gap:6px; }
+    .stars{ display:flex; align-items:center; gap:6px; color:#D4A63F; font-size:18px; letter-spacing:1px; }
+    .stars .score{ color:#222; font-size:16px; letter-spacing:0; margin-left:8px; }
+    .review-grid{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px; }
+    .review-card{
+      border-radius:16px;
+      border:1px solid rgba(56,56,56,.08);
+      background:rgba(248,245,242,0.7);
+      padding:18px;
+      display:grid;
+      gap:10px;
+    }
+    .review-card p{ margin:0; }
+    .review-card .who{ font-size:14px; color:#555; }
+    .end-cta{
+      position:relative;
+      border:1px solid rgba(56,56,56,.08);
+      background:#fff;
+      box-shadow:0 10px 30px rgba(0,0,0,.03);
+      border-radius:20px;
+      padding:42px;
+      overflow:hidden;
+    }
+    .end-cta::after{
+      width:min(70%,720px);
+      height:280px;
+      left:50%;
+      transform:translateX(-50%);
+      bottom:-80px;
+      opacity:.06;
+    }
+
+    @media (max-width: 1080px){
+      .category-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .timeline{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .intro-team-grid{ grid-template-columns:1fr 1fr; }
+      .review-grid{ grid-template-columns:1fr 1fr; }
+    }
+    @media (max-width: 940px){
+      .hero-copy,.hero-media,.about-image,.about-copy{ grid-column:1 / -1; }
+      .hero-media{ max-width:620px; }
+      .media-embed{ margin:0; }
+      .check-grid{ grid-template-columns:1fr; }
+    }
+    @media (max-width: 700px){
+      .category-grid,.timeline{ grid-template-columns:1fr; }
+      .intro-team-grid{ grid-template-columns:1fr; }
+      .review-grid{ grid-template-columns:1fr; }
+      .blog-shell{ grid-template-columns:1fr; }
+      .blog-arrow{ display:none; }
+      .hero{ padding:90px 0; }
+      .end-cta{ padding:30px 24px; }
+      .reviews-wrap{ padding:24px; }
+    }
+  </style>
+
+  <script defer src="/js/config.js"></script>
+  <script defer src="/js/includes.js"></script>
+  <script defer src="/js/site.js"></script>
+  <script defer src="/js/google-reviews.js"></script>
+</head>
+
+<body>
+  <div data-include="/partials/header.html"></div>
+
+  <main>
+    <section class="hero">
+      <div class="arch-lines" data-scroll-fade aria-hidden="true">
+        <svg viewBox="0 0 520 340" focusable="false">
+          <path d="M40 320 C40 182 152 70 290 70 C428 70 480 182 480 320" />
+          <path d="M72 320 C72 200 168 102 289 102 C410 102 448 200 448 320" />
+          <path d="M104 320 C104 218 183 134 288 134 C393 134 416 218 416 320" />
+          <path d="M136 320 C136 236 199 166 287 166 C375 166 384 236 384 320" />
+          <path d="M168 320 C168 254 214 198 286 198 C358 198 352 254 352 320" />
+        </svg>
+      </div>
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <div class="kicker"><?= e($heroKicker) ?></div>
+          <h1 class="h1"><?= e($heroTitle) ?></h1>
+          <p class="muted"><?= e($heroText) ?></p>
+          <div class="cta-row">
+            <a class="btn btn--primary" href="<?= e($heroPrimaryUrl) ?>" data-booking-link><?= e($heroPrimaryLabel) ?></a>
+            <a class="btn" href="<?= e($heroSecondaryUrl) ?>"><?= e($heroSecondaryLabel) ?></a>
+          </div>
+        </div>
+
+        <aside class="hero-media reveal media-embed" data-motion-media aria-label="Bilde fra SOMI Klinikken">
+          <img src="<?= e($heroImage) ?>" alt="SOMI Klinikken" loading="eager" decoding="async" />
+        </aside>
+      </div>
+    </section>
+
+    <section class="section section--tight find-treatment">
+      <div class="arch-lines" data-scroll-fade aria-hidden="true">
+        <svg viewBox="0 0 520 340" focusable="false">
+          <path d="M40 320 C40 182 152 70 290 70 C428 70 480 182 480 320" />
+          <path d="M72 320 C72 200 168 102 289 102 C410 102 448 200 448 320" />
+          <path d="M104 320 C104 218 183 134 288 134 C393 134 416 218 416 320" />
+          <path d="M136 320 C136 236 199 166 287 166 C375 166 384 236 384 320" />
+        </svg>
+      </div>
+      <div class="container">
+        <div class="reveal">
+          <h2 class="h2">Finn behandlingen som passer deg</h2>
+        </div>
+        <div class="category-grid">
+          <a class="category-card reveal" href="/kategorier/microblading.html"><img src="/p/microbehandling.jpg" alt="Microblading behandling"><strong>Microblading</strong><span class="muted">Naturlige bryn med presis form og tilpasset uttrykk.</span></a>
+          <a class="category-card reveal" href="/kategorier/bryn-og-vipper.html"><img src="/p/pmukatarina.JPG" alt="Bryn og vipper behandling"><strong>Bryn &amp; vipper</strong><span class="muted">Forming, farge og løft som fremhever ansiktstrekk.</span></a>
+          <a class="category-card reveal" href="/kategorier/dermalogica.html"><img src="/p/dermalogica.jpg" alt="Dermalogica hudpleie"><strong>Dermalogica</strong><span class="muted">Målrettet hudpleie basert på din hudtilstand.</span></a>
+          <a class="category-card reveal" href="/kategorier/hudpleie.html"><img src="/p/hudhud.jpg" alt="Hud og laser behandling"><strong>Hud &amp; laser</strong><span class="muted">Avansert behandling med fokus på hudfornyelse.</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container about-grid">
+        <div class="about-image reveal">
+          <div class="about-arch" data-motion-media>
+            <img src="<?= e($aboutImage) ?>" alt="SOMI Klinikken interiør" loading="lazy" decoding="async" />
+          </div>
+        </div>
+        <div class="about-copy reveal">
+          <h2 class="h2"><?= e($aboutTitle) ?></h2>
+          <p class="muted"><?= e($aboutText1) ?></p>
+          <p class="muted" style="margin-top:14px;"><?= e($aboutText2) ?></p>
+          <div class="cta-row" style="margin-top:28px;">
+            <a class="btn" href="/team.html">Møt teamet</a>
+            <a class="btn btn--primary" href="<?= e($heroPrimaryUrl) ?>" data-booking-link><?= e($heroPrimaryLabel) ?></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container reveal">
+        <h2 class="h2">Kvalitet, presisjon og naturlig resultat</h2>
+        <div class="check-grid">
+          <div class="check-item"><span>✓</span><b>Kvalifiserte terapeuter</b></div>
+          <div class="check-item"><span>✓</span><b>Dokumenterte rutiner</b></div>
+          <div class="check-item"><span>✓</span><b>Individuell vurdering</b></div>
+          <div class="check-item"><span>✓</span><b>Rolig opplevelse</b></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container reveal">
+        <h2 class="h2">Møt menneskene bak SOMI</h2>
+        <p class="muted">Et ryddig førsteinntrykk starter med tydelig fagprofil. Her ser du hvem du møter hos oss.</p>
+        <div class="intro-team-grid">
+          <article class="intro-member">
+            <h3>Katarina Hammer</h3>
+            <p class="role">Eier og daglig leder · Permanent makeup</p>
+            <p>Katarina Hammer er eier og daglig leder av Somi Klinikken AS, med over 13 års erfaring innen permanent makeup. Hun er kjent for presis teknikk og naturlige, harmoniske resultater.</p>
+            <p>For Katarina handler faget om å forsterke det naturlige med balanse, helhet og et tidløst uttrykk. Arbeidet hennes er preget av høy faglig kvalitet, estetisk forståelse og et gjennomført øye for detaljer.</p>
+          </article>
+          <article class="intro-member">
+            <h3>Emma</h3>
+            <p class="role">Hudpleier · Dermalogica Expert</p>
+            <p>Emma er utdannet hudpleier med videreutdanning som Dermalogica Expert. Gjennom egne erfaringer med hudutfordringer og behandling med isotretinoin har hun utviklet en dyp forståelse for hudhelse.</p>
+            <p>Hun tilpasser behandlinger etter hver enkelt kundes behov, og tilbyr også bryns- og vippebehandlinger samt permanent makeup med fokus på naturlige og harmoniske resultater.</p>
+          </article>
+          <article class="intro-member">
+            <h3>Arianna</h3>
+            <p class="role">Autorisert helsepersonell · Laserspesialist</p>
+            <p>Arianna er autorisert helsepersonell med videreutdanning som laserspesialist i henhold til strålevernforskriften §13. Hun har fordypet seg gjennom avanserte kurs innen laserbehandling.</p>
+            <p>Hun arbeider etter høye standarder med fokus på presisjon, kvalitet og kontinuerlig faglig utvikling for å sikre trygge, skreddersydde og effektive behandlinger.</p>
+          </article>
+        </div>
+        <div class="cta-row" style="margin-top:26px;">
+          <a class="btn" href="/team.html">Les mer om teamet</a>
+          <a class="btn btn--primary" href="#" data-booking-link>Book konsultasjon</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container">
+        <div class="parallax-video-band reveal" data-parallax-video-band aria-label="Video fra klinikken ved booking">
+          <video src="/v/open.mp4" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
+          <div class="arch-lines is-in" aria-hidden="true">
+            <svg viewBox="0 0 520 340" focusable="false">
+              <path d="M40 320 C40 182 152 70 290 70 C428 70 480 182 480 320" />
+              <path d="M72 320 C72 200 168 102 289 102 C410 102 448 200 448 320" />
+              <path d="M104 320 C104 218 183 134 288 134 C393 134 416 218 416 320" />
+              <path d="M136 320 C136 236 199 166 287 166 C375 166 384 236 384 320" />
+              <path d="M168 320 C168 254 214 198 286 198 C358 198 352 254 352 320" />
+            </svg>
+          </div>
+          <div class="parallax-video-content">
+            <h2 class="h2">Slik booker du riktig behandling</h2>
+            <div class="timeline">
+              <article class="timeline-step reveal"><div class="num">1</div><strong>Velg kategori</strong></article>
+              <article class="timeline-step reveal"><div class="num">2</div><strong>Les behandling</strong></article>
+              <article class="timeline-step reveal"><div class="num">3</div><strong>Er du usikker?</strong></article>
+              <article class="timeline-step reveal"><div class="num">4</div><strong>Book online</strong></article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container">
+        <div class="reveal">
+          <h2 class="h2">Siste innlegg</h2>
+        </div>
+        <div class="blog-shell">
+          <button class="blog-arrow" type="button" data-blog-prev aria-label="Forrige innlegg">←</button>
+          <div class="blog-slider" aria-label="Siste blogginnlegg" data-blog-slider>
+            <article class="blog-card reveal"><strong>Microblading: før og etter behandling</strong><p class="muted">Forberedelser og etterpleie for best resultat.</p><a class="btn" href="/blogg/microblading-for-og-etter.html">Les mer</a></article>
+            <article class="blog-card reveal"><strong>Forventninger og resultat</strong><p class="muted">Hva som skjer i prosessen og helingsfasen.</p><a class="btn" href="/blogg/permanent-makeup-forventninger.html">Les mer</a></article>
+            <article class="blog-card reveal"><strong>Vippeløft: hvor lenge varer det?</strong><p class="muted">Tips for vedlikehold og holdbarhet.</p><a class="btn" href="/blogg/vippeloft-varighet.html">Les mer</a></article>
+          </div>
+          <button class="blog-arrow" type="button" data-blog-next aria-label="Neste innlegg">→</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container">
+        <div class="parallax-band reveal" data-parallax-band role="img" aria-label="Interiørbilde fra klinikken">
+          <div class="parallax-content">
+            <h2 class="h2">Book time når det passer deg</h2>
+            <div class="cta-row">
+              <a class="btn btn--primary" href="<?= e($heroPrimaryUrl) ?>" data-booking-link><?= e($heroPrimaryLabel) ?></a>
+              <a class="btn" href="/contact.html">Kontakt oss</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight google-reviews" aria-label="Google anmeldelser">
+      <div class="container">
+        <div class="reviews-wrap reveal">
+          <div class="reviews-head">
+            <div>
+              <div class="kicker">Google anmeldelser</div>
+              <h2 class="h2" style="margin:10px 0 0;">Kundene våre gir oss topp score</h2>
+            </div>
+            <div class="reviews-rating" aria-label="5 av 5 stjerner på Google">
+              <div class="stars" aria-hidden="true">★ ★ ★ ★ ★ <span class="score">5.0 på Google</span></div>
+              <p class="muted" style="margin:0;">Basert på verifiserte tilbakemeldinger fra kunder.</p>
+            </div>
+          </div>
+
+          <div class="review-grid" data-google-reviews-grid data-google-reviews-limit="4"></div>
+
+          <div>
+            <a class="btn btn--primary" target="_blank" rel="noopener noreferrer" href="https://www.google.com/search?client=ms-android-samsung-ss&hs=1z49&sa=X&sca_esv=80b90e68a26a4cba&hl=en-DE&sxsrf=ANbL-n7PFAocKcICp596dxqK79Q3ZUTUNw:1771968836362&q=Somi+klinikken+AS+Reviews&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNDUyNDMzNzExMTQ3MLQwMrMwMtrAyPiKUTI4PzdTITsnMy8zOzs1T8ExWCEotSwztbx4EStuOQDRJXN7UwAAAA&rldimm=15216674441701826822&tbm=lcl&ved=2ahUKEwiXm62oivOSAxUx1AIHHZwYDEoQ9fQKegQIZBAG&biw=980&bih=1749&dpr=3.5#lkt=LocalPoiReviews">Se alle anmeldelser på Google</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div data-include="/partials/footer.html"></div>
+
+  <script>
+    (() => {
+      const slider = document.querySelector('[data-blog-slider]');
+      const prev = document.querySelector('[data-blog-prev]');
+      const next = document.querySelector('[data-blog-next]');
+      const media = document.querySelectorAll('[data-motion-media]');
+      const parallaxBand = document.querySelector('[data-parallax-band]');
+      const parallaxVideoBand = document.querySelector('[data-parallax-video-band]');
+
+      if (slider && prev && next) {
+        const step = () => Math.max(260, Math.round(slider.clientWidth * 0.84));
+        prev.addEventListener('click', () => slider.scrollBy({ left: -step(), behavior: 'smooth' }));
+        next.addEventListener('click', () => slider.scrollBy({ left: step(), behavior: 'smooth' }));
+      }
+
+      const updateMotion = () => {
+        media.forEach((el, index) => {
+          const rect = el.getBoundingClientRect();
+          const midpoint = window.innerHeight * 0.55;
+          const delta = (midpoint - rect.top) * 0.04;
+          const limited = Math.max(-18, Math.min(18, delta + index * 2));
+          el.style.setProperty('--motion-y', `${limited.toFixed(1)}px`);
+        });
+
+        if (parallaxBand) {
+          const rect = parallaxBand.getBoundingClientRect();
+          const viewportCenter = window.innerHeight / 2;
+          const bandCenter = rect.top + rect.height / 2;
+          const distance = viewportCenter - bandCenter;
+          const shift = Math.max(-14, Math.min(14, distance * 0.03));
+          parallaxBand.style.setProperty('--parallax-y', `${50 + shift}%`);
+        }
+
+        if (parallaxVideoBand) {
+          const rect = parallaxVideoBand.getBoundingClientRect();
+          const viewportCenter = window.innerHeight / 2;
+          const bandCenter = rect.top + rect.height / 2;
+          const distance = viewportCenter - bandCenter;
+          const shift = Math.max(-24, Math.min(24, distance * 0.08));
+          parallaxVideoBand.style.setProperty('--parallax-y-px', `${shift.toFixed(1)}px`);
+        }
+      };
+
+      window.addEventListener('scroll', updateMotion, { passive: true });
+      window.addEventListener('resize', updateMotion);
+      updateMotion();
+    })();
+  </script>
+</body>
+</html>

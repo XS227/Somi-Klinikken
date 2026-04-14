@@ -1,0 +1,16 @@
+{
+    "home": {
+        "hero_kicker": "Velkommen til SOMI Klinikken",
+        "hero_title": "Skånsomme behandlinger med presisjon og naturlig uttrykk.",
+        "hero_text": "Vi legger vekt på kvalitet, veiledning og riktig behandling for et trygt og profesjonelt resultat.",
+        "hero_primary_label": "Book time",
+        "hero_primary_url": "#",
+        "hero_secondary_label": "Se priser",
+        "hero_secondary_url": "/priser.html",
+        "hero_image": "/assets/img/hero/beauty-treatment.svg",
+        "about_title": "Faglig trygghet i rolige omgivelser",
+        "about_text_1": "SOMI kombinerer dokumenterte metoder med personlig vurdering, slik at du får riktig behandling for dine behov.",
+        "about_text_2": "Vi prioriterer tydelig informasjon, høy hygiene og et naturlig resultat som harmonerer med ansiktet ditt.",
+        "about_image": "/assets/img/hero/clinic-interior.svg"
+    }
+}
