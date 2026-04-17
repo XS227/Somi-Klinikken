@@ -61,16 +61,22 @@
       margin-top: 26px;
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-areas:
+        "katarina katarina"
+        "arianna emma";
       gap: 16px;
       align-items: stretch;
     }
 
     .member--primary{
-      grid-column: 1 / -1;
+      grid-area: katarina;
       display: grid;
       grid-template-columns: 1.05fr 1.2fr;
       gap: 8px;
     }
+
+    .member--arianna{ grid-area: arianna; }
+    .member--emma{ grid-area: emma; }
 
     .member{
       grid-column: span 1;
@@ -179,22 +185,13 @@
 
     @media (max-width: 700px){
       .team-grid{
-        display: grid;
-        grid-auto-flow: column;
-        grid-auto-columns: 86%;
-        grid-template-columns: none;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        overscroll-behavior-x: contain;
-        padding-bottom: 8px;
-      }
-      .team-grid::-webkit-scrollbar{ height: 8px; }
-      .team-grid::-webkit-scrollbar-thumb{ background: rgba(56,56,56,0.25); border-radius: 999px; }
-      .member{
-        scroll-snap-align: start;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "katarina"
+          "arianna"
+          "emma";
       }
       .member--primary{
-        grid-column: span 1;
         display: block;
       }
       .member__head{ padding: 16px 14px 10px; }
@@ -266,7 +263,7 @@
         </article>
 
         <!-- Arianna -->
-        <article class="member">
+        <article class="member member--arianna">
           <div class="member__head">
             <div>
               <div class="role">Laserspesialist</div>
@@ -311,7 +308,7 @@
         </article>
 
         <!-- Emma -->
-        <article class="member">
+        <article class="member member--emma">
           <div class="member__head">
             <div>
               <div class="role">Hudterapeut</div>
