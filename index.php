@@ -29,7 +29,7 @@ $aboutImage = content_get($content, 'home', 'about_image', '/assets/img/hero/cli
   <meta property="og:type" content="website" />
   <meta property="og:title" content="SOMI Klinikken i Sandnes" />
   <meta property="og:description" content="Microblading, permanent makeup, bryn og vipper, hudpleie og laser. Bestill time online." />
-  <meta property="og:image" content="/assets/img/brand/logo.png" />
+  <meta property="og:image" content="/p/LogoSomi.PNG" />
 
   <base href="/" />
 
