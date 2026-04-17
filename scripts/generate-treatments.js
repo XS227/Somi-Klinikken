@@ -62,7 +62,7 @@ function tpl(item, cat) {
   <meta property="og:description" content="${escapeHtml(desc)}" />
   <meta property="og:url" content="${url}" />
   <meta property="og:site_name" content="SOMI Klinikken" />
-  <meta property="og:image" content="${SITE_URL}/assets/img/brand/logo.png" />
+  <meta property="og:image" content="${SITE_URL}/p/LogoSomi.PNG" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="stylesheet" href="/css/tokens.css" />
   <link rel="stylesheet" href="/css/base.css" />
