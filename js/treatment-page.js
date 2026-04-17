@@ -198,22 +198,50 @@
     wrap.innerHTML = `<div class="section-card">Fant ikke behandlingen. Gå tilbake til <a href="/behandlinger.html">oversikten</a>.</div>`;
   }
 
+  function wireBookingLinks() {
+    document.querySelectorAll("[data-booking-link]").forEach(a => {
+      a.setAttribute("href", BOOKING_URL);
+      const url = new URL(BOOKING_URL, window.location.origin);
+      const isInternal = url.origin === window.location.origin;
+      if (isInternal) {
+        a.removeAttribute("target");
+        a.removeAttribute("rel");
+      } else {
+        a.setAttribute("target", "_blank");
+        a.setAttribute("rel", "noopener");
+      }
+    });
+  }
+
+  function hasStaticFallbackContent() {
+    const title = document.querySelector("[data-field='title']")?.textContent?.trim() || "";
+    const lead = document.querySelector("[data-field='lead']")?.textContent?.trim() || "";
+    return title.length > 0 || lead.length > 0;
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     const root = document.querySelector("[data-treatment-page]");
     if(!root) return;
-    const id = root.getAttribute("data-treatment-id");
+    const id = root.getAttribute("data-treatment-id") || window.location.pathname.split("/").pop()?.replace(/\.html$/, "");
     if(!id) return;
 
+    wireBookingLinks();
+
     fetch(DATA_URL, { cache: "no-store" })
-      .then(r => r.json())
+      .then(r => {
+        if(!r.ok) throw new Error(`Unable to load treatments: ${r.status}`);
+        return r.json();
+      })
       .then(data => {
         const match = findTreatment(id, data);
         if(!match) {
-          showError();
+          if(!hasStaticFallbackContent()) showError();
           return;
         }
         render(match);
       })
-      .catch(() => showError());
+      .catch(() => {
+        if(!hasStaticFallbackContent()) showError();
+      });
   });
 })();
