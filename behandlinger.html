@@ -6,6 +6,16 @@
 
   <title>Behandlinger | SOMI Klinikken Sandnes – finn riktig behandling</title>
   <meta name="description" content="Finn riktig behandling hos SOMI Klinikken i Sandnes. Søk eller filtrer på kategori, se kort forklaring og gå til detaljside. Book time online." />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="canonical" href="https://somiklinikken.no/behandlinger.html" />
+  <meta property="og:locale" content="nb_NO" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Behandlinger | SOMI Klinikken Sandnes" />
+  <meta property="og:description" content="Finn riktig behandling hos SOMI Klinikken i Sandnes. Filtrer på kategori, les mer om behandlingen og book time online." />
+  <meta property="og:url" content="https://somiklinikken.no/behandlinger.html" />
+  <meta property="og:site_name" content="SOMI Klinikken" />
+  <meta property="og:image" content="https://somiklinikken.no/assets/img/brand/logo.png" />
+  <meta name="twitter:card" content="summary_large_image" />
 
   <link rel="stylesheet" href="/css/tokens.css" />
   <link rel="stylesheet" href="/css/base.css" />
@@ -17,9 +27,9 @@
   <link rel="stylesheet" href="/css/hotfix.css" />
 
   <style>
-    .page{ padding-top: calc(var(--header-h, 72px) + 18px); padding-bottom: 52px; }
+    .page{ padding-top: calc(var(--header-h, 72px) + 14px); padding-bottom: 42px; }
     .kicker{ letter-spacing:.18em; font-size:12px; text-transform:uppercase; color:rgba(56,56,56,.62); }
-    .h1-serif{ font-family: Georgia,"Times New Roman",serif; font-size: clamp(28px, 4.2vw, 44px); line-height:1.05; margin:8px 0 8px; }
+    .h1-serif{ font-family: Georgia,"Times New Roman",serif; font-size: clamp(24px, 3.6vw, 38px); line-height:1.05; margin:10px 0 10px; letter-spacing:-0.01em; }
     .lead{ max-width:74ch; color:rgba(56,56,56,.74); line-height:1.65; margin:0; }
 
     .toolbar{
@@ -29,49 +39,49 @@
       backdrop-filter: blur(10px);
       background: rgba(248,248,248,0.78);
       border: 1px solid rgba(56,56,56,0.12);
-      border-radius: 14px;
+      border-radius: 10px;
       box-shadow: 0 12px 30px rgba(0,0,0,0.06);
-      padding: 10px;
+      padding: 7px 9px;
       margin-top: 12px;
     }
-    .toolbar-grid{ display:grid; grid-template-columns: 1.2fr 0.8fr auto; gap:10px; align-items:center; }
+    .toolbar-grid{ display:grid; grid-template-columns: 1.2fr 0.8fr auto; gap:8px; align-items:center; }
     .input,.select{
       width:100%; border:1px solid rgba(56,56,56,0.16); background: rgba(255,255,255,0.86);
-      border-radius:12px; padding:10px; font:inherit; outline:none;
+      border-radius:10px; padding:8px 10px; font:inherit; outline:none;
     }
     .input:focus,.select:focus{ border-color: rgba(56,56,56,0.32); }
     .note{ margin-top:10px; color:rgba(56,56,56,.68); line-height:1.6; }
 
-    .cards{ display:grid; gap:10px; margin-top: 10px; }
+    .cards{ display:grid; gap:8px; margin-top: 10px; }
     .card{
-      border-radius: 16px;
+      border-radius: 14px;
       background: rgba(255,255,255,0.76);
       border: 1px solid rgba(56,56,56,0.12);
       box-shadow: 0 14px 34px rgba(0,0,0,0.08);
       overflow: hidden;
     }
     details.card > summary{
-      cursor:pointer; list-style:none; padding:12px; display:flex; justify-content:space-between; gap:10px;
+      cursor:pointer; list-style:none; padding:10px; display:flex; align-items:baseline; justify-content:space-between; gap:10px;
     }
     details.card > summary::-webkit-details-marker{ display:none; }
-    .cat-title{ font-family: Georgia,"Times New Roman",serif; font-size:22px; line-height:1.1; margin:0; }
+    .cat-title{ font-family: Georgia,"Times New Roman",serif; font-size:19px; line-height:1.1; margin:0; }
     .cat-desc{ margin:4px 0 0; color:rgba(56,56,56,.68); line-height:1.45; max-width:80ch; }
-    .list{ border-top:1px solid rgba(56,56,56,0.10); padding:8px; display:grid; gap:8px; }
+    .list{ border-top:1px solid rgba(56,56,56,0.10); padding:6px 6px 8px; display:grid; gap:6px; }
 
     .item{
       border:1px solid rgba(56,56,56,0.10);
       background: rgba(255,255,255,0.78);
-      border-radius: 12px;
-      padding: 10px;
+      border-radius: 10px;
+      padding: 7px 9px;
       display:grid;
       grid-template-columns: 1fr auto;
-      gap: 8px;
+      gap: 6px;
       align-items: start;
     }
-    .item h3{ margin:0; font-size:15px; line-height:1.25; }
-    .short{ margin-top:4px; color:rgba(56,56,56,.68); line-height:1.45; font-size: 13px; }
+    .item h3{ margin:0; font-size:14px; line-height:1.25; }
+    .short{ margin-top:3px; color:rgba(56,56,56,.68); line-height:1.4; font-size: 11px; }
     .meta{ color:rgba(56,56,56,.70); font-variant-numeric: tabular-nums; white-space:nowrap; text-align:right; }
-    .actions{ display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+    .actions{ display:flex; gap:8px; flex-wrap:wrap; margin-top:7px; }
     .pill{
       display:inline-flex; align-items:center; border:1px solid rgba(56,56,56,0.12);
       background: rgba(255,255,255,0.72); border-radius: 999px; padding: 5px 9px;
@@ -81,27 +91,27 @@
 
     .category-filters{
       display:flex;
-      gap:8px;
+      gap:6px;
       flex-wrap:wrap;
-      margin: 12px 0 4px;
-      padding:8px 10px;
+      margin: 10px 0 4px;
+      padding:7px 9px;
       background: rgba(255,255,255,0.82);
       border:1px solid rgba(56,56,56,0.10);
-      border-radius:12px;
+      border-radius:10px;
       box-shadow: 0 12px 30px rgba(0,0,0,0.05);
     }
     .filter-chip{
       display:inline-flex;
       align-items:center;
-      gap:8px;
-      padding:8px 12px;
+      gap:6px;
+      padding:5px 9px;
       border-radius:999px;
       border:1px solid rgba(56,56,56,0.14);
       background: rgba(248,248,248,0.92);
       color: inherit;
       text-decoration:none;
-      font-weight: 600;
-      letter-spacing:0.01em;
+      font-weight: 500;
+      letter-spacing:0;
       transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
     }
     .filter-chip:hover{
@@ -123,6 +133,21 @@
 
   <script defer src="/js/includes.js"></script>
   <script defer src="/js/site.js"></script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Behandlinger hos SOMI Klinikken",
+      "url": "https://somiklinikken.no/behandlinger.html",
+      "description": "Oversikt over behandlinger hos SOMI Klinikken i Sandnes med lenker til detaljsider.",
+      "inLanguage": "no",
+      "about": {
+        "@type": "MedicalBusiness",
+        "name": "SOMI Klinikken",
+        "url": "https://somiklinikken.no"
+      }
+    }
+  </script>
 </head>
 
 <body>
@@ -215,9 +240,7 @@
               const badges = []
               if(it.popular) badges.push('<span class="pill">Populær</span>');
               (it.tags || []).slice(0,3).forEach(t => badges.push(`<span class="pill">${t}</span>`));
-              const detailAction = it.hasPage
-                ? `<a class="btn" href="/behandlinger/${it.id}.html">Les mer</a>`
-                : "";
+              const detailAction = `<a class="btn" href="/behandlinger/${it.id}.html">Les mer</a>`;
 
               return `
                 <div class="item" data-name="${it.name}">
@@ -246,7 +269,7 @@
                     <h2 class="cat-title">${cat.title}</h2>
                     <p class="cat-desc">${cat.desc || ""}</p>
                   </div>
-                  <div style="color:rgba(56,56,56,.55); font-size:14px;">Åpne/lukk</div>
+                  <div style="color:rgba(56,56,56,.55); font-size:13px; white-space:nowrap;">Åpne/lukk</div>
                 </summary>
                 <div class="list">${itemsHtml}</div>
               </details>
