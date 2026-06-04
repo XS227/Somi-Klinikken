@@ -7,25 +7,25 @@ export const Pages: CollectionConfig = {
     defaultColumns: ['title', 'slug', 'updatedAt'],
   },
   fields: [
+    // Title øverst, full bredde, alltid synlig uavhengig av tab
+    {
+      name: 'title',
+      type: 'text',
+      required: true,
+      label: 'Sidetittel',
+    },
     {
       type: 'tabs',
       tabs: [
         {
-          label: 'Innhold',
+          label: 'Innhold (Puck-editor)',
           fields: [
             {
-              name: 'title',
-              type: 'text',
-              required: true,
-            },
-            {
-              // Stores the Puck canvas JSON — hidden from admin, edited via the UI field below
               name: 'puckData',
               type: 'json',
               admin: { hidden: true },
             },
             {
-              // The visual Puck editor — reads/writes puckData via useField
               name: 'puckEditor',
               type: 'ui',
               admin: {
@@ -44,6 +44,7 @@ export const Pages: CollectionConfig = {
               type: 'text',
               required: true,
               unique: true,
+              label: 'URL-slug',
             },
             {
               name: 'meta',
