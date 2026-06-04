@@ -3,9 +3,6 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import { getPayload } from 'payload'
 import config from '@payload-config'
-import { Render } from '@measured/puck/rsc'
-import type { Data } from '@measured/puck'
-import { puckConfig } from '@/puck/config'
 import './styles.css'
 
 export const metadata: Metadata = {
@@ -75,14 +72,11 @@ export default async function HomePage() {
   let heroTagline = 'Velkommen til SOMI Klinikken'
   let heroTitle = 'Skånsomme behandlinger med presisjon og naturlig uttrykk.'
   let heroSubtitle = 'Vi legger vekt på kvalitet, veiledning og riktig behandling for et trygt og profesjonelt resultat.'
-  let homePuckData: Data | null = null
-
   try {
     const payload = await getPayload({ config })
-    const [postsResult, homepageGlobal, homePageResult] = await Promise.all([
+    const [postsResult, homepageGlobal] = await Promise.all([
       payload.find({ collection: 'posts', limit: 6, sort: '-publishedDate', depth: 1 }),
       payload.findGlobal({ slug: 'homepage', depth: 0 }).catch(() => null),
-      payload.find({ collection: 'pages', where: { slug: { equals: 'home' } }, limit: 1, depth: 0 }).catch(() => null),
     ])
     blogPosts = postsResult.docs as typeof blogPosts
     if (homepageGlobal) {
@@ -91,17 +85,8 @@ export default async function HomePage() {
       if (hp.heroTitle) heroTitle = hp.heroTitle
       if (hp.heroSubtitle) heroSubtitle = hp.heroSubtitle
     }
-    const homePage = homePageResult?.docs?.[0] as { puckData?: Data | null } | undefined
-    if (homePage?.puckData && Array.isArray((homePage.puckData as Data).content) && (homePage.puckData as Data).content.length > 0) {
-      homePuckData = homePage.puckData as Data
-    }
   } catch {
     // globals/posts not yet available
-  }
-
-  // If admin has added Puck content to the "home" page, render that instead
-  if (homePuckData) {
-    return <Render config={puckConfig} data={homePuckData} />
   }
 
   return (
