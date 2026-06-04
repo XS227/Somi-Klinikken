@@ -1,0 +1,13 @@
+.nav__brand img,
+.nav__brand svg {
+  display: none;
+}
+
+.nav__brand::before {
+  content: '';
+  display: block;
+  width: 120px;
+  height: 40px;
+  background: url('/img/brand/somi-klinikken-logo-horizontal.png') no-repeat center / contain;
+  filter: brightness(0) invert(1);
+}
