@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="title">
+  <title id="title">Besøk placeholder</title>
+  <rect width="1200" height="800" fill="#f4e3dc" rx="32" />
+  <path d="M180 520 C400 420 800 420 1020 520" fill="none" stroke="#cfa7a7" stroke-width="16" stroke-linecap="round" />
+  <text x="50%" y="46%" text-anchor="middle" font-family="Arial, sans-serif" font-size="40" fill="#383838">Velkommen til SOMI</text>
+</svg>

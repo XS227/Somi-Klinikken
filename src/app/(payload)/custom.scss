@@ -1,0 +1,54 @@
+/**
+ * Payload Admin — Puck editor sidebar colour fix.
+ *
+ * Root cause: Payload admin forces color-scheme:dark on the page.
+ * Browser-native form controls (input, textarea, select) therefore render
+ * with white text. Puck's sidebars have white backgrounds → white-on-white.
+ *
+ * Fix: scope color-scheme:light and explicit dark text ONLY to the Puck
+ * sidebar/fields panels. The preview canvas ([class*="_PuckCanvas"] /
+ * [class*="_PuckPreview"]) is intentionally left untouched.
+ *
+ * Selectors use substring class matching on Puck's stable class-name prefixes
+ * (e.g. _Sidebar, _PuckFields) which are stable for @measured/puck 0.20.x.
+ */
+
+/* ── Left panel (component list) + Right panel (inspector/fields) ─────────── */
+[data-puck-entry] [class*="_Sidebar"],
+[data-puck-entry] [class*="_PuckFields"],
+[data-puck-entry] [class*="_SidebarSection"],
+[data-puck-entry] [class*="_ArrayField"],
+[data-puck-entry] [class*="_InputWrapper"],
+[data-puck-entry] [class*="_Input_"],
+[data-puck-entry] [class*="_ObjectField"] {
+  color: #222222;
+  color-scheme: light;
+}
+
+/* ── Form controls inside sidebar panels ──────────────────────────────────── */
+[data-puck-entry] [class*="_Sidebar"] input,
+[data-puck-entry] [class*="_Sidebar"] textarea,
+[data-puck-entry] [class*="_Sidebar"] select,
+[data-puck-entry] [class*="_PuckFields"] input,
+[data-puck-entry] [class*="_PuckFields"] textarea,
+[data-puck-entry] [class*="_PuckFields"] select,
+[data-puck-entry] [class*="_SidebarSection"] input,
+[data-puck-entry] [class*="_SidebarSection"] textarea,
+[data-puck-entry] [class*="_SidebarSection"] select,
+[data-puck-entry] [class*="_InputWrapper"] input,
+[data-puck-entry] [class*="_InputWrapper"] textarea,
+[data-puck-entry] [class*="_InputWrapper"] select,
+[data-puck-entry] [class*="_Input_"] {
+  color: #222222;
+  background-color: #ffffff;
+  color-scheme: light;
+}
+
+[data-puck-entry] [class*="_Sidebar"] input::placeholder,
+[data-puck-entry] [class*="_PuckFields"] input::placeholder,
+[data-puck-entry] [class*="_SidebarSection"] input::placeholder,
+[data-puck-entry] [class*="_InputWrapper"] input::placeholder,
+[data-puck-entry] [class*="_Sidebar"] textarea::placeholder,
+[data-puck-entry] [class*="_PuckFields"] textarea::placeholder {
+  color: #999999;
+}

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="title">
+  <title id="title">Klinikkinteriør placeholder</title>
+  <rect width="1200" height="800" fill="#f8f3f0" rx="32" />
+  <rect x="120" y="200" width="320" height="440" fill="#e8e6e4" rx="18" />
+  <rect x="500" y="180" width="580" height="320" fill="#e3d8d4" rx="28" />
+  <text x="50%" y="72%" text-anchor="middle" font-family="Arial, sans-serif" font-size="34" fill="#383838">Klinikk</text>
+</svg>

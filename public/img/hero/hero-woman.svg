@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="title">
+  <title id="title">SOMI Klinikken hero placeholder</title>
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f4e3dc;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e8e6e4;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#grad)" rx="32" />
+  <text x="50%" y="50%" text-anchor="middle" font-family="Arial, sans-serif" font-size="46" fill="#383838">Hero-bilde</text>
+  <text x="50%" y="60%" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#705f5f">Estetisk placeholder</text>
+</svg>

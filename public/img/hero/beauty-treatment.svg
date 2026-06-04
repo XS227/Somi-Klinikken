@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="title">
+  <title id="title">Skjønnhetsbehandling placeholder</title>
+  <rect width="1200" height="800" fill="#f4e3dc" rx="32" />
+  <path d="M120 640 Q600 540 1080 640" fill="none" stroke="#d8b4b4" stroke-width="18" stroke-linecap="round" />
+  <text x="50%" y="52%" text-anchor="middle" font-family="Arial, sans-serif" font-size="38" fill="#383838">Behandling</text>
+  <text x="50%" y="60%" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#705f5f">Visual placeholder</text>
+</svg>
