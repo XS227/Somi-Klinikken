@@ -1,10 +1,5 @@
 import React from 'react'
 import type { Metadata } from 'next'
-import { getPayload } from 'payload'
-import config from '@payload-config'
-import { Render } from '@measured/puck/rsc'
-import type { Data } from '@measured/puck'
-import { puckConfig } from '@/puck/config'
 
 export const metadata: Metadata = {
   title: 'Gavekort | SOMI Klinikken i Sandnes',
@@ -45,29 +40,7 @@ const steps = [
   { num: '03', title: 'Nyt behandlingen', desc: 'Mottakeren bestiller time online og bruker gavekortet ved betaling.' },
 ]
 
-export default async function GavekortPage() {
-  // Prøv å hente Puck-data fra Payload pages-collection (slug: gavekort)
-  let puckData: Data | null = null
-  try {
-    const payload = await getPayload({ config })
-    const result = await payload.find({
-      collection: 'pages',
-      where: { slug: { equals: 'gavekort' } },
-      limit: 1,
-      depth: 0,
-    })
-    const page = result.docs[0] as { puckData?: Data | null } | undefined
-    if (page?.puckData && Array.isArray((page.puckData as Data).content) && (page.puckData as Data).content.length > 0) {
-      puckData = page.puckData as Data
-    }
-  } catch {
-    // Payload ikke tilgjengelig – bruk hardkodet fallback
-  }
-
-  if (puckData) {
-    return <Render config={puckConfig} data={puckData} />
-  }
-
+export default function GavekortPage() {
   return (
     <main>
 

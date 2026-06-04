@@ -337,8 +337,8 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 /* ── Page: About / Team ────────────────────────────────── */
-.about-image { grid-column: span 6; }
-.about-copy { grid-column: span 6; }
+.about-image { grid-column: span 6; min-width: 0; }
+.about-copy  { grid-column: span 6; min-width: 0; overflow: hidden; word-break: break-word; overflow-wrap: break-word; }
 .about-arch {
   position: relative; border-radius: 22px;
   border: 1px solid rgba(56, 56, 56, 0.12);
@@ -437,6 +437,8 @@ img { max-width: 100%; height: auto; display: block; }
 @media (max-width: 1080px) {
   .category-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .review-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
   .footer3-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
   .footer3-grid > :last-child { grid-column: 1 / -1; }
 }
@@ -461,6 +463,7 @@ img { max-width: 100%; height: auto; display: block; }
   p { font-size: 16px; }
   .footer3-grid { grid-template-columns: 1fr; gap: 28px; }
   .footer3-grid > :last-child { grid-column: auto; }
+  .footer3-desc { max-width: none; }
   .site-footer { padding: 40px 0 0; }
 }
 @media (max-width: 700px) {

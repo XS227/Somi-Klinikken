@@ -20,7 +20,8 @@ export default function OmPage() {
     <main style={{ paddingTop: '48px', paddingBottom: 80 }}>
       <div className="container">
 
-        <div className="reveal" style={{ marginBottom: 48 }}>
+        {/* 1. Hero – tekst */}
+        <div className="reveal" style={{ marginBottom: 56 }}>
           <div className="kicker">Om klinikken</div>
           <h1 className="h1" style={{ marginTop: 8 }}>Om SOMI Klinikken</h1>
           <p style={{ marginTop: 14, maxWidth: '62ch', fontSize: 17, color: '#383838', lineHeight: 1.7 }}>
@@ -29,21 +30,8 @@ export default function OmPage() {
           </p>
         </div>
 
-        {/* Klinikk-bilde */}
-        <div className="reveal" style={{ marginBottom: 64, borderRadius: 18, overflow: 'hidden' }}>
-          <Image
-            src="/img/klinikk/somi-klinikken-interior-sandnes.webp"
-            alt="SOMI Klinikken interiør – moderne og stilfull klinikk i Sandnes sentrum"
-            width={1920}
-            height={1080}
-            sizes="(max-width: 940px) 100vw, 80vw"
-            style={{ width: '100%', height: 'clamp(260px, 45vw, 520px)', objectFit: 'cover', display: 'block' }}
-            priority
-          />
-        </div>
-
-        {/* Filosofi */}
-        <div className="about-grid reveal" style={{ marginBottom: 72 }}>
+        {/* 2. Filosofi – bilde venstre + tekst høyre */}
+        <div className="about-grid reveal" style={{ marginBottom: 64 }}>
           <div className="about-image">
             <Image
               src="/img/team/katarina-hammer-konsultasjon-kunde-somi-klinikken.webp"
@@ -52,9 +40,10 @@ export default function OmPage() {
               height={1600}
               sizes="(max-width: 940px) 100vw, 50vw"
               style={{ width: '100%', borderRadius: 18, display: 'block', maxHeight: 520, objectFit: 'cover' }}
+              priority
             />
           </div>
-          <div className="about-copy">
+          <div className="about-copy" style={{ minWidth: 0 }}>
             <div className="kicker">Vår filosofi</div>
             <h2 className="h2" style={{ marginTop: 10 }}>Naturlig skjønnhet – din beste versjon</h2>
             <p style={{ marginTop: 18 }}>
@@ -77,45 +66,39 @@ export default function OmPage() {
           </div>
         </div>
 
-        {/* Behandlingsrom */}
+        {/* 3. 3 klinikk-bilder side om side */}
         <div
           className="reveal"
           style={{
-            marginBottom: 64,
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-            gap: 16,
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: 12,
+            marginBottom: 64,
           }}
         >
-          <div style={{ borderRadius: 16, overflow: 'hidden' }}>
-            <Image
-              src="/img/klinikk/somi-klinikken-behandlingsrom.webp"
-              alt="Behandlingsrom hos SOMI Klinikken – rent og profesjonelt miljø i Sandnes"
-              width={1200}
-              height={900}
-              sizes="(max-width: 700px) 100vw, 50vw"
-              style={{ width: '100%', height: 260, objectFit: 'cover', display: 'block' }}
-            />
-          </div>
-          <div style={{ borderRadius: 16, overflow: 'hidden' }}>
-            <Image
-              src="/img/klinikk/somi-klinikken-kunde-microblading-behandling.webp"
-              alt="Kunde under microblading-behandling hos SOMI Klinikken i Sandnes"
-              width={1200}
-              height={900}
-              sizes="(max-width: 700px) 100vw, 50vw"
-              style={{ width: '100%', height: 260, objectFit: 'cover', display: 'block' }}
-            />
-          </div>
+          {[
+            { src: '/img/klinikk/somi-klinikken-interior-sandnes.webp',              alt: 'SOMI Klinikken interiør – moderne klinikk i Sandnes sentrum' },
+            { src: '/img/klinikk/somi-klinikken-behandlingsrom.webp',                alt: 'Behandlingsrom hos SOMI Klinikken – rent og profesjonelt miljø' },
+            { src: '/img/klinikk/somi-klinikken-kunde-microblading-behandling.webp', alt: 'Kunde under microblading-behandling hos SOMI Klinikken i Sandnes' },
+          ].map(({ src, alt }) => (
+            <div key={src} style={{ borderRadius: 14, overflow: 'hidden' }}>
+              <Image
+                src={src} alt={alt}
+                width={800} height={600}
+                sizes="(max-width: 600px) 100vw, 33vw"
+                style={{ width: '100%', height: 220, objectFit: 'cover', display: 'block' }}
+              />
+            </div>
+          ))}
         </div>
 
-        {/* Fakta */}
+        {/* 4. Statistikk */}
         <div
           className="reveal"
           style={{
             marginBottom: 64,
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
             gap: 16,
           }}
         >
@@ -139,7 +122,7 @@ export default function OmPage() {
           ))}
         </div>
 
-        {/* CTA */}
+        {/* 5. CTA */}
         <div
           className="reveal"
           style={{
@@ -157,14 +140,12 @@ export default function OmPage() {
             Book en gratis konsultasjon og finn ut hvilken behandling som passer for deg.
           </p>
           <div className="cta-row" style={{ justifyContent: 'center' }}>
-            <a
-              className="btn"
-              href={BOOKING_URL}
-              style={{ background: '#DDB3B3', borderColor: 'rgba(221,179,179,0.4)', color: '#FFFFFF', fontWeight: 600 }}
-            >
+            <a className="btn" href={BOOKING_URL}
+              style={{ background: '#DDB3B3', borderColor: 'rgba(221,179,179,0.4)', color: '#FFFFFF', fontWeight: 600 }}>
               Book konsultasjon
             </a>
-            <a className="btn" href="/behandlinger" style={{ border: '1px solid #383838', color: '#383838', background: 'transparent' }}>
+            <a className="btn" href="/behandlinger"
+              style={{ border: '1px solid #383838', color: '#383838', background: 'transparent' }}>
               Se behandlinger
             </a>
           </div>
