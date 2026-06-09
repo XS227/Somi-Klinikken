@@ -1,0 +1,43 @@
+server {
+    listen 80;
+    listen [::]:80;
+
+    server_name somiklinikken.no www.somiklinikken.no;
+
+    location /.well-known/acme-challenge/ {
+        root /var/www/html;
+    }
+
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+
+server {
+    listen 127.0.0.1:8453 ssl proxy_protocol;
+
+    server_name somiklinikken.no www.somiklinikken.no;
+
+    set_real_ip_from 127.0.0.1;
+    real_ip_header proxy_protocol;
+
+    port_in_redirect off;
+    absolute_redirect off;
+
+    ssl_certificate /etc/letsencrypt/live/somiklinikken.no/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/somiklinikken.no/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+    location / {
+        proxy_pass http://127.0.0.1:3002;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
