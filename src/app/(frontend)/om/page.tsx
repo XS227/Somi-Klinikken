@@ -66,32 +66,6 @@ export default function OmPage() {
           </div>
         </div>
 
-        {/* 3. 3 klinikk-bilder side om side */}
-        <div
-          className="reveal"
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: 12,
-            marginBottom: 64,
-          }}
-        >
-          {[
-            { src: '/img/klinikk/somi-klinikken-interior-sandnes.webp',              alt: 'SOMI Klinikken interiør – moderne klinikk i Sandnes sentrum' },
-            { src: '/img/klinikk/somi-klinikken-behandlingsrom.webp',                alt: 'Behandlingsrom hos SOMI Klinikken – rent og profesjonelt miljø' },
-            { src: '/img/klinikk/somi-klinikken-kunde-microblading-behandling.webp', alt: 'Kunde under microblading-behandling hos SOMI Klinikken i Sandnes' },
-          ].map(({ src, alt }) => (
-            <div key={src} style={{ borderRadius: 14, overflow: 'hidden' }}>
-              <Image
-                src={src} alt={alt}
-                width={800} height={600}
-                sizes="(max-width: 600px) 100vw, 33vw"
-                style={{ width: '100%', height: 220, objectFit: 'cover', display: 'block' }}
-              />
-            </div>
-          ))}
-        </div>
-
         {/* 4. Statistikk */}
         <div
           className="reveal"
@@ -100,6 +74,9 @@ export default function OmPage() {
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
             gap: 16,
+            maxWidth: 720,
+            margin: '0 auto 64px',
+            textAlign: 'center',
           }}
         >
           {[

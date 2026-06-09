@@ -116,7 +116,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         images: ogImage ? [ogImage] : ['/img/brand/logo.png'],
       },
       alternates: {
-        canonical: `https://somi.setai.no/blogg/${slug}`,
+        canonical: `https://somiklinikken.no/blogg/${slug}`,
       },
     }
   } catch {
@@ -164,11 +164,11 @@ export default async function BloggPostPage({ params }: Props) {
     publisher: {
       '@type': 'Organization',
       name: 'SOMI Klinikken',
-      logo: { '@type': 'ImageObject', url: 'https://somi.setai.no/img/brand/logo.png' },
+      logo: { '@type': 'ImageObject', url: 'https://somiklinikken.no/img/brand/logo.png' },
     },
     datePublished: post.publishedDate ?? undefined,
-    image: post.featuredImage?.url ?? 'https://somi.setai.no/img/brand/logo.png',
-    url: `https://somi.setai.no/blogg/${slug}`,
+    image: post.featuredImage?.url ?? 'https://somiklinikken.no/img/brand/logo.png',
+    url: `https://somiklinikken.no/blogg/${slug}`,
   }
 
   return (

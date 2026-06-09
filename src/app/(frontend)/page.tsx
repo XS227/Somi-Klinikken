@@ -374,32 +374,11 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* ── Klinikk photo strip ───────────────────────────────────── */}
-        <section className="section section--tight" style={{ paddingTop: 0 }}>
-          <div className="container">
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,minmax(0,1fr))', gap: 10 }}>
-              {[
-                { src: '/img/klinikk/somi-klinikken-interior-sandnes.webp', alt: 'Interiør hos SOMI Klinikken i Sandnes – Langgata 31', w: 1536, h: 2730 },
-                { src: '/img/klinikk/somi-klinikken-behandlingsrom.webp', alt: 'Behandlingsrom hos SOMI Klinikken Sandnes – rent og profesjonelt', w: 1536, h: 2730 },
-                { src: '/img/klinikk/somi-klinikken-kunde-microblading-behandling.webp', alt: 'Microblading-behandling hos SOMI Klinikken i Sandnes', w: 7008, h: 4672 },
-              ].map((img) => (
-                <div key={img.src} style={{ borderRadius: 18, overflow: 'hidden', border: '1px solid rgba(56,56,56,0.08)' }}>
-                  <Image src={img.src} alt={img.alt} width={img.w} height={img.h}
-                    sizes="(max-width: 700px) 100vw, 33vw"
-                    style={{ width: '100%', height: 260, objectFit: 'cover', display: 'block' }}
-                    priority={img.src.includes('interior')}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* ── Values ───────────────────────────────────────────────── */}
         <section className="section section--tight">
-          <div className="container reveal">
+          <div className="container reveal" style={{ textAlign: 'center' }}>
             <h2 className="h2">Kvalitet, presisjon og naturlig resultat</h2>
-            <div className="check-grid">
+            <div className="check-grid" style={{ maxWidth: 560, margin: '28px auto 0', textAlign: 'left' }}>
               <div className="check-item"><span>✓</span><b>Kvalifiserte terapeuter</b></div>
               <div className="check-item"><span>✓</span><b>Dokumenterte rutiner</b></div>
               <div className="check-item"><span>✓</span><b>Individuell vurdering</b></div>

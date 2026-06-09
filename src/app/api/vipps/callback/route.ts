@@ -13,7 +13,7 @@ const WELL_KNOWN_TEST =
 const PHONE_WHITELIST = ['+4741227175', '+4745219525']
 
 // Derive public base URL from the redirect URI so redirects work behind NGINX
-const SITE_ORIGIN = new URL(process.env.VIPPS_REDIRECT_URI!).origin  // https://somi.setai.no
+const SITE_ORIGIN = new URL(process.env.VIPPS_REDIRECT_URI!).origin  // https://somiklinikken.no
 
 // Normalise any phone format to E.164 (+47XXXXXXXX)
 function normalizePhone(raw: string | undefined | null): string {

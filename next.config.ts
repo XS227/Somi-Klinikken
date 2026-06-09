@@ -14,7 +14,7 @@ const nextConfig: NextConfig = {
   images: {
     formats: ['image/webp'],
     remotePatterns: [
-      { protocol: 'https', hostname: 'somi.setai.no', pathname: '/api/media/file/**' },
+      { protocol: 'https', hostname: 'somiklinikken.no', pathname: '/api/media/file/**' },
       { protocol: 'http', hostname: '127.0.0.1', pathname: '/api/media/file/**' },
     ],
     localPatterns: [

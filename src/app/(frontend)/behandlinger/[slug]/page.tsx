@@ -288,7 +288,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: d.heroDesc,
     },
     alternates: {
-      canonical: `https://somi.setai.no/behandlinger/${slug}`,
+      canonical: `https://somiklinikken.no/behandlinger/${slug}`,
     },
   }
 }
@@ -320,7 +320,7 @@ export default async function BehandlingPage({ params }: Props) {
       name: 'SOMI Klinikken',
       address: { '@type': 'PostalAddress', streetAddress: 'Langgata 31', addressLocality: 'Sandnes', postalCode: '4306', addressCountry: 'NO' },
     },
-    url: `https://somi.setai.no/behandlinger/${slug}`,
+    url: `https://somiklinikken.no/behandlinger/${slug}`,
   }
 
   return (
