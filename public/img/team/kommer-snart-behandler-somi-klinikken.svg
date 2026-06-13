@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="900" viewBox="0 0 720 900" role="img" aria-labelledby="title">
+  <title id="title">Ny behandler – SOMI Klinikken (plassholder)</title>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#eaeaea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d8d8d8;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="720" height="900" fill="url(#bg)" />
+  <!-- Silhouette -->
+  <ellipse cx="360" cy="280" rx="110" ry="130" fill="#a0a0a0" opacity="0.4" />
+  <ellipse cx="360" cy="600" rx="190" ry="230" fill="#a0a0a0" opacity="0.25" />
+  <!-- Label -->
+  <text x="50%" y="88%" text-anchor="middle" font-family="Georgia, serif" font-size="30" fill="#555" opacity="0.7">Kommer snart</text>
+  <text x="50%" y="93%" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#777" opacity="0.6">Bilde kommer snart</text>
+</svg>
