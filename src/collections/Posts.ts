@@ -49,6 +49,15 @@ export const Posts: CollectionConfig = {
           label: 'SEO & Synlighet',
           fields: [
             {
+              name: 'published',
+              type: 'checkbox',
+              label: 'Publisert offentlig',
+              defaultValue: true,
+              admin: {
+                description: 'Av = kun synlig via direkte lenke (ikke i blogglisten, forsiden eller sitemap). Brukes for innlegg som venter på godkjenning.',
+              },
+            },
+            {
               name: 'slug',
               type: 'text',
               required: true,

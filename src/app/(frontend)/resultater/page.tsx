@@ -12,6 +12,9 @@ export const metadata: Metadata = {
     description: 'Microblading, permanent makeup og hudbehandling – se resultatene.',
     images: ['/img/resultater/pmu-permanent-makeup-resultat-somi-sandnes-1.webp'],
   },
+  alternates: {
+    canonical: 'https://somiklinikken.no/resultater',
+  },
 }
 
 const BOOKING_URL = '/booking'

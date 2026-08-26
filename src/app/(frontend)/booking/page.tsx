@@ -11,6 +11,9 @@ export const metadata: Metadata = {
     description: 'Book time enkelt og trygt online hos SOMI Klinikken i Sandnes.',
     images: ['/img/brand/logo.png'],
   },
+  alternates: {
+    canonical: 'https://somiklinikken.no/booking',
+  },
 }
 
 export default function BookingPage() {

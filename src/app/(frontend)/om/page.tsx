@@ -11,6 +11,9 @@ export const metadata: Metadata = {
     description: 'Lær mer om klinikken, vår filosofi og teamet bak SOMI.',
     images: ['/img/klinikk/somi-klinikken-interior-sandnes.webp'],
   },
+  alternates: {
+    canonical: 'https://somiklinikken.no/om',
+  },
 }
 
 const BOOKING_URL = '/booking'

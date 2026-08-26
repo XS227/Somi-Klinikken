@@ -13,6 +13,9 @@ export const metadata: Metadata = {
     title: 'Blogg – SOMI Klinikken',
     description: 'Faglige artikler om skjønnhetsbehandlinger fra SOMI Klinikken i Sandnes.',
   },
+  alternates: {
+    canonical: 'https://somiklinikken.no/blogg',
+  },
 }
 
 export const revalidate = 60
@@ -29,6 +32,7 @@ export default async function BloggPage() {
     const payload = await getPayload({ config })
     const result = await payload.find({
       collection: 'posts',
+      where: { published: { not_equals: false } },
       limit: 24,
       sort: '-publishedDate',
       depth: 1,

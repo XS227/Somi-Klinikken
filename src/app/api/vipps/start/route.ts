@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server'
 import crypto from 'crypto'
 
+export const dynamic = 'force-dynamic'
+
 const WELL_KNOWN_PROD =
   'https://api.vipps.no/access-management-1.0/access/.well-known/openid-configuration'
 const WELL_KNOWN_TEST =
@@ -50,7 +52,7 @@ export async function GET(): Promise<NextResponse> {
   const authUrl = `${authEndpoint}?${params.toString()}`
 
   const response = NextResponse.redirect(authUrl)
-  const cookieOpts = { httpOnly: true, secure: true, sameSite: 'lax' as const, path: '/', maxAge: 600 }
+  const cookieOpts = { httpOnly: true, secure: true, sameSite: 'lax' as const, path: '/', maxAge: 1800 }
   response.cookies.set('vipps_pkce', verifier, cookieOpts)
   response.cookies.set('vipps_csrf', csrf, cookieOpts)
   return response

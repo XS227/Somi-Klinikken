@@ -96,7 +96,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       depth: 1,
     })
     const post = result.docs[0] as {
-      title: string; excerpt?: string | null; content?: unknown;
+      title: string; excerpt?: string | null; content?: unknown; published?: boolean
       meta?: { title?: string | null; description?: string | null } | null
       featuredImage?: { url?: string | null } | null
     } | undefined
@@ -105,6 +105,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const plainText = extractPlainText(post.content)
     const desc = post.meta?.description ?? post.excerpt ?? plainText.slice(0, 155)
     const ogImage = post.featuredImage?.url ?? undefined
+    const isDraft = post.published === false
 
     return {
       title: post.meta?.title ?? `${post.title} | SOMI Klinikken Sandnes`,
@@ -115,9 +116,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         description: desc ?? undefined,
         images: ogImage ? [ogImage] : ['/img/brand/logo.png'],
       },
-      alternates: {
+      alternates: isDraft ? undefined : {
         canonical: `https://somiklinikken.no/blogg/${slug}`,
       },
+      robots: isDraft ? { index: false, follow: false } : undefined,
     }
   } catch {
     return {}
@@ -139,7 +141,7 @@ export default async function BloggPostPage({ params }: Props) {
 
   const post = result.docs[0] as {
     id: string; title: string; slug: string; excerpt?: string | null
-    content?: unknown; publishedDate?: string | null; author?: string | null
+    content?: unknown; publishedDate?: string | null; author?: string | null; published?: boolean
     featuredImage?: { url?: string | null; alt?: string | null; width?: number | null; height?: number | null } | null
   } | undefined
 
@@ -147,7 +149,7 @@ export default async function BloggPostPage({ params }: Props) {
 
   const relatedResult = await payload.find({
     collection: 'posts',
-    where: { slug: { not_equals: slug } },
+    where: { slug: { not_equals: slug }, published: { not_equals: false } },
     limit: 3,
     sort: '-publishedDate',
     depth: 1,
@@ -178,6 +180,15 @@ export default async function BloggPostPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
       />
       <main style={{ paddingTop: 0, paddingBottom: 64 }}>
+
+        {post.published === false && (
+          <div style={{
+            background: '#DDB3B3', color: '#383838', textAlign: 'center',
+            padding: '10px 16px', fontSize: 14, fontWeight: 600,
+          }}>
+            Kladd – ikke publisert offentlig. Kun synlig via denne lenken.
+          </div>
+        )}
 
         {/* Hero */}
         {post.featuredImage?.url ? (

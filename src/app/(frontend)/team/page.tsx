@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: 'Team SOMI | SOMI Klinikken i Sandnes',
   description:
     'Møt teamet hos SOMI Klinikken. Katarina Hammer (eier, permanent makeup), Emma (hudpleier, Dermalogica Expert), Arianna (laserspesialist) og Irena (intensivsykepleier).',
+  alternates: {
+    canonical: 'https://somiklinikken.no/team',
+  },
 }
 
 const BOOKING_URL = '/booking'
@@ -210,9 +213,9 @@ export default function TeamPage() {
 
         <hr style={{ border: 0, borderTop: '1px solid rgba(56,56,56,0.08)', marginBottom: 72 }} />
 
-        {/* Plassholder – ny behandler */}
+        {/* Plassholder – ny behandler 1 */}
         {/* TODO: Bytt ut navn, tittel, beskrivelse og bilde når behandleren er klar */}
-        <div className="about-grid reveal" style={{ marginBottom: 40 }}>
+        <div className="about-grid reveal" style={{ marginBottom: 72 }}>
           <div className="about-image">
             <Image
               src="/img/team/kommer-snart-behandler-somi-klinikken.svg"
@@ -231,6 +234,40 @@ export default function TeamPage() {
             />
           </div>
           <div className="about-copy">
+            <div className="kicker">Estetisk behandler</div>
+            <h2 className="h2" style={{ marginTop: 10 }}>Kommer snart</h2>
+            <p className="muted" style={{ marginTop: 6, fontSize: 15, letterSpacing: '0.02em' }}>
+              Ny behandler · SOMI Klinikken
+            </p>
+            <p style={{ marginTop: 18 }}>
+              Presentasjon kommer snart.
+            </p>
+          </div>
+        </div>
+
+        <hr style={{ border: 0, borderTop: '1px solid rgba(56,56,56,0.08)', marginBottom: 72 }} />
+
+        {/* Plassholder – ny behandler 2 */}
+        {/* TODO: Bytt ut navn, tittel, beskrivelse og bilde når behandleren er klar */}
+        <div className="about-grid reveal" style={{ marginBottom: 40, direction: 'rtl' }}>
+          <div className="about-image" style={{ direction: 'ltr' }}>
+            <Image
+              src="/img/team/kommer-snart-behandler-somi-klinikken.svg"
+              alt="Ny behandler kommer snart til SOMI Klinikken"
+              width={720}
+              height={900}
+              sizes="220px"
+              style={{
+                width: '100%',
+                maxWidth: 280,
+                height: 360,
+                objectFit: 'cover',
+                borderRadius: 12,
+                display: 'block',
+              }}
+            />
+          </div>
+          <div className="about-copy" style={{ direction: 'ltr' }}>
             <div className="kicker">Estetisk behandler</div>
             <h2 className="h2" style={{ marginTop: 10 }}>Kommer snart</h2>
             <p className="muted" style={{ marginTop: 6, fontSize: 15, letterSpacing: '0.02em' }}>

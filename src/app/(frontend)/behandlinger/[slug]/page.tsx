@@ -5,20 +5,182 @@ import Image from 'next/image'
 
 type Props = { params: Promise<{ slug: string }> }
 
-// Behandlingsdata – kan hentes fra Payload i fremtiden
-const behandlingerData: Record<string, {
+type BehandlingData = {
   title: string
   tagline: string
   heroDesc: string
   hvaSer: string
+  effektMot?: string[]
   hvemPasser: string
+  fordeler?: string[]
   steps: string[]
   foer: string[]
   under: string
   etter: string[]
   faq: { q: string; a: string }[]
   images?: string[]
-}> = {
+  ctaText?: string
+  sammenligningLink?: { slug: string; title: string }
+}
+
+const peelingSammenligning = {
+  title: 'Hva er forskjellen på PRX-T33 og BioRePeel CL3?',
+  intro:
+    'Både PRX-T33 og BioRePeel CL3 er moderne peelinger som forbedrer hudkvalitet, glød og hudstruktur med minimal nedetid. Begge behandlingene stimulerer hudens naturlige cellefornyelse og kollagenproduksjon, men de har ulike egenskaper og bruksområder.',
+  prxPasser: [
+    'Oppstramming og anti-age',
+    'Slapp hud og tap av elastisitet',
+    'Fine linjer og hudfornyelse',
+    'Kunder som ønsker «lifting-effekt» uten nåler',
+  ],
+  prxForklaring:
+    'PRX-T33 jobber dypere i huden og er spesielt populær for hudoppstramming og revitalisering.',
+  biorepeelPasser: [
+    'Akne og uren hud',
+    'Store porer og hudtekstur',
+    'Fet eller kombinert hud',
+    'Glød og jevnere hudtone',
+  ],
+  biorepeelForklaring:
+    'BioRePeel har sterk fokus på eksfoliering, hudforbedring og balansering av huden, samtidig som den er svært skånsom.',
+  avslutning:
+    'Valg av behandling avhenger av hudtype, hudtilstand og ønsket resultat. Vi hjelper deg gjerne med å finne den behandlingen som passer best for din hud.',
+}
+
+const behandlingerData: Record<string, BehandlingData> = {
+  'prx-t33': {
+    title: 'PRX-T33 – Biorevitalisering uten nåler',
+    tagline: 'Strammer opp, gir glød og forbedrer hudkvaliteten – uten nåler',
+    heroDesc:
+      'Gi huden nytt liv med PRX-T33 – en behandling som strammer opp, gir glød og forbedrer hudkvaliteten uten flassing eller lang nedetid.',
+    hvaSer:
+      'PRX-T33 stimulerer hudens naturlige kollagenproduksjon og passer perfekt for deg som ønsker fastere, jevnere og friskere hud.',
+    effektMot: [
+      'Fine linjer og rynker',
+      'Slapp og gusten hud',
+      'Aknearr og arr',
+      'Pigmentering og solskader',
+      'Store porer',
+      'Strekkmerker',
+    ],
+    hvemPasser:
+      'PRX-T33 kan brukes på ansikt, hals og bryst, og passer for de fleste hudtyper. Mange ser umiddelbar glød allerede etter første behandling.',
+    fordeler: [
+      'Ingen nåler',
+      'Minimal nedetid',
+      'Synlige resultater raskt',
+      'Stimulerer kollagen og elastin',
+      'Perfekt «glow treatment» før eventer',
+    ],
+    steps: [
+      'Konsultasjon: Vi vurderer din hud og diskuterer ønsket resultat.',
+      'Huden renses og forberedes for behandlingen.',
+      'PRX-T33 påføres og masseres forsiktig inn i huden (ca. 30 minutter).',
+      'Avsluttende pleie og hjemmepleieplan.',
+    ],
+    foer: [
+      'Unngå aktive ingredienser (retinol, syrer) 3–5 dager før.',
+      'Ikke vær i sterkt sol 2 dager før behandlingen.',
+      'Kom med ren hud uten sminke.',
+    ],
+    under:
+      'PRX-T33 påføres og masseres forsiktig inn i huden. Det kan kjennes lett kribling. Ingen nåler benyttes og behandlingen er i stor grad smertefri.',
+    etter: [
+      'Bruk SPF 50+ daglig etter behandlingen.',
+      'Unngå sterkt sollys og solarium.',
+      'Lett rødhet kan forekomme de første timene – dette er normalt.',
+      'Huden kan bli litt sensitiv de første dagene.',
+    ],
+    faq: [
+      {
+        q: 'Hva er PRX-T33?',
+        a: 'PRX-T33 er en biorevitaliseringsbehandling som stimulerer kollagenproduksjonen uten å skade hudoverflaten. Behandlingen er unik fordi den gir effektiv biostimulering uten bruk av nåler.',
+      },
+      {
+        q: 'Gjør PRX-T33 vondt?',
+        a: 'Nei, behandlingen er i stor grad smertefri. Du kan kjenne litt kribling, men det er ikke smertefullt.',
+      },
+      {
+        q: 'Hvor mange behandlinger trenger jeg?',
+        a: 'Mange ser resultater etter første behandling. For optimal effekt anbefales 4–6 behandlinger med 1–2 ukers mellomrom.',
+      },
+      {
+        q: 'Kan jeg bruke sminke etter behandlingen?',
+        a: 'Du kan bruke mineral sminke dagen etter. Vi anbefaler å unngå tung sminke de første 24 timene.',
+      },
+    ],
+    ctaText:
+      'Bestill din PRX-T33 behandling i dag og opplev en sunnere, fastere og mer ungdommelig hud.',
+    sammenligningLink: { slug: 'biorepeel-cl3', title: 'BioRePeel CL3' },
+  },
+  'biorepeel-cl3': {
+    title: 'BioRePeel CL3 – Skånsom peeling med glød og hudfornyelse',
+    tagline: 'Innovativ medisinsk peeling som kombinerer eksfoliering og biostimulering',
+    heroDesc:
+      'BioRePeel CL3 er en innovativ og skånsom medisinsk peeling som kombinerer eksfoliering, biostimulering og hudfornyelse i én behandling.',
+    hvaSer:
+      'Peelingen forbedrer hudkvaliteten i dybden samtidig som den gir minimal flassing og lite nedetid. BioRePeel CL3 inneholder blant annet TCA, aminosyrer og vitaminer som stimulerer hudens naturlige cellefornyelse og kollagenproduksjon. Resultatet er en klarere, jevnere og mer glødende hud. Behandlingen passer alle hudtyper og kan utføres året rundt.',
+    effektMot: [
+      'Gusten og livløs hud',
+      'Fine linjer og tidlige aldringstegn',
+      'Akne og aknearr',
+      'Store porer og ujevn hudstruktur',
+      'Pigmentering og solskader',
+      'Fet og uren hud',
+      'Tørr og dehydrert hud',
+    ],
+    hvemPasser:
+      'BioRePeel CL3 passer alle hudtyper. Mange opplever en jevnere hudtone, forbedret tekstur og mer glød allerede etter første behandling. For optimal effekt anbefales en kur på 4–6 behandlinger tilpasset hudens behov.',
+    fordeler: [
+      'Gir umiddelbar glød og friskhet',
+      'Stimulerer kollagen og elastin',
+      'Minimal flassing og nedetid',
+      'Passer sensitiv hud',
+      'Kan brukes på ansikt, hals og kropp',
+      'Perfekt som kurbehandling',
+    ],
+    steps: [
+      'Konsultasjon: Vi vurderer din hud og velger riktig behandlingsprotokoll.',
+      'Huden renses og avfettes grundig.',
+      'BioRePeel CL3 påføres og virker i huden (ca. 30–45 minutter).',
+      'Avsluttende pleie og hjemmepleieplan.',
+    ],
+    foer: [
+      'Unngå aktive ingredienser (retinol, syrer) 3–5 dager før.',
+      'Ikke vær i sterkt sol 2 dager før behandlingen.',
+      'Kom med ren hud uten sminke.',
+      'Informer om allergier og aktuelle hudproblemer.',
+    ],
+    under:
+      'BioRePeel CL3 påføres av hudterapeut og virker i hudoverflaten. Det kan kjennes lett kribling eller varme. Behandlingen er trygg og godt tolerert av de fleste.',
+    etter: [
+      'Bruk SPF 50+ daglig etter behandlingen.',
+      'Unngå sterkt sollys og solarium i 7 dager.',
+      'Noe avskalling kan forekomme de første dagene – dette er normalt.',
+      'Hold huden godt fuktet med anbefalt produkt.',
+    ],
+    faq: [
+      {
+        q: 'Hva inneholder BioRePeel CL3?',
+        a: 'BioRePeel CL3 inneholder TCA (trikloreddiksyre), aminosyrer, vitaminer og gamma-aminosmørsyre (GABA). Disse ingrediensene jobber sammen for å eksfoliere, biostimulere og forynge huden.',
+      },
+      {
+        q: 'Er det mye flassing etter BioRePeel CL3?',
+        a: 'BioRePeel CL3 er kjent for minimal flassing sammenlignet med tradisjonelle peelingbehandlinger. Noe lett avskalling kan forekomme de første 3–5 dagene.',
+      },
+      {
+        q: 'Kan jeg ta BioRePeel CL3 om sommeren?',
+        a: 'Ja, BioRePeel CL3 kan utføres året rundt. Det er viktig å beskytte huden mot sol med SPF 50+ etter behandlingen.',
+      },
+      {
+        q: 'Hvor mange behandlinger anbefales?',
+        a: 'For optimale resultater anbefales en kur på 4–6 behandlinger med 1–2 ukers mellomrom. Enkeltbehandlinger gir også synlig glød og friskhet.',
+      },
+    ],
+    ctaText:
+      'Bestill BioRePeel CL3 hos oss og gi huden en effektiv, trygg og moderne hudfornyelse.',
+    sammenligningLink: { slug: 'prx-t33', title: 'PRX-T33 – Biorevitalisering uten nåler' },
+  },
   'permanent-makeup': {
     title: 'Permanent Makeup',
     tagline: 'Naturlige bryn og liner – skreddersydd for deg',
@@ -275,17 +437,31 @@ export function generateStaticParams() {
   return Object.keys(behandlingerData).map((slug) => ({ slug }))
 }
 
+const customMetaTitles: Record<string, { title: string; description: string }> = {
+  'prx-t33': {
+    title: 'PRX-T33 i Sandnes | Biorevitalisering uten nåler | SOMI Klinikken',
+    description:
+      'PRX-T33 biorevitalisering uten nåler i Sandnes. Strammer opp, gir glød og forbedrer hudkvaliteten. Minimal nedetid. Book tid hos SOMI Klinikken.',
+  },
+  'biorepeel-cl3': {
+    title: 'BioRePeel CL3 i Sandnes | Skånsom peeling og hudfornyelse | SOMI Klinikken',
+    description:
+      'BioRePeel CL3 skånsom medisinsk peeling i Sandnes. Kombinerer eksfoliering, biostimulering og hudfornyelse. Passer alle hudtyper. Book tid hos SOMI Klinikken.',
+  },
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const d = behandlingerData[slug]
   if (!d) return {}
+  const custom = customMetaTitles[slug]
   return {
-    title: `${d.title} i Sandnes | SOMI Klinikken`,
-    description: `${d.heroDesc.slice(0, 155)}`,
+    title: custom?.title ?? `${d.title} i Sandnes | SOMI Klinikken`,
+    description: custom?.description ?? d.heroDesc.slice(0, 155),
     openGraph: {
       type: 'website',
-      title: `${d.title} i Sandnes | SOMI Klinikken`,
-      description: d.heroDesc,
+      title: custom?.title ?? `${d.title} i Sandnes | SOMI Klinikken`,
+      description: custom?.description ?? d.heroDesc,
     },
     alternates: {
       canonical: `https://somiklinikken.no/behandlinger/${slug}`,
@@ -368,15 +544,42 @@ export default async function BehandlingPage({ params }: Props) {
 
           {/* Hva er behandlingen */}
           <section style={{ marginBottom: 48 }}>
-            <h2 className="h2" style={{ marginBottom: 16 }}>Hva er {d.title.toLowerCase()}?</h2>
+            <h2 className="h2" style={{ marginBottom: 16 }}>Hva er {d.title.split('–')[0].trim().toLowerCase()}?</h2>
             <p style={{ fontSize: 17, lineHeight: 1.75 }}>{d.hvaSer}</p>
           </section>
+
+          {/* Effektiv mot (valgfritt – vises kun for peeling-behandlinger) */}
+          {d.effektMot && (
+            <section style={{ marginBottom: 48, padding: '24px 28px', borderRadius: 18, background: 'rgba(237,229,221,0.4)', border: '1px solid rgba(56,56,56,0.08)' }}>
+              <h2 className="h2" style={{ marginBottom: 14 }}>Behandlingen er effektiv mot:</h2>
+              <ul style={{ paddingLeft: 20, display: 'grid', gap: 8, margin: 0 }}>
+                {d.effektMot.map((item, i) => (
+                  <li key={i} style={{ fontSize: 16, lineHeight: 1.65 }}>{item}</li>
+                ))}
+              </ul>
+            </section>
+          )}
 
           {/* Hvem passer det for */}
           <section style={{ marginBottom: 48, padding: '28px 32px', borderRadius: 18, background: 'rgba(237,229,221,0.4)', border: '1px solid rgba(56,56,56,0.08)' }}>
             <h2 className="h2" style={{ marginBottom: 14 }}>Hvem passer det for?</h2>
             <p style={{ fontSize: 17, lineHeight: 1.75 }}>{d.hvemPasser}</p>
           </section>
+
+          {/* Fordeler (valgfritt) */}
+          {d.fordeler && (
+            <section style={{ marginBottom: 48, padding: '24px 28px', borderRadius: 18, background: 'rgba(107,123,141,0.06)', border: '1px solid rgba(107,123,141,0.18)' }}>
+              <h2 className="h2" style={{ marginBottom: 14 }}>Fordeler</h2>
+              <ul style={{ paddingLeft: 0, listStyle: 'none', display: 'grid', gap: 10, margin: 0 }}>
+                {d.fordeler.map((item, i) => (
+                  <li key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', fontSize: 16, lineHeight: 1.6 }}>
+                    <span style={{ flexShrink: 0, color: '#6B7B8D', fontWeight: 700, fontSize: 18, lineHeight: 1.3 }}>✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
 
           {/* Slik foregår behandlingen */}
           <section style={{ marginBottom: 48 }}>
@@ -464,6 +667,45 @@ export default async function BehandlingPage({ params }: Props) {
             </div>
           </section>
 
+          {/* Sammenligning PRX-T33 vs BioRePeel (vises når sammenligningLink er satt) */}
+          {d.sammenligningLink && (
+            <section style={{ marginBottom: 48, padding: '32px', borderRadius: 20, background: 'rgba(237,229,221,0.5)', border: '1px solid rgba(56,56,56,0.1)' }}>
+              <h2 className="h2" style={{ marginBottom: 16 }}>{peelingSammenligning.title}</h2>
+              <p style={{ fontSize: 16, lineHeight: 1.75, marginBottom: 24 }}>{peelingSammenligning.intro}</p>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(220px,1fr))', gap: 16, marginBottom: 22 }}>
+                <div style={{ padding: '20px 22px', borderRadius: 14, background: '#fff', border: '1px solid rgba(56,56,56,0.08)' }}>
+                  <h3 style={{ fontFamily: 'Georgia,serif', fontSize: 17, margin: '0 0 12px' }}>PRX-T33 passer best for:</h3>
+                  <ul style={{ paddingLeft: 18, display: 'grid', gap: 6, marginBottom: 12 }}>
+                    {peelingSammenligning.prxPasser.map((item, i) => (
+                      <li key={i} style={{ fontSize: 14, lineHeight: 1.6 }}>{item}</li>
+                    ))}
+                  </ul>
+                  <p style={{ fontSize: 13, color: '#4f4f4f', lineHeight: 1.65, margin: 0, fontStyle: 'italic' }}>
+                    {peelingSammenligning.prxForklaring}
+                  </p>
+                </div>
+                <div style={{ padding: '20px 22px', borderRadius: 14, background: '#fff', border: '1px solid rgba(56,56,56,0.08)' }}>
+                  <h3 style={{ fontFamily: 'Georgia,serif', fontSize: 17, margin: '0 0 12px' }}>BioRePeel CL3 passer best for:</h3>
+                  <ul style={{ paddingLeft: 18, display: 'grid', gap: 6, marginBottom: 12 }}>
+                    {peelingSammenligning.biorepeelPasser.map((item, i) => (
+                      <li key={i} style={{ fontSize: 14, lineHeight: 1.6 }}>{item}</li>
+                    ))}
+                  </ul>
+                  <p style={{ fontSize: 13, color: '#4f4f4f', lineHeight: 1.65, margin: 0, fontStyle: 'italic' }}>
+                    {peelingSammenligning.biorepeelForklaring}
+                  </p>
+                </div>
+              </div>
+              <p style={{ fontSize: 15, lineHeight: 1.7, marginBottom: 16 }}>{peelingSammenligning.avslutning}</p>
+              <a
+                href={`/behandlinger/${d.sammenligningLink.slug}`}
+                style={{ color: '#6B7B8D', fontWeight: 600, fontSize: 14, textDecoration: 'none' }}
+              >
+                Les mer om {d.sammenligningLink.title} →
+              </a>
+            </section>
+          )}
+
           {/* CTA bunn */}
           <div style={{
             padding: '36px 32px', borderRadius: 22,
@@ -473,8 +715,7 @@ export default async function BehandlingPage({ params }: Props) {
             <div className="kicker">Klar for neste steg?</div>
             <h2 className="h2" style={{ margin: 0 }}>Book time hos SOMI Klinikken</h2>
             <p className="muted" style={{ maxWidth: '50ch' }}>
-              Vi gir deg en gratis konsultasjon der vi vurderer hva som passer best for deg og
-              svarer på alle spørsmål.
+              {d.ctaText ?? 'Vi gir deg en gratis konsultasjon der vi vurderer hva som passer best for deg og svarer på alle spørsmål.'}
             </p>
             <div className="cta-row" style={{ marginTop: 6 }}>
               <a href="/booking" style={{

@@ -15,6 +15,9 @@ export const metadata: Metadata = {
     description: 'Microblading, permanent makeup, bryn og vipper, hudpleie og laser.',
     images: ['/img/brand/logo.png'],
   },
+  alternates: {
+    canonical: 'https://somiklinikken.no',
+  },
 }
 
 export const revalidate = 60
@@ -75,7 +78,7 @@ export default async function HomePage() {
   try {
     const payload = await getPayload({ config })
     const [postsResult, homepageGlobal] = await Promise.all([
-      payload.find({ collection: 'posts', limit: 6, sort: '-publishedDate', depth: 1 }),
+      payload.find({ collection: 'posts', where: { published: { not_equals: false } }, limit: 6, sort: '-publishedDate', depth: 1 }),
       payload.findGlobal({ slug: 'homepage', depth: 0 }).catch(() => null),
     ])
     blogPosts = postsResult.docs as typeof blogPosts

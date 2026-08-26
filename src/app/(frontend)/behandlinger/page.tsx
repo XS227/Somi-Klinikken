@@ -4,11 +4,14 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Behandlinger | SOMI Klinikken Sandnes',
   description:
-    'Utforsk alle behandlinger hos SOMI Klinikken i Sandnes: permanent makeup, laser hårfjerning, hudpleie, injeksjoner og mer. Gratis konsultasjon inkludert.',
+    'Utforsk alle behandlinger hos SOMI Klinikken i Sandnes: PRX-T33, BioRePeel CL3, permanent makeup, laser hårfjerning, hudpleie, injeksjoner og mer. Gratis konsultasjon inkludert.',
   openGraph: {
     type: 'website',
     title: 'Behandlinger – SOMI Klinikken Sandnes',
-    description: 'Alle behandlinger hos SOMI Klinikken – microblading, laser, hudpleie og mer.',
+    description: 'Alle behandlinger hos SOMI Klinikken – PRX-T33, BioRePeel, microblading, laser, hudpleie og mer.',
+  },
+  alternates: {
+    canonical: 'https://somiklinikken.no/behandlinger',
   },
 }
 
@@ -18,6 +21,18 @@ const categories = [
     title: 'Gratis konsultasjon',
     desc: 'Kom innom for en uforpliktende prat. Vi vurderer din hudtype, anbefaler behandling og svarer på alle spørsmål.',
     icon: '☕',
+  },
+  {
+    slug: 'prx-t33',
+    title: 'PRX-T33 Biorevitalisering',
+    desc: 'Gi huden nytt liv uten nåler. Strammer opp, gir glød og stimulerer kollagen – minimal nedetid.',
+    icon: '✨',
+  },
+  {
+    slug: 'biorepeel-cl3',
+    title: 'BioRePeel CL3 Peeling',
+    desc: 'Skånsom medisinsk peeling med eksfoliering og biostimulering. Passer alle hudtyper – også sensitiv hud.',
+    icon: '🌸',
   },
   {
     slug: 'laser-tattoo-removal',

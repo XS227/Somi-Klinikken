@@ -8,6 +8,7 @@ import type { FooterData } from '@/components/SiteFooter'
 import './styles.css'
 
 export const metadata = {
+  metadataBase: new URL('https://somiklinikken.no'),
   title: 'SOMI Klinikken',
   description: 'SOMI Klinikken i Sandnes tilbyr microblading, permanent makeup, hudpleie og laser.',
 }
@@ -137,9 +138,37 @@ export default async function FrontendLayout({ children }: { children: React.Rea
     return <UnderArbeidPage />
   }
 
+  const address   = footerData?.address   ?? 'Langgata 31, 4306 Sandnes'
+  const phone     = footerData?.phone     ?? '+47 929 39 171'
+  const email     = footerData?.email     ?? 'post@somiklinikken.no'
+  const instagram = footerData?.instagram ?? 'https://www.instagram.com/somiklinikken'
+  const facebook  = footerData?.facebook  ?? 'https://www.facebook.com/share/1ChUJG29T3/'
+
+  const businessJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BeautySalon',
+    name: 'SOMI Klinikken',
+    image: 'https://somiklinikken.no/img/brand/logo.png',
+    url: 'https://somiklinikken.no',
+    telephone: phone,
+    email,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: address.split(',')[0]?.trim(),
+      postalCode: address.split(',')[1]?.trim().split(' ')[0],
+      addressLocality: 'Sandnes',
+      addressCountry: 'NO',
+    },
+    sameAs: [instagram, facebook].filter(Boolean),
+  }
+
   return (
     <html lang="no">
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(businessJsonLd) }}
+        />
         <SiteHeader data={headerData} />
         {children}
         <SiteFooter data={footerData} />

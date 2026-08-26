@@ -28,6 +28,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: page.meta?.title ?? `${page.title} | SOMI Klinikken`,
     description: page.meta?.description ?? undefined,
+    alternates: {
+      canonical: `https://somiklinikken.no/${slug}`,
+    },
   }
 }
 

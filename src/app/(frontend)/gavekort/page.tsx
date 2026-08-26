@@ -11,6 +11,9 @@ export const metadata: Metadata = {
     description: 'Den perfekte gaven – et gavekort til SOMI Klinikken.',
     images: ['/img/brand/logo.png'],
   },
+  alternates: {
+    canonical: 'https://somiklinikken.no/gavekort',
+  },
 }
 
 const GAVEKORT_URL = 'https://somi.bestille.no/OnCust2/#!/giftcertificatepurchase/'

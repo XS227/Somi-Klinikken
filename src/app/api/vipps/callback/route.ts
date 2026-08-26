@@ -4,6 +4,8 @@ import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import crypto from 'crypto'
 
+export const dynamic = 'force-dynamic'
+
 const WELL_KNOWN_PROD =
   'https://api.vipps.no/access-management-1.0/access/.well-known/openid-configuration'
 const WELL_KNOWN_TEST =
@@ -26,16 +28,6 @@ function normalizePhone(raw: string | undefined | null): string {
   return raw.replace(/\s/g, '')
 }
 
-function parseCookies(req: NextRequest): Record<string, string> {
-  const cookies: Record<string, string> = {}
-  const header = req.headers.get('cookie') || ''
-  for (const pair of header.split(';')) {
-    const [k, ...v] = pair.trim().split('=')
-    if (k) cookies[k.trim()] = decodeURIComponent(v.join('='))
-  }
-  return cookies
-}
-
 function clearAuthCookies(res: NextResponse): void {
   res.cookies.set('vipps_pkce', '', { httpOnly: true, secure: true, sameSite: 'lax', path: '/', maxAge: 0 })
   res.cookies.set('vipps_csrf', '', { httpOnly: true, secure: true, sameSite: 'lax', path: '/', maxAge: 0 })
@@ -50,11 +42,11 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     return NextResponse.json({ error: 'Missing code or state' }, { status: 400 })
   }
 
-  const cookies = parseCookies(req)
-  const verifier = cookies['vipps_pkce']
-  const storedCsrf = cookies['vipps_csrf']
+  const verifier = req.cookies.get('vipps_pkce')?.value
+  const storedCsrf = req.cookies.get('vipps_csrf')?.value
 
   if (!verifier || !storedCsrf) {
+    console.error('[vipps/callback] Missing session cookies. Cookie header:', req.headers.get('cookie')?.slice(0, 120))
     return NextResponse.json({ error: 'Missing session cookies' }, { status: 400 })
   }
 
