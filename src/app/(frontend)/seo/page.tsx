@@ -116,6 +116,16 @@ const pageStyles = `
 }
 .seo-wrap .priority-text { font-size: 15.5px; color: var(--ink); font-weight: 600; }
 .seo-wrap .priority-text .alt { color: var(--ink-muted); font-size: 13.5px; font-weight: 400; font-style: italic; margin-left: 6px; }
+.seo-wrap { --good: #3d7a52; --bad: #b0473a; }
+@media (prefers-color-scheme: dark) { .seo-wrap { --good: #7fc79a; --bad: #ec8b7e; } }
+.seo-wrap table.rank-table td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.seo-wrap table.rank-table td.num .impr { display: block; font-size: 11.5px; color: var(--ink-muted); }
+.seo-wrap table.rank-table td.goal { font-weight: 600; color: var(--brand-ink); white-space: nowrap; }
+.seo-wrap table.rank-table .q { display: block; font-size: 12px; font-weight: 400; color: var(--ink-muted); white-space: normal; }
+.seo-wrap .trend { font-size: 12.5px; font-weight: 600; white-space: nowrap; }
+.seo-wrap .trend.up { color: var(--good); }
+.seo-wrap .trend.down { color: var(--bad); }
+.seo-wrap .trend.flat { color: var(--ink-muted); }
 @media (max-width: 640px) {
   .seo-wrap .wrap { padding: 36px 16px 72px; }
   .seo-wrap header.hero { padding: 26px 20px 22px; border-radius: 14px; }
@@ -152,13 +162,49 @@ const priorityKeywords = [
   { primary: 'Laserfjerning bryn', alt: null },
 ]
 
+// Google Search Console via Windsor.ai, hentet 23. september 2026.
+// Snittplassering per måned (lavere = bedre). start = juni 2026 (første måned med data), now = 1.–23. september.
+// impr = antall visninger i Google den måneden. null = ingen visninger (vi vises ikke for søket).
+const rankings: {
+  kw: string; query: string
+  start: number | null; startImpr: number
+  now: number | null; nowImpr: number
+  goal: string
+}[] = [
+  { kw: 'Laser tatoveringsfjerning', query: 'laserfjerning tatovering', start: 40.1, startImpr: 54, now: 5.0, nowImpr: 4, goal: 'Topp 5' },
+  { kw: 'Rynkebehandling / filler', query: 'botox sandnes', start: 36.7, startImpr: 3, now: 7.3, nowImpr: 12, goal: 'Topp 5' },
+  { kw: 'Hudpleie', query: 'hudpleie sandnes', start: 11.3, startImpr: 76, now: 18.1, nowImpr: 56, goal: 'Topp 8' },
+  { kw: 'Vippeløft', query: 'vippeløft sandnes', start: 1.6, startImpr: 177, now: 3.7, nowImpr: 57, goal: 'Topp 2' },
+  { kw: 'Permanent makeup', query: 'permanent sminke', start: 45.3, startImpr: 37, now: 33.8, nowImpr: 29, goal: 'Topp 20' },
+  { kw: 'Laser hårfjerning', query: 'laser hårfjerning sandnes', start: 2.6, startImpr: 22, now: 5.8, nowImpr: 14, goal: 'Topp 3' },
+  { kw: 'Hudklinikk', query: 'hudklinikk sandnes', start: 23.5, startImpr: 2, now: 30.0, nowImpr: 1, goal: 'Topp 15' },
+  { kw: 'Brynstyling', query: 'brynslaminering sandnes', start: 3.5, startImpr: 19, now: 3.8, nowImpr: 13, goal: 'Topp 3' },
+  { kw: 'Injeksjonsbehandling', query: 'injeksjonsbehandlinger', start: null, startImpr: 0, now: 14.8, nowImpr: 5, goal: 'Topp 10' },
+  { kw: 'Microblading', query: 'microblading sandnes', start: 1.4, startImpr: 42, now: 1.6, nowImpr: 18, goal: 'Hold #1' },
+  { kw: 'Laserfjerning bryn', query: 'laserfjerning bryn', start: null, startImpr: 0, now: null, nowImpr: 0, goal: 'Bli synlig' },
+]
+
+function fmtPos(p: number | null) {
+  return p === null ? '—' : `#${p.toFixed(1).replace('.', ',')}`
+}
+
+function Trend({ start, now }: { start: number | null; now: number | null }) {
+  if (now === null) return <span className="trend flat">Vises ikke</span>
+  if (start === null) return <span className="trend up">Ny</span>
+  const diff = start - now
+  if (Math.abs(diff) < 1) return <span className="trend flat">Uendret</span>
+  return diff > 0
+    ? <span className="trend up">▲ {diff.toFixed(1).replace('.', ',')}</span>
+    : <span className="trend down">▼ {(-diff).toFixed(1).replace('.', ',')}</span>
+}
+
 const summary = [
   'Anmeldelsesgapet mot Velbehag er uendret siden sist sjekk (264 vs. våre 24) — ingen bevegelse ennå, den operative anmeldelsesplanen (QR-kode m.m.) må faktisk startes for at tallet skal endre seg. Se /kampanje for planen.',
   'Ny konkurrent-info: Sandnes Hud og Laserklinikk har 4,8★ på Google og fremhever laser tatoveringsfjerning aktivt — enda en reell konkurrent på søkeord #1, ikke bare Velbehag.',
   '«PRX-T33 vs BioRePeel»-artikkelen er publisert på bloggen. Selve behandlingene er fortsatt uclaimed lokalt i Sandnes — ingen konkurrent har egen landingsside for dem ennå, vinduet er fortsatt åpent.',
   'Jane og Irena, de to nye ansatte, har nå egne profiler med bilde på /team. Synlighetsplanen videre (bookinglenke, blogginnlegg, video) ligger i kampanjeplanen — se /kampanje.',
   'Presentasjonsinnleggene for Jane og Irena er publisert i dag (20. september) og ligger nå ute på /blogg. Ingen av dem har eget bilde satt i blogglisten ennå (featuredImage mangler) — kan fikses ved å koble på samme foto som brukes på /team.',
-  'Uformell websøk-sjekk i dag — ikke ekte rangeringsdata, vi har ingen Search Console/ranktracker-tilgang: somiklinikken.no dukker ikke opp i søket for «laser tatoveringsfjerning Sandnes» (Sandnes Hud og Laserklinikk gjør) eller «gratis konsultasjon hudpleie Sandnes», til tross for egne artikler om begge. For «microblading Sandnes» og «PRX-T33 Sandnes» ser det bedre ut. Bør bekreftes med ordentlig rank-tracking før vi konkluderer noe.',
+  'Ekte rangeringsdata fra Google Search Console er nå på plass (se tabellen over). Største fremgang: laser tatoveringsfjerning og botox/filler har klatret fra side 3–4 til første side. Svakest: «hudpleie Sandnes» har falt fra #11 til #18, og vippeløft og laser hårfjerning har glidd noen plasser ned — disse trenger oppmerksomhet.',
 ]
 
 const keywordTimeline = [
@@ -238,7 +284,7 @@ export default function SeoStrategiPage() {
           </p>
           <div className="meta-row">
             <span>somiklinikken.no</span>
-            <span>Oppdatert 20. september 2026</span>
+            <span>Oppdatert 23. september 2026</span>
           </div>
         </header>
 
@@ -259,6 +305,39 @@ export default function SeoStrategiPage() {
                 </li>
               ))}
             </ol>
+          </div>
+        </section>
+
+        <section>
+          <div className="section-head">
+            <h2>Rangering i Google — start, nå og mål</h2>
+            <p>Snittplassering i Google for hvert prioriterte søkeord (lavere tall = høyere opp). Start er juni 2026, nå er september, målet gjelder starten av november.</p>
+          </div>
+          <div className="card">
+            <div className="tbl-wrap">
+              <table className="comp-table rank-table">
+                <tbody>
+                  <tr><th>Søkeord</th><th>Start (juni)</th><th>Nå (sep.)</th><th>Endring</th><th>Mål (nov.)</th></tr>
+                  {rankings.map((r) => (
+                    <tr key={r.kw}>
+                      <td className="name">{r.kw}<span className="q">«{r.query}»</span></td>
+                      <td className="num">{fmtPos(r.start)}<span className="impr">{r.startImpr} visn.</span></td>
+                      <td className="num">{fmtPos(r.now)}<span className="impr">{r.nowImpr} visn.</span></td>
+                      <td><Trend start={r.start} now={r.now} /></td>
+                      <td className="goal">{r.goal}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div className="callout">
+              <span className="mark">!</span>
+              <span>
+                Kilde: Google Search Console, hentet 23. september 2026. Plasseringen er et snitt for hele måneden.
+                Søk med få visninger (under ca. 20) svinger mye og bør leses som en retning, ikke et eksakt tall.
+                «Laserfjerning bryn» har ingen visninger ennå — vi vises ikke for det søket i det hele tatt.
+              </span>
+            </div>
           </div>
         </section>
 
@@ -372,7 +451,7 @@ export default function SeoStrategiPage() {
         </section>
 
         <footer className="page-footer">
-          Sist oppdatert 20. september 2026 · Anmeldelsestall/konkurrentdata sist manuelt sjekket 27. august (uendret siden da) · Intern side, vises ikke i søk · Full kampanjeplan: <a href="/kampanje" style={{ color: 'inherit' }}>/kampanje</a>
+          Sist oppdatert 23. september 2026 · Rangering fra Google Search Console · Anmeldelsestall/konkurrentdata sist manuelt sjekket 27. august (uendret siden da) · Intern side, vises ikke i søk · Full kampanjeplan: <a href="/kampanje" style={{ color: 'inherit' }}>/kampanje</a>
         </footer>
 
       </div>
