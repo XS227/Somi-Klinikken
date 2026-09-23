@@ -1,9 +1,10 @@
 import React from 'react'
 import type { Metadata } from 'next'
+import InternalPagesNav from '@/components/InternalPagesNav'
 
 export const metadata: Metadata = {
   title: 'SEO og vekst (internt) | SOMI Klinikken',
-  description: 'Kort oversikt over søkeord, konkurrenter, anmeldelser og vekstplan.',
+  description: 'Kort oversikt over søkeord, konkurrenter og anmeldelser.',
   robots: { index: false, follow: false },
 }
 
@@ -43,14 +44,16 @@ const pageStyles = `
 }
 .seo-wrap header.hero {
   display: flex; flex-direction: column; gap: 10px;
-  background: #2b2320; color: #f7f2ee;
+  background: var(--surface-2); color: var(--ink);
+  border: 1px solid var(--hairline);
   padding: 34px 32px 30px; border-radius: 18px;
-  margin-bottom: 40px; box-shadow: 0 1px 2px rgba(43,35,32,0.08), 0 10px 28px rgba(43,35,32,0.18);
+  margin-bottom: 40px; box-shadow: var(--shadow);
 }
-.seo-wrap header.hero .eyebrow { font-size: 12.5px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: #eecfd4; }
-.seo-wrap header.hero h1 { font-size: 32px; letter-spacing: 0.01em; color: #f7f2ee; }
-.seo-wrap header.hero p.lede { margin: 4px 0 0; color: rgba(247,242,238,0.8); font-size: 16.5px; max-width: 55ch; }
-.seo-wrap header.hero .meta-row { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(247,242,238,0.16); font-size: 13px; color: rgba(247,242,238,0.6); }
+.seo-wrap header.hero .eyebrow { font-size: 12.5px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: var(--brand-ink); }
+.seo-wrap header.hero h1 { font-size: 32px; letter-spacing: 0.01em; color: var(--ink); }
+.seo-wrap header.hero p.lede { margin: 4px 0 0; color: var(--ink-2); font-size: 16.5px; max-width: 55ch; }
+.seo-wrap header.hero .meta-row { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--hairline); font-size: 13px; color: var(--ink-muted); }
+.seo-wrap header.hero a { color: var(--brand-ink); font-weight: 600; }
 .seo-wrap section { margin-bottom: 48px; }
 .seo-wrap section > .section-head { display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; }
 .seo-wrap section > .section-head h2 { font-size: 22px; }
@@ -150,10 +153,12 @@ const priorityKeywords = [
 ]
 
 const summary = [
-  'Nettsiden hadde et kort teknisk avbrudd tidligere i dag — det er løst, alt kjører normalt igjen.',
-  'Katarinas fulle liste med 11 prioriterte søkeord er nå lagt til øverst på siden — den styrer rekkefølgen fremover.',
-  'Velbehag (nærmeste konkurrent i Sandnes) har mer enn femdoblet antall Google-anmeldelser siden juli (51 → 264) — vi må henge med, se plan under.',
-  '2 nye ansatte starter snart. Egen plan under for å gi dem synlighet og egne kunder fra dag én.',
+  'Anmeldelsesgapet mot Velbehag er uendret siden sist sjekk (264 vs. våre 24) — ingen bevegelse ennå, den operative anmeldelsesplanen (QR-kode m.m.) må faktisk startes for at tallet skal endre seg. Se /kampanje for planen.',
+  'Ny konkurrent-info: Sandnes Hud og Laserklinikk har 4,8★ på Google og fremhever laser tatoveringsfjerning aktivt — enda en reell konkurrent på søkeord #1, ikke bare Velbehag.',
+  '«PRX-T33 vs BioRePeel»-artikkelen er publisert på bloggen. Selve behandlingene er fortsatt uclaimed lokalt i Sandnes — ingen konkurrent har egen landingsside for dem ennå, vinduet er fortsatt åpent.',
+  'Jane og Irena, de to nye ansatte, har nå egne profiler med bilde på /team. Synlighetsplanen videre (bookinglenke, blogginnlegg, video) ligger i kampanjeplanen — se /kampanje.',
+  'Presentasjonsinnleggene for Jane og Irena er publisert i dag (20. september) og ligger nå ute på /blogg. Ingen av dem har eget bilde satt i blogglisten ennå (featuredImage mangler) — kan fikses ved å koble på samme foto som brukes på /team.',
+  'Uformell websøk-sjekk i dag — ikke ekte rangeringsdata, vi har ingen Search Console/ranktracker-tilgang: somiklinikken.no dukker ikke opp i søket for «laser tatoveringsfjerning Sandnes» (Sandnes Hud og Laserklinikk gjør) eller «gratis konsultasjon hudpleie Sandnes», til tross for egne artikler om begge. For «microblading Sandnes» og «PRX-T33 Sandnes» ser det bedre ut. Bør bekreftes med ordentlig rank-tracking før vi konkluderer noe.',
 ]
 
 const keywordTimeline = [
@@ -169,7 +174,6 @@ const keywordTimeline = [
   {
     when: 'Snart', title: 'Neste 1–2 måneder',
     items: [
-      { kw: '«PRX-T33 vs BioRePeel» (blogginnlegg)', why: 'Ingen konkurrent har skrevet dette ennå' },
       { kw: 'Lipblush Sandnes', why: 'Lite konkurranse, naturlig neste steg' },
       { kw: 'Powder brows Sandnes', why: 'Lite til middels konkurranse' },
     ],
@@ -186,7 +190,7 @@ const keywordTimeline = [
 
 const sandnesCompetitors = [
   { name: 'Velbehag Medisinsk Hudklinikk', focus: 'Laser, hud, botox/filler', note: 'Sterkeste rival — nesten samme tilbud som SOMI. 264 anmeldelser, 4,9★.' },
-  { name: 'Sandnes Hud og Laserklinikk', focus: 'Laser, hud', note: 'Egen anmeldelsesside og navngir behandlere — aktiv omdømmestrategi.' },
+  { name: 'Sandnes Hud og Laserklinikk', focus: 'Laser, hud', note: '4,8★ på Google. Egen anmeldelsesside og navngir behandlere — aktiv omdømmestrategi. Fremhever laser tatoveringsfjerning, direkte konkurrent på søkeord #1.' },
   { name: 'Rein Klinikken', focus: 'Microblading, lash lift, brudemakeup', note: 'Smalere fokus, trolig sterk på «microblading Sandnes».' },
   { name: 'Skin Illusion', focus: 'Botox, filler, hud, voks', note: 'Drives av sykepleiere med estetisk videreutdanning + lege.' },
   { name: 'Vital Hudklinikk', focus: 'Botox', note: 'Smalt tilbud.' },
@@ -198,92 +202,11 @@ const stavangerCompetitors = [
   { name: 'Stavanger Hudpleie', focus: 'BioRePeel, OxyGeneo, mesoterapi', note: 'Tilbyr BioRePeel — SOMI kan eie samme behandling i Sandnes.' },
 ]
 
-const reviewGrowthPlan = [
-  {
-    when: 'Uke 1', title: 'Sett opp innsamlingen',
-    items: [
-      'Én kort Google-anmeldelseslenke som QR-kode ved resepsjon/kortterminal',
-      'Samme lenke i SMS/e-post rett etter fullført behandling, ikke bare ved booking',
-      'Et kort standardmanus ansatte kan si muntlig rett etter behandling — dobler responsraten',
-    ],
-  },
-  {
-    when: 'Løpende', title: 'Timing',
-    items: [
-      'Spør 2–4 timer etter timen (når tilfredsheten er høyest), aldri i samme øyeblikk som betaling',
-      'Én vennlig påminnelse etter 5 dager til de som ikke har svart',
-    ],
-  },
-  {
-    when: 'Husk', title: 'Innenfor Googles regler',
-    items: [
-      'Aldri tilby rabatt mot anmeldelse — det er brudd på Googles regler',
-      'Spør alle systematisk, ikke bare de du tror blir fornøyde',
-    ],
-  },
-  {
-    when: 'Mål', title: 'Konkrete tall',
-    items: [
-      '+8–10 nye anmeldelser per måned er realistisk',
-      '40 anmeldelser innen utgangen av oktober, 60 innen årsslutt',
-    ],
-  },
-]
-
-const newHiresPlan = [
-  'Egen profil på /team for hver av de to, med bilde og spesialistområde',
-  'Et blogginnlegg som introduserer hver av dem og hva de er best på',
-  'De aktuelle behandlingssidene lenker direkte til deres egen bookinglenke — ikke bare den generelle bookingsiden',
-  'Målet: de bygger sin egen kundebase raskt fra dag én, ikke bare venter på rester av eksisterende trafikk',
-]
-
-const socialClipsPlan = [
-  'Korte klipp (15–30 sek) av behandlinger med mest visuell effekt — PRX-T33, laser tattoo fjerning, før/etter-resultater',
-  'Hvert klipp lenker til riktig bookingside, ikke bare forsiden',
-  'Postes jevnlig, ikke som enkeltstående kampanje — jevn strøm styrker leads over tid',
-  'Kobles til de samme prioriterte søkeordene over, slik at sosiale medier og søk drar i samme retning',
-]
-
 const niches = [
   { tag: 'Nesten uclaimed', title: 'PRX-T33 i Sandnes', text: 'Ingen lokal konkurrent funnet — bare leverandører og et legekontor i nabolaget.' },
   { tag: 'Åpent lokalt', title: 'BioRePeel i Sandnes', text: 'Tilbys i Stavanger, men ikke synlig i Sandnes ennå.' },
   { tag: 'Tillit', title: 'Anmeldelser-/tillitsside', text: 'Konkurrenter fremhever anmeldelser aktivt — SOMI har ikke noe tilsvarende ennå.' },
-  { tag: 'Unikt innhold', title: 'PRX-T33 vs BioRePeel', text: 'Ingen konkurrent har publisert en sammenligningsartikkel. Kan rangere nasjonalt.' },
-]
-
-const plan = [
-  {
-    when: 'Uke 1–2', title: 'Nå',
-    items: [
-      'Optimaliser laser tattoo fjerning-siden med «Sandnes» i tittel og lenk til den fra forsiden (kundeprioritert)',
-      'Optimaliser PRX-T33- og BioRePeel-sidene på samme måte',
-      'Start anmeldelsesinnsamling nå — gapet til Velbehag vokser raskt',
-      'Samle info om de 2 nye ansatte: navn, bilde, spesialistområde og bookinglenke',
-    ],
-  },
-  {
-    when: 'Uke 3–6', title: 'Snart',
-    items: [
-      'Publiser «PRX-T33 vs BioRePeel»-artikkelen',
-      'Legg ut team-profiler og blogginnlegg for de nye ansatte, med lenker til deres bookinglenke',
-      'Første AI-klipp for sosiale medier',
-    ],
-  },
-  {
-    when: 'Måned 2–3', title: 'Bygg videre',
-    items: [
-      'Utvid kjernesidene (permanent makeup, microblading, laser hårfjerning) med FAQ og kundehistorier',
-      'Jevnlig publisering av AI-klipp',
-      'Fortsett anmeldelsesinnsamling mot målet',
-    ],
-  },
-  {
-    when: 'Løpende', title: 'Følg med',
-    items: [
-      'Følg med på hvordan søkeordene over utvikler seg',
-      'Juster prioritet basert på hva som faktisk gir bookinger',
-    ],
-  },
+  { tag: 'Unikt innhold', title: 'PRX-T33 vs BioRePeel', text: 'Publisert — ingen konkurrent har en sammenligningsartikkel. Kan rangere nasjonalt.' },
 ]
 
 function Bar({ label, pct, color, value, title }: { label: string; pct: number; color: string; value: string; title: string }) {
@@ -303,14 +226,19 @@ export default function SeoStrategiPage() {
     <div className="seo-wrap">
       <style dangerouslySetInnerHTML={{ __html: pageStyles }} />
       <div className="wrap">
+        <InternalPagesNav current="seo" />
 
         <header className="hero">
           <span className="eyebrow">For Katarina — kort oversikt</span>
-          <h1>SEO og vekst — hva vi jobber med nå</h1>
-          <p className="lede">Hvor vi står med søk, konkurrenter og anmeldelser — og planen for de nye ansatte og sosiale medier.</p>
+          <h1>SEO og vekst — hvor vi står nå</h1>
+          <p className="lede">
+            Søkeord, konkurrenter og anmeldelser. Den fulle kampanjeplanen — ansatte, tjenester,
+            blogg, video-annonser og QR-kode for anmeldelser — ligger på{' '}
+            <a href="/kampanje">/kampanje</a>.
+          </p>
           <div className="meta-row">
             <span>somiklinikken.no</span>
-            <span>Oppdatert 26. august 2026</span>
+            <span>Oppdatert 20. september 2026</span>
           </div>
         </header>
 
@@ -402,7 +330,7 @@ export default function SeoStrategiPage() {
         <section>
           <div className="section-head">
             <h2>Anmeldelser</h2>
-            <p>Antall Google-anmeldelser, og planen for å hente inn flere.</p>
+            <p>Antall Google-anmeldelser målt mot konkurrentene. Hvordan vi henter inn flere står i kampanjeplanen.</p>
           </div>
           <div className="card chart-card">
             <div className="chart-title-row">
@@ -417,47 +345,13 @@ export default function SeoStrategiPage() {
               <Bar label="Silkehud (Stavanger)" pct={23.1} color="var(--ink-muted)" value="61 · 4,9★" title="Silkehud: 61 anmeldelser, 4,9 stjerner" />
               <Bar label="SOMI Klinikken" pct={9.1} color="var(--series-tx)" value="24 · 5,0★" title="SOMI: 24 anmeldelser, 5,0 stjerner" />
             </div>
-            <p className="note">SOMI har best snittscore, men Velbehag har mye høyere volum nå — det påvirker synligheten på Google Maps, ikke bare tilliten.</p>
-          </div>
-          <div className="card" style={{ marginTop: 16 }}>
-            <div className="phase-list">
-              {reviewGrowthPlan.map((p) => (
-                <div className="phase" key={p.title}>
-                  <div className="when"><span className="num" style={{ fontSize: 15 }}>{p.when}</span></div>
-                  <div>
-                    <h3>{p.title}</h3>
-                    <ul>
-                      {p.items.map((item) => <li key={item}>{item}</li>)}
-                    </ul>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <div className="section-head">
-            <h2>Nye ansatte — synlighet fra dag én</h2>
-            <p>2 nye ansatte starter snart. Målet er at de får egne kunder raskt, ikke bare venter på rester av eksisterende trafikk.</p>
-          </div>
-          <div className="card">
-            <ul className="summary-list">
-              {newHiresPlan.map((s) => <li key={s}>{s}</li>)}
-            </ul>
-            <div className="callout"><span className="mark">→</span><span>Vi trenger fra deg: navn, bilde, spesialistområde og bookinglenke for hver av de to, så snart de er klare.</span></div>
-          </div>
-        </section>
-
-        <section>
-          <div className="section-head">
-            <h2>Sosiale medier — korte AI-klipp</h2>
-            <p>Videoklipp som skal forsterke leads, ikke bare vise fram klinikken.</p>
-          </div>
-          <div className="card">
-            <ul className="summary-list">
-              {socialClipsPlan.map((s) => <li key={s}>{s}</li>)}
-            </ul>
+            <p className="note">
+              SOMI har best snittscore, men Velbehag har mye høyere volum nå — det påvirker synligheten på
+              Google Maps, ikke bare tilliten. Tallene er sist sjekket manuelt 27. august (ikke hentet via
+              API — vi har ingen automatisk tilgang til Google sine tall) — gi beskjed om ferske tall når du
+              har dem, så oppdaterer vi. Mål: +8–10 nye anmeldelser per måned, 40 innen utgangen av oktober,
+              60 innen årsslutt. Se /kampanje for hvordan.
+            </p>
           </div>
         </section>
 
@@ -477,30 +371,8 @@ export default function SeoStrategiPage() {
           </div>
         </section>
 
-        <section>
-          <div className="section-head">
-            <h2>Plan fremover</h2>
-            <p>I rekkefølge — hver bygger på at forrige er på plass.</p>
-          </div>
-          <div className="card">
-            <div className="phase-list">
-              {plan.map((p, i) => (
-                <div className="phase" key={p.title}>
-                  <div className="when"><span className="num">{i + 1}</span>{p.when}</div>
-                  <div>
-                    <h3>{p.title}</h3>
-                    <ul>
-                      {p.items.map((item) => <li key={item}>{item}</li>)}
-                    </ul>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         <footer className="page-footer">
-          Sist oppdatert 26. august 2026 · Intern side, vises ikke i søk
+          Sist oppdatert 20. september 2026 · Anmeldelsestall/konkurrentdata sist manuelt sjekket 27. august (uendret siden da) · Intern side, vises ikke i søk · Full kampanjeplan: <a href="/kampanje" style={{ color: 'inherit' }}>/kampanje</a>
         </footer>
 
       </div>

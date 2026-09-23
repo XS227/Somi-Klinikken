@@ -5,7 +5,7 @@ import Image from 'next/image'
 export const metadata: Metadata = {
   title: 'Team SOMI | SOMI Klinikken i Sandnes',
   description:
-    'Møt teamet hos SOMI Klinikken. Katarina Hammer (eier, permanent makeup), Emma (hudpleier, Dermalogica Expert), Arianna (laserspesialist) og Irena (intensivsykepleier).',
+    'Møt teamet hos SOMI Klinikken. Katarina Hammer (eier, permanent makeup), Emma (hudpleier, Dermalogica Expert), Arianna (laserspesialist), Irena (intensivsykepleier) og Jane (sykepleier, kosmetisk sykepleie).',
   alternates: {
     canonical: 'https://somiklinikken.no/team',
   },
@@ -168,10 +168,10 @@ export default function TeamPage() {
         >
           <div className="about-image" style={{ direction: 'ltr' }}>
             <Image
-              src="/img/team/irena-intensivsykepleier-somi-klinikken.svg"
+              src="/img/team/irena-intensivsykepleier-somi-klinikken.webp"
               alt="Irena – intensivsykepleier og estetisk behandler hos SOMI Klinikken i Sandnes"
-              width={720}
-              height={900}
+              width={1200}
+              height={1426}
               sizes="220px"
               style={{
                 width: '100%',
@@ -213,15 +213,14 @@ export default function TeamPage() {
 
         <hr style={{ border: 0, borderTop: '1px solid rgba(56,56,56,0.08)', marginBottom: 72 }} />
 
-        {/* Plassholder – ny behandler 1 */}
-        {/* TODO: Bytt ut navn, tittel, beskrivelse og bilde når behandleren er klar */}
+        {/* Jane */}
         <div className="about-grid reveal" style={{ marginBottom: 72 }}>
           <div className="about-image">
             <Image
-              src="/img/team/kommer-snart-behandler-somi-klinikken.svg"
-              alt="Ny behandler kommer snart til SOMI Klinikken"
-              width={720}
-              height={900}
+              src="/img/team/jane-sykepleier-kosmetisk-somi-klinikken.webp"
+              alt="Jane – sykepleier med videreutdanning i kosmetisk sykepleie hos SOMI Klinikken i Sandnes"
+              width={1200}
+              height={1600}
               sizes="220px"
               style={{
                 width: '100%',
@@ -234,14 +233,25 @@ export default function TeamPage() {
             />
           </div>
           <div className="about-copy">
-            <div className="kicker">Estetisk behandler</div>
-            <h2 className="h2" style={{ marginTop: 10 }}>Kommer snart</h2>
+            <div className="kicker">Sykepleier</div>
+            <h2 className="h2" style={{ marginTop: 10 }}>Jane</h2>
             <p className="muted" style={{ marginTop: 6, fontSize: 15, letterSpacing: '0.02em' }}>
-              Ny behandler · SOMI Klinikken
+              Sykepleier · Kosmetisk sykepleie
             </p>
             <p style={{ marginTop: 18 }}>
-              Presentasjon kommer snart.
+              Jane er utdannet sykepleier med videreutdanning innen kosmetisk sykepleie. Med sin
+              helsefaglige bakgrunn kombinerer hun klinisk trygghet med estetisk forståelse og et
+              sterkt fokus på naturlige resultater.
             </p>
+            <p style={{ marginTop: 12 }}>
+              Hun arbeider med små, gjennomtenkte justeringer som fremhever kundens egne trekk og
+              skaper et harmonisk resultat. Jane er også opptatt av god hudhelse og individuell
+              veiledning, med fokus på kvalitet og trygghet gjennom hele behandlingen.
+            </p>
+            <div className="cta-row" style={{ marginTop: 28 }}>
+              <a className="btn btn--accent" href={BOOKING_URL}>Book time</a>
+              <a className="btn" href="/behandlinger">Se behandlinger</a>
+            </div>
           </div>
         </div>
 

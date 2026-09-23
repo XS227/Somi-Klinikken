@@ -82,6 +82,7 @@ export default function GavekortPage() {
 
         <div className="container">
           <div
+            className="gavekort-hero-grid"
             style={{
               display: 'grid',
               gridTemplateColumns: 'minmax(0,1fr) minmax(0,auto)',
@@ -286,19 +287,18 @@ export default function GavekortPage() {
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit,minmax(220px,1fr))',
-              gap: 2,
+              gap: 16,
             }}
           >
-            {steps.map((s, i) => (
+            {steps.map((s) => (
               <div
                 key={s.num}
                 className="reveal"
                 style={{
                   display: 'grid', gap: 12, padding: '28px 24px',
                   background: '#fff',
-                  borderRadius: i === 0 ? '18px 0 0 18px' : i === steps.length - 1 ? '0 18px 18px 0' : 0,
+                  borderRadius: 18,
                   border: '1px solid rgba(56,56,56,0.08)',
-                  borderLeft: i > 0 ? 'none' : '1px solid rgba(56,56,56,0.08)',
                   alignContent: 'start',
                 }}
               >

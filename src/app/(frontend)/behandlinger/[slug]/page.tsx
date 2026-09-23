@@ -21,6 +21,8 @@ type BehandlingData = {
   images?: string[]
   ctaText?: string
   sammenligningLink?: { slug: string; title: string }
+  beforeAfter?: { src: string; alt: string; heading: string; caption: string }
+  video?: { src: string; heading: string; caption: string }
 }
 
 const peelingSammenligning = {
@@ -224,6 +226,11 @@ const behandlingerData: Record<string, BehandlingData> = {
     heroDesc: 'SOMI Klinikken tilbyr laser hårfjerning i Sandnes med Arianna, autorisert helsepersonell og sertifisert laserspesialist.',
     hvaSer: 'Laser hårfjerning bruker konsentrert lys som absorberes av pigmentet i håret. Energien ødelegger hårfollikelen og hindrer fremtidig vekst. De fleste trenger 6–8 behandlinger for permanent reduksjon.',
     hvemPasser: 'Laser hårfjerning passer for de fleste som ønsker å redusere eller fjerne uønsket hår permanent. Det er most effektivt på mørkt hår. Arianna vurderer din hudtype og hårtype under konsultasjonen.',
+    video: {
+      src: '/v/laser-harfjerning-behandling.mp4',
+      heading: 'Se hvordan behandlingen foregår',
+      caption: 'Et lite glimt av hvordan du blir tatt imot og hvordan en laserbehandling foregår hos SOMI Klinikken.',
+    },
     steps: [
       'Gratis konsultasjon: Arianna vurderer hudtype og hårtype og lager en behandlingsplan.',
       'Huden forberedes og laser kalibreres etter din hudtype.',
@@ -253,10 +260,16 @@ const behandlingerData: Record<string, BehandlingData> = {
   },
   'laser-tattoo-removal': {
     title: 'Laser tattoofjerning',
-    tagline: 'Fjern tatoveringen effektivt – alle hudtyper',
-    heroDesc: 'SOMI Klinikken tilbyr tatoveringsfjerning med laser og saline tattoo removal i Sandnes.',
+    tagline: 'Trygg og skånsom fjerning av tatovering med laser',
+    heroDesc: 'Ønsker du å fjerne en uønsket tatovering? Med moderne laserteknologi kan tatoveringsblekk gradvis brytes ned gjennom en serie behandlinger, samtidig som vi har stort fokus på å ivareta huden.',
     hvaSer: 'Laser tattoo removal bruker intense lyspulser som bryter ned tatoveringspigmentet til partikler kroppen absorberer naturlig. Vi tilbyr også saline removal – en skånsom metode spesielt egnet for permanent makeup.',
-    hvemPasser: 'Behandlingen passer for alle som ønsker å fjerne eller lysne en tatovering. Antall sesjoner varierer etter tatoveringens størrelse, farger, alder og din hudtype.',
+    hvemPasser: 'Hvor mange behandlinger som er nødvendig varierer fra person til person og avhenger blant annet av tatoveringens størrelse, farger, blekkmengde, plassering og hudtype. En kroppstatovering kan normalt ikke fjernes med kun én behandling, og prosessen krever derfor tid og flere behandlinger.',
+    beforeAfter: {
+      src: '/img/resultater/laser-tattoofjerning-for-etter-2-behandlinger-somi-klinikken-sandnes.webp',
+      alt: 'Før og etter kun to laserbehandlinger for tatoveringsfjerning hos SOMI Klinikken i Sandnes',
+      heading: 'Resultat etter kun 2 behandlinger',
+      caption: 'Bildet viser resultatet etter kun to laserbehandlinger, hvor tatoveringen allerede har blitt betydelig svakere. Hos SOMI er hudens helse alltid førsteprioritet. Vi legger vekt på en trygg, skånsom og individuelt tilpasset behandling, og gir deg realistisk informasjon om hva du kan forvente gjennom hele prosessen.',
+    },
     steps: [
       'Konsultasjon: Vi vurderer tatoveringen og estimerer antall sesjoner.',
       'Huden forberedes og behandlingsparametere settes.',
@@ -448,6 +461,11 @@ const customMetaTitles: Record<string, { title: string; description: string }> =
     description:
       'BioRePeel CL3 skånsom medisinsk peeling i Sandnes. Kombinerer eksfoliering, biostimulering og hudfornyelse. Passer alle hudtyper. Book tid hos SOMI Klinikken.',
   },
+  'laser-tattoo-removal': {
+    title: 'Laser tatoveringsfjerning i Sandnes | SOMI Klinikken',
+    description:
+      'Trygg og skånsom laser tattoofjerning i Sandnes. Se resultat etter kun 2 behandlinger. Vi tilbyr også saline removal. Book gratis konsultasjon hos SOMI Klinikken.',
+  },
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -484,11 +502,12 @@ export default async function BehandlingPage({ params }: Props) {
   if (!d) notFound()
 
   const imgs = resultaterImages[slug] ?? []
+  const displayTitle = d.title.includes('Sandnes') ? d.title : `${d.title} i Sandnes`
 
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'MedicalProcedure',
-    name: d.title,
+    name: displayTitle,
     description: d.heroDesc,
     procedureType: 'https://schema.org/CosmeticProcedure',
     provider: {
@@ -523,7 +542,7 @@ export default async function BehandlingPage({ params }: Props) {
               </a>
             </nav>
             <div className="kicker" style={{ color: 'rgba(255,255,255,0.7)' }}>SOMI Klinikken Sandnes</div>
-            <h1 className="h1" style={{ color: '#fff', marginTop: 10 }}>{d.title}</h1>
+            <h1 className="h1" style={{ color: '#fff', marginTop: 10 }}>{displayTitle}</h1>
             <p style={{ color: 'rgba(255,255,255,0.82)', fontSize: 18, maxWidth: '56ch', marginTop: 14 }}>
               {d.heroDesc}
             </p>
@@ -541,6 +560,27 @@ export default async function BehandlingPage({ params }: Props) {
         </section>
 
         <div className="container" style={{ maxWidth: 820, marginTop: 56 }}>
+
+          {/* Video (valgfritt) */}
+          {d.video && (
+            <section style={{ marginBottom: 48, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <h2 className="h2" style={{ marginBottom: 16, alignSelf: 'flex-start' }}>{d.video.heading}</h2>
+              <div style={{
+                borderRadius: 18, overflow: 'hidden', border: '1px solid rgba(56,56,56,0.08)',
+                width: '100%', maxWidth: 420,
+              }}>
+                <video
+                  src={d.video.src}
+                  controls
+                  playsInline
+                  preload="metadata"
+                  aria-label={d.video.heading}
+                  style={{ width: '100%', aspectRatio: '9/16', objectFit: 'cover', display: 'block', background: '#000' }}
+                />
+              </div>
+              <p style={{ fontSize: 15, lineHeight: 1.7, color: '#4f4f4f', marginTop: 14, alignSelf: 'flex-start' }}>{d.video.caption}</p>
+            </section>
+          )}
 
           {/* Hva er behandlingen */}
           <section style={{ marginBottom: 48 }}>
@@ -565,6 +605,24 @@ export default async function BehandlingPage({ params }: Props) {
             <h2 className="h2" style={{ marginBottom: 14 }}>Hvem passer det for?</h2>
             <p style={{ fontSize: 17, lineHeight: 1.75 }}>{d.hvemPasser}</p>
           </section>
+
+          {/* Før / etter (valgfritt) */}
+          {d.beforeAfter && (
+            <section style={{ marginBottom: 48 }}>
+              <h2 className="h2" style={{ marginBottom: 16 }}>{d.beforeAfter.heading}</h2>
+              <div style={{ borderRadius: 18, overflow: 'hidden', border: '1px solid rgba(56,56,56,0.08)' }}>
+                <Image
+                  src={d.beforeAfter.src}
+                  alt={d.beforeAfter.alt}
+                  width={1400}
+                  height={1053}
+                  sizes="(max-width: 820px) 100vw, 780px"
+                  style={{ width: '100%', height: 'auto', display: 'block' }}
+                />
+              </div>
+              <p style={{ fontSize: 15, lineHeight: 1.7, color: '#4f4f4f', marginTop: 14 }}>{d.beforeAfter.caption}</p>
+            </section>
+          )}
 
           {/* Fordeler (valgfritt) */}
           {d.fordeler && (

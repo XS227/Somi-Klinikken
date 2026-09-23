@@ -484,6 +484,19 @@ img { max-width: 100%; height: auto; display: block; }
   .brand__logo { height: 32px; }
   .mobile-panel__inner { padding: 80px 16px 20px; }
 }
+@media (max-width: 720px) {
+  /* Gavekort hero: text + card mockup side-by-side breaks when the card's
+     own min-width (clamp floor) is wider than the leftover space. Stack. */
+  .gavekort-hero-grid { grid-template-columns: 1fr !important; }
+  .gavekort-hero-grid > * { justify-self: center; text-align: center; }
+  .gavekort-hero-grid .cta-row { justify-content: center; }
+}
+@media (max-width: 560px) {
+  /* Priser sticky toolbar: search + select + fixed-width button gets
+     crushed on narrow phones. Stack the button below. */
+  .priser-toolbar { grid-template-columns: 1fr 1fr !important; }
+  .priser-toolbar > a.btn { grid-column: 1 / -1; }
+}
 @media (prefers-reduced-motion: reduce) {
   .reveal { transition: none; transform: none; opacity: 1; }
   .floaty { animation: none; }

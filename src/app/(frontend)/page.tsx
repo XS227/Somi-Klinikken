@@ -219,6 +219,8 @@ export default async function HomePage() {
                 { title: 'Permanent makeup',           desc: 'Microblading, Powderbrows, Lipblush',       slug: 'permanent-makeup' },
                 { title: 'Laser hårfjerning',          desc: 'Varig og effektiv hårfjerning med laser',   slug: 'laser-harfjerning' },
                 { title: 'Medisinsk hudpleie',         desc: 'PRX-T33, Dyprens, Peel og mer',             slug: 'medisinsk-hudpleie' },
+                { title: 'PRX-T33',                    desc: 'Biorevitalisering uten nåler',              slug: 'prx-t33' },
+                { title: 'BioRePeel CL3',               desc: 'Skånsom peeling og hudfornyelse',           slug: 'biorepeel-cl3' },
                 { title: 'Klassisk hudpleie',          desc: 'Skreddersydde ansiktsbehandlinger',         slug: 'klassisk-hudpleie' },
                 { title: 'Laser tattoofjerning',       desc: 'Saline og laser tattoo removal',            slug: 'laser-tattoo-removal' },
                 { title: 'Injeksjonsbehandlinger',     desc: 'Naturlig foryngelse med erfaren behandler', slug: 'injeksjonsbehandlinger' },

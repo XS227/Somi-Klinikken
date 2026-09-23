@@ -124,7 +124,7 @@ export default function PriserPage() {
           </header>
 
           {/* Sticky toolbar */}
-          <div style={{
+          <div className="priser-toolbar" style={{
             position: 'sticky', top: 'calc(var(--header-h,80px) + 10px)', zIndex: 20,
             backdropFilter: 'blur(10px)', background: 'rgba(248,248,248,0.88)',
             border: '1px solid rgba(56,56,56,0.12)', borderRadius: 12,

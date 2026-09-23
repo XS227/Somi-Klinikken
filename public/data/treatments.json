@@ -485,6 +485,157 @@
       ]
     },
     {
+      "id": "rynkebehandling-filler",
+      "title": "Rynkebehandling / filler",
+      "desc": "Rynkebehandling, filler og medisinske injeksjonsbehandlinger.",
+      "items": [
+        {
+          "id": "rynkebehandling-1-omrade",
+          "name": "Rynkebehandling – 1 område",
+          "duration": "30 min",
+          "price": "2 790 kr",
+          "tags": [],
+          "hasPage": false
+        },
+        {
+          "id": "rynkebehandling-2-omrader",
+          "name": "Rynkebehandling – 2 områder",
+          "duration": "30 min",
+          "price": "3 990 kr",
+          "tags": [],
+          "hasPage": false
+        },
+        {
+          "id": "rynkebehandling-3-omrader",
+          "name": "Rynkebehandling – 3 områder",
+          "duration": "30 min",
+          "price": "4 890 kr",
+          "tags": [],
+          "hasPage": false
+        },
+        {
+          "id": "rynkebehandling-4-omrader",
+          "name": "Rynkebehandling – 4 områder",
+          "duration": "30 min",
+          "price": "5 690 kr",
+          "tags": [],
+          "hasPage": false
+        },
+        {
+          "id": "rynkebehandling-lite-omrade",
+          "name": "Rynkebehandling – lite område",
+          "duration": "30 min",
+          "price": "1 590 kr",
+          "tags": [],
+          "hasPage": false
+        },
+        {
+          "id": "brynsloft",
+          "name": "Brynsløft",
+          "duration": "30 min",
+          "price": "1 590 kr",
+          "tags": [],
+          "hasPage": false
+        },
+        {
+          "id": "hakelinjer-mentalis",
+          "name": "Hakelinjer (mentalis)",
+          "duration": "30 min",
+          "price": "1 590 kr",
+          "tags": [],
+          "hasPage": false
+        },
+        {
+          "id": "leppeloft-lipflip",
+          "name": "Leppeløft (Lipflip)",
+          "duration": "30 min",
+          "price": "1 590 kr",
+          "tags": [],
+          "hasPage": false
+        },
+        {
+          "id": "nedovervendte-munnviker-dao",
+          "name": "Nedovervendte munnviker (DAO)",
+          "duration": "30 min",
+          "price": "1 590 kr",
+          "tags": [],
+          "hasPage": false
+        },
+        {
+          "id": "bla-resept",
+          "name": "Blå resept",
+          "duration": "30 min",
+          "price": "1 590 kr",
+          "tags": [],
+          "hasPage": false
+        },
+        {
+          "id": "behandling-mot-tanngnissing",
+          "name": "Behandling mot tanngnissing",
+          "duration": "30 min",
+          "price": "4 490 kr",
+          "tags": [],
+          "hasPage": false
+        },
+        {
+          "id": "gummy-smile",
+          "name": "Gummy smile",
+          "duration": "30 min",
+          "price": "1 590 kr",
+          "tags": [],
+          "hasPage": false
+        },
+        {
+          "id": "svettebehandling-armhuler-hyperhidrose",
+          "name": "Svettebehandling armhuler (hyperhidrose)",
+          "duration": "45 min",
+          "price": "5 290 kr",
+          "tags": [],
+          "hasPage": false
+        },
+        {
+          "id": "filler-0-5-ml",
+          "name": "Filler 0,5 ml",
+          "duration": "1 t",
+          "price": "3 500 kr",
+          "tags": [],
+          "hasPage": false
+        },
+        {
+          "id": "etterkontroll",
+          "name": "Etterkontroll",
+          "duration": "15 min",
+          "price": "0 kr",
+          "tags": [],
+          "hasPage": false
+        },
+        {
+          "id": "filler-1-ml",
+          "name": "Filler 1 ml",
+          "duration": "1 t",
+          "price": "3 990 kr",
+          "tags": [],
+          "hasPage": false
+        },
+        {
+          "id": "filler-2-ml",
+          "name": "Filler 2 ml",
+          "duration": "1 t",
+          "price": "6 400 kr",
+          "tags": [],
+          "hasPage": false
+        },
+        {
+          "id": "fjerning-av-filler",
+          "name": "Fjerning av filler",
+          "duration": "30 min",
+          "price": "1 990 kr",
+          "tags": [],
+          "hasPage": false
+        }
+      ]
+    },
+    {
       "id": "laser-permanent-harfjerning",
       "title": "Laser - Permanent hårfjerning",
       "desc": "Enkeltbehandlinger med laser hårfjerning.",
