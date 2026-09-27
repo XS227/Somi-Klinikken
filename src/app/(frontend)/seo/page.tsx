@@ -4,7 +4,7 @@ import InternalPagesNav from '@/components/InternalPagesNav'
 
 export const metadata: Metadata = {
   title: 'SEO og vekst (internt) | SOMI Klinikken',
-  description: 'Kort oversikt over søkeord, konkurrenter og anmeldelser.',
+  description: 'Intern SEO-status med Search Console-data, teknisk SEO-audit og prioritert handlingsplan.',
   robots: { index: false, follow: false },
 }
 
@@ -162,74 +162,103 @@ const priorityKeywords = [
   { primary: 'Laserfjerning bryn', alt: null },
 ]
 
-// Google Search Console via Windsor.ai, hentet 23. september 2026.
-// Snittplassering per måned (lavere = bedre). start = juni 2026 (første måned med data), now = 1.–23. september.
-// impr = antall visninger i Google den måneden. null = ingen visninger (vi vises ikke for søket).
-const rankings: {
-  kw: string; query: string
-  start: number | null; startImpr: number
-  now: number | null; nowImpr: number
-  goal: string
-}[] = [
-  { kw: 'Laser tatoveringsfjerning', query: 'laserfjerning tatovering', start: 40.1, startImpr: 54, now: 5.0, nowImpr: 4, goal: 'Topp 5' },
-  { kw: 'Rynkebehandling / filler', query: 'botox sandnes', start: 36.7, startImpr: 3, now: 7.3, nowImpr: 12, goal: 'Topp 5' },
-  { kw: 'Hudpleie', query: 'hudpleie sandnes', start: 11.3, startImpr: 76, now: 18.1, nowImpr: 56, goal: 'Topp 8' },
-  { kw: 'Vippeløft', query: 'vippeløft sandnes', start: 1.6, startImpr: 177, now: 3.7, nowImpr: 57, goal: 'Topp 2' },
-  { kw: 'Permanent makeup', query: 'permanent sminke', start: 45.3, startImpr: 37, now: 33.8, nowImpr: 29, goal: 'Topp 20' },
-  { kw: 'Laser hårfjerning', query: 'laser hårfjerning sandnes', start: 2.6, startImpr: 22, now: 5.8, nowImpr: 14, goal: 'Topp 3' },
-  { kw: 'Hudklinikk', query: 'hudklinikk sandnes', start: 23.5, startImpr: 2, now: 30.0, nowImpr: 1, goal: 'Topp 15' },
-  { kw: 'Brynstyling', query: 'brynslaminering sandnes', start: 3.5, startImpr: 19, now: 3.8, nowImpr: 13, goal: 'Topp 3' },
-  { kw: 'Injeksjonsbehandling', query: 'injeksjonsbehandlinger', start: null, startImpr: 0, now: 14.8, nowImpr: 5, goal: 'Topp 10' },
-  { kw: 'Microblading', query: 'microblading sandnes', start: 1.4, startImpr: 42, now: 1.6, nowImpr: 18, goal: 'Hold #1' },
-  { kw: 'Laserfjerning bryn', query: 'laserfjerning bryn', start: null, startImpr: 0, now: null, nowImpr: 0, goal: 'Bli synlig' },
+// Google Search Console eksportert 27. september 2026.
+// Periode: siste 3 måneder, 26. juni–25. september 2026.
+const performanceCards = [
+  { label: 'Klikk', value: '1 022', note: 'Organiske Google-klikk siste 3 måneder' },
+  { label: 'Visninger', value: '11 199', note: 'Hvor mange ganger SOMI ble vist i søkeresultatet' },
+  { label: 'CTR', value: '9,1 %', note: 'Klikkrate for hele perioden' },
+  { label: 'Snittposisjon', value: '#8,6', note: 'Samlet gjennomsnittlig posisjon' },
 ]
 
-function fmtPos(p: number | null) {
-  return p === null ? '—' : `#${p.toFixed(1).replace('.', ',')}`
-}
+const comparisonCards = [
+  { label: 'Klikk · siste 28 dager', value: '280', note: '332 perioden før · −15,7 %' },
+  { label: 'Visninger · siste 28 dager', value: '3 588', note: '3 490 perioden før · +2,8 %' },
+  { label: 'CTR · siste 28 dager', value: '7,8 %', note: '9,5 % perioden før · hovedfallet er CTR' },
+  { label: 'Snittposisjon · siste 28 dager', value: '#8,8', note: '#8,7 perioden før · i praksis stabil' },
+]
 
-function Trend({ start, now }: { start: number | null; now: number | null }) {
-  if (now === null) return <span className="trend flat">Vises ikke</span>
-  if (start === null) return <span className="trend up">Ny</span>
-  const diff = start - now
-  if (Math.abs(diff) < 1) return <span className="trend flat">Uendret</span>
-  return diff > 0
-    ? <span className="trend up">▲ {diff.toFixed(1).replace('.', ',')}</span>
-    : <span className="trend down">▼ {(-diff).toFixed(1).replace('.', ',')}</span>
-}
+const searchOpportunities = [
+  { kw: 'Hudpleie Sandnes', clicks: 9, impr: 223, ctr: '4,0 %', pos: 12.42, action: 'Styrk /behandlinger/medisinsk-hudpleie som primær landingsside' },
+  { kw: 'Tatovering Sandnes', clicks: 3, impr: 217, ctr: '1,4 %', pos: 7.26, action: 'Bedre title/meta og tydeligere kobling til laser tatoveringsfjerning' },
+  { kw: 'Brynslaminering Sandnes', clicks: 8, impr: 69, ctr: '11,6 %', pos: 4.38, action: 'Push til topp 3 med riktig landingsside og interne lenker' },
+  { kw: 'Bryn Sandnes', clicks: 5, impr: 52, ctr: '9,6 %', pos: 4.90, action: 'Styrk bryn-klyngen og interne lenker' },
+  { kw: 'Laser hårfjerning Sandnes', clicks: 4, impr: 78, ctr: '5,1 %', pos: 3.74, action: 'Forsvar topp 3–4 og forbedre snippet' },
+  { kw: 'Vippeløft', clicks: 3, impr: 65, ctr: '4,6 %', pos: 5.85, action: 'Egen relevant landingsside fremfor å sende gammel URL til permanent makeup' },
+  { kw: 'Powder brows Sandnes', clicks: 3, impr: 41, ctr: '7,3 %', pos: 5.34, action: 'Styrk PMU-siden med tydelig Powder Brows-seksjon og ankerlenker' },
+  { kw: 'Microneedling Sandnes', clicks: 3, impr: 31, ctr: '9,7 %', pos: 12.06, action: 'Side 2-mulighet — målrett landingsside/innhold' },
+  { kw: 'BioRePeel Norge', clicks: 0, impr: 53, ctr: '0 %', pos: 12.15, action: 'Forbedre title/meta og internlenking til BioRePeel-siden' },
+  { kw: 'Acne treatment', clicks: 0, impr: 584, ctr: '0 %', pos: 7.87, action: 'Sekundær mulighet — bygg norsk akne/aknearr-intensjon først' },
+]
+
+const technicalAudit = [
+  {
+    tag: 'Må rettes',
+    title: '301 redirects og vertsdomene',
+    text: 'Gamle .html-ruter har flere permanente redirects, men NGINX server både www og non-www på HTTPS. Google Search Console viser fortsatt separate URL-signaler, blant annet 611 klikk / 7 130 visninger på http://www-forsiden. Neste tiltak: én tvungen 301 fra www til https://somiklinikken.no og utvid redirect-kartet for gamle URL-er som fortsatt vises i Search Console.',
+  },
+  {
+    tag: 'På plass',
+    title: 'Canonical tags',
+    text: 'Forside, hovedsider, dynamiske behandlingssider og blogginnlegg peker canonical til https://somiklinikken.no uten www. Dette er riktig målstruktur og skal beholdes.',
+  },
+  {
+    tag: 'På plass i kode',
+    title: 'Sitemap + robots.txt',
+    text: 'Sitemap genereres med non-www HTTPS-URL-er for statiske sider, behandlinger, CMS-sider og publiserte blogginnlegg. robots.txt peker til https://somiklinikken.no/sitemap.xml og blokkerer blant annet /seo.',
+  },
+  {
+    tag: 'God base · styrkes',
+    title: 'Internlenker',
+    text: 'Dagens kildekode bruker moderne interne stier og vi fant ingen aktive interne .html-lenker i src. Neste runde skal lenke sterkere fra forsiden, blogg og behandlingsoversikten til de konkrete sidene vi vil rangere på — særlig hudpleie, tattoo removal, bryn/vipper og BioRePeel.',
+  },
+]
 
 const summary = [
-  'Anmeldelsesgapet mot Velbehag er uendret siden sist sjekk (264 vs. våre 24) — ingen bevegelse ennå, den operative anmeldelsesplanen (QR-kode m.m.) må faktisk startes for at tallet skal endre seg. Se /kampanje for planen.',
-  'Ny konkurrent-info: Sandnes Hud og Laserklinikk har 4,8★ på Google og fremhever laser tatoveringsfjerning aktivt — enda en reell konkurrent på søkeord #1, ikke bare Velbehag.',
-  '«PRX-T33 vs BioRePeel»-artikkelen er publisert på bloggen. Selve behandlingene er fortsatt uclaimed lokalt i Sandnes — ingen konkurrent har egen landingsside for dem ennå, vinduet er fortsatt åpent.',
-  'Jane og Irena, de to nye ansatte, har nå egne profiler med bilde på /team. Synlighetsplanen videre (bookinglenke, blogginnlegg, video) ligger i kampanjeplanen — se /kampanje.',
-  'Presentasjonsinnleggene for Jane og Irena er publisert i dag (20. september) og ligger nå ute på /blogg. Ingen av dem har eget bilde satt i blogglisten ennå (featuredImage mangler) — kan fikses ved å koble på samme foto som brukes på /team.',
-  'Ekte rangeringsdata fra Google Search Console er nå på plass (se tabellen over). Største fremgang: laser tatoveringsfjerning og botox/filler har klatret fra side 3–4 til første side. Svakest: «hudpleie Sandnes» har falt fra #11 til #18, og vippeløft og laser hårfjerning har glidd noen plasser ned — disse trenger oppmerksomhet.',
+  'SOMI har ikke et generelt ranking-fall: visningene siste 28 dager er opp 2,8 %, mens snittposisjonen er praktisk talt uendret (#8,7 → #8,8).',
+  'Klikkene falt 15,7 % fordi CTR gikk fra 9,5 % til 7,8 %. Neste SEO-runde skal derfor først og fremst forbedre titles/meta, søkeresultat-snippets og koblingen mellom søkeord og riktig landingsside.',
+  'Den største tekniske oppgaven er URL-konsolidering. Canonical peker riktig til non-www, men serveren svarer fortsatt på HTTPS www. Dette bør samles med 301 slik at Google får ett tydelig vertsdomene.',
+  'Search Console viser fortsatt gamle http-, www- og .html-URL-er. Redirect-kartet bør utvides for legacy-ruter som fortsatt får visninger, i stedet for å bygge hele SEO-strukturen på nytt.',
+  'Mobil står for 923 av 1 022 klikk med 11,35 % CTR og snittposisjon #5,99. Desktop har 96 klikk, 3,2 % CTR og snittposisjon #15,77 — desktop-snippets og SERP-miks bør kontrolleres separat.',
 ]
 
-const keywordTimeline = [
+const seoRound = [
   {
-    when: 'Nå', title: 'Aktivt fokus denne perioden',
+    when: '01',
+    title: 'Konsolider domenet og gamle URL-er',
     items: [
-      { kw: 'PRX-T33 Sandnes', why: 'Nesten ingen lokal konkurranse — bør ta denne raskt' },
-      { kw: 'BioRePeel Sandnes', why: 'Samme situasjon, åpent for oss å ta i Sandnes' },
-      { kw: 'Gratis konsultasjon hudpleie Sandnes', why: 'Fanger folk som sammenligner priser før de bestemmer seg' },
-      { kw: 'Laser tattoo fjerning Sandnes', why: 'Prioritert av deg — trenger flere kunder her, nye ansatte gir kapasiteten' },
+      '301 https://www.somiklinikken.no/* → https://somiklinikken.no/*.',
+      'Behold HTTP → HTTPS, men sørg for at alle varianter ender direkte på non-www canonical.',
+      'Utvid legacy-redirects for gamle .html-sider som fortsatt finnes i Search Console, blant annet PRX-T33, browlamination/vippeløft, skin tags, gamle laserområder og gamle PMU-sider.',
+      'Etter utrulling: valider de viktigste gamle URL-ene og send sitemap på nytt i Search Console.',
     ],
   },
   {
-    when: 'Snart', title: 'Neste 1–2 måneder',
+    when: '02',
+    title: 'Forbedre CTR før vi lager mer innhold',
     items: [
-      { kw: 'Lipblush Sandnes', why: 'Lite konkurranse, naturlig neste steg' },
-      { kw: 'Powder brows Sandnes', why: 'Lite til middels konkurranse' },
+      'Prioriter sider med mange visninger og svak CTR: /kontakt, /behandlinger, /priser, /blogg, /resultater og tattoo-removal-innholdet.',
+      'Skriv title/meta etter faktisk søkeintensjon og lokasjon — ikke generiske titler.',
+      'Behold vinnende sider stabile. Microblading og vippeløft rangerer allerede svært godt lokalt.',
     ],
   },
   {
-    when: 'Senere', title: 'Når de over er på plass',
+    when: '03',
+    title: 'Én tydelig landingsside per viktig søkeintensjon',
     items: [
-      { kw: 'Permanent makeup Sandnes', why: 'Middels konkurranse, tar lengre tid å vinne' },
-      { kw: 'Laser hårfjerning Sandnes', why: 'Flere sterke konkurrenter, forsvarsposisjon' },
-      { kw: 'Microblading Sandnes', why: 'Flest søk av alle, men også mest konkurranse — den vi må vinne på sikt' },
+      'Hudpleie Sandnes → /behandlinger/medisinsk-hudpleie som hovedside.',
+      'Laser tatoveringsfjerning / tattoo removal → /behandlinger/laser-tattoo-removal som konverteringsside; blogginnlegg skal støtte og lenke dit.',
+      'Vippeløft og brynslaminering bør ha mer direkte landingssider enn permanent-makeup-siden dersom tjenestene fortsatt tilbys.',
+      'Akne/aknearr bygges som norsk intensjon først; «acne treatment» overvåkes som sekundært engelsk søk.',
+    ],
+  },
+  {
+    when: '04',
+    title: 'Internlenking som flytter autoritet',
+    items: [
+      'Legg kontekstuelle lenker fra forsiden og sterke blogginnlegg til prioriterte behandlingssider.',
+      'Bruk beskrivende ankertekst som «hudpleie i Sandnes», «laser tatoveringsfjerning» og «BioRePeel».',
+      'Unngå konkurrerende sider for samme hovedsøkeord; blogg skal støtte behandlingssiden, ikke kannibalisere den.',
     ],
   },
 ]
@@ -278,15 +307,63 @@ export default function SeoStrategiPage() {
           <span className="eyebrow">For Katarina — kort oversikt</span>
           <h1>SEO og vekst — hvor vi står nå</h1>
           <p className="lede">
-            Søkeord, konkurrenter og anmeldelser. Den fulle kampanjeplanen — ansatte, tjenester,
-            blogg, video-annonser og QR-kode for anmeldelser — ligger på{' '}
-            <a href="/kampanje">/kampanje</a>.
+            Oppdatert med full Google Search Console-eksport: ytelse, teknisk URL-kontroll og
+            neste SEO-runde. Strategien er å forbedre CTR, landingssider og URL-konsolidering —
+            ikke bygge SEO-strukturen på nytt.
           </p>
           <div className="meta-row">
             <span>somiklinikken.no</span>
-            <span>Oppdatert 23. september 2026</span>
+            <span>Oppdatert 27. september 2026</span>
           </div>
         </header>
+
+        <section>
+          <div className="section-head">
+            <h2>Google Search Console — siste 3 måneder</h2>
+            <p>Full eksport for 26. juni–25. september 2026. Dette er den nye baseline for /seo.</p>
+          </div>
+          <div className="niche-grid">
+            {performanceCards.map((k) => (
+              <div className="niche-card" key={k.label}>
+                <span className="tag">{k.label}</span>
+                <h4 style={{ fontSize: 28, fontFamily: 'Georgia,serif', fontWeight: 400 }}>{k.value}</h4>
+                <p>{k.note}</p>
+              </div>
+            ))}
+          </div>
+          <div className="niche-grid" style={{ marginTop: 14 }}>
+            {comparisonCards.map((k) => (
+              <div className="niche-card" key={k.label}>
+                <span className="tag">{k.label}</span>
+                <h4 style={{ fontSize: 24, fontFamily: 'Georgia,serif', fontWeight: 400 }}>{k.value}</h4>
+                <p>{k.note}</p>
+              </div>
+            ))}
+          </div>
+          <div className="callout">
+            <span className="mark">→</span>
+            <span>
+              Tolkning: synligheten holder seg. Visninger er opp, plasseringen er stabil, men færre klikker.
+              Derfor prioriterer vi snippet/CTR og riktig side per søkeintensjon før vi produserer mer innhold.
+            </span>
+          </div>
+        </section>
+
+        <section>
+          <div className="section-head">
+            <h2>Teknisk SEO-kontroll</h2>
+            <p>Kontroll av 301 redirects, canonical, sitemap og internlenker mot dagens kode og Search Console-data.</p>
+          </div>
+          <div className="niche-grid">
+            {technicalAudit.map((item) => (
+              <div className="niche-card" key={item.title}>
+                <span className="tag">{item.tag}</span>
+                <h4>{item.title}</h4>
+                <p>{item.text}</p>
+              </div>
+            ))}
+          </div>
+        </section>
 
         <section>
           <div className="section-head">
@@ -310,21 +387,22 @@ export default function SeoStrategiPage() {
 
         <section>
           <div className="section-head">
-            <h2>Rangering i Google — start, nå og mål</h2>
-            <p>Snittplassering i Google for hvert prioriterte søkeord (lavere tall = høyere opp). Start er juni 2026, nå er september, målet gjelder starten av november.</p>
+            <h2>Søkeord med størst SEO-potensial nå</h2>
+            <p>Prioritert etter Search Console-data: volum, nåværende posisjon, CTR og hvor tydelig vi kan matche søket med riktig landingsside.</p>
           </div>
           <div className="card">
             <div className="tbl-wrap">
               <table className="comp-table rank-table">
                 <tbody>
-                  <tr><th>Søkeord</th><th>Start (juni)</th><th>Nå (sep.)</th><th>Endring</th><th>Mål (nov.)</th></tr>
-                  {rankings.map((r) => (
+                  <tr><th>Søkeord</th><th>Klikk</th><th>Visn.</th><th>CTR</th><th>Pos.</th><th>Neste grep</th></tr>
+                  {searchOpportunities.map((r) => (
                     <tr key={r.kw}>
-                      <td className="name">{r.kw}<span className="q">«{r.query}»</span></td>
-                      <td className="num">{fmtPos(r.start)}<span className="impr">{r.startImpr} visn.</span></td>
-                      <td className="num">{fmtPos(r.now)}<span className="impr">{r.nowImpr} visn.</span></td>
-                      <td><Trend start={r.start} now={r.now} /></td>
-                      <td className="goal">{r.goal}</td>
+                      <td className="name">{r.kw}</td>
+                      <td className="num">{r.clicks}</td>
+                      <td className="num">{r.impr}</td>
+                      <td className="num">{r.ctr}</td>
+                      <td className="num">#{r.pos.toFixed(1).replace('.', ',')}</td>
+                      <td className="note">{r.action}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -333,9 +411,8 @@ export default function SeoStrategiPage() {
             <div className="callout">
               <span className="mark">!</span>
               <span>
-                Kilde: Google Search Console, hentet 23. september 2026. Plasseringen er et snitt for hele måneden.
-                Søk med få visninger (under ca. 20) svinger mye og bør leses som en retning, ikke et eksakt tall.
-                «Laserfjerning bryn» har ingen visninger ennå — vi vises ikke for det søket i det hele tatt.
+                «Acne treatment» har 584 visninger og posisjon ca. #7,9, men 0 klikk. Det er en reell synlighetsmulighet,
+                men ikke førsteprioritet: vi bør først eie norsk søkeintensjon for akne og aknearr og deretter vurdere engelsk innhold.
               </span>
             </div>
           </div>
@@ -351,18 +428,18 @@ export default function SeoStrategiPage() {
 
         <section>
           <div className="section-head">
-            <h2>Øvrige søkeord — nå, snart, senere</h2>
-            <p>Research-basert prioritering utenom Katarinas liste over — hvilke søk vi jobber med når, og hvorfor.</p>
+            <h2>Neste SEO-runde — i riktig rekkefølge</h2>
+            <p>Ingen full rebuild. Vi konsoliderer først, forbedrer CTR og sørger for én riktig landingsside per søkeintensjon.</p>
           </div>
           <div className="card">
             <div className="phase-list">
-              {keywordTimeline.map((group) => (
+              {seoRound.map((group) => (
                 <div className="phase" key={group.when}>
                   <div className="when"><span className="num">{group.when}</span></div>
                   <div>
                     <h3>{group.title}</h3>
                     <ul>
-                      {group.items.map((it) => <li key={it.kw}><strong>{it.kw}</strong> — {it.why}</li>)}
+                      {group.items.map((it) => <li key={it}>{it}</li>)}
                     </ul>
                   </div>
                 </div>
@@ -451,7 +528,7 @@ export default function SeoStrategiPage() {
         </section>
 
         <footer className="page-footer">
-          Sist oppdatert 23. september 2026 · Rangering fra Google Search Console · Anmeldelsestall/konkurrentdata sist manuelt sjekket 27. august (uendret siden da) · Intern side, vises ikke i søk · Full kampanjeplan: <a href="/kampanje" style={{ color: 'inherit' }}>/kampanje</a>
+          Sist oppdatert 27. september 2026 · Full Search Console-eksport: 26. juni–25. september · Teknisk kontroll av redirects, canonical, sitemap og internlenker · Intern side, vises ikke i søk · Full kampanjeplan: <a href="/kampanje" style={{ color: 'inherit' }}>/kampanje</a>
         </footer>
 
       </div>
