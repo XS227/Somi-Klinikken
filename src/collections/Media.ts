@@ -19,7 +19,7 @@ export const Media: CollectionConfig = {
     },
   ],
   upload: {
-    staticDir: path.resolve(dirname, '../../public/media'),
+    staticDir: path.resolve(process.cwd(), 'public/media'),
     staticURL: '/media',
   },
 }
