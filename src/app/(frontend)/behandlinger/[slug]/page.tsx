@@ -216,8 +216,8 @@ const behandlingerData: Record<string, BehandlingData> = {
       { q: 'Er konsultasjon gratis?', a: 'Ja, gratis konsultasjon er alltid inkludert.' },
     ],
     images: [
-      '/img/resultater/microblading-foer-etter-somi-klinikken-sandnes-1.webp',
-      '/img/resultater/permanent-makeup-powder-brows-somi-sandnes-3.webp',
+      '/img/resultater/microblading-foer-etter-resultat-somi-2.webp',
+      '/img/resultater/permanent-makeup-bryn-resultat-somi-3.webp',
     ],
   },
   'laser-harfjerning': {
@@ -490,9 +490,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 // Resultater bilder for relevante behandlinger
 const resultaterImages: Record<string, { src: string; alt: string }[]> = {
   'permanent-makeup': [
-    { src: '/img/resultater/microblading-foer-etter-somi-klinikken-sandnes-1.webp', alt: 'Microblading resultat SOMI Klinikken Sandnes' },
-    { src: '/img/resultater/permanent-makeup-powder-brows-somi-sandnes-3.webp', alt: 'Powder Brows resultat SOMI Klinikken' },
-    { src: '/img/resultater/permanent-makeup-naturlige-bryn-somi-4.webp', alt: 'Permanent makeup naturlige bryn SOMI' },
+    { src: '/img/resultater/microblading-foer-etter-resultat-somi-2.webp', alt: 'Microblading resultat SOMI Klinikken Sandnes' },
+    { src: '/img/resultater/permanent-makeup-bryn-resultat-somi-3.webp', alt: 'Powder Brows resultat SOMI Klinikken' },
+    { src: '/img/resultater/microblading-naturlige-bryn-somi-sandnes-4.webp', alt: 'Permanent makeup naturlige bryn SOMI' },
   ],
 }
 
