@@ -191,6 +191,136 @@ const searchOpportunities = [
   { kw: 'Acne treatment', clicks: 0, impr: 584, ctr: '0 %', pos: 7.87, action: 'Sekundær mulighet — bygg norsk akne/aknearr-intensjon først' },
 ]
 
+const liveRankingCheck = [
+  {
+    query: 'Laser hårfjerning Sandnes',
+    baseline: '#3,7',
+    signal: 'SOMI sin behandlingsside vises i fersk søkesjekk',
+    next: 'Forsvar topp 3–4, forbedre title/meta og konvertering.',
+  },
+  {
+    query: 'Brynslaminering Sandnes',
+    baseline: '#4,4',
+    signal: 'Sterk Search Console-posisjon',
+    next: 'Oppdater priser for vipper/bryn og styrk riktig landingsside.',
+  },
+  {
+    query: 'Bryn Sandnes',
+    baseline: '#4,9',
+    signal: 'Sterk Search Console-posisjon',
+    next: 'Samle bryninnhold, priser og internlenker tydeligere.',
+  },
+  {
+    query: 'Powder brows Sandnes',
+    baseline: '#5,3',
+    signal: 'Permanent makeup-siden er synlig i fersk søkesjekk',
+    next: 'Behold PMU-siden som hovedside og styrk Powder Brows-seksjonen.',
+  },
+  {
+    query: 'Tatovering Sandnes',
+    baseline: '#7,3',
+    signal: 'Riktig laser-side er publisert og indeksert',
+    next: 'CTR er svak (1,4 %) — title/meta er viktigere enn mer volum akkurat nå.',
+  },
+  {
+    query: 'Hudpleie Sandnes',
+    baseline: '#12,4',
+    signal: 'Side 2-mulighet',
+    next: 'Styrk medisinsk hudpleie som primær lokal landingsside.',
+  },
+  {
+    query: 'BioRePeel',
+    baseline: 'BioRePeel Norge #12,2',
+    signal: 'SOMI sin BioRePeel-side vises i fersk søkesjekk',
+    next: 'Styrk lokal Sandnes-intensjon og internlenking.',
+  },
+  {
+    query: 'Biostimulatorer',
+    baseline: 'Ny kategori',
+    signal: 'Legges inn som «Kommer snart» på SOMI',
+    next: 'Avklar behandlinger, priser, behandler og lanseringsdato i møtet.',
+  },
+]
+
+const meetingAgenda = [
+  {
+    when: '01',
+    title: 'Nye ansatte og fagprofil',
+    items: [
+      'Jane og Irena: bekreft endelig presentasjonstekst, bilder, behandlinger og egne bookinglenker.',
+      'Avklar den neste behandleren som fortsatt står som «kommer snart»: navn, rolle, bilde og tjenester.',
+      'Koble hver ansatt til sine viktigste behandlinger, blogginnlegg, videoer og SEO-søkeord.',
+    ],
+  },
+  {
+    when: '02',
+    title: 'Behandlinger, priser og nytt innhold',
+    items: [
+      'Biostimulatorer er lagt inn som «Kommer snart» — avklar hvilke behandlinger som skal ligge i kategorien før lansering.',
+      'Prisene under vipper og bryn må oppdateres, slik Katarina skrev 29. september.',
+      'Gå gjennom hvilke flere behandlinger som skal inn, og om noe eksisterende faktisk skal tas bort. Ingen sletting gjøres uten konkret avklaring.',
+    ],
+  },
+  {
+    when: '03',
+    title: 'Info, bilder og fotografering',
+    items: [
+      'Katarina har varslet ny fotografering: avklar dato og shot-list for ansatte, klinikken og behandlingene.',
+      'Bestem hvilke eksisterende bilder på forside, team og behandlingssider som skal byttes ut.',
+      'Kontroller at tekst/bilder for Jane og Irena er endelige og at fagprofilene er korrekte.',
+    ],
+  },
+  {
+    when: '04',
+    title: 'SEO og Google-synlighet',
+    items: [
+      'Gå gjennom Search Console-baseline og ranking-tabellen på denne siden.',
+      'Prioriter CTR og riktige landingssider for laser tatoveringsfjerning, hudpleie, bryn/vipper, BioRePeel og PMU.',
+      'Planlegg SEO-lansering for Biostimulatorer når behandlinger, priser og ansvarlig behandler er bekreftet.',
+      'Følg opp anmeldelser/Google Business som lokal synlighetsmotor.',
+    ],
+  },
+  {
+    when: '05',
+    title: 'Google Ads, Facebook og Instagram',
+    items: [
+      'Katarina har tidligere spurt om annonser på Google og Facebook — avklar budsjett, mål og hvilke behandlinger som skal pushes først.',
+      'Velg én tydelig landingsside og én konvertering per kampanje, fremfor å sende all betalt trafikk til forsiden.',
+      'Avklar hvilke kampanjer/tilbud klinikken faktisk vil kjøre de neste 30–60 dagene.',
+      'Bruk samme budskap på Google, Meta og nettsiden så kunden møter én tydelig kampanje.',
+    ],
+  },
+  {
+    when: '06',
+    title: 'Sosiale medier og innholdsplan',
+    items: [
+      'Fordel innhold mellom ansatte, behandlinger, før/etter, faglig trygghet og kampanjer.',
+      'Lag en enkel publiseringsrytme for Instagram/Facebook som støtter SEO og booking i stedet for separate løp.',
+      'Gjenbruk blogg, bilder og video på tvers av kanalene med riktig format og CTA.',
+    ],
+  },
+  {
+    when: '07',
+    title: 'Videomateriale vi allerede kan bygge på',
+    items: [
+      'Kartlegg eksisterende råvideo av ansatte, klinikken og behandlingene før vi filmer eller lager noe nytt.',
+      'Velg de beste klippene til korte 9:16-videoer/Reels med tekst, behandling, behandler og tydelig booking-CTA.',
+      'Lag en mangelliste: hvilke scener mangler vi, og kan de tas samtidig med den planlagte fotograferingen?',
+      'Bygg en serie per ansatt/behandling fremfor enkeltstående videoer uten videre plan.',
+    ],
+  },
+  {
+    when: '08',
+    title: 'Admin, ansvar og neste 30 dager',
+    items: [
+      'Gå gjennom admin med Katarina: hva hun selv skal kunne oppdatere av priser, behandlinger, tekst og kampanjer.',
+      'Avtal hvem som leverer bilder/video/tekster, hvem som publiserer, og konkrete frister.',
+      'Sett 30-dagers plan for SEO, innhold, annonser og sosiale medier, og evaluer på bookinger/leads — ikke bare visninger.',
+      'Avtal neste oppfølgingspunkt og hva som skal være ferdig før det.',
+    ],
+  },
+]
+
 const technicalAudit = [
   {
     tag: 'Må rettes',
@@ -307,13 +437,14 @@ export default function SeoStrategiPage() {
           <span className="eyebrow">For Katarina — kort oversikt</span>
           <h1>SEO og vekst — hvor vi står nå</h1>
           <p className="lede">
-            Oppdatert med full Google Search Console-eksport: ytelse, teknisk URL-kontroll og
-            neste SEO-runde. Strategien er å forbedre CTR, landingssider og URL-konsolidering —
-            ikke bygge SEO-strukturen på nytt.
+            Arbeidsside for møtet: siste målbare Search Console-status, fersk ranking-/indekseringssjekk,
+            SEO-prioriteringer og punktene vi må følge opp sammen — ansatte, behandlinger, bilder,
+            annonser, sosiale medier, video og admin.
           </p>
           <div className="meta-row">
             <span>somiklinikken.no</span>
-            <span>Oppdatert 27. september 2026</span>
+            <span>Oppdatert 30. september 2026</span>
+            <span>Search Console-data t.o.m. 25. september</span>
           </div>
         </header>
 
@@ -345,6 +476,67 @@ export default function SeoStrategiPage() {
             <span>
               Tolkning: synligheten holder seg. Visninger er opp, plasseringen er stabil, men færre klikker.
               Derfor prioriterer vi snippet/CTR og riktig side per søkeintensjon før vi produserer mer innhold.
+            </span>
+          </div>
+        </section>
+
+        <section>
+          <div className="section-head">
+            <h2>Ranking-sjekk — 30. september</h2>
+            <p>
+              Eksakte tall under «Baseline» er fra siste Search Console-eksport. «Fersk søkesjekk»
+              bekrefter om riktig SOMI-side dukker opp/er indeksert nå; den er ikke et fast
+              plassnummer, fordi søkeresultater varierer med sted, enhet og tidspunkt.
+            </p>
+          </div>
+          <div className="card">
+            <div className="tbl-wrap">
+              <table className="comp-table rank-table">
+                <tbody>
+                  <tr><th>Søk</th><th>GSC baseline</th><th>Status nå</th><th>Neste grep</th></tr>
+                  {liveRankingCheck.map((r) => (
+                    <tr key={r.query}>
+                      <td className="name">{r.query}</td>
+                      <td className="num">{r.baseline}</td>
+                      <td className="note">{r.signal}</td>
+                      <td className="note">{r.next}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div className="section-head">
+            <h2>Møte med Katarina — oppfølging + plan</h2>
+            <p>
+              Samlet arbeidsagenda fra e-postene og det vi allerede har bygget. Målet er å gå ut av møtet
+              med avklarte eiere, materiale og neste 30-dagers prioriteringer.
+            </p>
+          </div>
+          <div className="card">
+            <div className="phase-list">
+              {meetingAgenda.map((group) => (
+                <div className="phase" key={group.when}>
+                  <div className="when"><span className="num">{group.when}</span></div>
+                  <div>
+                    <h3>{group.title}</h3>
+                    <ul>
+                      {group.items.map((item) => <li key={item}>{item}</li>)}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="callout">
+            <span className="mark">→</span>
+            <span>
+              Praktisk rekkefølge i møtet: avklar først ansatte/behandlinger/priser og materiale,
+              deretter bestemmer vi SEO, kampanjer og publiseringsplan. Da bygger markedsføringen på
+              korrekt innhold i stedet for å måtte gjøres om senere.
             </span>
           </div>
         </section>
@@ -528,7 +720,7 @@ export default function SeoStrategiPage() {
         </section>
 
         <footer className="page-footer">
-          Sist oppdatert 27. september 2026 · Full Search Console-eksport: 26. juni–25. september · Teknisk kontroll av redirects, canonical, sitemap og internlenker · Intern side, vises ikke i søk · Full kampanjeplan: <a href="/kampanje" style={{ color: 'inherit' }}>/kampanje</a>
+          Sist oppdatert 30. september 2026 · Full Search Console-eksport: 26. juni–25. september · Fersk ranking-/indekseringssjekk 30. september · Møteagenda oppdatert fra Katarinas e-poster · Intern side, vises ikke i søk · Full kampanjeplan: <a href="/kampanje" style={{ color: 'inherit' }}>/kampanje</a>
         </footer>
 
       </div>
