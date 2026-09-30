@@ -224,24 +224,42 @@ export default async function HomePage() {
                 { title: 'Klassisk hudpleie',          desc: 'Skreddersydde ansiktsbehandlinger',         slug: 'klassisk-hudpleie' },
                 { title: 'Laser tattoofjerning',       desc: 'Saline og laser tattoo removal',            slug: 'laser-tattoo-removal' },
                 { title: 'Injeksjonsbehandlinger',     desc: 'Naturlig foryngelse med erfaren behandler', slug: 'injeksjonsbehandlinger' },
+                { title: 'Biostimulatorer',             desc: 'Ny kategori – mer informasjon kommer snart', slug: 'biostimulatorer', comingSoon: true },
                 { title: 'Hårfjerning voks/elektrolyse', desc: 'Rask og skånsom behandling',             slug: 'harfjerning-voks-elektrolyse' },
                 { title: 'Gratis konsultasjon',        desc: 'Kom innom – vi hjelper deg videre',         slug: 'gratis-konsultasjon' },
-              ] as { title: string; desc: string; slug: string }[]).map((cat) => (
-                <a
-                  key={cat.slug}
-                  href={`/behandlinger/${cat.slug}`}
-                  style={{
-                    display: 'grid', gap: 6, padding: '18px 20px', borderRadius: 18,
-                    background: '#fff', border: '1px solid rgba(56,56,56,0.08)',
-                    boxShadow: '0 8px 22px rgba(0,0,0,0.03)', textDecoration: 'none',
-                    color: 'inherit', transition: 'transform 180ms ease',
-                  }}
-                >
-                  <strong style={{ fontFamily: 'Georgia,serif', fontSize: 17, lineHeight: 1.2 }}>{cat.title}</strong>
-                  <span style={{ fontSize: 14, color: 'rgba(56,56,56,.65)' }}>{cat.desc}</span>
-                  <span style={{ fontSize: 13, color: 'rgba(56,56,56,.45)', marginTop: 2 }}>Se behandling →</span>
-                </a>
-              ))}
+              ] as { title: string; desc: string; slug: string; comingSoon?: boolean }[]).map((cat) => {
+                const card = (
+                  <>
+                    {cat.comingSoon && (
+                      <span style={{
+                        width: 'fit-content', padding: '4px 8px', borderRadius: 999,
+                        background: 'rgba(107,123,141,.10)', color: '#6B7B8D',
+                        fontSize: 10, fontWeight: 700, letterSpacing: '.04em', textTransform: 'uppercase',
+                      }}>
+                        Kommer snart
+                      </span>
+                    )}
+                    <strong style={{ fontFamily: 'Georgia,serif', fontSize: 17, lineHeight: 1.2 }}>{cat.title}</strong>
+                    <span style={{ fontSize: 14, color: 'rgba(56,56,56,.65)' }}>{cat.desc}</span>
+                    <span style={{ fontSize: 13, color: 'rgba(56,56,56,.45)', marginTop: 2 }}>
+                      {cat.comingSoon ? 'Mer informasjon kommer' : 'Se behandling →'}
+                    </span>
+                  </>
+                )
+
+                const style = {
+                  display: 'grid', gap: 6, padding: '18px 20px', borderRadius: 18,
+                  background: '#fff', border: '1px solid rgba(56,56,56,0.08)',
+                  boxShadow: '0 8px 22px rgba(0,0,0,0.03)', textDecoration: 'none',
+                  color: 'inherit', transition: 'transform 180ms ease',
+                } as const
+
+                return cat.comingSoon ? (
+                  <div key={cat.slug} style={{ ...style, opacity: 0.92 }}>{card}</div>
+                ) : (
+                  <a key={cat.slug} href={`/behandlinger/${cat.slug}`} style={style}>{card}</a>
+                )
+              })}
             </div>
             <div className="cta-row" style={{ marginTop: 20 }}>
               <a className="btn" href="/behandlinger">Alle behandlinger</a>
