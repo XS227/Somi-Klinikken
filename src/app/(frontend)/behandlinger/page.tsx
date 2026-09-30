@@ -15,7 +15,15 @@ export const metadata: Metadata = {
   },
 }
 
-const categories = [
+type TreatmentCategory = {
+  slug: string
+  title: string
+  desc: string
+  icon: string
+  comingSoon?: boolean
+}
+
+const categories: TreatmentCategory[] = [
   {
     slug: 'gratis-konsultasjon',
     title: 'Gratis konsultasjon',
@@ -51,6 +59,13 @@ const categories = [
     title: 'Injeksjonsbehandlinger',
     desc: 'Naturlig foryngelse med erfaren behandler og gratis konsultasjon alltid inkludert.',
     icon: '💉',
+  },
+  {
+    slug: 'biostimulatorer',
+    title: 'Biostimulatorer',
+    desc: 'Ny behandlingskategori hos SOMI. Informasjon om behandlingene og priser publiseres snart.',
+    icon: '✨',
+    comingSoon: true,
   },
   {
     slug: 'laser-harfjerning',
@@ -98,29 +113,64 @@ export default function BehandlingerPage() {
           gridTemplateColumns: 'repeat(2, minmax(0,1fr))',
           gap: 16,
         }}>
-          {categories.map((cat) => (
-            <a
-              key={cat.slug}
-              href={`/behandlinger/${cat.slug}`}
-              style={{
-                display: 'grid', gap: 10, padding: '24px 26px', borderRadius: 18,
-                background: '#fff', border: '1px solid rgba(56,56,56,0.08)',
-                boxShadow: '0 8px 22px rgba(0,0,0,0.04)', textDecoration: 'none',
-                color: 'inherit', transition: 'transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease',
-                alignContent: 'start',
-              }}
-            >
-              <strong style={{ fontFamily: 'Georgia,serif', fontSize: 19, lineHeight: 1.25 }}>
-                {cat.title}
-              </strong>
-              <p style={{ fontSize: 14, color: 'rgba(56,56,56,0.68)', lineHeight: 1.55, margin: 0 }}>
-                {cat.desc}
-              </p>
-              <span style={{ fontSize: 13, color: '#6B7B8D', fontWeight: 600, marginTop: 4 }}>
-                Les mer →
-              </span>
-            </a>
-          ))}
+          {categories.map((cat) => {
+            const cardStyle = {
+              display: 'grid',
+              gap: 10,
+              padding: '24px 26px',
+              borderRadius: 18,
+              background: '#fff',
+              border: '1px solid rgba(56,56,56,0.08)',
+              boxShadow: '0 8px 22px rgba(0,0,0,0.04)',
+              textDecoration: 'none',
+              color: 'inherit',
+              transition: 'transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease',
+              alignContent: 'start',
+            } as const
+
+            const cardContent = (
+              <>
+                {cat.comingSoon && (
+                  <span style={{
+                    width: 'fit-content',
+                    padding: '5px 9px',
+                    borderRadius: 999,
+                    background: 'rgba(107,123,141,0.10)',
+                    color: '#6B7B8D',
+                    fontSize: 11,
+                    fontWeight: 700,
+                    letterSpacing: '.04em',
+                    textTransform: 'uppercase',
+                  }}>
+                    Kommer snart
+                  </span>
+                )}
+                <strong style={{ fontFamily: 'Georgia,serif', fontSize: 19, lineHeight: 1.25 }}>
+                  {cat.title}
+                </strong>
+                <p style={{ fontSize: 14, color: 'rgba(56,56,56,0.68)', lineHeight: 1.55, margin: 0 }}>
+                  {cat.desc}
+                </p>
+                <span style={{ fontSize: 13, color: '#6B7B8D', fontWeight: 600, marginTop: 4 }}>
+                  {cat.comingSoon ? 'Mer informasjon kommer' : 'Les mer →'}
+                </span>
+              </>
+            )
+
+            if (cat.comingSoon) {
+              return (
+                <div key={cat.slug} style={{ ...cardStyle, opacity: 0.92 }}>
+                  {cardContent}
+                </div>
+              )
+            }
+
+            return (
+              <a key={cat.slug} href={`/behandlinger/${cat.slug}`} style={cardStyle}>
+                {cardContent}
+              </a>
+            )
+          })}
         </div>
 
         <div style={{
