@@ -14,6 +14,7 @@ import { Header } from './globals/Header'
 import { Footer } from './globals/Footer'
 import { SiteSettings } from './globals/SiteSettings'
 import { Homepage } from './globals/Homepage'
+import { NewsletterSubscribers, NewsletterCampaigns, NewsletterDeliveries, NewsletterSettings } from './collections/Newsletter'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -36,8 +37,8 @@ export default buildConfig({
       ogImage: '/img/brand/somi-klinikken-logo-horizontal.png',
     },
   },
-  collections: [Users, Media, Pages, Posts, Behandlinger],
-  globals: [Header, Footer, SiteSettings, Homepage],
+  collections: [Users, Media, Pages, Posts, Behandlinger, NewsletterSubscribers, NewsletterCampaigns, NewsletterDeliveries],
+  globals: [Header, Footer, SiteSettings, Homepage, NewsletterSettings],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

@@ -1,0 +1,12 @@
+[Unit]
+Description=SOMI newsletter queue worker
+After=somi-klinikken.service
+
+[Service]
+Type=oneshot
+User=ubuntu
+WorkingDirectory=/apps/somi-klinikken
+ExecStart=/usr/bin/node /apps/somi-klinikken/scripts/newsletter-worker.mjs
+TimeoutStartSec=110
+NoNewPrivileges=true
+PrivateTmp=true

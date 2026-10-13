@@ -1,0 +1,10 @@
+[Unit]
+Description=Process the SOMI newsletter queue each minute
+
+[Timer]
+OnBootSec=60
+OnUnitInactiveSec=60
+Unit=somi-newsletter-worker.service
+
+[Install]
+WantedBy=timers.target

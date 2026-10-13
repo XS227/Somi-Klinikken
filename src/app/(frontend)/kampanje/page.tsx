@@ -2,6 +2,7 @@ import React from 'react'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import InternalPagesNav from '@/components/InternalPagesNav'
+import CampaignTabs from '@/components/newsletter/CampaignTabs'
 
 export const metadata: Metadata = {
   title: 'Kampanjeplan (internt) | SOMI Klinikken',
@@ -403,6 +404,7 @@ export default function KampanjePage() {
       <style dangerouslySetInnerHTML={{ __html: pageStyles }} />
       <div className="wrap">
         <InternalPagesNav current="kampanje" />
+        <CampaignTabs>
 
         <header className="hero">
           <span className="eyebrow">For Katarina — hele kampanjen samlet</span>
@@ -661,6 +663,7 @@ export default function KampanjePage() {
         <footer className="page-footer">
           Sist oppdatert 2. september 2026 · Intern side, vises ikke i søk · Søkeordstatus: <a href="/seo">/seo</a> · Merkevare og nedlastinger: <a href="/branding">/branding</a>
         </footer>
+        </CampaignTabs>
 
       </div>
     </div>

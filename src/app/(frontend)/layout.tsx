@@ -6,6 +6,7 @@ import { SiteFooter } from '@/components/SiteFooter'
 import type { HeaderData } from '@/components/SiteHeader'
 import type { FooterData } from '@/components/SiteFooter'
 import './styles.css'
+import PublicNewsletter from '@/components/newsletter/PublicNewsletter'
 
 export const metadata = {
   metadataBase: new URL('https://somiklinikken.no'),
@@ -72,7 +73,7 @@ const siteScript = `
 `
 
 const gaScript = GA_ID
-  ? `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}');`
+  ? `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());if(!location.pathname.startsWith('/nyhetsbrev'))gtag('config','${GA_ID}');`
   : ''
 
 function UnderArbeidPage() {
@@ -172,6 +173,7 @@ export default async function FrontendLayout({ children }: { children: React.Rea
         <SiteHeader data={headerData} />
         {children}
         <SiteFooter data={footerData} />
+        <PublicNewsletter />
         <script dangerouslySetInnerHTML={{ __html: siteScript }} />
         {GA_ID && (
           <>
