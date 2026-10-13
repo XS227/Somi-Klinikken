@@ -65,3 +65,17 @@ That's it! The Docker instance will help you get up and running quickly while al
 ## Questions
 
 If you have any issues or questions, reach out to us on [Discord](https://discord.com/invite/payload) or start a [GitHub discussion](https://github.com/payloadcms/payload/discussions).
+
+## Nyhetsbrev (/kampanje/nyhetsbrev)
+
+Admin-only (Payload-innlogging). Samlinger: `newsletter-subscribers`, `newsletter-campaigns`, `newsletter-deliveries` (kø + logg).
+Utsendelse er AV til miljøvariablene under er satt (ingen hemmeligheter i git):
+
+```
+NEWSLETTER_SMTP_HOST / _PORT / _USER / _PASS   # SMTP-relay (Brevo, Postmark, SES …)
+NEWSLETTER_FROM="SOMI Klinikken <nyhetsbrev@somiklinikken.no>"
+NEWSLETTER_SENDING_ENABLED=true
+NEWSLETTER_TEST_RECIPIENTS=a@x.no,b@x.no       # eneste adresser testmail kan sendes til
+NEWSLETTER_CRON_SECRET=...                      # brukes av cron: POST /api/newsletter/process (hvert 5. min)
+NEWSLETTER_RATE_PER_MINUTE=30                   # maks mail per kjøring
+```

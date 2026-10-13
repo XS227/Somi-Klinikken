@@ -72,6 +72,9 @@ export interface Config {
     pages: Page;
     posts: Post;
     behandlinger: Behandlinger;
+    'newsletter-subscribers': NewsletterSubscriber;
+    'newsletter-campaigns': NewsletterCampaign;
+    'newsletter-deliveries': NewsletterDelivery;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -84,6 +87,9 @@ export interface Config {
     pages: PagesSelect<false> | PagesSelect<true>;
     posts: PostsSelect<false> | PostsSelect<true>;
     behandlinger: BehandlingerSelect<false> | BehandlingerSelect<true>;
+    'newsletter-subscribers': NewsletterSubscribersSelect<false> | NewsletterSubscribersSelect<true>;
+    'newsletter-campaigns': NewsletterCampaignsSelect<false> | NewsletterCampaignsSelect<true>;
+    'newsletter-deliveries': NewsletterDeliveriesSelect<false> | NewsletterDeliveriesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -179,7 +185,6 @@ export interface Media {
 export interface Page {
   id: string;
   title: string;
-  slug: string;
   puckData?:
     | {
         [k: string]: unknown;
@@ -189,6 +194,7 @@ export interface Page {
     | number
     | boolean
     | null;
+  slug: string;
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -203,10 +209,6 @@ export interface Page {
 export interface Post {
   id: string;
   title: string;
-  /**
-   * F.eks. microblading-sandnes (auto-genereres fra tittel)
-   */
-  slug: string;
   /**
    * Maks 155 tegn anbefalt for SEO
    */
@@ -227,6 +229,14 @@ export interface Post {
     };
     [k: string]: unknown;
   };
+  /**
+   * Av = kun synlig via direkte lenke (ikke i blogglisten, forsiden eller sitemap). Brukes for innlegg som venter på godkjenning.
+   */
+  published?: boolean | null;
+  /**
+   * F.eks. microblading-sandnes (auto-genereres fra tittel)
+   */
+  slug: string;
   publishedDate?: string | null;
   author?: string | null;
   meta?: {
@@ -243,7 +253,6 @@ export interface Post {
 export interface Behandlinger {
   id: string;
   title: string;
-  slug: string;
   excerpt?: string | null;
   featuredImage?: (string | null) | Media;
   content?: {
@@ -261,10 +270,82 @@ export interface Behandlinger {
     };
     [k: string]: unknown;
   } | null;
+  slug: string;
   meta?: {
     title?: string | null;
     description?: string | null;
   };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "newsletter-subscribers".
+ */
+export interface NewsletterSubscriber {
+  id: string;
+  email: string;
+  name?: string | null;
+  status: 'subscribed' | 'unsubscribed' | 'suppressed';
+  /**
+   * Segmenter/tagger, f.eks. «botox», «kunde»
+   */
+  segments?: string[] | null;
+  consentBasis: 'consent' | 'existing-customer';
+  consentAt: string;
+  /**
+   * Hvor/hvordan samtykket ble gitt
+   */
+  consentSource: string;
+  unsubscribeToken: string;
+  unsubscribedAt?: string | null;
+  suppressionReason?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "newsletter-campaigns".
+ */
+export interface NewsletterCampaign {
+  id: string;
+  title: string;
+  subject: string;
+  preheader?: string | null;
+  /**
+   * Enkel markup: # overskrift, - liste, **fet**, [tekst](url), ![alt](url), [[knapp: Tekst | url]]
+   */
+  body?: string | null;
+  template?: ('somi' | 'offer' | 'plain') | null;
+  /**
+   * Tom = alle aktive abonnenter
+   */
+  segment?: string | null;
+  status: 'draft' | 'scheduled' | 'sending' | 'sent' | 'cancelled';
+  scheduledAt?: string | null;
+  /**
+   * Hvem som godkjente utsendelsen
+   */
+  approvedBy?: string | null;
+  approvedAt?: string | null;
+  sentAt?: string | null;
+  recipientCount?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "newsletter-deliveries".
+ */
+export interface NewsletterDelivery {
+  id: string;
+  campaign: string | NewsletterCampaign;
+  email: string;
+  status: 'queued' | 'sent' | 'failed';
+  attempts?: number | null;
+  nextAttemptAt?: string | null;
+  sentAt?: string | null;
+  error?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -311,6 +392,18 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'behandlinger';
         value: string | Behandlinger;
+      } | null)
+    | ({
+        relationTo: 'newsletter-subscribers';
+        value: string | NewsletterSubscriber;
+      } | null)
+    | ({
+        relationTo: 'newsletter-campaigns';
+        value: string | NewsletterCampaign;
+      } | null)
+    | ({
+        relationTo: 'newsletter-deliveries';
+        value: string | NewsletterDelivery;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -395,8 +488,8 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface PagesSelect<T extends boolean = true> {
   title?: T;
-  slug?: T;
   puckData?: T;
+  slug?: T;
   meta?:
     | T
     | {
@@ -412,10 +505,11 @@ export interface PagesSelect<T extends boolean = true> {
  */
 export interface PostsSelect<T extends boolean = true> {
   title?: T;
-  slug?: T;
   excerpt?: T;
   featuredImage?: T;
   content?: T;
+  published?: T;
+  slug?: T;
   publishedDate?: T;
   author?: T;
   meta?:
@@ -433,16 +527,69 @@ export interface PostsSelect<T extends boolean = true> {
  */
 export interface BehandlingerSelect<T extends boolean = true> {
   title?: T;
-  slug?: T;
   excerpt?: T;
   featuredImage?: T;
   content?: T;
+  slug?: T;
   meta?:
     | T
     | {
         title?: T;
         description?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "newsletter-subscribers_select".
+ */
+export interface NewsletterSubscribersSelect<T extends boolean = true> {
+  email?: T;
+  name?: T;
+  status?: T;
+  segments?: T;
+  consentBasis?: T;
+  consentAt?: T;
+  consentSource?: T;
+  unsubscribeToken?: T;
+  unsubscribedAt?: T;
+  suppressionReason?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "newsletter-campaigns_select".
+ */
+export interface NewsletterCampaignsSelect<T extends boolean = true> {
+  title?: T;
+  subject?: T;
+  preheader?: T;
+  body?: T;
+  template?: T;
+  segment?: T;
+  status?: T;
+  scheduledAt?: T;
+  approvedBy?: T;
+  approvedAt?: T;
+  sentAt?: T;
+  recipientCount?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "newsletter-deliveries_select".
+ */
+export interface NewsletterDeliveriesSelect<T extends boolean = true> {
+  campaign?: T;
+  email?: T;
+  status?: T;
+  attempts?: T;
+  nextAttemptAt?: T;
+  sentAt?: T;
+  error?: T;
   updatedAt?: T;
   createdAt?: T;
 }

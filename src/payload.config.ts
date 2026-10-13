@@ -10,6 +10,9 @@ import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Posts } from './collections/Posts'
 import { Behandlinger } from './collections/Behandlinger'
+import { NewsletterSubscribers } from './collections/NewsletterSubscribers'
+import { NewsletterCampaigns } from './collections/NewsletterCampaigns'
+import { NewsletterDeliveries } from './collections/NewsletterDeliveries'
 import { Header } from './globals/Header'
 import { Footer } from './globals/Footer'
 import { SiteSettings } from './globals/SiteSettings'
@@ -36,7 +39,7 @@ export default buildConfig({
       ogImage: '/img/brand/somi-klinikken-logo-horizontal.png',
     },
   },
-  collections: [Users, Media, Pages, Posts, Behandlinger],
+  collections: [Users, Media, Pages, Posts, Behandlinger, NewsletterSubscribers, NewsletterCampaigns, NewsletterDeliveries],
   globals: [Header, Footer, SiteSettings, Homepage],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
