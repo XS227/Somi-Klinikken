@@ -1,5 +1,7 @@
 import React from 'react'
 import type { Metadata } from 'next'
+import { InternalLinkList } from '@/components/InternalLinkList'
+import { BLOG_LINKS, PRIORITY_GUIDES } from '@/lib/internalLinks'
 
 export const metadata: Metadata = {
   title: 'Behandlinger | SOMI Klinikken Sandnes',
@@ -59,6 +61,12 @@ const categories: TreatmentCategory[] = [
     title: 'Injeksjonsbehandlinger',
     desc: 'Naturlig foryngelse med erfaren behandler og gratis konsultasjon alltid inkludert.',
     icon: '💉',
+  },
+  {
+    slug: 'profhilo',
+    title: 'Profhilo®',
+    desc: 'Dyp fukt, bedre elastisitet og naturlig glød – uten å tilføre volum eller endre ansiktstrekk.',
+    icon: '◌',
   },
   {
     slug: 'biostimulatorer',
@@ -172,6 +180,14 @@ export default function BehandlingerPage() {
             )
           })}
         </div>
+
+        <section style={{ marginTop: 48 }}>
+          <h2 className="h2" style={{ marginBottom: 8 }}>Guider fra bloggen</h2>
+          <p className="muted" style={{ marginBottom: 16, fontSize: 14 }}>
+            Usikker på valget? Disse artiklene hjelper deg å sammenligne behandlingene.
+          </p>
+          <InternalLinkList links={PRIORITY_GUIDES.map((g) => BLOG_LINKS[g])} />
+        </section>
 
         <div style={{
           marginTop: 48, padding: '28px 24px', borderRadius: 18,

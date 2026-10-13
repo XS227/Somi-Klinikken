@@ -323,9 +323,9 @@ const meetingAgenda = [
 
 const technicalAudit = [
   {
-    tag: 'Må rettes',
+    tag: 'Rettet · valideres',
     title: '301 redirects og vertsdomene',
-    text: 'Gamle .html-ruter har flere permanente redirects, men NGINX server både www og non-www på HTTPS. Google Search Console viser fortsatt separate URL-signaler, blant annet 611 klikk / 7 130 visninger på http://www-forsiden. Neste tiltak: én tvungen 301 fra www til https://somiklinikken.no og utvid redirect-kartet for gamle URL-er som fortsatt vises i Search Console.',
+    text: 'NGINX sender nå både http://, http://www. og https://www. med én 301 direkte til https://somiklinikken.no (ingen redirect-kjeder). Redirect-kartet dekker alle ~180 .html-URL-er fra det gamle nettstedet — hver behandling er mappet til dagens konsoliderte behandlingsside, og catch-all-regler sørger for at ukjente gamle .html-URL-er aldri gir 404. Gjenstår: validere i Search Console og sende sitemap på nytt.',
   },
   {
     tag: 'På plass',
@@ -338,17 +338,17 @@ const technicalAudit = [
     text: 'Sitemap genereres med non-www HTTPS-URL-er for statiske sider, behandlinger, CMS-sider og publiserte blogginnlegg. robots.txt peker til https://somiklinikken.no/sitemap.xml og blokkerer blant annet /seo.',
   },
   {
-    tag: 'God base · styrkes',
+    tag: 'Styrket · følges opp',
     title: 'Internlenker',
-    text: 'Dagens kildekode bruker moderne interne stier og vi fant ingen aktive interne .html-lenker i src. Neste runde skal lenke sterkere fra forsiden, blogg og behandlingsoversikten til de konkrete sidene vi vil rangere på — særlig hudpleie, tattoo removal, bryn/vipper og BioRePeel.',
+    text: 'Ingen interne .html-lenker i src. Nytt felles lenkekart (src/lib/internalLinks.ts): hver behandlingsside har nå «Relaterte behandlinger» og «Les mer i bloggen», hvert blogginnlegg lenker til behandlingene det omtaler, behandlingsoversikten har «Guider fra bloggen», bloggoversikten har «Populære behandlinger», og forsiden har kontekstuelle lenker med beskrivende ankertekst til hudpleie, Dermalogica, tattoo removal, bryn/vipper og BioRePeel.',
   },
 ]
 
 const summary = [
   'SOMI har ikke et generelt ranking-fall: visningene siste 28 dager er opp 2,8 %, mens snittposisjonen er praktisk talt uendret (#8,7 → #8,8).',
   'Klikkene falt 15,7 % fordi CTR gikk fra 9,5 % til 7,8 %. Neste SEO-runde skal derfor først og fremst forbedre titles/meta, søkeresultat-snippets og koblingen mellom søkeord og riktig landingsside.',
-  'Den største tekniske oppgaven er URL-konsolidering. Canonical peker riktig til non-www, men serveren svarer fortsatt på HTTPS www. Dette bør samles med 301 slik at Google får ett tydelig vertsdomene.',
-  'Search Console viser fortsatt gamle http-, www- og .html-URL-er. Redirect-kartet bør utvides for legacy-ruter som fortsatt får visninger, i stedet for å bygge hele SEO-strukturen på nytt.',
+  'URL-konsolideringen er gjennomført: www og http sendes med én 301 til https://somiklinikken.no, som også er canonical. Google trenger noen uker på å slå sammen signalene.',
+  'Alle gamle .html-URL-er fra det statiske nettstedet har nå permanente redirects til nærmeste relevante side, slik at gamle signaler overføres i stedet for å gå tapt.',
   'Mobil står for 923 av 1 022 klikk med 11,35 % CTR og snittposisjon #5,99. Desktop har 96 klikk, 3,2 % CTR og snittposisjon #15,77 — desktop-snippets og SERP-miks bør kontrolleres separat.',
 ]
 
@@ -357,9 +357,9 @@ const seoRound = [
     when: '01',
     title: 'Konsolider domenet og gamle URL-er',
     items: [
-      '301 https://www.somiklinikken.no/* → https://somiklinikken.no/*.',
-      'Behold HTTP → HTTPS, men sørg for at alle varianter ender direkte på non-www canonical.',
-      'Utvid legacy-redirects for gamle .html-sider som fortsatt finnes i Search Console, blant annet PRX-T33, browlamination/vippeløft, skin tags, gamle laserområder og gamle PMU-sider.',
+      'Utført 27.09: 301 https://www.somiklinikken.no/* → https://somiklinikken.no/* (verifisert live).',
+      'Utført 27.09: http://, http://www. og https://www. ender alle med én 301 direkte på non-www canonical.',
+      'Utført 27.09: legacy-redirects dekker alle ~180 gamle .html-sider (PRX-T33, browlamination/vippeløft, skin tags, laserområder, PMU m.m.) + catch-all mot 404.',
       'Etter utrulling: valider de viktigste gamle URL-ene og send sitemap på nytt i Search Console.',
     ],
   },
@@ -386,8 +386,8 @@ const seoRound = [
     when: '04',
     title: 'Internlenking som flytter autoritet',
     items: [
-      'Legg kontekstuelle lenker fra forsiden og sterke blogginnlegg til prioriterte behandlingssider.',
-      'Bruk beskrivende ankertekst som «hudpleie i Sandnes», «laser tatoveringsfjerning» og «BioRePeel».',
+      'Utført 27.09: kontekstuelle lenker fra forsiden, alle blogginnlegg, blogg- og behandlingsoversikten til prioriterte behandlingssider.',
+      'Utført 27.09: beskrivende ankertekst som «Medisinsk hudpleie i Sandnes», «Laser tatoveringsfjerning i Sandnes» og «BioRePeel CL3 i Sandnes».',
       'Unngå konkurrerende sider for samme hovedsøkeord; blogg skal støtte behandlingssiden, ikke kannibalisere den.',
     ],
   },
@@ -720,7 +720,7 @@ export default function SeoStrategiPage() {
         </section>
 
         <footer className="page-footer">
-          Sist oppdatert 30. september 2026 · Full Search Console-eksport: 26. juni–25. september · Fersk ranking-/indekseringssjekk 30. september · Møteagenda oppdatert fra Katarinas e-poster · Intern side, vises ikke i søk · Full kampanjeplan: <a href="/kampanje" style={{ color: 'inherit' }}>/kampanje</a>
+          Sist oppdatert 30. september 2026 · Full Search Console-eksport: 26. juni–25. september · Fersk ranking-/indekseringssjekk 30. september · 301 www→non-www og legacy-redirects utført · Internlenker styrket · Møt Jane/Irena publisert · Møteagenda oppdatert fra Katarinas e-poster · Intern side, vises ikke i søk · Full kampanjeplan: <a href="/kampanje" style={{ color: 'inherit' }}>/kampanje</a>
         </footer>
 
       </div>

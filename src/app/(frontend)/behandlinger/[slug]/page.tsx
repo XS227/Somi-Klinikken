@@ -1,6 +1,8 @@
 import React from 'react'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
+import { InternalLinkList } from '@/components/InternalLinkList'
+import { relatedForTreatment } from '@/lib/internalLinks'
 import Image from 'next/image'
 
 type Props = { params: Promise<{ slug: string }> }
@@ -502,6 +504,7 @@ export default async function BehandlingPage({ params }: Props) {
   if (!d) notFound()
 
   const imgs = resultaterImages[slug] ?? []
+  const related = relatedForTreatment(slug)
   const displayTitle = d.title.includes('Sandnes') ? d.title : `${d.title} i Sandnes`
 
   const jsonLd = {
@@ -761,6 +764,20 @@ export default async function BehandlingPage({ params }: Props) {
               >
                 Les mer om {d.sammenligningLink.title} →
               </a>
+            </section>
+          )}
+
+          {/* Internlenker: relaterte behandlinger + guider */}
+          {related.treatments.length > 0 && (
+            <section style={{ marginBottom: 40 }}>
+              <h2 className="h2" style={{ marginBottom: 16 }}>Relaterte behandlinger</h2>
+              <InternalLinkList links={related.treatments} />
+            </section>
+          )}
+          {related.posts.length > 0 && (
+            <section style={{ marginBottom: 40 }}>
+              <h2 className="h2" style={{ marginBottom: 16 }}>Les mer i bloggen</h2>
+              <InternalLinkList links={related.posts} />
             </section>
           )}
 

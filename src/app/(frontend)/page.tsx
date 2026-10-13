@@ -1,5 +1,6 @@
 import React from 'react'
 import type { Metadata } from 'next'
+import { PRIORITY_TREATMENTS, TREATMENT_LINKS } from '@/lib/internalLinks'
 import Image from 'next/image'
 import { getPayload } from 'payload'
 import config from '@payload-config'
@@ -265,6 +266,18 @@ export default async function HomePage() {
               <a className="btn" href="/behandlinger">Alle behandlinger</a>
               <a className="btn btn--accent" href={BOOKING_URL}>Book time</a>
             </div>
+            <p style={{ marginTop: 20, fontSize: 14, lineHeight: 1.8, color: 'rgba(56,56,56,.7)', maxWidth: '72ch' }}>
+              Mest etterspurt hos oss i Sandnes:{' '}
+              {PRIORITY_TREATMENTS.map((s, i) => (
+                <React.Fragment key={s}>
+                  {i > 0 && (i === PRIORITY_TREATMENTS.length - 1 ? ' og ' : ', ')}
+                  <a href={TREATMENT_LINKS[s].href} style={{ color: '#6B7B8D', textDecoration: 'underline' }}>
+                    {TREATMENT_LINKS[s].anchor}
+                  </a>
+                </React.Fragment>
+              ))}
+              .
+            </p>
           </div>
         </section>
 

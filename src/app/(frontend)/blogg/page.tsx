@@ -3,6 +3,8 @@ import type { Metadata } from 'next'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import Image from 'next/image'
+import { InternalLinkList } from '@/components/InternalLinkList'
+import { PRIORITY_TREATMENTS, TREATMENT_LINKS } from '@/lib/internalLinks'
 
 export const metadata: Metadata = {
   title: 'Blogg | SOMI Klinikken Sandnes',
@@ -115,6 +117,11 @@ export default async function BloggPage() {
             ))}
           </div>
         )}
+
+        <section style={{ marginTop: 56 }}>
+          <h2 className="h2" style={{ marginBottom: 16 }}>Populære behandlinger</h2>
+          <InternalLinkList links={PRIORITY_TREATMENTS.map((s) => TREATMENT_LINKS[s])} />
+        </section>
 
         <div style={{ marginTop: 48, textAlign: 'center' }}>
           <a className="btn btn--primary" href="/booking">Book time hos SOMI</a>

@@ -205,7 +205,7 @@ const teamContent: {
     role: 'Sykepleier',
     specialty: 'Kosmetisk sykepleie · Injeksjonsbehandlinger, naturlig foryngelse',
     photo: '/img/team/jane-sykepleier-kosmetisk-somi-klinikken.webp',
-    contentRole: 'Ny ansatt. Bilde og bio er allerede live på /team. Video 2 (manus klart under) introduserer henne først — det haster mest å gi en helt ny ansatt egne kunder.',
+    contentRole: 'Ny ansatt. Bilde og bio er allerede live på /team. Blogginnlegget «Møt Jane» er publisert. Video 2 (manus klart under) introduserer henne først — det haster mest å gi en helt ny ansatt egne kunder.',
     status: 'Ny — synlighet i gang',
   },
   {
@@ -213,7 +213,7 @@ const teamContent: {
     role: 'Intensivsykepleier',
     specialty: 'Estetisk medisin · Injeksjonsbehandlinger',
     photo: '/img/team/irena-intensivsykepleier-somi-klinikken.webp',
-    contentRole: 'Ny ansatt. Bilde og bio er allerede live på /team. Egen video og blogginnlegg gjenstår — foreslått rekkefølge: rett etter Emma i videoserien.',
+    contentRole: 'Ny ansatt. Bilde og bio er allerede live på /team. Blogginnlegget «Møt Irena» er publisert. Egen video gjenstår — foreslått rekkefølge: rett etter Emma i videoserien.',
     status: 'Ny — synlighet i gang',
   },
 ]
@@ -249,9 +249,6 @@ const publishedPosts: { title: string; slug: string }[] = [
   { title: 'Injeksjonsbehandlinger i Sandnes', slug: 'injeksjonsbehandlinger-sandnes' },
   { title: 'Permanent makeup — naturlige bryn', slug: 'permanent-makeup-naturlige-bryn' },
   { title: 'Laser hårfjerning i Sandnes', slug: 'laser-harfjerning-sandnes' },
-]
-
-const draftPosts: { title: string; slug: string }[] = [
   { title: 'Møt Jane — kosmetisk sykepleie hos SOMI', slug: 'moet-jane-kosmetisk-sykepleie-somi' },
   { title: 'Møt Irena — estetisk medisin hos SOMI', slug: 'moet-irena-estetisk-medisin-somi' },
 ]
@@ -329,7 +326,7 @@ const plan = [
     items: [
       'Skriv ut og sett opp QR-plakaten ved resepsjon/kortterminal — klar til utskrift, se under',
       'Publiser video 2 (Jane) og video 3 (Arianna) — manus er klare, se under',
-      'Skriv «Møt Jane»- og «Møt Irena»-blogginnleggene',
+      '«Møt Jane»- og «Møt Irena»-blogginnleggene er publisert — del dem på Instagram/Facebook sammen med videoene',
     ],
   },
   {
@@ -531,7 +528,7 @@ export default function KampanjePage() {
         <section>
           <div className="section-head">
             <h2>Blogginnlegg</h2>
-            <p>8 innlegg er allerede publisert. To er skrevet ferdig som kladd — introduksjon av de nye ansatte — og venter kun på et klarsignal.</p>
+            <p>10 innlegg er publisert, inkludert introduksjonen av de to nye ansatte, Jane og Irena.</p>
           </div>
           <div className="card">
             <div className="blog-list">
@@ -541,21 +538,14 @@ export default function KampanjePage() {
                   <span className="status">Publisert</span>
                 </div>
               ))}
-              {draftPosts.map((p) => (
-                <div className="blog-item" key={p.slug}>
-                  <a href={`/blogg/${p.slug}`}>{p.title}</a>
-                  <span className="status todo">Kladd — kun synlig via denne lenken</span>
-                </div>
-              ))}
             </div>
           </div>
           <div className="callout">
             <span className="mark">→</span>
             <span>
-              Begge er skrevet ferdig og lagt inn i /admin som «Publisert offentlig: av» — de vises altså
-              ikke i blogglisten, på forsiden eller i sitemap ennå, kun via lenkene over. Kryss av «Publisert
-              offentlig» i Payload-admin (Innhold → Posts) når dere vil at de skal gå live, og juster
-              publiseringsdatoen samtidig.
+              Alle innleggene er live i blogglisten og sitemap. Hvert innlegg lenker nå automatisk videre til
+              behandlingene det omtaler (se «Internlenker» på /seo) — Jane- og Irena-innleggene peker til
+              injeksjonsbehandlinger, medisinsk hudpleie og BioRePeel.
             </span>
           </div>
         </section>
@@ -659,7 +649,7 @@ export default function KampanjePage() {
         </section>
 
         <footer className="page-footer">
-          Sist oppdatert 2. september 2026 · Intern side, vises ikke i søk · Søkeordstatus: <a href="/seo">/seo</a> · Merkevare og nedlastinger: <a href="/branding">/branding</a>
+          Sist oppdatert 27. september 2026 · Intern side, vises ikke i søk · Søkeordstatus: <a href="/seo">/seo</a> · Merkevare og nedlastinger: <a href="/branding">/branding</a>
         </footer>
 
       </div>

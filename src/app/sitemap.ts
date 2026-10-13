@@ -23,6 +23,7 @@ const BEHANDLING_SLUGS = [
   'laser-harfjerning',
   'laser-tattoo-removal',
   'injeksjonsbehandlinger',
+  'profhilo',
   'medisinsk-hudpleie',
   'klassisk-hudpleie',
   'harfjerning-voks-elektrolyse',

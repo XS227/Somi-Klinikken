@@ -4,6 +4,8 @@ import type { Metadata } from 'next'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import Image from 'next/image'
+import { InternalLinkList } from '@/components/InternalLinkList'
+import { treatmentsForPost } from '@/lib/internalLinks'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -155,6 +157,7 @@ export default async function BloggPostPage({ params }: Props) {
     depth: 1,
   })
   const related = relatedResult.docs as typeof post[]
+  const treatmentLinks = treatmentsForPost(post.slug)
 
   const plainText = extractPlainText(post.content)
   const articleJsonLd = {
@@ -232,6 +235,15 @@ export default async function BloggPostPage({ params }: Props) {
           <div style={{ fontSize: 17, lineHeight: 1.75, color: 'var(--c-text)' }}>
             <RichTextRenderer content={post.content} />
           </div>
+
+          {/* Internlenker til behandlingene artikkelen handler om */}
+          <section style={{ marginTop: 48 }}>
+            <h2 className="h2" style={{ marginBottom: 16 }}>Behandlinger omtalt i artikkelen</h2>
+            <InternalLinkList links={treatmentLinks} />
+            <p className="muted" style={{ marginTop: 14, fontSize: 14 }}>
+              Se også <a href="/behandlinger" style={{ color: '#6B7B8D', textDecoration: 'underline' }}>alle behandlinger hos SOMI Klinikken</a>.
+            </p>
+          </section>
 
           {/* CTA */}
           <div style={{
