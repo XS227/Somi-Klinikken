@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import { InternalLinkList } from '@/components/InternalLinkList'
 import { relatedForTreatment } from '@/lib/internalLinks'
 import Image from 'next/image'
+import Link from 'next/link'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -11,6 +12,7 @@ type BehandlingData = {
   title: string
   tagline: string
   heroDesc: string
+  introPoints?: { title: string; description: string }[]
   hvaSer: string
   effektMot?: string[]
   hvemPasser: string
@@ -22,6 +24,7 @@ type BehandlingData = {
   faq: { q: string; a: string }[]
   images?: string[]
   ctaText?: string
+  laserConsultation?: boolean
   sammenligningLink?: { slug: string; title: string }
   beforeAfter?: { src: string; alt: string; heading: string; caption: string }
   video?: { src: string; heading: string; caption: string }
@@ -261,10 +264,11 @@ const behandlingerData: Record<string, BehandlingData> = {
     ],
   },
   'laser-tattoo-removal': {
-    title: 'Laser tattoofjerning',
+    title: 'Laser tatoveringsfjerning',
+    laserConsultation: true,
     tagline: 'Trygg og skånsom fjerning av tatovering med laser',
     heroDesc: 'Ønsker du å fjerne en uønsket tatovering? Med moderne laserteknologi kan tatoveringsblekk gradvis brytes ned gjennom en serie behandlinger, samtidig som vi har stort fokus på å ivareta huden.',
-    hvaSer: 'Laser tattoo removal bruker intense lyspulser som bryter ned tatoveringspigmentet til partikler kroppen absorberer naturlig. Vi tilbyr også saline removal – en skånsom metode spesielt egnet for permanent makeup.',
+    hvaSer: 'Ved laser tatoveringsfjerning brukes lyspulser til å bryte ned tatoveringspigmentet, slik at kroppen gradvis kan fjerne partiklene. Vi tilpasser behandlingen til huden og tatoveringen. Vi jobber så skånsomt som mulig, med mål om å unngå skorper og åpen hud. Hudreaksjoner kan likevel forekomme, og fullstendig fjerning kan ikke garanteres.',
     hvemPasser: 'Hvor mange behandlinger som er nødvendig varierer fra person til person og avhenger blant annet av tatoveringens størrelse, farger, blekkmengde, plassering og hudtype. En kroppstatovering kan normalt ikke fjernes med kun én behandling, og prosessen krever derfor tid og flere behandlinger.',
     beforeAfter: {
       src: '/img/resultater/laser-tattoofjerning-for-etter-2-behandlinger-somi-klinikken-sandnes.webp',
@@ -273,7 +277,7 @@ const behandlingerData: Record<string, BehandlingData> = {
       caption: 'Bildet viser resultatet etter kun to laserbehandlinger, hvor tatoveringen allerede har blitt betydelig svakere. Hos SOMI er hudens helse alltid førsteprioritet. Vi legger vekt på en trygg, skånsom og individuelt tilpasset behandling, og gir deg realistisk informasjon om hva du kan forvente gjennom hele prosessen.',
     },
     steps: [
-      'Konsultasjon: Vi vurderer tatoveringen og estimerer antall sesjoner.',
+      'Gratis konsultasjon: Vi vurderer tatoveringen, huden og forventet behandlingsforløp. Du kan få et gratis testskudd hvis du ønsker og behandleren vurderer det som egnet.',
       'Huden forberedes og behandlingsparametere settes.',
       'Laserbehandlingen utføres (minutter til 30 min etter størrelse).',
       'Etterpleie gis og neste sesjon planlegges.',
@@ -284,19 +288,84 @@ const behandlingerData: Record<string, BehandlingData> = {
       'Fortell om alle medisiner du bruker.',
       'God fuktighet på huden de dagene/ukene før.',
     ],
-    under: 'Vi påfører bedøvelseskrem og jobber systematisk over tatoveringen. De fleste beskriver det som et lett stikk. Behandlingstiden varierer etter størrelse.',
+    under: 'Vi bruker Zimmer-kjøling under laserbehandlingen for å dempe ubehag og skåne huden. Hos oss gjennomfører de fleste behandlingen uten bedøvelse. Hvis du ønsker bedøvelse, kan du bestille det som et tillegg til 500 kr og møte 15 minutter før timen. Behandlingstiden avhenger av området.',
     etter: [
+      'Etter SOMIs anvisning: Kjøl huden i ca. 10–15 minutter hver tredje time første dagen. Følg behandlerens råd om hvordan du kjøler området.',
       'Beskytt behandlingsområdet mot sol i minimum 4 uker.',
       'Fukt huden daglig med uparfymert krem.',
       'Ikke plukk på skorper – la dem falle av naturlig.',
-      'Neste sesjon tidligst 6–8 uker etter.',
+      'Tidspunkt for neste behandling avtales individuelt, slik at huden får tid til å tilhele.',
     ],
     faq: [
       { q: 'Kan alle tatoveringer fjernes fullstendig?', a: 'De fleste tatoveringer kan fjernes eller lysnes vesentlig. Svart og mørke farger responderer best. Noen farger (gult, hvitt) er mer krevende.' },
-      { q: 'Hvor mange sesjoner trenger jeg?', a: 'Typisk 6–15 sesjoner for en profesjonell tatovering, 3–6 for permanent makeup. Vi estimerer under konsultasjonen.' },
-      { q: 'Gjør det vondt?', a: 'Vi bruker bedøvelseskrem og de fleste tolererer behandlingen godt. Det kan minne om et lett stikk.' },
-      { q: 'Hva er saline removal?', a: 'En naturlig metode med saltvannsbasert løsning som settes inn i tatoveringen. Skånsom og effektiv, spesielt for permanent makeup.' },
+      { q: 'Hvor mange behandlinger trenger jeg?', a: 'Det varierer med blant annet tatoveringens størrelse, farger, pigmentmengde og hudens respons. Flere behandlinger og pauser mellom timene er vanlig. Vi vurderer dette under konsultasjonen.' },
+      { q: 'Gjør det vondt, og kan jeg få bedøvelse?', a: 'Opplevelsen varierer. Vi bruker Zimmer-kjøling for å dempe ubehag. Bedøvelse er valgfritt og koster 500 kr i tillegg til behandlingen. Bestill tillegget på forhånd og møt 15 minutter før.' },
+      { q: 'Kan jeg få gratis konsultasjon og testskudd?', a: 'Ja. Konsultasjonen er gratis, og du kan få et gratis testskudd hvis du ønsker og behandleren vurderer det som egnet.' },
+      { q: 'Kan det bli skorper eller åpen hud?', a: 'Målet med vår skånsomme tilnærming er å unngå skorper og åpen hud. Dette er ikke en garanti: rødhet, hevelse, blemmer og andre hudreaksjoner kan forekomme. Du får råd om etterpleie og oppfølging.' },
     ],
+  },
+  'fjerning-permanent-makeup': {
+    title: 'Fjerning av permanent makeup (PMU)',
+    tagline: 'Laserfjerning av bryn med individuell vurdering',
+    laserConsultation: true,
+    heroDesc: 'Hos SOMI Klinikken har vi spesialisert oss på fjerning av permanent makeup, inkludert microblading, powder brows, lipblush og eyeliner.',
+    introPoints: [
+      {
+        title: 'Utraumatisk laserfjerning av bryn',
+        description: 'skånsom pigmentfjerning uten å skade hudoverflaten.',
+      },
+      {
+        title: 'Bevarer de naturlige brynshårene',
+        description: 'vi barberer ikke brynene før behandlingen, og laserbehandlingen påvirker verken hårsekkene eller hårveksten.',
+      },
+      {
+        title: 'Gratis konsultasjon og testskudd',
+        description: 'kjenn hvordan behandlingen oppleves, og se hvordan pigmentene responderer.',
+      },
+      {
+        title: 'Individuell vurdering',
+        description: 'behandlingen tilpasses pigmentenes egenskaper og hudens forutsetninger.',
+      },
+    ],
+    hvaSer: 'PMU-fjerning er behandling for å redusere uønsket pigment fra permanent makeup, for eksempel microblading eller powder brows. Ved laserfjerning av bryn vurderer vi pigmentet og huden før vi lager en individuell plan. Pigmenter kan reagere ulikt på laser, og fullstendig fjerning kan ikke garanteres.',
+    hvemPasser: 'For deg som ønsker en vurdering av gammel permanent makeup på bryn, enten målet er å lysne pigmentet eller fjerne mest mulig. Vi vurderer også tidligere behandlinger og hva som er realistisk å oppnå før eventuell ny permanent makeup.',
+    fordeler: [
+      'Gratis konsultasjon og mulighet for gratis testskudd.',
+      'Zimmer-kjøling under laserbehandlingen for å dempe ubehag og skåne huden.',
+      'Individuell behandlingsplan med fokus på å ivareta huden.',
+      'Valgfri bedøvelse som bestilles i tillegg til 500 kr.',
+    ],
+    steps: [
+      'Gratis konsultasjon: Vi går gjennom pigment, hud, tidligere behandlinger og dine ønsker.',
+      'Gratis testskudd: Du kan få dette under konsultasjonen hvis du ønsker og behandleren vurderer det som egnet.',
+      'Behandlingsplan: Vi vurderer respons, forventninger og videre forløp før laserbehandling.',
+      'Laserbehandling med Zimmer-kjøling og individuelt tilpassede innstillinger.',
+      'Etterpleie: Du får instruksjoner om kjøling og oppfølging før du går hjem.',
+    ],
+    foer: [
+      'Kom til konsultasjon før du bestiller et behandlingsforløp.',
+      'Fortell om tidligere PMU, fjerning, medisiner og eventuelle hudreaksjoner.',
+      'Avklar forberedelser med behandleren og kom uten sminke på behandlingsområdet.',
+      'Ønsker du bedøvelse, bestill tillegget til 500 kr og møt 15 minutter før behandlingstimen.',
+    ],
+    under: 'Vi jobber skånsomt med laser og har som mål å unngå skorper og åpen hud. Zimmer-kjøling brukes for å dempe ubehag og skåne huden under behandlingen. Hos oss trenger de fleste ikke bedøvelse, men den kan bestilles som et valgfritt tillegg. Hudreaksjoner kan likevel forekomme.',
+    etter: [
+      'Etter SOMIs anvisning: Kjøl huden i ca. 10–15 minutter hver tredje time første dagen. Følg behandlerens råd om hvordan du kjøler området.',
+      'Følg de individuelle rådene du får om hudpleie, sminke og solbeskyttelse.',
+      'Ikke plukk på huden hvis det oppstår skorper.',
+      'Kontakt klinikken hvis du er usikker på hudens reaksjon eller opplever økende plager.',
+      'Videre behandling og eventuell ny PMU avtales etter vurdering av huden og pigmentet.',
+    ],
+    faq: [
+      { q: 'Hva menes med PMU-fjerning og laserfjerning av bryn?', a: 'PMU betyr permanent makeup. Laserfjerning av bryn brukes for å redusere pigment fra for eksempel microblading eller powder brows. Vi vurderer først om behandlingen passer for deg.' },
+      { q: 'Er konsultasjon og testskudd gratis?', a: 'Ja. Konsultasjonen er gratis. Hvis du ønsker, kan du også få et gratis testskudd under konsultasjonen, etter behandlerens vurdering.' },
+      { q: 'Kan alt pigment fjernes?', a: 'Resultatet varierer med pigment, tidligere behandlinger og hudens respons. Noen pigmenter kan endre farge ved laserbehandling. Vi vurderer dette før behandling og kan ikke garantere fullstendig fjerning.' },
+      { q: 'Hvor mange behandlinger trenger jeg?', a: 'Det finnes ikke ett antall som passer alle. Vi vurderer et realistisk forløp på konsultasjonen og følger hudens og pigmentets respons underveis.' },
+      { q: 'Gjør behandlingen vondt?', a: 'Opplevelsen varierer. Vi bruker Zimmer-kjøling for å dempe ubehag. Hos oss gjennomfører de fleste behandlingen uten bedøvelse.' },
+      { q: 'Hva koster bedøvelse?', a: 'Bedøvelse er et valgfritt tillegg til 500 kr, utenom selve behandlingsprisen. Bestill tillegget på forhånd og møt 15 minutter før timen.' },
+      { q: 'Får jeg skorper eller åpen hud?', a: 'Vi jobber skånsomt med mål om å unngå dette. Det er ikke en garanti for at huden ikke reagerer. Rødhet, hevelse, blemmer og andre hudreaksjoner kan forekomme, og du får individuelle råd om etterpleie.' },
+    ],
+    ctaText: 'Book en gratis konsultasjon for vurdering av gammel permanent makeup. Spør gjerne om gratis testskudd.',
   },
   'injeksjonsbehandlinger': {
     title: 'Injeksjonsbehandlinger',
@@ -466,7 +535,12 @@ const customMetaTitles: Record<string, { title: string; description: string }> =
   'laser-tattoo-removal': {
     title: 'Laser tatoveringsfjerning i Sandnes | SOMI Klinikken',
     description:
-      'Trygg og skånsom laser tattoofjerning i Sandnes. Se resultat etter kun 2 behandlinger. Vi tilbyr også saline removal. Book gratis konsultasjon hos SOMI Klinikken.',
+      'Laser tatoveringsfjerning i Sandnes med Zimmer-kjøling. Gratis konsultasjon og mulighet for gratis testskudd. Valgfri bedøvelse til 500 kr.',
+  },
+  'fjerning-permanent-makeup': {
+    title: 'Fjerning av permanent makeup (PMU) i Sandnes | SOMI Klinikken',
+    description:
+      'Fjerning av permanent makeup og laserfjerning av bryn i Sandnes. Gratis konsultasjon og mulighet for gratis testskudd. Zimmer-kjøling under behandling.',
   },
 }
 
@@ -505,7 +579,7 @@ export default async function BehandlingPage({ params }: Props) {
 
   const imgs = resultaterImages[slug] ?? []
   const related = relatedForTreatment(slug)
-  const displayTitle = d.title.includes('Sandnes') ? d.title : `${d.title} i Sandnes`
+  const displayTitle = slug === 'fjerning-permanent-makeup' || d.title.includes('Sandnes') ? d.title : `${d.title} i Sandnes`
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -549,6 +623,23 @@ export default async function BehandlingPage({ params }: Props) {
             <p style={{ color: 'rgba(255,255,255,0.82)', fontSize: 18, maxWidth: '56ch', marginTop: 14 }}>
               {d.heroDesc}
             </p>
+            {d.introPoints && (
+              <ul aria-label="Dette tilbyr vi ved PMU-fjerning" style={{
+                display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
+                gap: 14, maxWidth: 760, padding: 0, margin: '28px 0 0', listStyle: 'none',
+              }}>
+                {d.introPoints.map((point) => (
+                  <li key={point.title} style={{
+                    minWidth: 0, padding: '18px 20px', borderRadius: 20,
+                    background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(244,227,220,0.25)',
+                  }}>
+                    <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: 15, lineHeight: 1.65, margin: 0 }}>
+                      <strong style={{ color: '#F4E3DC', fontSize: 16 }}>{point.title}</strong>{' – '}{point.description}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            )}
             <div className="cta-row" style={{ marginTop: 28 }}>
               <a href="/booking" style={{
                 display: 'inline-flex', alignItems: 'center', padding: '12px 22px',
@@ -563,6 +654,16 @@ export default async function BehandlingPage({ params }: Props) {
         </section>
 
         <div className="container" style={{ maxWidth: 820, marginTop: 56 }}>
+
+          {d.laserConsultation && (
+            <section aria-labelledby="laser-konsultasjon" style={{ marginBottom: 48, padding: 'clamp(20px,4vw,32px)', borderRadius: 24, background: '#F4E3DC', color: '#383838' }}>
+              <div className="kicker">Et godt sted å starte</div>
+              <h2 id="laser-konsultasjon" className="h2" style={{ marginTop: 8, marginBottom: 14 }}>Gratis konsultasjon og testskudd</h2>
+              <p style={{ fontSize: 17, lineHeight: 1.75 }}>Vi vurderer huden og pigmentet sammen med deg. Hvis du ønsker, kan du få et gratis testskudd under konsultasjonen, etter behandlerens vurdering.</p>
+              <p style={{ fontSize: 16, lineHeight: 1.75, marginTop: 14 }}>Under laserbehandlingen bruker vi Zimmer-kjøling. Bedøvelse er valgfritt og koster <strong>500 kr i tillegg til behandlingen</strong>. Bestill tillegget på forhånd og møt <strong>15 minutter før</strong>.</p>
+              <Link href="/booking" className="btn" style={{ marginTop: 18, background: '#DDB3B3', color: '#383838', borderRadius: 999 }}>Book gratis konsultasjon</Link>
+            </section>
+          )}
 
           {/* Video (valgfritt) */}
           {d.video && (
