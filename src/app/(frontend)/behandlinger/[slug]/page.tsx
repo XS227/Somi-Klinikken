@@ -12,6 +12,7 @@ type BehandlingData = {
   title: string
   tagline: string
   heroDesc: string
+  introPoints?: { title: string; description: string }[]
   hvaSer: string
   effektMot?: string[]
   hvemPasser: string
@@ -307,7 +308,25 @@ const behandlingerData: Record<string, BehandlingData> = {
     title: 'Fjerning av permanent makeup (PMU)',
     tagline: 'Laserfjerning av bryn med individuell vurdering',
     laserConsultation: true,
-    heroDesc: 'Ønsker du å fjerne eller lysne gammel permanent makeup på bryn? Hos SOMI Klinikken i Sandnes starter vi med gratis konsultasjon. Du kan også få et gratis testskudd hvis du ønsker, etter behandlerens vurdering.',
+    heroDesc: 'Hos SOMI Klinikken har vi spesialisert oss på fjerning av permanent makeup, inkludert microblading, powder brows, lipblush og eyeliner.',
+    introPoints: [
+      {
+        title: 'Utraumatisk laserfjerning av bryn',
+        description: 'Skånsom pigmentfjerning med mål om å ivareta hudoverflaten.',
+      },
+      {
+        title: 'Vi barberer ikke brynene',
+        description: 'Vi jobber med mål om å bevare de naturlige brynshårene når vi behandler pigmentet.',
+      },
+      {
+        title: 'Gratis konsultasjon og testskudd',
+        description: 'Kjenn hvordan behandlingen oppleves, og få vurdert hvordan pigmentene responderer. Testskudd tilbys etter ønske og behandlerens vurdering.',
+      },
+      {
+        title: 'Individuell vurdering',
+        description: 'Behandlingen tilpasses pigmentenes egenskaper og hudens forutsetninger.',
+      },
+    ],
     hvaSer: 'PMU-fjerning er behandling for å redusere uønsket pigment fra permanent makeup, for eksempel microblading eller powder brows. Ved laserfjerning av bryn vurderer vi pigmentet og huden før vi lager en individuell plan. Pigmenter kan reagere ulikt på laser, og fullstendig fjerning kan ikke garanteres.',
     hvemPasser: 'For deg som ønsker en vurdering av gammel permanent makeup på bryn, enten målet er å lysne pigmentet eller fjerne mest mulig. Vi vurderer også tidligere behandlinger og hva som er realistisk å oppnå før eventuell ny permanent makeup.',
     fordeler: [
@@ -604,6 +623,22 @@ export default async function BehandlingPage({ params }: Props) {
             <p style={{ color: 'rgba(255,255,255,0.82)', fontSize: 18, maxWidth: '56ch', marginTop: 14 }}>
               {d.heroDesc}
             </p>
+            {d.introPoints && (
+              <ul aria-label="Dette tilbyr vi ved PMU-fjerning" style={{
+                display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
+                gap: 14, maxWidth: 760, padding: 0, margin: '28px 0 0', listStyle: 'none',
+              }}>
+                {d.introPoints.map((point) => (
+                  <li key={point.title} style={{
+                    minWidth: 0, padding: '18px 20px', borderRadius: 20,
+                    background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(244,227,220,0.25)',
+                  }}>
+                    <strong style={{ display: 'block', color: '#F4E3DC', fontSize: 16, lineHeight: 1.5 }}>{point.title}</strong>
+                    <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: 15, lineHeight: 1.65, margin: '8px 0 0' }}>{point.description}</p>
+                  </li>
+                ))}
+              </ul>
+            )}
             <div className="cta-row" style={{ marginTop: 28 }}>
               <a href="/booking" style={{
                 display: 'inline-flex', alignItems: 'center', padding: '12px 22px',
