@@ -312,19 +312,19 @@ const behandlingerData: Record<string, BehandlingData> = {
     introPoints: [
       {
         title: 'Utraumatisk laserfjerning av bryn',
-        description: 'Skånsom pigmentfjerning med mål om å ivareta hudoverflaten.',
+        description: 'skånsom pigmentfjerning uten å skade hudoverflaten.',
       },
       {
-        title: 'Vi barberer ikke brynene',
-        description: 'Vi jobber med mål om å bevare de naturlige brynshårene når vi behandler pigmentet.',
+        title: 'Bevarer de naturlige brynshårene',
+        description: 'vi barberer ikke brynene før behandlingen, og laserbehandlingen påvirker verken hårsekkene eller hårveksten.',
       },
       {
         title: 'Gratis konsultasjon og testskudd',
-        description: 'Kjenn hvordan behandlingen oppleves, og få vurdert hvordan pigmentene responderer. Testskudd tilbys etter ønske og behandlerens vurdering.',
+        description: 'kjenn hvordan behandlingen oppleves, og se hvordan pigmentene responderer.',
       },
       {
         title: 'Individuell vurdering',
-        description: 'Behandlingen tilpasses pigmentenes egenskaper og hudens forutsetninger.',
+        description: 'behandlingen tilpasses pigmentenes egenskaper og hudens forutsetninger.',
       },
     ],
     hvaSer: 'PMU-fjerning er behandling for å redusere uønsket pigment fra permanent makeup, for eksempel microblading eller powder brows. Ved laserfjerning av bryn vurderer vi pigmentet og huden før vi lager en individuell plan. Pigmenter kan reagere ulikt på laser, og fullstendig fjerning kan ikke garanteres.',
@@ -579,7 +579,7 @@ export default async function BehandlingPage({ params }: Props) {
 
   const imgs = resultaterImages[slug] ?? []
   const related = relatedForTreatment(slug)
-  const displayTitle = d.title.includes('Sandnes') ? d.title : `${d.title} i Sandnes`
+  const displayTitle = slug === 'fjerning-permanent-makeup' || d.title.includes('Sandnes') ? d.title : `${d.title} i Sandnes`
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -633,8 +633,9 @@ export default async function BehandlingPage({ params }: Props) {
                     minWidth: 0, padding: '18px 20px', borderRadius: 20,
                     background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(244,227,220,0.25)',
                   }}>
-                    <strong style={{ display: 'block', color: '#F4E3DC', fontSize: 16, lineHeight: 1.5 }}>{point.title}</strong>
-                    <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: 15, lineHeight: 1.65, margin: '8px 0 0' }}>{point.description}</p>
+                    <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: 15, lineHeight: 1.65, margin: 0 }}>
+                      <strong style={{ color: '#F4E3DC', fontSize: 16 }}>{point.title}</strong>{' – '}{point.description}
+                    </p>
                   </li>
                 ))}
               </ul>
