@@ -3,6 +3,8 @@ import Image from 'next/image'
 import LaserBookingLink from '@/components/LaserBookingLink'
 import './laser.css'
 
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: 'November 2026 · Informasjon om laserpriser | SOMI Klinikken',
   description:
@@ -47,6 +49,20 @@ const vilkar = [
 ]
 
 export default function LaserTilbudPage() {
+  // Også direktelenker må slutte å vise en aktiv rabatt etter 30. november i Norge.
+  const ended = Date.now() >= Date.parse('2026-11-30T23:00:00Z')
+  if (ended) {
+    return (
+      <main className="laser-offer">
+        <section className="laser-offer__section laser-offer__closed">
+          <p className="laser-offer__eyebrow">SOMI KLINIKKEN · SANDNES</p>
+          <h1>Novemberkampanjen er avsluttet</h1>
+          <p>Tilbudet gjaldt bestillinger til og med 30. november 2026. Du finner informasjon om SOMIs ordinære behandlinger og priser på nettsiden.</p>
+          <a className="laser-offer__button" href="/behandlinger">Se behandlinger</a>
+        </section>
+      </main>
+    )
+  }
   return (
     <main className="laser-offer">
       <section className="laser-offer__hero">
