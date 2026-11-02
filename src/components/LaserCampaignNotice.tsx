@@ -31,7 +31,7 @@ export default function LaserCampaignNotice() {
     return () => window.clearInterval(interval)
   }, [])
 
-  if (!active || !ELIGIBLE_PAGES.has(pathname)) return null
+  if (!active || !ELIGIBLE_PAGES.has(pathname ?? '')) return null
 
   return (
     <aside className="laser-campaign-notice" aria-label="Informasjon om laserpriser">
