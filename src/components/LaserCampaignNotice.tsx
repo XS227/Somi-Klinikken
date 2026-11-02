@@ -44,8 +44,8 @@ export default function LaserCampaignNotice() {
         @media(max-width:640px){.laser-campaign-notice{padding:12px 16px}.laser-campaign-notice__inner{font-size:13px}}
       `}</style>
       <div className="laser-campaign-notice__inner">
-        <span><strong>November 2026:</strong> 40 % på enkeltbehandlinger innen laserhårfjerning, PMU- og tatoveringsfjerning.</span>
-        <a href="/tilbud/laser">Se betingelser og behandlinger</a>
+        <span><strong>November hos SOMI</strong> · −40 % prisfordel på laserhårfjerning, fjerning av permanent makeup og tatoveringsfjerning.</span>
+        <a href="/november">Se behandlinger og priser</a>
       </div>
     </aside>
   )
