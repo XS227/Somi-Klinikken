@@ -63,3 +63,7 @@
   .laser-offer__dates span{display:none}
 }
 @media(prefers-reduced-motion:reduce){.laser-offer *{scroll-behavior:auto!important;transition:none!important}}
+
+.laser-offer__closed{min-height:60vh;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:20px;max-width:1100px;margin:0 auto}
+.laser-offer__closed h1{font-size:clamp(38px,5vw,62px)}
+.laser-offer__closed p:not(.laser-offer__eyebrow){max-width:620px;color:#665955}
