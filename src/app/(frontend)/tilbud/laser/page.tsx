@@ -48,9 +48,14 @@ const vilkar = [
   'Behandlingen forutsetter individuell vurdering av egnethet og eventuelle risikofaktorer.',
 ]
 
-export default function LaserTilbudPage() {
-  // Også direktelenker må slutte å vise en aktiv rabatt etter 30. november i Norge.
-  const ended = Date.now() >= Date.parse('2026-11-30T23:00:00Z')
+type Props = { searchParams: Promise<{ forhandsvisning?: string }> }
+
+export default async function LaserTilbudPage({ searchParams }: Props) {
+  // Før 9. november er kampanjen kun tilgjengelig via lenke til forhåndsvisning.
+  const preview = (await searchParams).forhandsvisning === '1'
+  const now = Date.now()
+  const notStarted = now < Date.parse('2026-11-08T23:00:00Z')
+  const ended = now >= Date.parse('2026-11-30T23:00:00Z')
   if (ended) {
     return (
       <main className="laser-offer">
@@ -63,6 +68,19 @@ export default function LaserTilbudPage() {
       </main>
     )
   }
+  if (notStarted && !preview) {
+    return (
+      <main className="laser-offer">
+        <section className="laser-offer__section laser-offer__closed">
+          <p className="laser-offer__eyebrow">SOMI KLINIKKEN · SANDNES</p>
+          <h1>Informasjon om laserbehandlinger</h1>
+          <p>Du kan lese om behandlingene og tilgjengelige timer på våre ordinære sider.</p>
+          <a className="laser-offer__button" href="/behandlinger">Se behandlinger</a>
+        </section>
+      </main>
+    )
+  }
+
   return (
     <main className="laser-offer">
       <section className="laser-offer__hero">
