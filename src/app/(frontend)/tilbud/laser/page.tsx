@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
+import LaserBookingLink from '@/components/LaserBookingLink'
 import './laser.css'
 
 export const metadata: Metadata = {
@@ -65,9 +66,9 @@ export default function LaserTilbudPage() {
             {' '}Behandling senest 31. desember 2026
           </p>
           <div className="laser-offer__actions">
-            <a className="laser-offer__button" href="https://somi.bestille.no/" target="_blank" rel="noopener noreferrer">
+            <LaserBookingLink className="laser-offer__button" placement="hero">
               Se priser og ledige timer <span aria-hidden="true">↗</span>
-            </a>
+            </LaserBookingLink>
             <a className="laser-offer__secondary" href="#vilkar">Les vilkårene</a>
           </div>
         </div>
@@ -122,9 +123,9 @@ export default function LaserTilbudPage() {
           <p>Ta kontakt med klinikken for vurdering av behandlingsmuligheter, priser og eventuelle kontraindikasjoner.</p>
         </div>
         <div className="laser-offer__bottom-actions">
-          <a className="laser-offer__button" href="https://somi.bestille.no/" target="_blank" rel="noopener noreferrer">
+          <LaserBookingLink className="laser-offer__button" placement="footer">
             Timebestilling <span aria-hidden="true">↗</span>
-          </a>
+          </LaserBookingLink>
           <a className="laser-offer__secondary" href="/kontakt">Kontakt SOMI</a>
         </div>
       </section>
