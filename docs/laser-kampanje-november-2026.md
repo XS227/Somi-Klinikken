@@ -35,5 +35,5 @@ Kampanjen sendes ikke via e-post/SMS og publiseres ikke i betalte annonser fra d
 Markedsføring av kosmetiske laserbehandlinger må vurderes etter helsepersonellregelverket og
 reglene mot kroppspress, og må ikke bruke før-/etterbilder eller aggressivt hastverkspress.
 
-**Etter 30. november:** Banneret slås automatisk av. Kampanjesiden er fortsatt teknisk
-tilgjengelig på direkte URL (noindex) frem til den tas ned eller oppdateres manuelt.
+**Etter 30. november:** Banneret slås automatisk av, og direktebesøk til kampanjesiden
+får automatisk en nøktern «kampanjen er avsluttet»-visning (fortsatt noindex).
