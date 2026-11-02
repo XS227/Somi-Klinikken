@@ -2,6 +2,7 @@ import React from 'react'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import { SiteHeader } from '@/components/SiteHeader'
+import LaserCampaignNotice from '@/components/LaserCampaignNotice'
 import { SiteFooter } from '@/components/SiteFooter'
 import type { HeaderData } from '@/components/SiteHeader'
 import type { FooterData } from '@/components/SiteFooter'
@@ -170,6 +171,7 @@ export default async function FrontendLayout({ children }: { children: React.Rea
           dangerouslySetInnerHTML={{ __html: JSON.stringify(businessJsonLd) }}
         />
         <SiteHeader data={headerData} />
+        <LaserCampaignNotice />
         {children}
         <SiteFooter data={footerData} />
         <script dangerouslySetInnerHTML={{ __html: siteScript }} />
