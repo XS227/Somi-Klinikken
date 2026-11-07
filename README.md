@@ -1,5 +1,8 @@
 # Payload Blank Template
 
+[**⚠️ SOMI: frontend-gjenoppretting etter serverhendelsen 7. november 2026**](docs/INCIDENT-2026-11-07-FRONTEND-RECOVERY.md) – frontend-only reserve, full CMS gjenopprettes separat.
+
+
 This template comes configured with the bare minimum to get started on anything you need.
 
 ## Quick start
