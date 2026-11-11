@@ -8,7 +8,7 @@ export const dynamic = 'force-dynamic'
 export const metadata: Metadata = {
   title: 'November hos SOMI | SOMI Klinikken',
   description:
-    'November hos SOMI. 40 % prisfordel på laserhårfjerning, fjerning av permanent makeup og tatoveringsfjerning. Gjelder enkeltbehandlinger.',
+    'November hos SOMI. 40 % prisfordel på laserhårfjerning, PMU- og tatoveringsfjerning. Laserbehandlinger hos Arianna er unntatt.',
   robots: { index: false, follow: true },
 }
 
@@ -41,6 +41,7 @@ const behandlinger = [
 
 const vilkar = [
   '40 % gjelder ordinære priser på enkeltbehandlinger innen de tre oppgitte laserkategoriene.',
+  'Prisfordelen gjelder ikke laserbehandlinger hos Arianna.',
   'Eksisterende pakkepriser og klippekort omfattes ikke av prisfordelen.',
   'Timebestilling må gjennomføres fra 9. til og med 30. november 2026.',
   'Selve behandlingen må gjennomføres senest 31. desember 2026.',
@@ -89,11 +90,12 @@ export default async function SomiNovemberPage({ searchParams }: Props) {
           <h1>November hos SOMI</h1>
           <div className="laser-offer__discount">
             <span className="laser-offer__discount-number">−40 %</span>
-            <span>prisfordel på alle laserbehandlinger</span>
+            <span>prisfordel på laserbehandlinger</span>
           </div>
           <p className="laser-offer__intro">
             En anledning til å prioritere behandlingene du har vurdert.<br />
-            Gjelder laserhårfjerning, fjerning av permanent makeup og tatoveringsfjerning.
+            Gjelder laserhårfjerning, fjerning av permanent makeup og tatoveringsfjerning.<br />
+            Prisfordelen gjelder ikke laserbehandlinger hos Arianna.
           </p>
           <p className="laser-offer__dates">
             Bestill innen 30. november. <span aria-hidden="true">·</span>
