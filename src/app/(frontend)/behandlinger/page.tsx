@@ -46,9 +46,15 @@ const categories: TreatmentCategory[] = [
   },
   {
     slug: 'laser-tattoo-removal',
-    title: 'Laser tattoofjerning',
-    desc: 'Fjern tatoveringer effektivt med laser eller saline tattoo removal. Alle hudtyper.',
+    title: 'Laser tatoveringsfjerning',
+    desc: 'Individuelt tilpasset laserbehandling med Zimmer-kjøling. Gratis konsultasjon og mulighet for gratis testskudd.',
     icon: '⚡',
+  },
+  {
+    slug: 'fjerning-permanent-makeup',
+    title: 'Fjerning av permanent makeup (PMU)',
+    desc: 'Vurdering av gammel PMU, microblading og powder brows. Laserfjerning av bryn med gratis konsultasjon og mulighet for gratis testskudd.',
+    icon: '◌',
   },
   {
     slug: 'permanent-makeup',
@@ -118,7 +124,7 @@ export default function BehandlingerPage() {
 
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(2, minmax(0,1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 420px), 1fr))',
           gap: 16,
         }}>
           {categories.map((cat) => {

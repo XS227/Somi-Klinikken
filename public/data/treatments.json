@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-31",
+  "updated": "2026-10-22",
   "categories": [
     {
       "id": "microblading",
@@ -1164,8 +1164,50 @@
     },
     {
       "id": "laser-tattoo-removal",
-      "title": "Laser tattoo removal",
-      "desc": "Fjerning av pigment og tatovering med laser/saline.",
+      "title": "Laser tatoveringsfjerning",
+      "desc": "Laserbehandling med Zimmer-kjøling. Gratis konsultasjon og mulighet for gratis testskudd.",
+      "items": [
+        {
+          "id": "laserfjerning-tatovering-10x10cm",
+          "name": "Laserfjerning tatovering 10x10cm",
+          "short": "",
+          "duration": "30 min",
+          "price": "1 450 kr",
+          "tags": []
+        },
+        {
+          "id": "konsultasjon",
+          "name": "Konsultasjon",
+          "short": "Gratis konsultasjon. Mulighet for gratis testskudd etter ønske og behandlerens vurdering.",
+          "duration": "15 min",
+          "price": "0 kr",
+          "tags": []
+        },
+        {
+          "id": "laserfjerning-tatovering-5x5-cm",
+          "name": "Laserfjerning tatovering 5x5 cm",
+          "short": "",
+          "duration": "30 min",
+          "price": "1 050 kr",
+          "tags": []
+        },
+        {
+          "id": "laser-tattoo-bedovelse",
+          "name": "Bedøvelse – valgfritt tillegg",
+          "short": "500 kr i tillegg til behandlingsprisen. Bestilles på forhånd. Møt 15 minutter før timen.",
+          "duration": "",
+          "price": "500 kr",
+          "tags": [
+            "bedøvelse",
+            "tillegg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fjerning-permanent-makeup",
+      "title": "Fjerning av permanent makeup (PMU)",
+      "desc": "PMU-fjerning og laserfjerning av bryn. Gratis konsultasjon og mulighet for gratis testskudd.",
       "items": [
         {
           "id": "saline-removal-gule-pigmenter-i-bryn",
@@ -1178,34 +1220,33 @@
         {
           "id": "laserfjerning-bryn",
           "name": "Laserfjerning bryn",
-          "short": "",
+          "short": "Fjerning av gammel permanent makeup på bryn med laser. Behandlingsplan vurderes individuelt.",
           "duration": "30 min",
           "price": "1 450 kr",
           "tags": []
         },
         {
-          "id": "laserfjerning-tatovering-10x10cm",
-          "name": "Laserfjerning tatovering 10x10cm",
-          "short": "",
-          "duration": "30 min",
-          "price": "1 450 kr",
-          "tags": []
-        },
-        {
-          "id": "konsultasjon",
-          "name": "Konsultasjon",
-          "short": "",
-          "duration": "15 min",
+          "id": "pmu-fjerning-konsultasjon",
+          "name": "PMU-fjerning – gratis konsultasjon",
+          "short": "Gratis testskudd hvis du ønsker, etter behandlerens vurdering.",
+          "duration": "",
           "price": "0 kr",
-          "tags": []
+          "tags": [
+            "pmu",
+            "testskudd",
+            "laserfjerning bryn"
+          ]
         },
         {
-          "id": "laserfjerning-tatovering-5x5-cm",
-          "name": "Laserfjerning tatovering 5x5 cm",
-          "short": "",
-          "duration": "30 min",
-          "price": "1 050 kr",
-          "tags": []
+          "id": "pmu-fjerning-bedovelse",
+          "name": "Bedøvelse – valgfritt tillegg",
+          "short": "500 kr i tillegg til behandlingsprisen. Bestilles på forhånd. Møt 15 minutter før timen.",
+          "duration": "",
+          "price": "500 kr",
+          "tags": [
+            "bedøvelse",
+            "tillegg"
+          ]
         }
       ]
     },

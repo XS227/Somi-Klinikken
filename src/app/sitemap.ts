@@ -22,6 +22,7 @@ const BEHANDLING_SLUGS = [
   'permanent-makeup',
   'laser-harfjerning',
   'laser-tattoo-removal',
+  'fjerning-permanent-makeup',
   'injeksjonsbehandlinger',
   'profhilo',
   'medisinsk-hudpleie',
